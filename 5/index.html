@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LUMICLEAN - Hospital-like Disinfection for Your Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <main class="flex flex-col bg-white min-h-screen">
+      <!-- Header Navigation -->
+      <header
+        class="flex justify-between items-center px-64 w-full bg-white h-[72px] max-md:px-12 max-sm:px-5"
+      >
+        <div>
+          <svg
+            width="1420"
+            height="40"
+            viewBox="0 0 1420 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-[1420px] h-[40px] max-lg:w-[800px] max-sm:w-[200px]"
+          >
+            <path
+              d="M814.791 13.769C816.33 13.769 817.7 14.0695 818.902 14.6704C820.128 15.2714 821.089 16.1968 821.786 17.4468C822.483 18.6727 822.832 20.2592 822.832 22.2062V33.2394H818.325V22.7831C818.325 21.0764 817.916 19.8025 817.099 18.9611C816.306 18.1198 815.188 17.6992 813.746 17.6992C812.688 17.6992 811.751 17.9155 810.933 18.3482C810.116 18.7809 809.479 19.4299 809.022 20.2952C808.59 21.1365 808.373 22.2062 808.373 23.5042V33.2394H803.866V13.9854H808.157V19.1775L807.4 17.591C808.073 16.3651 809.046 15.4276 810.32 14.7786C811.618 14.1055 813.109 13.769 814.791 13.769Z"
+              fill="black"
+            ></path>
+            <path
+              d="M795.63 33.2394V29.3454L795.378 28.5161V21.7014C795.378 20.3794 794.981 19.3578 794.188 18.6366C793.395 17.8915 792.193 17.5189 790.582 17.5189C789.501 17.5189 788.431 17.6871 787.373 18.0237C786.34 18.3602 785.462 18.8289 784.741 19.4299L782.974 16.1487C784.008 15.3555 785.234 14.7666 786.652 14.382C788.094 13.9733 789.585 13.769 791.123 13.769C793.911 13.769 796.063 14.4421 797.577 15.7882C799.116 17.1102 799.885 19.1655 799.885 21.9538V33.2394H795.63ZM789.573 33.4918C788.13 33.4918 786.868 33.2515 785.787 32.7707C784.705 32.2659 783.864 31.5809 783.263 30.7155C782.686 29.8261 782.397 28.8286 782.397 27.7228C782.397 26.6411 782.65 25.6676 783.155 24.8023C783.683 23.9369 784.537 23.2518 785.715 22.7471C786.892 22.2423 788.455 21.9899 790.402 21.9899H795.991V24.9825H790.726C789.188 24.9825 788.154 25.2349 787.626 25.7397C787.097 26.2205 786.832 26.8214 786.832 27.5425C786.832 28.3598 787.157 29.0088 787.806 29.4896C788.455 29.9703 789.356 30.2107 790.51 30.2107C791.616 30.2107 792.601 29.9583 793.467 29.4535C794.356 28.9487 794.993 28.2036 795.378 27.218L796.135 29.9223C795.702 31.052 794.921 31.9294 793.791 32.5544C792.686 33.1794 791.279 33.4918 789.573 33.4918Z"
+              fill="black"
+            ></path>
+            <path
+              d="M772.72 33.4918C770.58 33.4918 768.705 33.0712 767.095 32.2299C765.508 31.3645 764.27 30.1867 763.381 28.6963C762.516 27.206 762.083 25.5114 762.083 23.6124C762.083 21.6894 762.504 19.9948 763.345 18.5285C764.21 17.0381 765.388 15.8723 766.878 15.031C768.393 14.1897 770.112 13.769 772.035 13.769C773.909 13.769 775.58 14.1777 777.046 14.9949C778.513 15.8122 779.666 16.966 780.508 18.4563C781.349 19.9467 781.77 21.7014 781.77 23.7206C781.77 23.9129 781.758 24.1292 781.734 24.3696C781.734 24.61 781.722 24.8383 781.698 25.0547H765.653V22.062H779.318L777.551 22.9994C777.575 21.8937 777.347 20.9202 776.866 20.0789C776.385 19.2376 775.724 18.5765 774.883 18.0958C774.066 17.615 773.116 17.3747 772.035 17.3747C770.929 17.3747 769.955 17.615 769.114 18.0958C768.297 18.5765 767.648 19.2496 767.167 20.1149C766.71 20.9563 766.482 21.9538 766.482 23.1076V23.8287C766.482 24.9825 766.746 26.0041 767.275 26.8935C767.804 27.7829 768.549 28.468 769.511 28.9487C770.472 29.4295 771.578 29.6699 772.828 29.6699C773.909 29.6699 774.883 29.5016 775.748 29.1651C776.614 28.8286 777.383 28.2997 778.056 27.5786L780.472 30.3549C779.606 31.3645 778.513 32.1457 777.191 32.6986C775.893 33.2274 774.402 33.4918 772.72 33.4918Z"
+              fill="black"
+            ></path>
+            <path
+              d="M755.05 33.2395V6.4857H759.557V33.2395H755.05Z"
+              fill="black"
+            ></path>
+            <path
+              d="M742.769 33.6001C740.846 33.6001 739.055 33.2876 737.397 32.6627C735.762 32.0137 734.332 31.1122 733.106 29.9584C731.904 28.7806 730.967 27.3984 730.294 25.812C729.621 24.2255 729.284 22.4948 729.284 20.6198C729.284 18.7449 729.621 17.0142 730.294 15.4277C730.967 13.8413 731.916 12.4711 733.142 11.3173C734.368 10.1395 735.798 9.23807 737.433 8.61309C739.067 7.96407 740.858 7.63957 742.805 7.63957C744.873 7.63957 746.759 8.00013 748.466 8.72126C750.173 9.41835 751.615 10.464 752.793 11.8582L749.764 14.7066C748.851 13.7211 747.829 12.9879 746.699 12.5072C745.57 12.0024 744.344 11.75 743.022 11.75C741.7 11.75 740.486 11.9663 739.38 12.399C738.298 12.8317 737.349 13.4446 736.532 14.2379C735.738 15.0311 735.113 15.9686 734.657 17.0503C734.224 18.132 734.008 19.3218 734.008 20.6198C734.008 21.9179 734.224 23.1077 734.657 24.1894C735.113 25.2711 735.738 26.2086 736.532 27.0018C737.349 27.7951 738.298 28.408 739.38 28.8407C740.486 29.2734 741.7 29.4897 743.022 29.4897C744.344 29.4897 745.57 29.2493 746.699 28.7686C747.829 28.2638 748.851 27.5066 749.764 26.497L752.793 29.3815C751.615 30.7517 750.173 31.7973 748.466 32.5184C746.759 33.2396 744.861 33.6001 742.769 33.6001Z"
+              fill="black"
+            ></path>
+            <path
+              d="M722.035 33.2395V13.9855H726.542V33.2395H722.035ZM724.306 10.8125C723.465 10.8125 722.768 10.5481 722.215 10.0193C721.686 9.49044 721.422 8.85344 721.422 8.10828C721.422 7.33908 721.686 6.70208 722.215 6.19729C722.768 5.66847 723.465 5.40405 724.306 5.40405C725.148 5.40405 725.833 5.65645 726.362 6.16123C726.914 6.64199 727.191 7.25494 727.191 8.00011C727.191 8.79335 726.926 9.4664 726.398 10.0193C725.869 10.5481 725.172 10.8125 724.306 10.8125Z"
+              fill="black"
+            ></path>
+            <path
+              d="M710.182 13.769C711.72 13.769 713.078 14.0695 714.256 14.6704C715.458 15.2714 716.396 16.1968 717.069 17.4468C717.742 18.6727 718.078 20.2592 718.078 22.2062V33.2394H713.571V22.7831C713.571 21.0764 713.199 19.8025 712.453 18.9611C711.708 18.1198 710.639 17.6992 709.244 17.6992C708.259 17.6992 707.381 17.9155 706.612 18.3482C705.867 18.7809 705.278 19.4179 704.846 20.2592C704.437 21.1005 704.233 22.1701 704.233 23.4682V33.2394H699.726V22.7831C699.726 21.0764 699.353 19.8025 698.608 18.9611C697.863 18.1198 696.793 17.6992 695.399 17.6992C694.413 17.6992 693.536 17.9155 692.767 18.3482C692.021 18.7809 691.433 19.4179 691 20.2592C690.591 21.1005 690.387 22.1701 690.387 23.4682V33.2394H685.88V13.9854H690.171V19.1054L689.413 17.591C690.062 16.341 691 15.3916 692.226 14.7425C693.476 14.0935 694.894 13.769 696.48 13.769C698.283 13.769 699.846 14.2137 701.168 15.1031C702.514 15.9925 703.403 17.3386 703.836 19.1414L702.069 18.5285C702.694 17.0862 703.728 15.9324 705.17 15.0671C706.612 14.2017 708.283 13.769 710.182 13.769Z"
+              fill="black"
+            ></path>
+            <path
+              d="M671.289 33.4919C669.654 33.4919 668.212 33.1914 666.962 32.5905C665.712 31.9655 664.739 31.028 664.042 29.7781C663.345 28.5041 662.996 26.9056 662.996 24.9826V13.9854H667.503V24.3696C667.503 26.1003 667.888 27.3984 668.657 28.2637C669.45 29.105 670.568 29.5257 672.01 29.5257C673.068 29.5257 673.981 29.3093 674.75 28.8767C675.544 28.444 676.157 27.795 676.589 26.9296C677.046 26.0643 677.274 24.9946 677.274 23.7206V13.9854H681.781V33.2395H677.491V28.0474L678.248 29.6338C677.599 30.8838 676.649 31.8453 675.399 32.5184C674.15 33.1674 672.779 33.4919 671.289 33.4919Z"
+              fill="black"
+            ></path>
+            <path
+              d="M643.968 33.2394V7.99998H648.655V29.2732H661.852V33.2394H643.968Z"
+              fill="black"
+            ></path>
+            <path
+              d="M631.733 25.9154L636.071 29.2957H634.212H629.874L631.733 25.9154Z"
+              fill="#00ACEB"
+            ></path>
+            <path
+              d="M602.1 25.9154L597.762 29.2957H599.621H603.959L602.1 25.9154Z"
+              fill="#00ACEB"
+            ></path>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M615.612 0.12674C614.751 0.457897 601.606 6.19441 601.146 6.43975C599.829 7.14231 598.848 8.42896 598.476 9.94108C598.026 11.7708 598.631 17.0604 599.738 20.9682C602.122 29.3906 607.038 35.7365 613.913 39.267C614.976 39.8127 615.673 40 616.642 40C617.612 40 618.309 39.8127 619.372 39.267C624.579 36.5929 628.614 32.3661 631.373 26.695C633.492 22.3381 634.767 17.1219 634.931 12.1366C634.982 10.6023 634.912 10.0372 634.563 9.152C634.168 8.15235 633.328 7.14911 632.43 6.60505C632.165 6.44436 631.295 6.02824 630.497 5.68028C629.699 5.3324 626.452 3.91969 623.283 2.54097L617.52 0.0342791L616.757 0.00708002C616.149 -0.0144917 615.916 0.00989372 615.612 0.12674Z"
+              fill="url(#paint0_linear_190_14)"
+            ></path>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M601.146 6.43975C599.829 7.14231 598.848 8.42896 598.476 9.94108C598.026 11.7708 598.631 17.0605 599.738 20.9682C602.122 29.3906 607.038 35.7365 613.913 39.267C614.976 39.8127 615.673 40 616.642 40C617.612 40 618.309 39.8127 619.372 39.267C624.579 36.5929 628.614 32.3661 631.373 26.695C633.492 22.3381 634.767 17.1219 634.931 12.1366C634.982 10.6023 634.912 10.0372 634.563 9.152C634.168 8.15235 633.328 7.14911 632.43 6.60505C632.165 6.44436 631.295 6.02824 630.497 5.68028C629.699 5.3324 626.452 3.91969 623.283 2.54097L617.52 0.0342791L616.757 0.00708002C616.149 -0.0144917 615.916 0.00989372 615.612 0.12674C614.751 0.457897 601.606 6.19441 601.146 6.43975ZM615.915 0.915497C615.508 1.07221 612.034 2.57676 608.567 4.08995C606.841 4.84281 605.129 5.59279 603.82 6.16972C603.165 6.45825 602.612 6.70309 602.209 6.8832C602.007 6.97335 601.845 7.04664 601.726 7.10082C601.666 7.12797 601.62 7.14956 601.585 7.16565C601.554 7.1806 601.542 7.18656 601.542 7.18651C601.542 7.1865 601.543 7.18609 601.544 7.18534C600.449 7.7695 599.614 8.85245 599.297 10.143L598.476 9.94108L599.297 10.143C599.21 10.4937 599.162 11.0807 599.173 11.8754C599.183 12.6542 599.248 13.5797 599.363 14.5794C599.592 16.5806 600.012 18.8344 600.551 20.738C602.881 28.9677 607.662 35.1065 614.299 38.5152L614.299 38.5152C615.27 39.0136 615.835 39.1549 616.642 39.1549C617.45 39.1549 618.015 39.0136 618.986 38.5152L618.986 38.5152C624.017 35.9313 627.927 31.8455 630.613 26.3253C632.679 22.0783 633.926 16.979 634.087 12.1087C634.135 10.6276 634.065 10.194 633.777 9.46208C633.448 8.63008 632.729 7.77375 631.993 7.32785L631.992 7.32782C631.783 7.20082 630.964 6.80563 630.159 6.45498C629.361 6.10723 626.115 4.69465 622.946 3.3159L617.33 0.873109L616.727 0.851618C616.727 0.851617 616.727 0.851616 616.727 0.851614C616.43 0.841065 616.269 0.843969 616.158 0.855496C616.068 0.864929 616.006 0.880557 615.915 0.915497Z"
+              fill="url(#paint1_linear_190_14)"
+            ></path>
+            <path
+              d="M598.004 29.2957C597.036 29.2957 596.631 28.0588 597.411 27.4858L615.5 14.2056C616.507 13.4658 617.882 13.4786 618.876 14.237L636.59 27.756C637.243 28.2539 636.89 29.2957 636.07 29.2957C635.888 29.2957 635.712 29.2383 635.565 29.1317L618.844 16.9706C617.862 16.2566 616.533 16.2518 615.546 16.9588L598.588 29.1083C598.418 29.2302 598.213 29.2957 598.004 29.2957Z"
+              fill="white"
+            ></path>
+            <path
+              d="M613.538 23.6621C613.538 23.3509 613.79 23.0987 614.101 23.0987H616.355C616.666 23.0987 616.918 23.3509 616.918 23.6621V25.9156C616.918 26.2267 616.666 26.479 616.355 26.479H614.101C613.79 26.479 613.538 26.2267 613.538 25.9156V23.6621Z"
+              fill="white"
+            ></path>
+            <path
+              d="M613.538 28.1692C613.538 27.8581 613.79 27.6058 614.101 27.6058H616.355C616.666 27.6058 616.918 27.8581 616.918 28.1692V30.4227C616.918 30.7339 616.666 30.9861 616.355 30.9861H614.101C613.79 30.9861 613.538 30.7339 613.538 30.4227V28.1692Z"
+              fill="white"
+            ></path>
+            <path
+              d="M617.482 23.6621C617.482 23.3509 617.735 23.0987 618.046 23.0987H620.299C620.61 23.0987 620.863 23.3509 620.863 23.6621V25.9156C620.863 26.2267 620.61 26.479 620.299 26.479H618.046C617.735 26.479 617.482 26.2267 617.482 25.9156V23.6621Z"
+              fill="white"
+            ></path>
+            <path
+              d="M617.482 28.1692C617.482 27.8581 617.735 27.6058 618.046 27.6058H620.299C620.61 27.6058 620.863 27.8581 620.863 28.1692V30.4227C620.863 30.7339 620.61 30.9861 620.299 30.9861H618.046C617.735 30.9861 617.482 30.7339 617.482 30.4227V28.1692Z"
+              fill="white"
+            ></path>
+            <path
+              d="M4 12.0013H28M4 20.0013H28M4 28.0013H28"
+              stroke="black"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M1398.76 10H1394.94L1394.01 23.6954C1393.96 24.5027 1394.07 25.3127 1394.35 26.0751C1394.63 26.8375 1395.06 27.536 1395.63 28.1273C1396.19 28.7185 1396.88 29.1898 1397.64 29.512C1398.4 29.8341 1399.21 30.0003 1400.04 30H1408.96C1409.79 30.0001 1410.6 29.8344 1411.36 29.5129C1412.12 29.1915 1412.8 28.7212 1413.37 28.1313C1413.93 27.5413 1414.37 26.8443 1414.65 26.0833C1414.93 25.3223 1415.04 24.5136 1414.99 23.7072L1414.04 10H1398.76ZM1398.76 11.1806H1396.08L1395.22 23.778C1395.18 24.4235 1395.27 25.0711 1395.49 25.6805C1395.71 26.29 1396.06 26.8484 1396.51 27.3211C1396.96 27.7938 1397.51 28.1707 1398.12 28.4284C1398.73 28.6862 1399.38 28.8192 1400.04 28.8194H1408.96C1409.62 28.8208 1410.28 28.689 1410.89 28.432C1411.49 28.1749 1412.04 27.7983 1412.5 27.3254C1412.95 26.8526 1413.3 26.2936 1413.52 25.6833C1413.74 25.073 1413.84 24.4245 1413.79 23.778L1412.92 11.1806H1410.24V11.9244C1410.24 12.6609 1410.09 13.3901 1409.8 14.0705C1409.51 14.7509 1409.09 15.3692 1408.56 15.8899C1408.03 16.4107 1407.39 16.8238 1406.7 17.1056C1406 17.3874 1405.25 17.5325 1404.5 17.5325C1403.75 17.5325 1403 17.3874 1402.3 17.1056C1401.61 16.8238 1400.98 16.4107 1400.44 15.8899C1399.91 15.3692 1399.49 14.7509 1399.2 14.0705C1398.91 13.3901 1398.76 12.6609 1398.76 11.9244V11.1806ZM1409.03 11.1806H1399.97V11.9244C1399.97 13.0987 1400.45 14.2248 1401.3 15.0551C1402.15 15.8854 1403.3 16.3518 1404.5 16.3518C1405.7 16.3518 1406.85 15.8854 1407.7 15.0551C1408.55 14.2248 1409.03 13.0987 1409.03 11.9244V11.1806Z"
+              fill="black"
+            ></path>
+            <defs>
+              <linearGradient
+                id="paint0_linear_190_14"
+                x1="616.636"
+                y1="0"
+                x2="616.636"
+                y2="40"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#00A1FE"></stop>
+                <stop offset="1" stop-color="#00ACEB"></stop>
+              </linearGradient>
+              <linearGradient
+                id="paint1_linear_190_14"
+                x1="616.636"
+                y1="0"
+                x2="616.636"
+                y2="40"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#00ACEB"></stop>
+                <stop offset="1" stop-color="#00A1FE"></stop>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section
+        class="flex gap-12 justify-center items-center px-72 py-24 w-full bg-[linear-gradient(180deg,#D5F4FF_0%,#F6FCFE_100%)] h-[875px] max-md:flex-col max-md:p-12 max-sm:p-5 max-sm:h-auto"
+      >
+        <div class="flex flex-col flex-1 gap-4 justify-center items-center">
+          <div
+            class="flex gap-1.5 items-center px-4 py-2 bg-white shadow-lg rounded-[50px]"
+          >
+            <div>
+              <svg
+                width="133"
+                height="24"
+                viewBox="0 0 133 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="flex items-center gap-[3px]"
+              >
+                <path
+                  d="M12.5 0L16.0267 7.1459L23.9127 8.2918L18.2063 13.8541L19.5534 21.7082L12.5 18L5.44658 21.7082L6.79366 13.8541L1.08732 8.2918L8.97329 7.1459L12.5 0Z"
+                  fill="#FFC107"
+                ></path>
+                <path
+                  d="M39.5 0L43.0267 7.1459L50.9127 8.2918L45.2063 13.8541L46.5534 21.7082L39.5 18L32.4466 21.7082L33.7937 13.8541L28.0873 8.2918L35.9733 7.1459L39.5 0Z"
+                  fill="#FFC107"
+                ></path>
+                <path
+                  d="M66.5 0L70.0267 7.1459L77.9127 8.2918L72.2063 13.8541L73.5534 21.7082L66.5 18L59.4466 21.7082L60.7937 13.8541L55.0873 8.2918L62.9733 7.1459L66.5 0Z"
+                  fill="#FFC107"
+                ></path>
+                <path
+                  d="M93.5 0L97.0267 7.1459L104.913 8.2918L99.2063 13.8541L100.553 21.7082L93.5 18L86.4466 21.7082L87.7937 13.8541L82.0873 8.2918L89.9733 7.1459L93.5 0Z"
+                  fill="#FFC107"
+                ></path>
+                <path
+                  d="M120.5 0L124.027 7.1459L131.913 8.2918L126.206 13.8541L127.553 21.7082L120.5 18L113.447 21.7082L114.794 13.8541L109.087 8.2918L116.973 7.1459L120.5 0Z"
+                  fill="#FFC107"
+                ></path>
+              </svg>
+            </div>
+            <p class="text-base font-medium text-center text-black">
+              20,000+ Home Disinfected!
+            </p>
+          </div>
+          <h1
+            class="text-5xl font-bold text-center leading-[52.8px] text-sky-950 max-md:text-4xl max-sm:text-3xl"
+          >
+            From Stress To Serenity: Give Your Family The Peace Of Mind They
+            Deserve!
+          </h1>
+          <p
+            class="text-xl leading-7 text-center text-zinc-900 w-[550px] max-md:w-full"
+          >
+            Stop Second-Guessing Your Cleaning. Finally Achieve True
+            Sanitization – With a Push Of A Button.
+          </p>
+          <div class="flex gap-4 items-center max-md:flex-wrap max-sm:flex-col">
+            <article
+              class="flex flex-col gap-2.5 items-start px-5 py-4 bg-white rounded-xl shadow-sm h-[130px] w-[200px]"
+            >
+              <div class="flex flex-col gap-2.5 items-center w-40">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/1800bdeb33981e83eaae9d6783e34c881cb87697"
+                  alt=""
+                  class="w-[48px] h-[48px]"
+                />
+                <p class="text-lg leading-5 text-center text-zinc-700">
+                  Targets Germs &amp; Bacteria
+                </p>
+              </div>
+            </article>
+            <article
+              class="flex flex-col gap-2.5 items-start px-5 py-4 bg-white rounded-xl shadow-sm h-[130px] w-[200px]"
+            >
+              <div class="flex flex-col gap-2.5 items-center w-40">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/6679bfc0963991a3cc99964b974338707ce39ed1"
+                  alt=""
+                  class="w-[48px] h-[48px]"
+                />
+                <p class="text-lg leading-5 text-center text-zinc-700">
+                  UV-C + Ozone Technology
+                </p>
+              </div>
+            </article>
+            <article
+              class="flex flex-col gap-2.5 items-start px-5 py-4 bg-white rounded-xl shadow-sm h-[130px] w-[200px]"
+            >
+              <div class="flex flex-col gap-2.5 items-center w-40">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/e84d3de018f15be9c82932ac31acdcd2e62831b1"
+                  alt=""
+                  class="w-[48px] h-[48px]"
+                />
+                <p class="text-lg leading-5 text-center text-zinc-700">
+                  Whole-Room Disinfection
+                </p>
+              </div>
+            </article>
+          </div>
+          <div class="flex flex-col gap-3 items-center w-[643px] max-md:w-full">
+            <button
+              class="gap-2.5 px-40 py-6 w-full h-20 text-2xl font-bold leading-8 text-center text-white uppercase bg-red-700 rounded-[100px] max-md:p-6 max-md:text-xl"
+            >
+              Yes i want a clean home
+            </button>
+            <div class="flex gap-2 items-center">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/bf711415730b01864b0305b182abb56226f7b08d"
+                alt=""
+                class="w-[24px] h-[24px]"
+              />
+              <p class="text-base leading-normal text-center text-neutral-800">
+                60-DAY MONEY BACK GUARANTEE
+              </p>
+            </div>
+          </div>
+        </div>
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/fb937714554c1fcf983fcb03737c9a0186126b8d"
+          alt="Frame 2606"
+          class="flex-1 max-w-[600px] max-lg:w-full"
+        />
+      </section>
+
+      <!-- First Info Section -->
+      <section
+        class="flex gap-24 justify-center items-center px-72 py-0 w-full bg-slate-50 h-[950px] max-md:flex-col max-md:p-12 max-sm:p-5 max-sm:h-auto"
+      >
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/71b1131cbf49287d25dec842477528d23f1078b1"
+          alt=""
+          class="w-[710px] max-lg:w-full h-auto"
+        />
+        <div class="flex flex-col gap-4 items-center w-[600px] max-md:w-full">
+          <h2
+            class="w-full text-4xl font-bold leading-10 text-center text-sky-700 max-md:text-3xl max-sm:text-3xl"
+          >
+            Did You Know that 20% of Pathogens Survive After Cleaning
+          </h2>
+          <p class="w-full text-lg leading-6 text-center text-neutral-800">
+            <span>
+              You meticulously wipe down surfaces. You vacuum religiously. But
+              deep down, a nagging worry persists:
+            </span>
+            <span class="font-bold"
+              >is it really clean enough? The truth is,</span
+            >
+            <span>
+              standard cleaning methods often fall short. Wipes and sprays only
+              sanitize where they touch, missing hidden crevices, fabrics, and
+              even the air you breathe. Microscopic germs and bacteria can
+              linger, silently impacting your peace of mind.
+            </span>
+            <span class="font-bold">Think about it:</span>
+            <span>
+              Dust mites thrive in mattresses, bacteria cling to countertops,
+              and odor sticks into walls, furniture and trash cans.
+            </span>
+          </p>
+          <button
+            class="gap-2.5 px-20 py-3 w-full h-20 text-2xl font-bold leading-7 text-center text-white uppercase bg-red-700 rounded-[100px] max-md:p-3 max-md:text-xl"
+          >
+            Deep clean my house from unseen threats
+          </button>
+          <div class="flex gap-2 justify-center items-center">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/4f00b24b97624c52f3583aae9ebb059c3387bedd"
+              alt=""
+              class="w-[24px] h-[24px]"
+            />
+            <p class="text-base leading-normal text-center text-neutral-800">
+              60-DAY MONEY BACK GUARANTEE
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Second Info Section -->
+      <section
+        class="flex gap-24 justify-center items-center px-72 py-0 w-full bg-slate-50 h-[950px] max-md:flex-col max-md:p-12 max-sm:p-5 max-sm:h-auto"
+      >
+        <div
+          class="flex flex-col gap-4 justify-center items-center w-[600px] max-md:w-full"
+        >
+          <div
+            class="flex gap-1.5 items-center px-4 py-2 bg-white shadow-lg rounded-[50px]"
+          >
+            <div class="flex justify-center items-center w-6 h-6">
+              <svg
+                layer-name="GUARANTEE_icon_5a6f5a73-be2e-40b1-a6f8-848dd9d5082f.svg"
+                width="21"
+                height="24"
+                viewBox="0 0 21 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-[19px] h-[24px]"
+              >
+                <path
+                  d="M10.552 2.19234L10.868 1.45319C10.7681 1.41046 10.6606 1.38843 10.552 1.38843C10.4434 1.38843 10.3359 1.41046 10.236 1.45319L10.552 2.19234ZM10.552 21.4744L10.1535 22.1717C10.2749 22.2411 10.4122 22.2775 10.552 22.2775C10.6918 22.2775 10.8291 22.2411 10.9505 22.1717L10.552 21.4744ZM10.2349 1.45427L3.38765 4.38835L4.01752 5.86663L10.8669 2.93148L10.2349 1.45427ZM2.25 6.11195V13.4605H3.85683V6.11195H2.25ZM5.89323 19.738L10.1535 22.1717L10.9505 20.7771L6.69023 18.3421L5.89323 19.738ZM10.9505 22.1717L15.2107 19.738L14.4137 18.3421L10.1535 20.7771L10.9505 22.1717ZM18.8539 13.4595V6.11302H17.2472V13.4616L18.8539 13.4595ZM17.7185 4.38942L10.868 1.45319L10.236 2.9304L17.0854 5.86663L17.7185 4.38942ZM18.8539 6.11302C18.8539 5.36316 18.4073 4.68508 17.7185 4.38942L17.0854 5.86663C17.1335 5.88739 17.1745 5.92178 17.2032 5.96557C17.232 6.00937 17.2472 6.06063 17.2472 6.11302H18.8539ZM15.2107 19.738C16.3174 19.1055 17.2373 18.1918 17.877 17.0894C18.5168 15.9871 18.8538 14.7341 18.8539 13.4595L17.2472 13.4616C17.247 14.4528 16.9848 15.4253 16.4872 16.2826C15.9896 17.1398 15.2743 17.8503 14.4137 18.3421L15.2107 19.738ZM2.25 13.4605C2.25011 14.7351 2.58714 15.9871 3.22695 17.0894C3.86674 18.1918 4.78658 19.1055 5.89323 19.738L6.69023 18.3421C5.82951 17.8502 5.1141 17.1395 4.61653 16.2821C4.11894 15.4246 3.85686 14.4519 3.85683 13.4605H2.25ZM3.3855 4.38835C3.0485 4.53293 2.7613 4.77318 2.55947 5.07935C2.35765 5.38552 2.25005 5.74524 2.25 6.11195H3.85683C3.85683 6.00483 3.92111 5.90734 4.01967 5.8645L3.3855 4.38835Z"
+                  fill="#19A8EC"
+                ></path>
+                <path
+                  d="M10.868 1.45319L10.552 2.19234L10.236 1.45319C10.3359 1.41046 10.4434 1.38843 10.552 1.38843C10.6606 1.38843 10.7681 1.41046 10.868 1.45319ZM10.868 1.45319L17.7185 4.38942M10.868 1.45319L10.236 2.9304L17.0854 5.86663M17.7185 4.38942L17.0854 5.86663M17.7185 4.38942C18.4073 4.68508 18.8539 5.36316 18.8539 6.11302M17.0854 5.86663L17.4014 5.12749M17.0854 5.86663C17.1335 5.88739 17.1745 5.92178 17.2032 5.96557C17.232 6.00937 17.2472 6.06063 17.2472 6.11302M10.1535 22.1717L10.552 21.4744L10.9505 22.1717M10.1535 22.1717C10.2749 22.2411 10.4122 22.2775 10.552 22.2775C10.6918 22.2775 10.8291 22.2411 10.9505 22.1717M10.1535 22.1717L5.89323 19.738M10.1535 22.1717L10.9505 20.7771L6.69023 18.3421M10.9505 22.1717L15.2107 19.738M10.9505 22.1717L10.1535 20.7771L14.4137 18.3421M5.89323 19.738L6.2928 19.0395M5.89323 19.738L6.69023 18.3421M5.89323 19.738C4.78658 19.1055 3.86674 18.1918 3.22695 17.0894C2.58714 15.9871 2.25011 14.7351 2.25 13.4605M6.69023 18.3421C5.82951 17.8502 5.1141 17.1395 4.61653 16.2821C4.11894 15.4246 3.85686 14.4519 3.85683 13.4605M15.2107 19.738L14.4137 18.3421M15.2107 19.738C16.3174 19.1055 17.2373 18.1918 17.877 17.0894C18.5168 15.9871 18.8538 14.7341 18.8539 13.4595M14.4137 18.3421C15.2743 17.8503 15.9896 17.1398 16.4872 16.2826C16.9848 15.4253 17.247 14.4528 17.2472 13.4616M17.2472 6.11302H18.8539M17.2472 6.11302V13.4616M2.25 13.4605V6.11195M2.25 13.4605H3.85683M2.25 6.11195H3.85683M2.25 6.11195C2.25005 5.74524 2.35765 5.38552 2.55947 5.07935C2.7613 4.77318 3.0485 4.53293 3.3855 4.38835L4.01967 5.8645C3.92111 5.90734 3.85683 6.00483 3.85683 6.11195M3.85683 6.11195V13.4605M18.8539 13.4595V6.11302M18.8539 13.4595L17.2472 13.4616M10.2349 1.45427L3.38765 4.38835L4.01752 5.86663L10.8669 2.93148L10.2349 1.45427Z"
+                  stroke="#19A8EC"
+                  stroke-width="1.50571"
+                  stroke-linecap="round"
+                  stroke-linejoin="bevel"
+                ></path>
+                <path
+                  d="M3.02734 6.11694L9.80303 2.35266L18.0844 5.36409L17.3316 17.4098L10.5559 21.174L3.02734 16.6569V6.11694Z"
+                  fill="#19A8EC"
+                ></path>
+                <path
+                  d="M13.7584 9.6875L9.47351 13.9723L7.33105 11.8299"
+                  stroke="white"
+                  stroke-width="2.25856"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </div>
+            <p
+              class="text-lg font-semibold leading-normal text-center text-black uppercase"
+            >
+              Introducing lumiclean
+            </p>
+          </div>
+          <h2
+            class="text-4xl font-bold leading-10 text-center text-sky-700 max-md:text-3xl max-sm:text-3xl"
+          >
+            Hospital-like Disinfection, Reimagined for Your Home.
+          </h2>
+          <p class="text-lg leading-6 text-center text-neutral-800">
+            <span>
+              Imagine a device that goes beyond surface cleaning, reaching every
+              corner of your room – sanitizing not just surfaces, but the very
+              air you breathe. LUMICLEAN harnesses of
+            </span>
+            <span class="font-bold">
+              hospital-like UV-C light and natural ozone
+            </span>
+            <span>
+              to deliver a level of cleanliness you simply can't achieve with
+              conventional methods. It's the same technology trusted in
+              operating rooms and laboratories, now designed for safe and easy
+              use in your home. With just the push of a button, LUMICLEAN floods
+              your room with germ-killing power, Targeting bacteria, viruses,
+              mold spores, and dust mites. It's hands-free, chemical-free, and
+              incredibly effective.
+            </span>
+          </p>
+          <div class="flex flex-wrap gap-7 items-start w-[575px] max-md:w-full">
+            <article class="flex flex-col gap-3 items-center w-[175px]">
+              <div>
+                <svg
+                  width="180"
+                  height="181"
+                  viewBox="0 0 180 181"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="flex w-[80px] h-[80px] p-[12px] items-center gap-[10px] rounded-[40px] bg-[#FFF] shadow-[0px_0px_50px_0px_rgba(23,_115,_176,_0.10)]"
+                >
+                  <g filter="url(#filter0_d_190_48)">
+                    <rect
+                      x="50"
+                      y="50.5"
+                      width="80"
+                      height="80"
+                      rx="40"
+                      fill="white"
+                      shape-rendering="crispEdges"
+                    ></rect>
+                    <path
+                      d="M62 62.5H118V118.5H62V62.5Z"
+                      fill="url(#pattern0_190_48)"
+                    ></path>
+                  </g>
+                  <defs>
+                    <filter
+                      id="filter0_d_190_48"
+                      x="0"
+                      y="0.5"
+                      width="180"
+                      height="180"
+                      filterUnits="userSpaceOnUse"
+                      color-interpolation-filters="sRGB"
+                    >
+                      <feFlood
+                        flood-opacity="0"
+                        result="BackgroundImageFix"
+                      ></feFlood>
+                      <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                      ></feColorMatrix>
+                      <feOffset></feOffset>
+                      <feGaussianBlur stdDeviation="25"></feGaussianBlur>
+                      <feComposite in2="hardAlpha" operator="out"></feComposite>
+                      <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.0901961 0 0 0 0 0.45098 0 0 0 0 0.690196 0 0 0 0.1 0"
+                      ></feColorMatrix>
+                      <feBlend
+                        mode="normal"
+                        in2="BackgroundImageFix"
+                        result="effect1_dropShadow_190_48"
+                      ></feBlend>
+                      <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="effect1_dropShadow_190_48"
+                        result="shape"
+                      ></feBlend>
+                    </filter>
+                    <pattern
+                      id="pattern0_190_48"
+                      patternContentUnits="objectBoundingBox"
+                      width="1"
+                      height="1"
+                    >
+                      <use
+                        xlink:href="#image0_190_48"
+                        transform="scale(0.00195312)"
+                      ></use>
+                    </pattern>
+                  </defs>
+                </svg>
+              </div>
+              <p
+                class="text-base font-medium leading-5 text-center text-neutral-800"
+              >
+                Dual UV-C + Ozone Technology
+              </p>
+            </article>
+            <article class="flex flex-col gap-3 items-center w-[175px]">
+              <div>
+                <svg
+                  width="180"
+                  height="181"
+                  viewBox="0 0 180 181"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="flex w-[80px] h-[80px] p-[12px] items-center gap-[10px] rounded-[40px] bg-[#FFF] shadow-[0px_0px_50px_0px_rgba(23,_115,_176,_0.10)]"
+                >
+                  <g filter="url(#filter0_d_190_53)">
+                    <rect
+                      x="50"
+                      y="50.5"
+                      width="80"
+                      height="80"
+                      rx="40"
+                      fill="white"
+                      shape-rendering="crispEdges"
+                    ></rect>
+                    <path
+                      d="M62 62.5H118V118.5H62V62.5Z"
+                      fill="url(#pattern0_190_53)"
+                    ></path>
+                  </g>
+                  <defs>
+                    <filter
+                      id="filter0_d_190_53"
+                      x="0"
+                      y="0.5"
+                      width="180"
+                      height="180"
+                      filterUnits="userSpaceOnUse"
+                      color-interpolation-filters="sRGB"
+                    >
+                      <feFlood
+                        flood-opacity="0"
+                        result="BackgroundImageFix"
+                      ></feFlood>
+                      <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                      ></feColorMatrix>
+                      <feOffset></feOffset>
+                      <feGaussianBlur stdDeviation="25"></feGaussianBlur>
+                      <feComposite in2="hardAlpha" operator="out"></feComposite>
+                      <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.0901961 0 0 0 0 0.45098 0 0 0 0 0.690196 0 0 0 0.1 0"
+                      ></feColorMatrix>
+                      <feBlend
+                        mode="normal"
+                        in2="BackgroundImageFix"
+                        result="effect1_dropShadow_190_53"
+                      ></feBlend>
+                      <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="effect1_dropShadow_190_53"
+                        result="shape"
+                      ></feBlend>
+                    </filter>
+                    <pattern
+                      id="pattern0_190_53"
+                      patternContentUnits="objectBoundingBox"
+                      width="1"
+                      height="1"
+                    >
+                      <use
+                        xlink:href="#image0_190_53"
+                        transform="scale(0.00195312)"
+                      ></use>
+                    </pattern>
+                  </defs>
+                </svg>
+              </div>
+              <p
+                class="text-base font-medium leading-5 text-center text-neutral-800"
+              >
+                Targets Germs, Viruses &amp; particles
+              </p>
+            </article>
+            <article class="flex flex-col gap-3 items-center w-[175px]">
+              <div>
+                <svg
+                  width="180"
+                  height="181"
+                  viewBox="0 0 180 181"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="flex w-[80px] h-[80px] p-[12px] items-center gap-[10px] rounded-[40px] bg-[#FFF] shadow-[0px_0px_50px_0px_rgba(23,_115,_176,_0.10)]"
+                >
+                  <g filter="url(#filter0_d_190_58)">
+                    <rect
+                      x="50"
+                      y="50.5"
+                      width="80"
+                      height="80"
+                      rx="40"
+                      fill="white"
+                      shape-rendering="crispEdges"
+                    ></rect>
+                    <path
+                      d="M62 62.5H118V118.5H62V62.5Z"
+                      fill="url(#pattern0_190_58)"
+                    ></path>
+                  </g>
+                  <defs>
+                    <filter
+                      id="filter0_d_190_58"
+                      x="0"
+                      y="0.5"
+                      width="180"
+                      height="180"
+                      filterUnits="userSpaceOnUse"
+                      color-interpolation-filters="sRGB"
+                    >
+                      <feFlood
+                        flood-opacity="0"
+                        result="BackgroundImageFix"
+                      ></feFlood>
+                      <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                      ></feColorMatrix>
+                      <feOffset></feOffset>
+                      <feGaussianBlur stdDeviation="25"></feGaussianBlur>
+                      <feComposite in2="hardAlpha" operator="out"></feComposite>
+                      <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.0901961 0 0 0 0 0.45098 0 0 0 0 0.690196 0 0 0 0.1 0"
+                      ></feColorMatrix>
+                      <feBlend
+                        mode="normal"
+                        in2="BackgroundImageFix"
+                        result="effect1_dropShadow_190_58"
+                      ></feBlend>
+                      <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="effect1_dropShadow_190_58"
+                        result="shape"
+                      ></feBlend>
+                    </filter>
+                    <pattern
+                      id="pattern0_190_58"
+                      patternContentUnits="objectBoundingBox"
+                      width="1"
+                      height="1"
+                    >
+                      <use
+                        xlink:href="#image0_190_58"
+                        transform="scale(0.00195312)"
+                      ></use>
+                    </pattern>
+                  </defs>
+                </svg>
+              </div>
+              <p
+                class="text-base font-medium leading-5 text-center text-neutral-800"
+              >
+                Disinfects both air and surfaces
+              </p>
+            </article>
+            <article class="flex flex-col gap-3 items-center w-[175px]">
+              <div>
+                <svg
+                  width="180"
+                  height="181"
+                  viewBox="0 0 180 181"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="flex w-[80px] h-[80px] p-[12px] items-center gap-[10px] rounded-[40px] bg-[#FFF] shadow-[0px_0px_50px_0px_rgba(23,_115,_176,_0.10)]"
+                >
+                  <g filter="url(#filter0_d_190_63)">
+                    <rect
+                      x="50"
+                      y="50.5"
+                      width="80"
+                      height="80"
+                      rx="40"
+                      fill="white"
+                      shape-rendering="crispEdges"
+                    ></rect>
+                    <path
+                      d="M62 62.5H118V118.5H62V62.5Z"
+                      fill="url(#pattern0_190_63)"
+                    ></path>
+                  </g>
+                  <defs>
+                    <filter
+                      id="filter0_d_190_63"
+                      x="0"
+                      y="0.5"
+                      width="180"
+                      height="180"
+                      filterUnits="userSpaceOnUse"
+                      color-interpolation-filters="sRGB"
+                    >
+                      <feFlood
+                        flood-opacity="0"
+                        result="BackgroundImageFix"
+                      ></feFlood>
+                      <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                      ></feColorMatrix>
+                      <feOffset></feOffset>
+                      <feGaussianBlur stdDeviation="25"></feGaussianBlur>
+                      <feComposite in2="hardAlpha" operator="out"></feComposite>
+                      <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.0901961 0 0 0 0 0.45098 0 0 0 0 0.690196 0 0 0 0.1 0"
+                      ></feColorMatrix>
+                      <feBlend
+                        mode="normal"
+                        in2="BackgroundImageFix"
+                        result="effect1_dropShadow_190_63"
+                      ></feBlend>
+                      <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="effect1_dropShadow_190_63"
+                        result="shape"
+                      ></feBlend>
+                    </filter>
+                    <pattern
+                      id="pattern0_190_63"
+                      patternContentUnits="objectBoundingBox"
+                      width="1"
+                      height="1"
+                    >
+                      <use
+                        xlink:href="#image0_190_63"
+                        transform="scale(0.00195312)"
+                      ></use>
+                    </pattern>
+                  </defs>
+                </svg>
+              </div>
+              <p
+                class="text-base font-medium leading-5 text-center text-neutral-800"
+              >
+                Chemical-Free &amp; Eco-Friendly
+              </p>
+            </article>
+            <article class="flex flex-col gap-3 items-center w-[175px]">
+              <div>
+                <svg
+                  width="180"
+                  height="181"
+                  viewBox="0 0 180 181"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="flex w-[80px] h-[80px] p-[12px] items-center gap-[10px] rounded-[40px] bg-[#FFF] shadow-[0px_0px_50px_0px_rgba(23,_115,_176,_0.10)]"
+                >
+                  <g filter="url(#filter0_d_190_68)">
+                    <rect
+                      x="50"
+                      y="50.5"
+                      width="80"
+                      height="80"
+                      rx="40"
+                      fill="white"
+                      shape-rendering="crispEdges"
+                    ></rect>
+                    <path
+                      d="M62 62.5H118V118.5H62V62.5Z"
+                      fill="url(#pattern0_190_68)"
+                    ></path>
+                  </g>
+                  <defs>
+                    <filter
+                      id="filter0_d_190_68"
+                      x="0"
+                      y="0.5"
+                      width="180"
+                      height="180"
+                      filterUnits="userSpaceOnUse"
+                      color-interpolation-filters="sRGB"
+                    >
+                      <feFlood
+                        flood-opacity="0"
+                        result="BackgroundImageFix"
+                      ></feFlood>
+                      <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                      ></feColorMatrix>
+                      <feOffset></feOffset>
+                      <feGaussianBlur stdDeviation="25"></feGaussianBlur>
+                      <feComposite in2="hardAlpha" operator="out"></feComposite>
+                      <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.0901961 0 0 0 0 0.45098 0 0 0 0 0.690196 0 0 0 0.1 0"
+                      ></feColorMatrix>
+                      <feBlend
+                        mode="normal"
+                        in2="BackgroundImageFix"
+                        result="effect1_dropShadow_190_68"
+                      ></feBlend>
+                      <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="effect1_dropShadow_190_68"
+                        result="shape"
+                      ></feBlend>
+                    </filter>
+                    <pattern
+                      id="pattern0_190_68"
+                      patternContentUnits="objectBoundingBox"
+                      width="1"
+                      height="1"
+                    >
+                      <use
+                        xlink:href="#image0_190_68"
+                        transform="scale(0.00195312)"
+                      ></use>
+                    </pattern>
+                  </defs>
+                </svg>
+              </div>
+              <p
+                class="text-base font-medium leading-5 text-center text-neutral-800"
+              >
+                Targets allergens like dust mite &amp; MOLD spores
+              </p>
+            </article>
+            <article class="flex flex-col gap-3 items-center w-[175px]">
+              <div>
+                <svg
+                  width="180"
+                  height="181"
+                  viewBox="0 0 180 181"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="flex w-[80px] h-[80px] p-[12px] items-center gap-[10px] rounded-[40px] bg-[#FFF] shadow-[0px_0px_50px_0px_rgba(23,_115,_176,_0.10)]"
+                >
+                  <g filter="url(#filter0_d_190_73)">
+                    <rect
+                      x="50"
+                      y="50.5"
+                      width="80"
+                      height="80"
+                      rx="40"
+                      fill="white"
+                      shape-rendering="crispEdges"
+                    ></rect>
+                    <path
+                      d="M62 62.5H118V118.5H62V62.5Z"
+                      fill="url(#pattern0_190_73)"
+                    ></path>
+                  </g>
+                  <defs>
+                    <filter
+                      id="filter0_d_190_73"
+                      x="0"
+                      y="0.5"
+                      width="180"
+                      height="180"
+                      filterUnits="userSpaceOnUse"
+                      color-interpolation-filters="sRGB"
+                    >
+                      <feFlood
+                        flood-opacity="0"
+                        result="BackgroundImageFix"
+                      ></feFlood>
+                      <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                      ></feColorMatrix>
+                      <feOffset></feOffset>
+                      <feGaussianBlur stdDeviation="25"></feGaussianBlur>
+                      <feComposite in2="hardAlpha" operator="out"></feComposite>
+                      <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.0901961 0 0 0 0 0.45098 0 0 0 0 0.690196 0 0 0 0.1 0"
+                      ></feColorMatrix>
+                      <feBlend
+                        mode="normal"
+                        in2="BackgroundImageFix"
+                        result="effect1_dropShadow_190_73"
+                      ></feBlend>
+                      <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="effect1_dropShadow_190_73"
+                        result="shape"
+                      ></feBlend>
+                    </filter>
+                    <pattern
+                      id="pattern0_190_73"
+                      patternContentUnits="objectBoundingBox"
+                      width="1"
+                      height="1"
+                    >
+                      <use
+                        xlink:href="#image0_190_73"
+                        transform="scale(0.00195312)"
+                      ></use>
+                    </pattern>
+                  </defs>
+                </svg>
+              </div>
+              <p
+                class="text-base font-medium leading-5 text-center text-neutral-800"
+              >
+                Eliminates Musty Odor
+              </p>
+            </article>
+          </div>
+        </div>
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/63410809453853022cae75b768a09afa1d9ae03e"
+          alt=""
+          class="w-[710px] max-lg:w-full h-auto"
+        />
+      </section>
+    </main>
+  </body>
+</html>
