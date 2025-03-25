@@ -1,0 +1,4068 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LumiClean - Hospital-like Disinfection for Your Home</title>
+    <style>
+      /* Base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: rgba(255, 255, 255, 1);
+        font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* Landing page container */
+      .landing-page {
+        background-color: rgba(255, 255, 255, 1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        align-items: stretch;
+      }
+
+      /* Header */
+      .header {
+        background-color: rgba(255, 255, 255, 1);
+        display: flex;
+        width: 100%;
+        padding: 20px 70px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .header-content {
+        display: flex;
+        width: 100%;
+        max-width: 1420px;
+        align-items: stretch;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .logo {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 32px;
+        flex-shrink: 0;
+      }
+
+      /* Hero section */
+      .hero-section {
+        display: flex;
+        width: 100%;
+        padding: 136px 70px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-container {
+        margin-bottom: -29px;
+        width: 100%;
+        max-width: 1416px;
+      }
+
+      .hero-content {
+        gap: 20px;
+        display: flex;
+      }
+
+      .hero-left-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 50%;
+        margin-left: 0px;
+      }
+
+      .hero-text-container {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .badge {
+        align-self: center;
+        border-radius: 50px;
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0px 0px 25px rgba(0, 43, 91, 0.05);
+        padding: 8px 16px;
+        gap: 6px;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 1);
+        font-weight: 500;
+        text-align: center;
+        letter-spacing: 0.72px;
+      }
+
+      .hero-heading {
+        color: rgba(0, 43, 91, 1);
+        font-size: 44px;
+        font-weight: 700;
+        line-height: 53px;
+        letter-spacing: 0.44px;
+        text-align: center;
+        margin-top: 16px;
+      }
+
+      .hero-subheading {
+        color: rgba(22, 25, 32, 1);
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 26px;
+        text-align: center;
+        align-self: center;
+        margin-top: 27px;
+      }
+
+      .features-row {
+        margin-top: 24px;
+      }
+
+      .features-container {
+        gap: 20px;
+        display: flex;
+      }
+
+      .feature-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 33%;
+        margin-left: 0px;
+      }
+
+      .feature-column:not(:first-child) {
+        margin-left: 20px;
+      }
+
+      .feature-card {
+        border-radius: 12px;
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-grow: 1;
+        padding: 16px 24px;
+        flex-direction: column;
+        align-items: stretch;
+        font-size: 18px;
+        color: rgba(64, 71, 73, 1);
+        font-weight: 400;
+        text-align: center;
+        letter-spacing: 0.18px;
+        line-height: 20px;
+        width: 100%;
+      }
+
+      .feature-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 48px;
+        align-self: center;
+      }
+
+      .feature-title {
+        margin-top: 10px;
+      }
+
+      .cta-button {
+        border-radius: 100px;
+        background-color: rgba(203, 13, 32, 1);
+        margin-top: 40px;
+        padding: 25px 70px;
+        font-size: 24px;
+        color: rgba(255, 255, 255, 1);
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+        line-height: 1.3;
+        border: none;
+        cursor: pointer;
+      }
+
+      .guarantee-container {
+        align-self: center;
+        display: flex;
+        margin-top: 12px;
+        width: 313px;
+        max-width: 100%;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .guarantee-icon-wrapper {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        aspect-ratio: 1;
+        width: 24px;
+        overflow: hidden;
+      }
+
+      .guarantee-icon-bg {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .guarantee-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 100%;
+      }
+
+      .guarantee-text {
+        color: rgba(34, 38, 39, 1);
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 0.72px;
+        text-align: center;
+        flex-grow: 1;
+        flex-shrink: 1;
+        width: 276px;
+        flex-basis: auto;
+      }
+
+      .hero-right-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 50%;
+        margin-left: 20px;
+      }
+
+      .hero-image {
+        aspect-ratio: 1.22;
+        object-fit: contain;
+        object-position: center;
+        width: 100%;
+        margin-top: auto;
+        margin-bottom: auto;
+        align-self: stretch;
+      }
+
+      /* Problem section */
+      .problem-section {
+        background-color: rgba(245, 251, 254, 1);
+        display: flex;
+        width: 100%;
+        padding: 0 70px;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .problem-container {
+        width: 100%;
+        max-width: 1366px;
+      }
+
+      .problem-content {
+        gap: 20px;
+        display: flex;
+      }
+
+      .problem-left-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 54%;
+        margin-left: 0px;
+      }
+
+      .problem-image-container {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        min-height: 950px;
+        flex-grow: 1;
+        padding: 375px 80px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .problem-bg-image {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .problem-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 200px;
+        max-width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .problem-right-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 46%;
+        margin-left: 20px;
+      }
+
+      .problem-text-container {
+        display: flex;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 100%;
+        flex-direction: column;
+        align-self: stretch;
+        align-items: stretch;
+      }
+
+      .problem-heading {
+        color: rgba(23, 115, 176, 1);
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 48px;
+        text-align: center;
+        align-self: center;
+      }
+
+      .problem-description {
+        color: rgba(34, 38, 39, 1);
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 23px;
+        text-align: center;
+        margin-top: 16px;
+      }
+
+      .problem-description strong {
+        font-weight: 700;
+        color: rgba(34, 38, 39, 1);
+      }
+
+      /* Solution section */
+      .solution-section {
+        background-color: rgba(245, 251, 254, 1);
+        display: flex;
+        width: 100%;
+        padding: 0 70px;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .solution-container {
+        margin-left: 30px;
+        width: 100%;
+        max-width: 1361px;
+      }
+
+      .solution-content {
+        gap: 20px;
+        display: flex;
+      }
+
+      .solution-left-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 45%;
+        margin-left: 0px;
+      }
+
+      .solution-text-container {
+        display: flex;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 100%;
+        flex-direction: column;
+        align-self: stretch;
+        align-items: stretch;
+      }
+
+      .solution-badge {
+        border-radius: 50px;
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0px 0px 25px rgba(0, 43, 91, 0.05);
+        align-self: center;
+        display: flex;
+        padding: 8px 16px;
+        align-items: center;
+        gap: 6px;
+        font-size: 18px;
+        color: rgba(0, 0, 0, 1);
+        font-weight: 600;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.72px;
+        justify-content: start;
+      }
+
+      .badge-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 24px;
+        align-self: stretch;
+        margin-top: auto;
+        margin-bottom: auto;
+        flex-shrink: 0;
+      }
+
+      .badge-text {
+        align-self: stretch;
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+
+      .solution-heading {
+        color: rgba(23, 115, 176, 1);
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 48px;
+        text-align: center;
+        margin-top: 16px;
+        margin-left: 18px;
+        margin-right: 17px;
+      }
+
+      .solution-description {
+        color: rgba(34, 38, 39, 1);
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 23px;
+        text-align: center;
+        margin-top: 24px;
+      }
+
+      .solution-description strong {
+        font-weight: 700;
+        color: rgba(34, 38, 39, 1);
+      }
+
+      .solution-features {
+        align-self: center;
+        margin-top: 53px;
+        width: 548px;
+        max-width: 100%;
+      }
+
+      .solution-features-row {
+        gap: 20px;
+        display: flex;
+      }
+
+      .solution-feature-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 33%;
+        margin-left: 0px;
+      }
+
+      .solution-feature-column:not(:first-child) {
+        margin-left: 20px;
+      }
+
+      .solution-feature-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 16px;
+        color: rgba(34, 38, 39, 1);
+        font-weight: 500;
+        text-align: center;
+        line-height: 21px;
+      }
+
+      .solution-feature-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 80px;
+      }
+
+      .solution-feature-title {
+        align-self: stretch;
+        margin-top: 12px;
+      }
+
+      .solution-feature-icon-second {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 80px;
+        margin-top: 32px;
+      }
+
+      .solution-feature-title-second {
+        margin-top: 18px;
+      }
+
+      .solution-right-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 55%;
+        margin-left: 20px;
+      }
+
+      .solution-image {
+        aspect-ratio: 0.75;
+        object-fit: contain;
+        object-position: center;
+        width: 100%;
+        flex-grow: 1;
+      }
+
+      /* Benefits section */
+      .benefits-section {
+        display: flex;
+        width: 100%;
+        padding: 101px 70px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .benefits-container {
+        margin-bottom: -23px;
+        width: 1278px;
+        max-width: 100%;
+      }
+
+      .benefits-content {
+        gap: 20px;
+        display: flex;
+      }
+
+      .benefits-left-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 44%;
+        margin-left: 0px;
+      }
+
+      .benefits-image {
+        aspect-ratio: 1.02;
+        object-fit: contain;
+        object-position: center;
+        width: 100%;
+        flex-grow: 1;
+      }
+
+      .benefits-right-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 56%;
+        margin-left: 20px;
+      }
+
+      .benefits-text-container {
+        display: flex;
+        margin-top: 14px;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        font-size: 18px;
+        color: rgba(255, 255, 255, 1);
+        font-weight: 400;
+        line-height: 23px;
+      }
+
+      .benefits-heading {
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 48px;
+      }
+
+      .benefit-item {
+        align-self: start;
+        display: flex;
+        margin-top: 16px;
+        align-items: stretch;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .benefit-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 28px;
+        align-self: start;
+        flex-shrink: 0;
+      }
+
+      .benefit-text {
+        flex-basis: auto;
+        flex-grow: 1;
+        flex-shrink: 1;
+      }
+
+      /* Testimonials section */
+      .testimonials-section {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        min-height: 922px;
+        width: 100%;
+        padding: 100px 80px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .testimonials-bg {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .testimonials-container {
+        position: relative;
+        display: flex;
+        width: 100%;
+        max-width: 1420px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .testimonials-heading {
+        color: rgba(0, 0, 0, 1);
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 52px;
+        text-align: center;
+        align-self: center;
+      }
+
+      .testimonials-heading em {
+        font-style: italic;
+        color: rgba(52, 150, 214, 1);
+      }
+
+      .testimonials-grid {
+        margin-top: 48px;
+      }
+
+      .testimonials-row {
+        gap: 20px;
+        display: flex;
+      }
+
+      .testimonial-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 33%;
+        margin-left: 0px;
+      }
+
+      .testimonial-column:not(:first-child) {
+        margin-left: 20px;
+      }
+
+      .testimonial-card {
+        border-radius: 16px;
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.08);
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        padding-bottom: 24px;
+      }
+
+      .testimonial-image {
+        aspect-ratio: 1.51;
+        object-fit: contain;
+        object-position: center;
+        width: 100%;
+        border-radius: 16px 16px 0px 0px;
+      }
+
+      .testimonial-text {
+        color: rgba(2, 2, 2, 1);
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 23px;
+        margin-top: 60px;
+        margin-left: 24px;
+        margin-right: 24px;
+      }
+
+      .testimonial-footer {
+        display: flex;
+        margin-top: 32px;
+        margin-left: 24px;
+        margin-right: 24px;
+        align-items: stretch;
+        gap: 20px;
+        font-size: 14px;
+        justify-content: space-between;
+      }
+
+      .testimonial-author {
+        color: rgba(0, 0, 0, 1);
+        font-weight: 400;
+        line-height: 18px;
+      }
+
+      .testimonial-author strong {
+        font-weight: 700;
+        font-size: 16px;
+      }
+
+      .testimonial-author em {
+        font-style: italic;
+      }
+
+      .verified-badge {
+        border-radius: 50px;
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0px 0px 25px rgba(0, 43, 91, 0.05);
+        border-color: rgba(0, 166, 126, 1);
+        border-style: solid;
+        border-width: 1px;
+        display: flex;
+        margin-top: auto;
+        margin-bottom: auto;
+        padding: 6px 12px;
+        align-items: center;
+        gap: 4px;
+        color: rgba(0, 166, 126, 1);
+        font-weight: 500;
+        text-align: center;
+        letter-spacing: 0.72px;
+        justify-content: start;
+      }
+
+      .verified-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 16px;
+        align-self: stretch;
+        margin-top: auto;
+        margin-bottom: auto;
+        flex-shrink: 0;
+      }
+
+      .verified-text {
+        align-self: stretch;
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+
+      /* Comparison section */
+      .comparison-heading-primary {
+        color: rgba(23, 115, 176, 1);
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1.2;
+        text-align: center;
+        align-self: center;
+        margin-top: 100px;
+      }
+
+      .comparison-heading-secondary {
+        color: rgba(23, 115, 176, 1);
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 1.2;
+        text-align: center;
+        align-self: center;
+        margin-top: 8px;
+      }
+
+      .comparison-container {
+        align-self: center;
+        margin-top: 48px;
+        width: 1025px;
+        max-width: 100%;
+      }
+
+      .comparison-content {
+        gap: 20px;
+        display: flex;
+      }
+
+      .comparison-left-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 50%;
+        margin-left: 0px;
+      }
+
+      .comparison-left-content {
+        flex-grow: 1;
+      }
+
+      .comparison-left-row {
+        gap: 20px;
+        display: flex;
+      }
+
+      .comparison-features-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 74%;
+        margin-left: 0px;
+      }
+
+      .comparison-features-list {
+        margin-top: 90px;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 1);
+        font-weight: 500;
+        letter-spacing: 0.16px;
+        line-height: 21px;
+      }
+
+      .comparison-feature {
+        background-color: rgba(255, 255, 255, 1);
+        padding: 20px;
+      }
+
+      .comparison-feature-alt {
+        border-radius: 12px 0px 0px 12px;
+        background-color: rgba(236, 247, 255, 1);
+        padding: 20px;
+      }
+
+      .comparison-feature-alt-tall {
+        border-radius: 12px 0px 0px 12px;
+        background-color: rgba(236, 247, 255, 1);
+        padding: 31px 20px;
+        line-height: 1.3;
+      }
+
+      .comparison-product-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 26%;
+        margin-left: 20px;
+      }
+
+      .comparison-product-card {
+        border-radius: 15px;
+        display: flex;
+        flex-grow: 1;
+        padding: 41px 19px;
+        flex-direction: column;
+        align-items: stretch;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 1);
+        font-weight: 700;
+        white-space: nowrap;
+        text-align: center;
+        line-height: 1.2;
+      }
+
+      .comparison-checkmark {
+        aspect-ratio: 0.05;
+        object-fit: contain;
+        object-position: center;
+        width: 32px;
+        align-self: center;
+        margin-top: 58px;
+      }
+
+      .comparison-right-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 50%;
+        margin-left: 20px;
+      }
+
+      .comparison-right-content {
+        flex-grow: 1;
+      }
+
+      .comparison-competitors-row {
+        gap: 20px;
+        display: flex;
+      }
+
+      .comparison-competitor-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 25%;
+        margin-left: 0px;
+      }
+
+      .comparison-competitor-column:not(:first-child) {
+        margin-left: 20px;
+      }
+
+      .comparison-competitor-card {
+        border-radius: 15px;
+        background-color: rgba(236, 247, 255, 1);
+        display: flex;
+        flex-grow: 1;
+        padding: 28px 22px 44px;
+        flex-direction: column;
+        align-items: stretch;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 1);
+        font-weight: 400;
+        text-align: center;
+        line-height: 19px;
+        width: 100%;
+      }
+
+      .comparison-competitor-card-alt {
+        border-radius: 15px;
+        background-color: rgba(236, 247, 255, 1);
+        display: flex;
+        flex-grow: 1;
+        padding: 41px 18px;
+        flex-direction: column;
+        align-items: stretch;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 1);
+        font-weight: 400;
+        text-align: center;
+        line-height: 1.2;
+        width: 100%;
+      }
+
+      /* Trust badges section */
+      .trust-badges {
+        align-self: center;
+        display: flex;
+        margin-top: 50px;
+        width: 100%;
+        max-width: 1420px;
+        align-items: stretch;
+        gap: 29px;
+        flex-wrap: wrap;
+      }
+
+      .trust-badge {
+        border-radius: 25px;
+        background-color: rgba(235, 246, 254, 1);
+        display: flex;
+        align-items: stretch;
+        gap: 16px;
+        flex: 1;
+      }
+
+      .trust-badge-icon-container {
+        border-radius: 25px 0px 0px 25px;
+        background-color: rgba(215, 239, 255, 1);
+        display: flex;
+        padding: 0 19px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 96px;
+        height: 96px;
+      }
+
+      .trust-badge-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 48px;
+      }
+
+      .trust-badge-text {
+        color: rgba(0, 0, 0, 1);
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1.3;
+        margin-top: auto;
+        margin-bottom: auto;
+        flex-basis: auto;
+        flex-grow: 1;
+        flex-shrink: 1;
+      }
+
+      /* Pricing section */
+      .pricing-section {
+        display: flex;
+        margin-top: 100px;
+        width: 100%;
+        padding: 80px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .pricing-container {
+        display: flex;
+        width: 1159px;
+        max-width: 100%;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .pricing-heading {
+        color: rgba(23, 115, 176, 1);
+        font-size: 36px;
+        font-weight: 800;
+        line-height: 1.2;
+        text-align: center;
+      }
+
+      .pricing-subheading {
+        color: rgba(0, 0, 0, 1);
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1.2;
+        text-align: center;
+        margin-top: 7px;
+      }
+
+      .pricing-options {
+        align-self: stretch;
+        margin-top: 40px;
+      }
+
+      .pricing-row {
+        gap: 20px;
+        display: flex;
+      }
+
+      .pricing-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 33%;
+        margin-left: 0px;
+      }
+
+      .pricing-column:not(:first-child) {
+        margin-left: 20px;
+      }
+
+      .pricing-card {
+        border-radius: 15px;
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0px 0px 20px rgba(52, 150, 214, 0.1);
+        display: flex;
+        flex-grow: 1;
+        padding-top: 94px;
+        padding-bottom: 20px;
+        flex-direction: column;
+        align-items: stretch;
+        font-weight: 700;
+        line-height: 1.2;
+        width: 100%;
+      }
+
+      .pricing-product-image {
+        aspect-ratio: 0.63;
+        object-fit: contain;
+        object-position: center;
+        width: 127px;
+        align-self: center;
+        max-width: 100%;
+      }
+
+      .pricing-details {
+        display: flex;
+        margin-top: 31px;
+        width: 100%;
+        padding: 0 20px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .pricing-product-title {
+        color: rgba(0, 0, 0, 1);
+        font-size: 24px;
+        text-align: center;
+        align-self: start;
+      }
+
+      .pricing-divider {
+        border-color: rgba(217, 217, 217, 1);
+        border-style: solid;
+        border-width: 1px;
+        margin-top: 19px;
+        flex-shrink: 0;
+        height: 1px;
+      }
+
+      .pricing-price-container {
+        align-self: start;
+        display: flex;
+        margin-top: 20px;
+        align-items: stretch;
+        gap: 8px;
+        white-space: nowrap;
+      }
+
+      .pricing-original-price {
+        color: rgba(164, 164, 164, 1);
+        font-size: 24px;
+        text-decoration: line-through;
+        flex-grow: 1;
+      }
+
+      .pricing-sale-price {
+        color: rgba(0, 0, 0, 1);
+        font-size: 22px;
+      }
+
+      .pricing-cta {
+        border-radius: 100px;
+        background-color: rgba(203, 13, 32, 1);
+        margin-top: 20px;
+        padding: 17px 70px;
+        font-size: 18px;
+        color: rgba(255, 255, 255, 1);
+        text-align: center;
+        border: none;
+        cursor: pointer;
+      }
+
+      .pricing-shipping {
+        border-radius: 12px;
+        background-color: rgba(252, 249, 205, 1);
+        display: flex;
+        margin-top: 8px;
+        padding: 8px 12px;
+        align-items: stretch;
+        gap: 8px;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 1);
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .shipping-indicator {
+        background-color: rgba(14, 164, 31, 1);
+        border-radius: 50%;
+        display: flex;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 8px;
+        flex-shrink: 0;
+        height: 8px;
+      }
+
+      .shipping-text {
+        flex-grow: 1;
+        flex-shrink: 1;
+        width: 291px;
+        flex-basis: auto;
+      }
+
+      .payment-methods {
+        aspect-ratio: 10.1;
+        object-fit: contain;
+        object-position: center;
+        width: 333px;
+        margin-top: 8px;
+      }
+
+      .pricing-popular {
+        border-radius: 12px 12px 0px 0px;
+        background-color: rgba(217, 101, 52, 1);
+        padding: 12px 70px;
+        font-size: 20px;
+        color: rgba(255, 255, 255, 1);
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+        line-height: 1.2;
+      }
+
+      .pricing-products-container {
+        align-self: center;
+        display: flex;
+        width: 258px;
+        max-width: 100%;
+        align-items: stretch;
+        gap: 3px;
+      }
+
+      .pricing-product-image-double {
+        aspect-ratio: 0.63;
+        object-fit: contain;
+        object-position: center;
+        width: 127px;
+        flex-shrink: 0;
+        max-width: 100%;
+      }
+
+      .pricing-product-image-double-second {
+        aspect-ratio: 0.64;
+        object-fit: contain;
+        object-position: center;
+        width: 128px;
+        flex-shrink: 0;
+        max-width: 100%;
+      }
+
+      .pricing-product-image-triple {
+        aspect-ratio: 1.22;
+        object-fit: contain;
+        object-position: center;
+        width: 244px;
+        align-self: center;
+        max-width: 100%;
+      }
+
+      /* Guarantee section */
+      .guarantee-section {
+        align-self: center;
+        margin-left: 16px;
+        width: 100%;
+        max-width: 1351px;
+      }
+
+      .guarantee-content {
+        gap: 20px;
+        display: flex;
+      }
+
+      .guarantee-left-column {
+        margin-top: auto;
+        margin-bottom: auto;
+        align-self: stretch;
+        font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+        color: rgba(0, 0, 0, 1);
+      }
+
+      .guarantee-heading {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 43px;
+        letter-spacing: 0.75px;
+        text-transform: uppercase;
+      }
+
+      .guarantee-description {
+        border-radius: 18px;
+        background-color: rgba(241, 248, 250, 1);
+        margin-top: 24px;
+        padding: 16px;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0.72px;
+        line-height: 27px;
+      }
+
+      .guarantee-description strong {
+        font-weight: 800;
+        color: rgba(23, 115, 176, 1);
+      }
+
+      .guarantee-right-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 50%;
+        margin-left: 20px;
+      }
+
+      .guarantee-image {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 100%;
+      }
+
+      /* Features section */
+      .features-section {
+        background-color: rgba(246, 252, 254, 1);
+        display: flex;
+        width: 100%;
+        padding: 96px 70px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .features-detailed-container {
+        width: 1289px;
+        max-width: 100%;
+      }
+
+      .features-detailed-content {
+        gap: 20px;
+        display: flex;
+      }
+
+      .features-detailed-left-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 43%;
+        margin-left: 0px;
+      }
+
+      .features-detailed-heading-container {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        align-items: stretch;
+        font-size: 40px;
+        color: rgba(0, 0, 0, 1);
+        font-weight: 700;
+        line-height: 48px;
+      }
+
+      .features-detailed-heading {
+        color: rgba(24, 144, 213, 1);
+      }
+
+      .features-detailed-image {
+        aspect-ratio: 0.64;
+        object-fit: contain;
+        object-position: center;
+        width: 318px;
+        align-self: center;
+        margin-top: 25px;
+        max-width: 100%;
+      }
+
+      .features-detailed-right-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 57%;
+        margin-left: 20px;
+      }
+
+      .features-detailed-list {
+        width: 100%;
+        color: rgba(64, 71, 73, 1);
+      }
+
+      .feature-detailed-active {
+        border-radius: 40px;
+        background-color: rgba(24, 144, 213, 1);
+        width: 100%;
+        padding: 24px;
+        color: rgba(255, 255, 255, 1);
+      }
+
+      .feature-detailed-header {
+        display: flex;
+        align-items: stretch;
+        gap: 20px;
+        font-size: 20px;
+        font-weight: 600;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .feature-detailed-toggle {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 30px;
+        flex-shrink: 0;
+      }
+
+      .feature-detailed-description {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 25px;
+        margin-top: 8px;
+      }
+
+      .feature-detailed-inactive {
+        border-radius: 25px;
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0px 0px 25px rgba(52, 150, 214, 0.08);
+        display: flex;
+        margin-top: 16px;
+        padding: 24px 21px;
+        align-items: stretch;
+        gap: 20px;
+        font-size: 20px;
+        font-weight: 600;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      /* How to use section */
+      .how-to-use-heading {
+        color: rgba(23, 115, 176, 1);
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 1.2;
+        text-align: center;
+        align-self: center;
+        margin-top: 100px;
+      }
+
+      .how-to-use-container {
+        align-self: center;
+        margin-top: 40px;
+        width: 100%;
+        max-width: 1475px;
+      }
+
+      .how-to-use-content {
+        gap: 20px;
+        display: flex;
+      }
+
+      .how-to-use-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 33%;
+        margin-left: 0px;
+      }
+
+      .how-to-use-column:not(:first-child) {
+        margin-left: 20px;
+      }
+
+      .how-to-use-card {
+        display: flex;
+        flex-direction: column;
+        border-radius: 40px;
+        position: relative;
+        min-height: 769px;
+        width: 100%;
+        padding-bottom: 203px;
+      }
+
+      .how-to-use-card-bg {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .how-to-use-step-container {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        border-radius: 0px 0px 0px 0px;
+        min-height: 338px;
+        width: 100%;
+        padding: 164px 80px 23px 20px;
+        align-items: start;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .how-to-use-step-bg {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .how-to-use-step-number {
+        position: relative;
+        color: rgba(24, 66, 104, 1);
+        font-size: 128px;
+      }
+
+      .how-to-use-step-title {
+        position: relative;
+        color: rgba(0, 0, 0, 1);
+        font-size: 24px;
+        margin-top: 32px;
+      }
+
+      .how-to-use-step-description {
+        position: relative;
+        display: flex;
+        margin: 18px 20px 0;
+        align-items: stretch;
+        gap: 10px;
+        font-size: 20px;
+        color: rgba(0, 0, 0, 1);
+        font-weight: 400;
+        line-height: 30px;
+      }
+
+      .how-to-use-step-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 24px;
+        align-self: start;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+
+      .how-to-use-step-text {
+        flex-grow: 1;
+        flex-shrink: 1;
+        width: 396px;
+        flex-basis: auto;
+      }
+
+      .how-to-use-card-alt {
+        display: flex;
+        flex-direction: column;
+        border-radius: 40px;
+        position: relative;
+        min-height: 769px;
+        width: 100%;
+        padding-bottom: 62px;
+        align-items: stretch;
+      }
+
+      .how-to-use-step-container-alt {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        border-radius: 0px 0px 0px 0px;
+        min-height: 338px;
+        width: 100%;
+        padding: 164px 20px 0;
+        align-items: stretch;
+        font-weight: 700;
+      }
+
+      .how-to-use-step-title-alt {
+        position: relative;
+        color: rgba(0, 0, 0, 1);
+        font-size: 24px;
+        line-height: 29px;
+        z-index: 10;
+        margin-top: 32px;
+        margin-bottom: -6px;
+      }
+
+      .how-to-use-step-description-alt {
+        position: relative;
+        align-self: center;
+        display: flex;
+        margin-top: 18px;
+        width: 430px;
+        max-width: 100%;
+        align-items: stretch;
+        gap: 10px;
+        font-size: 20px;
+        color: rgba(0, 0, 0, 1);
+        font-weight: 400;
+        line-height: 30px;
+      }
+
+      .how-to-use-card-third {
+        display: flex;
+        flex-direction: column;
+        border-radius: 40px;
+        position: relative;
+        min-height: 769px;
+        width: 100%;
+        padding-bottom: 263px;
+        font-size: 20px;
+        color: rgba(0, 0, 0, 1);
+        font-weight: 400;
+        line-height: 30px;
+      }
+
+      .how-to-use-image {
+        aspect-ratio: 1.38;
+        object-fit: contain;
+        object-position: center;
+        width: 100%;
+        border-radius: 0px 0px 0px 0px;
+      }
+
+      /* Call to action section */
+      .cta-heading {
+        color: rgba(23, 115, 176, 1);
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 48px;
+        text-align: center;
+        align-self: center;
+        margin-top: 100px;
+        margin-left: 20px;
+        width: 1120px;
+      }
+
+      .cta-description {
+        color: rgba(34, 38, 39, 1);
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 23px;
+        text-align: center;
+        align-self: center;
+        margin-top: 16px;
+        width: 876px;
+      }
+
+      .cta-banner {
+        border-radius: 40px;
+        align-self: center;
+        margin-top: 48px;
+        width: 1120px;
+        max-width: 100%;
+        padding: 77px 60px;
+      }
+
+      .cta-banner-content {
+        gap: 20px;
+        display: flex;
+      }
+
+      .cta-banner-left-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 64%;
+        margin-left: 0px;
+      }
+
+      .cta-banner-left-content {
+        flex-grow: 1;
+      }
+
+      .cta-banner-row {
+        gap: 20px;
+        display: flex;
+      }
+
+      .cta-banner-icon-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 22%;
+        margin-left: 0px;
+      }
+
+      .cta-banner-icon {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 117px;
+        flex-shrink: 0;
+        max-width: 100%;
+      }
+
+      .cta-banner-text-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 78%;
+        margin-left: 20px;
+      }
+
+      .cta-banner-heading {
+        color: rgba(0, 43, 91, 1);
+        font-size: 44px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: 0.44px;
+        margin-top: auto;
+        margin-bottom: auto;
+        align-self: stretch;
+      }
+
+      .cta-banner-right-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 36%;
+        margin-left: 20px;
+      }
+
+      .cta-banner-right-content {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        align-items: stretch;
+        font-size: 24px;
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+        line-height: 1.3;
+      }
+
+      .cta-banner-offer-text {
+        color: rgba(203, 13, 32, 1);
+        align-self: center;
+      }
+
+      .cta-banner-button {
+        border-radius: 100px;
+        background-color: rgba(203, 13, 32, 1);
+        margin-top: 6px;
+        padding: 25px 70px;
+        color: rgba(255, 255, 255, 1);
+        white-space: nowrap;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* FAQ section */
+      .faq-section {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        min-height: 774px;
+        margin-top: 100px;
+        width: 100%;
+        padding: 80px 80px 0;
+        align-items: center;
+      }
+
+      .faq-bg {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .faq-container {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        margin-bottom: -467px;
+        width: 100%;
+        max-width: 1320px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .faq-heading {
+        color: rgba(255, 255, 255, 1);
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 1.2;
+        align-self: center;
+      }
+
+      .faq-content {
+        border-radius: 15px;
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0px 0px 20px rgba(52, 150, 214, 0.1);
+        margin-top: 56px;
+        width: 100%;
+        padding: 48px;
+        font-size: 24px;
+        color: rgba(0, 0, 0, 1);
+        font-weight: 600;
+      }
+
+      .faq-item {
+        display: flex;
+        align-items: stretch;
+        gap: 20px;
+        letter-spacing: 0.75px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .faq-question {
+        flex-grow: 1;
+      }
+
+      .faq-toggle {
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        width: 30px;
+        margin-top: auto;
+        margin-bottom: auto;
+        flex-shrink: 0;
+      }
+
+      .faq-answer {
+        font-size: 19px;
+        font-weight: 400;
+        margin-top: 12px;
+        margin-right: 63px;
+      }
+
+      .faq-divider {
+        border-color: rgba(214, 211, 211, 1);
+        border-style: solid;
+        border-width: 1px;
+        margin-top: 23px;
+        flex-shrink: 0;
+        height: 1px;
+      }
+
+      .faq-item-collapsed {
+        display: flex;
+        margin-top: 24px;
+        align-items: stretch;
+        gap: 20px;
+        letter-spacing: 0.75px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: rgba(28, 28, 28, 1);
+        display: flex;
+        margin-top: 567px;
+        width: 100%;
+        padding-top: 50px;
+        padding-bottom: 32px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .footer-content {
+        align-self: center;
+        display: flex;
+        width: 956px;
+        max-width: 100%;
+        align-items: start;
+        gap: 40px 100px;
+      }
+
+      .footer-column {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 1);
+        font-weight: 400;
+        line-height: 1;
+      }
+
+      .footer-heading {
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.1px;
+      }
+
+      .footer-link {
+        margin-top: 17px;
+        color: rgba(255, 255, 255, 1);
+        text-decoration: none;
+      }
+
+      .footer-link:hover {
+        text-decoration: underline;
+      }
+
+      .footer-info-container {
+        align-self: stretch;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: auto;
+      }
+
+      .footer-info-content {
+        gap: 20px;
+        display: flex;
+      }
+
+      .footer-info-left {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 46%;
+        margin-left: 0px;
+      }
+
+      .footer-info-links {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        align-items: start;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 1);
+        font-weight: 400;
+        line-height: 1;
+      }
+
+      .footer-info-right {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        line-height: normal;
+        width: 54%;
+        margin-left: 20px;
+      }
+
+      .footer-payment {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .footer-payment-heading {
+        color: rgba(255, 255, 255, 1);
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: 0.1px;
+        align-self: start;
+      }
+
+      .footer-payment-icons {
+        display: flex;
+        margin-top: 15px;
+        align-items: stretch;
+        gap: 4px;
+      }
+
+      .payment-icon {
+        aspect-ratio: 1.58;
+        object-fit: contain;
+        object-position: center;
+        width: 38px;
+        flex-shrink: 0;
+      }
+
+      .footer-disclaimer {
+        background-color: rgba(28, 28, 28, 1);
+        margin-top: 16px;
+        width: 100%;
+        padding: 35px 70px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 1);
+        font-weight: 400;
+        text-align: center;
+        line-height: 18px;
+      }
+
+      /* Media queries */
+      @media (max-width: 991px) {
+        .header {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .header-content {
+          max-width: 100%;
+        }
+
+        .hero-section {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+          padding-top: 100px;
+          padding-bottom: 100px;
+        }
+
+        .hero-container {
+          max-width: 100%;
+          margin-bottom: 10px;
+        }
+
+        .hero-content {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .hero-left-column {
+          width: 100%;
+        }
+
+        .hero-text-container {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .hero-heading {
+          max-width: 100%;
+          margin-right: 7px;
+        }
+
+        .hero-subheading {
+          max-width: 100%;
+        }
+
+        .features-row {
+          max-width: 100%;
+          margin-right: 5px;
+        }
+
+        .features-container {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .feature-column {
+          width: 100%;
+        }
+
+        .feature-card {
+          margin-top: 16px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .cta-button {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .hero-right-column {
+          width: 100%;
+        }
+
+        .hero-image {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .problem-section {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .problem-container {
+          max-width: 100%;
+        }
+
+        .problem-content {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .problem-left-column {
+          width: 100%;
+        }
+
+        .problem-image-container {
+          max-width: 100%;
+          margin-top: 40px;
+          padding-left: 20px;
+          padding-right: 20px;
+          padding-top: 100px;
+          padding-bottom: 100px;
+        }
+
+        .problem-right-column {
+          width: 100%;
+        }
+
+        .problem-text-container {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .problem-heading {
+          max-width: 100%;
+        }
+
+        .problem-description {
+          max-width: 100%;
+          margin-right: 4px;
+        }
+
+        .solution-section {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .solution-container {
+          max-width: 100%;
+        }
+
+        .solution-content {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .solution-left-column {
+          width: 100%;
+        }
+
+        .solution-text-container {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .solution-heading {
+          max-width: 100%;
+          margin-right: 10px;
+        }
+
+        .solution-description {
+          max-width: 100%;
+        }
+
+        .solution-features {
+          margin-top: 40px;
+        }
+
+        .solution-features-row {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .solution-feature-column {
+          width: 100%;
+        }
+
+        .solution-feature-container {
+          margin-top: 40px;
+        }
+
+        .solution-right-column {
+          width: 100%;
+        }
+
+        .solution-image {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .benefits-section {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+          padding-bottom: 100px;
+        }
+
+        .benefits-container {
+          margin-bottom: 10px;
+        }
+
+        .benefits-content {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .benefits-left-column {
+          width: 100%;
+        }
+
+        .benefits-image {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .benefits-right-column {
+          width: 100%;
+        }
+
+        .benefits-text-container {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .benefits-heading {
+          max-width: 100%;
+          margin-right: 6px;
+        }
+
+        .benefit-text {
+          max-width: 100%;
+        }
+
+        .testimonials-section {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .testimonials-container {
+          max-width: 100%;
+        }
+
+        .testimonials-heading {
+          max-width: 100%;
+        }
+
+        .testimonials-grid {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .testimonials-row {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .testimonial-column {
+          width: 100%;
+        }
+
+        .testimonial-card {
+          max-width: 100%;
+          margin-top: 29px;
+        }
+
+        .testimonial-image {
+          max-width: 100%;
+        }
+
+        .testimonial-text {
+          margin-right: 10px;
+          margin-left: 10px;
+          margin-top: 40px;
+        }
+
+        .testimonial-footer {
+          margin-right: 10px;
+          margin-left: 10px;
+        }
+
+        .comparison-heading-primary {
+          margin-top: 40px;
+        }
+
+        .comparison-heading-secondary {
+          max-width: 100%;
+        }
+
+        .comparison-container {
+          margin-top: 40px;
+        }
+
+        .comparison-content {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .comparison-left-column {
+          width: 100%;
+        }
+
+        .comparison-left-content {
+          max-width: 100%;
+          margin-top: 10px;
+        }
+
+        .comparison-left-row {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .comparison-features-column {
+          width: 100%;
+        }
+
+        .comparison-features-list {
+          margin-top: 40px;
+        }
+
+        .comparison-product-column {
+          width: 100%;
+        }
+
+        .comparison-product-card {
+          white-space: initial;
+        }
+
+        .comparison-checkmark {
+          display: none;
+          margin-top: 40px;
+        }
+
+        .comparison-right-column {
+          width: 100%;
+        }
+
+        .comparison-right-content {
+          max-width: 100%;
+          margin-top: 10px;
+        }
+
+        .comparison-competitors-row {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .comparison-competitor-column {
+          width: 100%;
+        }
+
+        .comparison-competitor-card {
+          margin-top: 10px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .comparison-competitor-card-alt {
+          margin-top: 10px;
+        }
+
+        .trust-badges {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .pricing-section {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+          margin-top: 40px;
+        }
+
+        .pricing-heading {
+          max-width: 100%;
+        }
+
+        .pricing-subheading {
+          max-width: 100%;
+        }
+
+        .pricing-options {
+          max-width: 100%;
+        }
+
+        .pricing-row {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .pricing-column {
+          width: 100%;
+        }
+
+        .pricing-card {
+          margin-top: 20px;
+        }
+
+        .pricing-popular {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .pricing-details {
+          margin-top: 40px;
+        }
+
+        .pricing-divider {
+          margin-left: 2px;
+        }
+
+        .pricing-price-container {
+          margin-left: 2px;
+          white-space: initial;
+        }
+
+        .pricing-cta {
+          margin-left: 2px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .pricing-shipping {
+          margin-left: 2px;
+        }
+
+        .payment-methods {
+          margin-left: 2px;
+        }
+
+        .guarantee-section {
+          max-width: 100%;
+        }
+
+        .guarantee-content {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .guarantee-left-column {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .guarantee-heading {
+          max-width: 100%;
+        }
+
+        .guarantee-description {
+          max-width: 100%;
+        }
+
+        .guarantee-right-column {
+          width: 100%;
+        }
+
+        .guarantee-image {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .features-section {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .features-detailed-content {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .features-detailed-left-column {
+          width: 100%;
+        }
+
+        .features-detailed-heading-container {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .features-detailed-heading {
+          max-width: 100%;
+        }
+
+        .features-detailed-right-column {
+          width: 100%;
+        }
+
+        .features-detailed-list {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .feature-detailed-active {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .feature-detailed-header {
+          max-width: 100%;
+        }
+
+        .feature-detailed-description {
+          max-width: 100%;
+        }
+
+        .feature-detailed-inactive {
+          max-width: 100%;
+          padding-left: 20px;
+        }
+
+        .how-to-use-heading {
+          margin-top: 40px;
+        }
+
+        .how-to-use-container {
+          max-width: 100%;
+        }
+
+        .how-to-use-content {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .how-to-use-column {
+          width: 100%;
+        }
+
+        .how-to-use-card {
+          max-width: 100%;
+          margin-top: 25px;
+          padding-bottom: 100px;
+        }
+
+        .how-to-use-step-container {
+          max-width: 100%;
+          padding-right: 20px;
+          padding-top: 100px;
+        }
+
+        .how-to-use-step-number {
+          font-size: 40px;
+        }
+
+        .how-to-use-step-description {
+          margin-right: 10px;
+        }
+
+        .how-to-use-card-alt {
+          max-width: 100%;
+          margin-top: 25px;
+        }
+
+        .how-to-use-step-container-alt {
+          max-width: 100%;
+          padding-top: 100px;
+        }
+
+        .how-to-use-step-number-alt {
+          font-size: 40px;
+        }
+
+        .how-to-use-step-title-alt {
+          max-width: 100%;
+        }
+
+        .how-to-use-card-third {
+          max-width: 100%;
+          margin-top: 25px;
+          padding-bottom: 100px;
+        }
+
+        .how-to-use-image {
+          max-width: 100%;
+        }
+
+        .how-to-use-step-description-third {
+          margin-right: 10px;
+        }
+
+        .cta-heading {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .cta-description {
+          max-width: 100%;
+        }
+
+        .cta-banner {
+          padding-left: 20px;
+          padding-right: 20px;
+          margin-top: 40px;
+        }
+
+        .cta-banner-content {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .cta-banner-left-column {
+          width: 100%;
+        }
+
+        .cta-banner-left-content {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .cta-banner-row {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .cta-banner-icon-column {
+          width: 100%;
+        }
+
+        .cta-banner-icon {
+          margin-top: 23px;
+        }
+
+        .cta-banner-text-column {
+          width: 100%;
+        }
+
+        .cta-banner-heading {
+          margin-top: 40px;
+        }
+
+        .cta-banner-right-column {
+          width: 100%;
+        }
+
+        .cta-banner-right-content {
+          margin-top: 40px;
+        }
+
+        .cta-banner-button {
+          padding-left: 20px;
+          padding-right: 20px;
+          white-space: initial;
+        }
+
+        .faq-section {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+          margin-top: 40px;
+        }
+
+        .faq-container {
+          max-width: 100%;
+          margin-bottom: 10px;
+        }
+
+        .faq-content {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+          margin-top: 40px;
+        }
+
+        .faq-item {
+          max-width: 100%;
+        }
+
+        .faq-answer {
+          max-width: 100%;
+          margin-right: 10px;
+        }
+
+        .faq-divider {
+          max-width: 100%;
+        }
+
+        .faq-item-collapsed {
+          max-width: 100%;
+        }
+
+        .footer {
+          max-width: 100%;
+          margin-top: 40px;
+        }
+
+        .footer-info-container {
+          max-width: 100%;
+        }
+
+        .footer-info-content {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0px;
+        }
+
+        .footer-info-left {
+          width: 100%;
+        }
+
+        .footer-info-links {
+          margin-top: 40px;
+        }
+
+        .footer-info-right {
+          width: 100%;
+        }
+
+        .footer-payment {
+          margin-top: 40px;
+        }
+
+        .footer-disclaimer {
+          max-width: 100%;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="landing-page">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/13c5ffdc11f4995d66ae52e485173407c4007baa?placeholderIfAbsent=true"
+            alt="LumiClean Logo"
+            class="logo"
+          />
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/e80888ecf79ce22f5fc514e089fd82b00d9d8e33?placeholderIfAbsent=true"
+            alt="Menu"
+            class="logo"
+          />
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-container">
+          <div class="hero-content">
+            <div class="hero-left-column">
+              <div class="hero-text-container">
+                <p class="badge">20,000+ Home Disinfected!</p>
+                <h1 class="hero-heading">
+                  From Stress To Serenity: Give Your Family The Peace Of Mind
+                  They Deserve!
+                </h1>
+                <p class="hero-subheading">
+                  Stop Second-Guessing Your Cleaning. Finally Achieve True
+                  Sanitization – With a Push Of A Button.
+                </p>
+
+                <div class="features-row">
+                  <div class="features-container">
+                    <div class="feature-column">
+                      <div class="feature-card">
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/149d39f9f96309d677d8c7650e9caaa3708e8d13?placeholderIfAbsent=true"
+                          alt="Germs Icon"
+                          class="feature-icon"
+                        />
+                        <p class="feature-title">Targets Germs & Bacteria</p>
+                      </div>
+                    </div>
+                    <div class="feature-column">
+                      <div class="feature-card">
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/f0f3f1ee1fde19690c270218fbd7e7b545df9e4b?placeholderIfAbsent=true"
+                          alt="UV-C Icon"
+                          class="feature-icon"
+                        />
+                        <p class="feature-title">UV-C + Ozone Technology</p>
+                      </div>
+                    </div>
+                    <div class="feature-column">
+                      <div class="feature-card">
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/8a648a8e35d73593a8394f3c72b7c1064b24c94a?placeholderIfAbsent=true"
+                          alt="Room Icon"
+                          class="feature-icon"
+                        />
+                        <p class="feature-title">Whole-Room Disinfection</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <button class="cta-button">Yes i want a clean home</button>
+
+                <div class="guarantee-container">
+                  <div class="guarantee-icon-wrapper">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b5f5de78477e9ec499eb3f17f62954a162f5743d?placeholderIfAbsent=true"
+                      alt="Guarantee Background"
+                      class="guarantee-icon-bg"
+                    />
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b5f5de78477e9ec499eb3f17f62954a162f5743d?placeholderIfAbsent=true"
+                      alt="Guarantee Icon"
+                      class="guarantee-icon"
+                    />
+                  </div>
+                  <p class="guarantee-text">60-DAY MONEY BACK GUARANTEE</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-right-column">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/f0ccbd5e1d357764176633e8ff24a7ec2c46311a?placeholderIfAbsent=true"
+                alt="LumiClean Device"
+                class="hero-image"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Problem Section -->
+      <section class="problem-section">
+        <div class="problem-container">
+          <div class="problem-content">
+            <div class="problem-left-column">
+              <div class="problem-image-container">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/94a62829f50520aa97c3e35be02dfa3164e3dc2b?placeholderIfAbsent=true"
+                  alt="Problem Background"
+                  class="problem-bg-image"
+                />
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/c9440aa63ec877e7ad91350c10a943a5d4b3b523?placeholderIfAbsent=true"
+                  alt="Problem Icon"
+                  class="problem-icon"
+                />
+              </div>
+            </div>
+
+            <div class="problem-right-column">
+              <div class="problem-text-container">
+                <h2 class="problem-heading">
+                  Did You Know that 20% of Pathogens Survive After Cleaning
+                </h2>
+                <p class="problem-description">
+                  You meticulously wipe down surfaces. You vacuum religiously.
+                  But deep down, a nagging worry persists:
+                  <strong>is it really clean enough?</strong>
+                  <br />
+                  <strong>The truth is</strong><strong>,</strong> standard
+                  cleaning methods often fall short. Wipes and sprays only
+                  sanitize where they touch, missing hidden crevices, fabrics,
+                  and even the air you breathe. Microscopic germs and bacteria
+                  can linger, silently impacting your peace of mind.
+                  <br />
+                  <strong>Think about it:</strong> Dust mites thrive in
+                  mattresses, bacteria cling to countertops, and odor sticks
+                  into walls, furniture and trash cans.
+                </p>
+
+                <button class="cta-button">
+                  Deep clean my house from unseen threats
+                </button>
+
+                <div class="guarantee-container">
+                  <div class="guarantee-icon-wrapper">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b5f5de78477e9ec499eb3f17f62954a162f5743d?placeholderIfAbsent=true"
+                      alt="Guarantee Background"
+                      class="guarantee-icon-bg"
+                    />
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b5f5de78477e9ec499eb3f17f62954a162f5743d?placeholderIfAbsent=true"
+                      alt="Guarantee Icon"
+                      class="guarantee-icon"
+                    />
+                  </div>
+                  <p class="guarantee-text">60-DAY MONEY BACK GUARANTEE</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Solution Section -->
+      <section class="solution-section">
+        <div class="solution-container">
+          <div class="solution-content">
+            <div class="solution-left-column">
+              <div class="solution-text-container">
+                <div class="solution-badge">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b07fc152a4ee4e62ef9905cf95ad4cff4e1b6403?placeholderIfAbsent=true"
+                    alt="Solution Icon"
+                    class="badge-icon"
+                  />
+                  <span class="badge-text">Introducing lumiclean</span>
+                </div>
+
+                <h2 class="solution-heading">
+                  Hospital-like Disinfection,<br />Reimagined for Your Home.
+                </h2>
+
+                <p class="solution-description">
+                  <span
+                    >Imagine a device that goes beyond surface cleaning,
+                    reaching every corner of your room – sanitizing not just
+                    surfaces, but the very air you breathe.
+                  </span>
+                  <br />
+                  <span>LUMICLEAN harnesses of</span>
+                  <strong>hospital-like UV-C light and natural ozone</strong>
+                  <span
+                    >to deliver a level of cleanliness you simply can't achieve
+                    with conventional methods. It's the same technology trusted
+                    in operating rooms and laboratories, now designed for safe
+                    and easy use in your home.</span
+                  >
+                  <br />
+                  <span
+                    >With just the push of a button, LUMICLEAN floods your room
+                    with germ-killing power,</span
+                  >
+                  Targeting
+                  <span
+                    >bacteria, viruses, mold spores, and dust mites. It's
+                    hands-free, chemical-free, and incredibly effective.</span
+                  >
+                </p>
+
+                <div class="solution-features">
+                  <div class="solution-features-row">
+                    <div class="solution-feature-column">
+                      <div class="solution-feature-container">
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/f52aa0fc35eb4002f85690689d035b317e47e22c?placeholderIfAbsent=true"
+                          alt="UV-C Technology"
+                          class="solution-feature-icon"
+                        />
+                        <p class="solution-feature-title">
+                          Dual UV-C + Ozone Technology
+                        </p>
+
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/cba2e4c0fc81517f231cf3491503a59150c7c4ea?placeholderIfAbsent=true"
+                          alt="Eco-Friendly"
+                          class="solution-feature-icon-second"
+                        />
+                        <p class="solution-feature-title-second">
+                          Chemical-Free & Eco-Friendly
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="solution-feature-column">
+                      <div class="solution-feature-container">
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/4b4a4381e200ad5e9526f7c89f7c7255dddc9f7a?placeholderIfAbsent=true"
+                          alt="Targets Germs"
+                          class="solution-feature-icon"
+                        />
+                        <p class="solution-feature-title">
+                          Targets Germs, Viruses & particles
+                        </p>
+
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/d34562f5a1a0e49b10dbf871c7f5a37bc54e5564?placeholderIfAbsent=true"
+                          alt="Targets Allergens"
+                          class="solution-feature-icon-second"
+                        />
+                        <p class="solution-feature-title-second">
+                          Targets allergens like dust mite & MOLD spores
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="solution-feature-column">
+                      <div class="solution-feature-container">
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/a3344f4d1215d9e95c842dcb3c3ce5806762de3d?placeholderIfAbsent=true"
+                          alt="Disinfects Air"
+                          class="solution-feature-icon"
+                        />
+                        <p class="solution-feature-title">
+                          Disinfects both air and surfaces
+                        </p>
+
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/8dbd36db62a61bf6d63d342d431b79ec16d8e844?placeholderIfAbsent=true"
+                          alt="Eliminates Odor"
+                          class="solution-feature-icon-second"
+                        />
+                        <p class="solution-feature-title-second">
+                          Eliminates Musty Odor
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="solution-right-column">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/441e7f5c96d8b2a5b681976f09c24b46e1bb7c37?placeholderIfAbsent=true"
+                alt="LumiClean Device"
+                class="solution-image"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Benefits Section -->
+      <section class="benefits-section">
+        <div class="benefits-container">
+          <div class="benefits-content">
+            <div class="benefits-left-column">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/6330bfb2468b8d74577386e10165471c84189dbb?placeholderIfAbsent=true"
+                alt="Benefits Image"
+                class="benefits-image"
+              />
+            </div>
+
+            <div class="benefits-right-column">
+              <div class="benefits-text-container">
+                <h2 class="benefits-heading">
+                  This is What Lumiclean Disinfection Towers Can Do For You
+                </h2>
+
+                <div class="benefit-item">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/84c6c4b483fa96106c8b189197efb3ac8a831468?placeholderIfAbsent=true"
+                    alt="Checkmark"
+                    class="benefit-icon"
+                  />
+                  <p class="benefit-text">
+                    Targets dust mites, mold spores, bacteria, and other unseen
+                    biological threats.
+                  </p>
+                </div>
+
+                <div class="benefit-item">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/84c6c4b483fa96106c8b189197efb3ac8a831468?placeholderIfAbsent=true"
+                    alt="Checkmark"
+                    class="benefit-icon"
+                  />
+                  <p class="benefit-text">
+                    Transforms your indoor air into a fresh, clean oasis that's
+                    a joy to breathe.
+                  </p>
+                </div>
+
+                <div class="benefit-item">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/84c6c4b483fa96106c8b189197efb3ac8a831468?placeholderIfAbsent=true"
+                    alt="Checkmark"
+                    class="benefit-icon"
+                  />
+                  <p class="benefit-text">
+                    Removes foul odors caused by bacteria, cooking oils, tobacco
+                    smoke, and pets…making your house smell like...home.
+                  </p>
+                </div>
+
+                <div class="benefit-item">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/84c6c4b483fa96106c8b189197efb3ac8a831468?placeholderIfAbsent=true"
+                    alt="Checkmark"
+                    class="benefit-icon"
+                  />
+                  <p class="benefit-text">
+                    Makes your home safer by disinfecting surfaces and air at
+                    the same time.
+                  </p>
+                </div>
+
+                <div class="benefit-item">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/84c6c4b483fa96106c8b189197efb3ac8a831468?placeholderIfAbsent=true"
+                    alt="Checkmark"
+                    class="benefit-icon"
+                  />
+                  <p class="benefit-text">
+                    Helps decrease the risk of flu and transmission of diseases
+                    indoors, providing extra safety for your family.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section class="testimonials-section">
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/d6e8640755529f30e3c64d524c5d67cb3a463d22?placeholderIfAbsent=true"
+          alt="Testimonials Background"
+          class="testimonials-bg"
+        />
+
+        <div class="testimonials-container">
+          <h2 class="testimonials-heading">
+            Don't Just Take Our Word For It.<br />
+            <em>See What Others Are Saying About LumiClean.</em>
+          </h2>
+
+          <div class="testimonials-grid">
+            <div class="testimonials-row">
+              <div class="testimonial-column">
+                <div class="testimonial-card">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/7dbf3453c33476761d541fbcadf9de23f6b1d24c?placeholderIfAbsent=true"
+                    alt="Testimonial 1"
+                    class="testimonial-image"
+                  />
+                  <p class="testimonial-text">
+                    I used to constantly worry about germs, especially with my
+                    kids. LUMICLEAN has been a game-changer. I finally feel like
+                    my home is truly clean, and I have so much more peace of
+                    mind.
+                  </p>
+                  <div class="testimonial-footer">
+                    <p class="testimonial-author">
+                      <strong>- Jessica M.</strong><br />
+                      <em>(Mom of Two)</em>
+                    </p>
+                    <div class="verified-badge">
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b8868de0490a16187fb72951e100f1829e4deee9?placeholderIfAbsent=true"
+                        alt="Verified"
+                        class="verified-icon"
+                      />
+                      <span class="verified-text">Verified Buyer</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-column">
+                <div class="testimonial-card">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/94ba35b42e1d6c88f3714fd4b06995315cd28b70?placeholderIfAbsent=true"
+                    alt="Testimonial 2"
+                    class="testimonial-image"
+                  />
+                  <p class="testimonial-text">
+                    As someone with severe allergies, I've tried everything.
+                    LUMICLEAN is the first thing that's actually made a
+                    noticeable difference in my symptoms. I can breathe so much
+                    easier now!
+                  </p>
+                  <div class="testimonial-footer">
+                    <p class="testimonial-author">
+                      <strong>- David L.</strong><br />
+                      <em>(Allergy Sufferer)</em>
+                    </p>
+                    <div class="verified-badge">
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b8868de0490a16187fb72951e100f1829e4deee9?placeholderIfAbsent=true"
+                        alt="Verified"
+                        class="verified-icon"
+                      />
+                      <span class="verified-text">Verified Buyer</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-column">
+                <div class="testimonial-card">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b80cad9d598e363092c5931e44d66a84fdd8aab3?placeholderIfAbsent=true"
+                    alt="Testimonial 3"
+                    class="testimonial-image"
+                  />
+                  <p class="testimonial-text">
+                    So easy to use! I just set it and forget it. It's a
+                    lifesaver for my busy schedule. Knowing my home is sanitized
+                    without any effort from me is incredible.
+                  </p>
+                  <div class="testimonial-footer">
+                    <p class="testimonial-author">
+                      <strong>- Maria S.</strong><br />
+                      <em>(Working Professional)</em>
+                    </p>
+                    <div class="verified-badge">
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b8868de0490a16187fb72951e100f1829e4deee9?placeholderIfAbsent=true"
+                        alt="Verified"
+                        class="verified-icon"
+                      />
+                      <span class="verified-text">Verified Buyer</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comparison Section -->
+      <h2 class="comparison-heading-primary">What Makes LumiClean</h2>
+      <h2 class="comparison-heading-secondary">Far Superior to Others</h2>
+
+      <div class="comparison-container">
+        <div class="comparison-content">
+          <div class="comparison-left-column">
+            <div class="comparison-left-content">
+              <div class="comparison-left-row">
+                <div class="comparison-features-column">
+                  <div class="comparison-features-list">
+                    <div class="comparison-feature">
+                      Disinfects air, surfaces, and hidden areas
+                    </div>
+                    <div class="comparison-feature-alt">
+                      Uses chemical-free UV-c + ozone technology
+                    </div>
+                    <div class="comparison-feature">
+                      Effortlessly sanitizes entire rooms hands-free
+                    </div>
+                    <div class="comparison-feature-alt-tall">
+                      Eliminates deep-rooted odors
+                    </div>
+                    <div class="comparison-feature">
+                      Provides hospital-like disinfection at home
+                    </div>
+                    <div class="comparison-feature-alt">
+                      Keeps kids and pets safe with auto shut-off
+                    </div>
+                    <div class="comparison-feature">
+                      Lasts for years—zero hassle, zero replacements
+                    </div>
+                    <div class="comparison-feature-alt">
+                      Fits beautifully into any room with its sleek, compact
+                      style
+                    </div>
+                    <div class="comparison-feature">
+                      Unbeatable pricing. Hospital-like technology for under $80
+                    </div>
+                  </div>
+                </div>
+
+                <div class="comparison-product-column">
+                  <div class="comparison-product-card">
+                    <div>LumiClean</div>
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/09fefba70d21d27af35beb29a65890ae945be061?placeholderIfAbsent=true"
+                      alt="Checkmark"
+                      class="comparison-checkmark"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison-right-column">
+            <div class="comparison-right-content">
+              <div class="comparison-competitors-row">
+                <div class="comparison-competitor-column">
+                  <div class="comparison-competitor-card">
+                    <div>Other UVC towers</div>
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/e0135b02cb0c9dfe8d6dce2b0bd059132513359b?placeholderIfAbsent=true"
+                      alt="X Mark"
+                      class="comparison-checkmark"
+                    />
+                  </div>
+                </div>
+
+                <div class="comparison-competitor-column">
+                  <div class="comparison-competitor-card-alt">
+                    <div>Air purifiers</div>
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/e0135b02cb0c9dfe8d6dce2b0bd059132513359b?placeholderIfAbsent=true"
+                      alt="X Mark"
+                      class="comparison-checkmark"
+                    />
+                  </div>
+                </div>
+
+                <div class="comparison-competitor-column">
+                  <div class="comparison-competitor-card">
+                    <div>Allergen vacuums</div>
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/e0135b02cb0c9dfe8d6dce2b0bd059132513359b?placeholderIfAbsent=true"
+                      alt="X Mark"
+                      class="comparison-checkmark"
+                    />
+                  </div>
+                </div>
+
+                <div class="comparison-competitor-column">
+                  <div class="comparison-competitor-card">
+                    <div>Common cleaning tools</div>
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/e0135b02cb0c9dfe8d6dce2b0bd059132513359b?placeholderIfAbsent=true"
+                      alt="X Mark"
+                      class="comparison-checkmark"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Badges Section -->
+      <div class="trust-badges">
+        <div class="trust-badge">
+          <div class="trust-badge-icon-container">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/67a04510f0393237b5c5c6fdb614aae32cbc1e88?placeholderIfAbsent=true"
+              alt="Customers Icon"
+              class="trust-badge-icon"
+            />
+          </div>
+          <p class="trust-badge-text">1000K+ Happy Customers</p>
+        </div>
+
+        <div class="trust-badge">
+          <div class="trust-badge-icon-container">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/803885a5441098604144f9d890d621cc491e3f3c?placeholderIfAbsent=true"
+              alt="Technology Icon"
+              class="trust-badge-icon"
+            />
+          </div>
+          <p class="trust-badge-text">Hospital-like Technology</p>
+        </div>
+
+        <div class="trust-badge">
+          <div class="trust-badge-icon-container">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/412653514081b904ba2c58ca09a6b434dd7f6324?placeholderIfAbsent=true"
+              alt="Guarantee Icon"
+              class="trust-badge-icon"
+            />
+          </div>
+          <p class="trust-badge-text">60-Day Money-Back Guarantee</p>
+        </div>
+      </div>
+
+      <!-- Pricing Section -->
+      <section class="pricing-section">
+        <div class="pricing-container">
+          <h2 class="pricing-heading">
+            Get a Free Gift With Your Order Today!
+          </h2>
+          <p class="pricing-subheading">
+            Hurry! This special offer is only available while supplies last!
+          </p>
+
+          <div class="pricing-options">
+            <div class="pricing-row">
+              <div class="pricing-column">
+                <div class="pricing-card">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/760a1ca7a552c72d68729207701de5efb180cecc?placeholderIfAbsent=true"
+                    alt="Single LumiClean Device"
+                    class="pricing-product-image"
+                  />
+
+                  <div class="pricing-details">
+                    <h3 class="pricing-product-title">1x LuminClean Device</h3>
+                    <div class="pricing-divider"></div>
+
+                    <div class="pricing-price-container">
+                      <span class="pricing-original-price">$99.99</span>
+                      <span class="pricing-sale-price">$79.95</span>
+                    </div>
+
+                    <button class="pricing-cta">Add to cart</button>
+
+                    <div class="pricing-shipping">
+                      <div class="shipping-indicator"></div>
+                      <p class="shipping-text">Ships Tomorrow, March 1</p>
+                    </div>
+
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/90501b4cf92b56ec3fa7da89cfd217fd80046aaa?placeholderIfAbsent=true"
+                      alt="Payment Methods"
+                      class="payment-methods"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="pricing-column">
+                <div class="pricing-card">
+                  <div class="pricing-popular">Most Popular</div>
+
+                  <div class="pricing-details">
+                    <div class="pricing-products-container">
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/a98536e44120bea7cced83e6f7e77ea5622e971e?placeholderIfAbsent=true"
+                        alt="LumiClean Device 1"
+                        class="pricing-product-image-double"
+                      />
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/f016ecef4af73f03f2ac79d9a3c60a84694e527c?placeholderIfAbsent=true"
+                        alt="LumiClean Device 2"
+                        class="pricing-product-image-double-second"
+                      />
+                    </div>
+
+                    <h3 class="pricing-product-title">2x LuminClean Device</h3>
+                    <div class="pricing-divider"></div>
+
+                    <div class="pricing-price-container">
+                      <span class="pricing-original-price">$199.98</span>
+                      <span class="pricing-sale-price">$139.90</span>
+                    </div>
+
+                    <button class="pricing-cta">Add to cart</button>
+
+                    <div class="pricing-shipping">
+                      <div class="shipping-indicator"></div>
+                      <p class="shipping-text">Ships Tomorrow, March 1</p>
+                    </div>
+
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/90501b4cf92b56ec3fa7da89cfd217fd80046aaa?placeholderIfAbsent=true"
+                      alt="Payment Methods"
+                      class="payment-methods"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="pricing-column">
+                <div class="pricing-card">
+                  <div class="pricing-popular">Best Value</div>
+
+                  <div class="pricing-details">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/7a1a1e2532e4c56898e5ddb26bdefae5dd3449c3?placeholderIfAbsent=true"
+                      alt="Triple LumiClean Device"
+                      class="pricing-product-image-triple"
+                    />
+
+                    <h3 class="pricing-product-title">3x LuminClean Device</h3>
+                    <div class="pricing-divider"></div>
+
+                    <div class="pricing-price-container">
+                      <span class="pricing-original-price">$299.97</span>
+                      <span class="pricing-sale-price">$194.70</span>
+                    </div>
+
+                    <button class="pricing-cta">Add to cart</button>
+
+                    <div class="pricing-shipping">
+                      <div class="shipping-indicator"></div>
+                      <p class="shipping-text">Ships Tomorrow, March 1</p>
+                    </div>
+
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/90501b4cf92b56ec3fa7da89cfd217fd80046aaa?placeholderIfAbsent=true"
+                      alt="Payment Methods"
+                      class="payment-methods"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Guarantee Section -->
+      <section class="guarantee-section">
+        <div class="guarantee-content">
+          <div class="guarantee-left-column">
+            <h2 class="guarantee-heading">
+              Real Results or Money Back Guarantee
+            </h2>
+            <p class="guarantee-description">
+              <strong>Try the LumiClean Towers</strong> for 60 days. If you dont
+              feel a difference in your air, or for any given reason you don't
+              like it..return it for a full refund—no questions asked.
+            </p>
+          </div>
+
+          <div class="guarantee-right-column">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/8b43e669ca674eeb7b5ce13d10c298668f817244?placeholderIfAbsent=true"
+              alt="Money Back Guarantee"
+              class="guarantee-image"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Detailed Section -->
+      <section class="features-section">
+        <div class="features-detailed-container">
+          <div class="features-detailed-content">
+            <div class="features-detailed-left-column">
+              <div class="features-detailed-heading-container">
+                <h2 class="features-detailed-heading">Features</h2>
+                of LumiClean's disinfection towers
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/2c0cd147e4347236677bb3e0dc5aad039caf37e4?placeholderIfAbsent=true"
+                  alt="LumiClean Device"
+                  class="features-detailed-image"
+                />
+              </div>
+            </div>
+
+            <div class="features-detailed-right-column">
+              <div class="features-detailed-list">
+                <div class="feature-detailed-active">
+                  <div class="feature-detailed-header">
+                    <h3>Chemical-Free Disinfection</h3>
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/8a95f7e3d2e4781506d64f61cd1c9b7b37932257?placeholderIfAbsent=true"
+                      alt="Toggle"
+                      class="feature-detailed-toggle"
+                    />
+                  </div>
+                  <p class="feature-detailed-description">
+                    Unlike sprays, and chemical disinfectants, the UVO254™ Lamp
+                    is chemical-free. Our bodies are already exposed to tons of
+                    toxins. By using LumiClean's Lamp, you minimize the use of
+                    chemical cleaning products and thus, reduce the toxic burden
+                    on your body. The UVO254™ Lamp is great for surfaces, the
+                    environment, your time, and your wallet.
+                  </p>
+                </div>
+
+                <div class="feature-detailed-inactive">
+                  <h3>Disinfects The Air And The Surfaces</h3>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/925fe541792d226fdafe913f350f67386a580dba?placeholderIfAbsent=true"
+                    alt="Toggle"
+                    class="feature-detailed-toggle"
+                  />
+                </div>
+
+                <div class="feature-detailed-inactive">
+                  <h3>Not Only For Your Home</h3>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/925fe541792d226fdafe913f350f67386a580dba?placeholderIfAbsent=true"
+                    alt="Toggle"
+                    class="feature-detailed-toggle"
+                  />
+                </div>
+
+                <div class="feature-detailed-inactive">
+                  <h3>Built-in Safety Feature</h3>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/925fe541792d226fdafe913f350f67386a580dba?placeholderIfAbsent=true"
+                    alt="Toggle"
+                    class="feature-detailed-toggle"
+                  />
+                </div>
+
+                <div class="feature-detailed-inactive">
+                  <h3>Suitable For 100-250 Sq Ft</h3>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/925fe541792d226fdafe913f350f67386a580dba?placeholderIfAbsent=true"
+                    alt="Toggle"
+                    class="feature-detailed-toggle"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How To Use Section -->
+      <h2 class="how-to-use-heading">It's As Easy As 1, 2, 3</h2>
+
+      <div class="how-to-use-container">
+        <div class="how-to-use-content">
+          <div class="how-to-use-column">
+            <div class="how-to-use-card">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/6df75b7d1f3667894b8c5a39d3b56ad68972f342?placeholderIfAbsent=true"
+                alt="Step 1 Background"
+                class="how-to-use-card-bg"
+              />
+
+              <div class="how-to-use-step-container">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/02b1e0489ebb6ed20f40421b235d498035f26670?placeholderIfAbsent=true"
+                  alt="Step 1 Header"
+                  class="how-to-use-step-bg"
+                />
+                <h3 class="how-to-use-step-number">1.</h3>
+                <p class="how-to-use-step-title">Turn it on.</p>
+              </div>
+
+              <div class="how-to-use-step-description">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3d1cdcc06146e22c116a2b1c858d36c0defdc370?placeholderIfAbsent=true"
+                  alt="Step Icon"
+                  class="how-to-use-step-icon"
+                />
+                <p class="how-to-use-step-text">
+                  Simply place your UVO lamps in every room you want to
+                  disinfect, whether it's the bedroom, bathroom, kitchen, or
+                  office, then use the remote to turn all of your UVO lamps
+                  simultaneously, making it incredibly easy to disinfect your
+                  entire living space.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="how-to-use-column">
+            <div class="how-to-use-card-alt">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/6df75b7d1f3667894b8c5a39d3b56ad68972f342?placeholderIfAbsent=true"
+                alt="Step 2 Background"
+                class="how-to-use-card-bg"
+              />
+
+              <div class="how-to-use-step-container-alt">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/16e70217658e844098abbf935e939a273d553e0b?placeholderIfAbsent=true"
+                  alt="Step 2 Header"
+                  class="how-to-use-step-bg"
+                />
+                <h3 class="how-to-use-step-number">2.</h3>
+                <p class="how-to-use-step-title-alt">
+                  Take your furry friends out & Leave the room.
+                </p>
+              </div>
+
+              <div class="how-to-use-step-description-alt">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b673a87599b0dfd1e90c8caa77793f74a5172414?placeholderIfAbsent=true"
+                  alt="Step Icon"
+                  class="how-to-use-step-icon"
+                />
+                <p class="how-to-use-step-text">
+                  After Turning your UVO lamps on, make sure to bring your pets
+                  and every other family member to another room until the
+                  disinfection cycle ends.
+                  <br />
+                  I know. It might seem like a hassle to stay away until the UVO
+                  lamps have completed disinfecting allergens, foul smells, pet
+                  dander, and other unseen threats from your home.
+                  <br />
+                  But trust me this small investment of time will pay huge
+                  dividends in protecting the health of your furry friends and
+                  loved ones.
+                  <br />
+                  Seriously, it's just 15 minutes. You can use that time to walk
+                  your dogs, catch up on your favorite show, read a few pages of
+                  that book you've meant to finish or relax and unwind.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="how-to-use-column">
+            <div class="how-to-use-card-third">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/6df75b7d1f3667894b8c5a39d3b56ad68972f342?placeholderIfAbsent=true"
+                alt="Step 3 Background"
+                class="how-to-use-card-bg"
+              />
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/40557ce9bb14b9c4ae48ceb76bfa38600b31e85a?placeholderIfAbsent=true"
+                alt="Step 3 Image"
+                class="how-to-use-image"
+              />
+
+              <div class="how-to-use-step-description">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/a10f96558cb8a7946de1647b95e31adeba8d36a8?placeholderIfAbsent=true"
+                  alt="Step Icon"
+                  class="how-to-use-step-icon"
+                />
+                <p class="how-to-use-step-text">
+                  The moment you step back into the room, you'll be greeted by a
+                  refreshingly crisp smell because your home is finally free
+                  from the musty odors and allergens that once weighed you down.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call To Action Section -->
+      <h2 class="cta-heading">
+        Make Sure To Hurry And Grab Your LumiClean Towers Before They Run Out!
+      </h2>
+
+      <p class="cta-description">
+        Whenever we do these promotions, people start buying three, five, or
+        even 10 lamps for their homes and offices. So they fly off our warehouse
+        shelves super quickly.
+        <br />
+        And once we're out of stock, we'll have to take this page down and wait
+        for our next shipment.
+        <br />
+        Because of what's happening in the world and logistical issues, the next
+        shipment could take months, depending on supply and transportation
+        lines.
+        <br />
+        So if you're interested in getting Lumiclean towers and finally have a
+        cleaner space...
+        <br />
+        Go ahead and click the "Buy Now" button at the bottom of this page to
+        secure your devices today.
+      </p>
+
+      <div class="cta-banner">
+        <div class="cta-banner-content">
+          <div class="cta-banner-left-column">
+            <div class="cta-banner-left-content">
+              <div class="cta-banner-row">
+                <div class="cta-banner-icon-column">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/5d5629403223647a96568998e0202c226cebbb88?placeholderIfAbsent=true"
+                    alt="Limited Time"
+                    class="cta-banner-icon"
+                  />
+                </div>
+
+                <div class="cta-banner-text-column">
+                  <h2 class="cta-banner-heading">Limited Time Sale</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cta-banner-right-column">
+            <div class="cta-banner-right-content">
+              <p class="cta-banner-offer-text">Offer Ends Soon</p>
+              <button class="cta-banner-button">REDEEM</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="faq-section">
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/9a51c6aede472fdb313265f7bc679223ee07fb98?placeholderIfAbsent=true"
+          alt="FAQ Background"
+          class="faq-bg"
+        />
+
+        <div class="faq-container">
+          <h2 class="faq-heading">Frequently Asked Questions</h2>
+
+          <div class="faq-content">
+            <div class="faq-item">
+              <h3 class="faq-question">
+                Is this a scam? Do you have any evidence it works?
+              </h3>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/a04babb493f3c2e4a38a140ba0471eb59665e843?placeholderIfAbsent=true"
+                alt="Toggle Open"
+                class="faq-toggle"
+              />
+            </div>
+
+            <p class="faq-answer">
+              UVC disinfection is not a scam. Many scientific studies, including
+              CDC and EPA studies, prove that UVC light kills almost all
+              biological pollutants and germs.
+              <br />
+              For example, a study published in the Asian Pacific Journal of
+              Tropical Biomedicine named "Effect of germicidal UV-C light(254
+              nm) on eggs and adult of house dust mites, Dermatophagoides
+              pteronyssinus and Dermatophagoides farinae" showed the efficacy of
+              UVC on killing dust mites and their eggs.
+              <br />
+              The EPA also states that "UV lamps may destroy indoor biological
+              pollutants such as viruses, bacteria, and molds."
+              <br />
+              In addition to UVC, countless research suggests that Ozone
+              fumigation applied at appropriate concentrations could effectively
+              control several disturbing organisms like dust mites, bacteria,
+              viruses, pests, etc.
+              <br />
+              UVO254™ lamps combine both UVC and Ozone for maximum
+              effectiveness.
+            </p>
+
+            <div class="faq-divider"></div>
+
+            <div class="faq-item-collapsed">
+              <h3 class="faq-question">Is LumiClean UVO254™ Lamp Safe?</h3>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true"
+                alt="Toggle Closed"
+                class="faq-toggle"
+              />
+            </div>
+
+            <div class="faq-divider"></div>
+
+            <div class="faq-item-collapsed">
+              <h3 class="faq-question">
+                How is the UVO254™ Lamp different from traditional UVC lamps or
+                Ozone generators?
+              </h3>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true"
+                alt="Toggle Closed"
+                class="faq-toggle"
+              />
+            </div>
+
+            <div class="faq-divider"></div>
+
+            <div class="faq-item-collapsed">
+              <h3 class="faq-question">Does it work on mold?</h3>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true"
+                alt="Toggle Closed"
+                class="faq-toggle"
+              />
+            </div>
+
+            <div class="faq-divider"></div>
+
+            <div class="faq-item-collapsed">
+              <h3 class="faq-question">
+                What happens to allergens and germs after being broken down?
+              </h3>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true"
+                alt="Toggle Closed"
+                class="faq-toggle"
+              />
+            </div>
+
+            <div class="faq-divider"></div>
+
+            <div class="faq-item-collapsed">
+              <h3 class="faq-question">
+                How long does the bulb last? What if I need a new bulb?
+              </h3>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true"
+                alt="Toggle Closed"
+                class="faq-toggle"
+              />
+            </div>
+
+            <div class="faq-divider"></div>
+
+            <div class="faq-item-collapsed">
+              <h3 class="faq-question">
+                Does the UV light lose potency over time?
+              </h3>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true"
+                alt="Toggle Closed"
+                class="faq-toggle"
+              />
+            </div>
+
+            <div class="faq-divider"></div>
+
+            <div class="faq-item-collapsed">
+              <h3 class="faq-question">
+                Can I use LumiClean to sterilize my phone or other personal
+                items?
+              </h3>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true"
+                alt="Toggle Closed"
+                class="faq-toggle"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3 class="footer-heading">Company</h3>
+            <a href="#" class="footer-link">About Us</a>
+            <a href="#" class="footer-link">Track Your Order</a>
+            <a href="#" class="footer-link">Contact Us</a>
+            <a href="#" class="footer-link">Become an Affiliate</a>
+          </div>
+
+          <div class="footer-column">
+            <h3 class="footer-heading">Support</h3>
+            <a href="#" class="footer-link">Get Help</a>
+          </div>
+
+          <div class="footer-info-container">
+            <div class="footer-info-content">
+              <div class="footer-info-left">
+                <div class="footer-info-links">
+                  <h3 class="footer-heading">Information</h3>
+                  <a href="#" class="footer-link">Privacy Policy</a>
+                  <a href="#" class="footer-link"
+                    >Terms of Sale, Service and<br />Conditions of Use</a
+                  >
+                  <a href="#" class="footer-link">Refund & Return Policy</a>
+                  <a href="#" class="footer-link">Shipping Policy</a>
+                  <a href="#" class="footer-link">Billing Terms & Condition</a>
+                </div>
+              </div>
+
+              <div class="footer-info-right">
+                <div class="footer-payment">
+                  <h3 class="footer-payment-heading">Pay Securely with</h3>
+                  <div class="footer-payment-icons">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/c63b08ab5b85c4203faecd777ea5dc7a6f6df0fd?placeholderIfAbsent=true"
+                      alt="Visa"
+                      class="payment-icon"
+                    />
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/048251b0897139b26368b9e9104720e36f02846b?placeholderIfAbsent=true"
+                      alt="Mastercard"
+                      class="payment-icon"
+                    />
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/a20884e326294276d304cf7923228316b1963807?placeholderIfAbsent=true"
+                      alt="American Express"
+                      class="payment-icon"
+                    />
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/e6e8ea3b22a0c87405ff1e3c5ed22f162f25d412?placeholderIfAbsent=true"
+                      alt="Discover"
+                      class="payment-icon"
+                    />
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b1424a7eb214d8e07157ed612c0fa832b7df6d6e?placeholderIfAbsent=true"
+                      alt="PayPal"
+                      class="payment-icon"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-disclaimer">
+          LumiClean is not a medical device and is not intended to diagnose,
+          treat, cure, or prevent any disease. The statements regarding UVC and
+          ozone technology refer to general disinfection purposes
+          <br />
+          for air and surfaces and do not imply any specific endorsement by the
+          FDA, EPA, or medical professionals. Results mentioned in this page may
+          vary depending on individual conditions and
+          <br />
+          usage. UVC and ozone must be used in accordance with safety
+          guidelines. Avoid direct exposure to UVC light and excessive ozone.
+          Please refer to the product's instructions for safe and proper
+          <br />
+          use. This is a paid advertisement for LumiClean.
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      (() => {
+        const state = {};
+
+        let context = null;
+        let nodesToDestroy = [];
+        let pendingUpdate = false;
+
+        function destroyAnyNodes() {
+          // destroy current view template refs before rendering again
+          nodesToDestroy.forEach((el) => el.remove());
+          nodesToDestroy = [];
+        }
+
+        // Function to update data bindings and loops
+        // call update() when you mutate state and need the updates to reflect
+        // in the dom
+        function update() {
+          if (pendingUpdate === true) {
+            return;
+          }
+          pendingUpdate = true;
+
+          document.querySelectorAll("[data-el='div-1']").forEach((el) => {
+            el.setAttribute("space", 96);
+          });
+
+          document.querySelectorAll("[data-el='div-2']").forEach((el) => {
+            el.setAttribute("space", 16);
+          });
+
+          document.querySelectorAll("[data-el='div-3']").forEach((el) => {
+            el.setAttribute("space", 56);
+          });
+
+          document.querySelectorAll("[data-el='div-4']").forEach((el) => {
+            el.setAttribute("space", 59);
+          });
+
+          document.querySelectorAll("[data-el='div-5']").forEach((el) => {
+            el.setAttribute("space", 40);
+          });
+
+          document.querySelectorAll("[data-el='div-6']").forEach((el) => {
+            el.setAttribute("space", 133);
+          });
+
+          document.querySelectorAll("[data-el='div-7']").forEach((el) => {
+            el.setAttribute("space", 29);
+          });
+
+          document.querySelectorAll("[data-el='div-8']").forEach((el) => {
+            el.setAttribute("space", 10);
+          });
+
+          document.querySelectorAll("[data-el='div-9']").forEach((el) => {
+            el.setAttribute("space", 0);
+          });
+
+          document.querySelectorAll("[data-el='div-10']").forEach((el) => {
+            el.setAttribute("space", 10);
+          });
+
+          document.querySelectorAll("[data-el='div-11']").forEach((el) => {
+            el.setAttribute("space", 20);
+          });
+
+          document.querySelectorAll("[data-el='div-12']").forEach((el) => {
+            el.setAttribute("space", 126);
+          });
+
+          document.querySelectorAll("[data-el='div-13']").forEach((el) => {
+            el.setAttribute("space", 147);
+          });
+
+          document.querySelectorAll("[data-el='div-14']").forEach((el) => {
+            el.setAttribute("space", 25);
+          });
+
+          document.querySelectorAll("[data-el='image']").forEach((el) => {
+            el.setAttribute("space", 156);
+          });
+
+          document.querySelectorAll("[data-el='div-15']").forEach((el) => {
+            el.setAttribute("space", 23);
+          });
+
+          document.querySelectorAll("[data-el='div-16']").forEach((el) => {
+            el.setAttribute("space", 75);
+          });
+
+          destroyAnyNodes();
+
+          pendingUpdate = false;
+        }
+
+        // Update with initial state on first load
+        update();
+      })();
+    </script>
+  </body>
+</html>
