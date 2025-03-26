@@ -1,0 +1,1895 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LumiClean - Hospital-like Disinfection for Your Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Image placeholder styles */
+      .img-placeholder {
+        position: relative;
+        background-color: #f3f4f6;
+        overflow: hidden;
+      }
+
+      .img-placeholder::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        animation: shimmer 1.5s infinite;
+      }
+
+      @keyframes shimmer {
+        100% {
+          left: 100%;
+        }
+      }
+
+      /* Fade-in animation for images */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .lazy-loaded {
+        animation: fadeIn 0.5s ease-in;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="flex overflow-hidden flex-col mt-1 bg-white">
+      <!-- Header -->
+      <header
+        class="flex flex-col justify-center items-center px-16 py-5 w-full bg-white max-md:px-5 max-md:max-w-full"
+      >
+        <nav
+          class="flex flex-wrap gap-5 justify-between w-full max-w-[1420px] max-md:max-w-full"
+        >
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/13c5ffdc11f4995d66ae52e485173407c4007baa?placeholderIfAbsent=true"
+            class="object-contain shrink-0 w-8 aspect-square img-placeholder"
+            alt="LumiClean Logo"
+            loading="lazy"
+            data-src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/13c5ffdc11f4995d66ae52e485173407c4007baa?placeholderIfAbsent=true"
+          />
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f3f4f6'/%3E%3C/svg%3E"
+            class="object-contain shrink-0 w-8 aspect-square img-placeholder"
+            alt="Menu"
+            loading="lazy"
+            data-src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/e80888ecf79ce22f5fc514e089fd82b00d9d8e33?placeholderIfAbsent=true"
+          />
+        </nav>
+      </header>
+
+      <!-- Hero Section -->
+      <section
+        class="flex flex-col justify-center items-center px-16 py-36 w-full max-md:px-5 max-md:py-24 max-md:max-w-full"
+      >
+        <div class="mb-0 w-full max-w-[1416px] max-md:mb-2.5 max-md:max-w-full">
+          <div class="flex gap-5 max-md:flex-col">
+            <article class="w-6/12 max-md:ml-0 max-md:w-full">
+              <div class="flex flex-col w-full max-md:mt-10 max-md:max-w-full">
+                <span
+                  class="gap-1.5 self-center px-4 py-2 text-base font-medium tracking-wider text-center text-black bg-white rounded-[50px] shadow-[0px_0px_25px_rgba(0,43,91,0.05)]"
+                >
+                  20,000+ Home Disinfected!
+                </span>
+                <h1
+                  class="mt-4 text-5xl font-bold tracking-wide text-center leading-[53px] text-sky-950 max-md:mr-2 max-md:max-w-full"
+                >
+                  From Stress To Serenity: Give Your Family The Peace Of Mind
+                  They Deserve!
+                </h1>
+                <p
+                  class="self-center mt-7 text-xl leading-7 text-center text-zinc-900 max-md:max-w-full"
+                >
+                  Stop Second-Guessing Your Cleaning. Finally Achieve True
+                  Sanitization – With a Push Of A Button.
+                </p>
+                <div class="mt-6 max-md:mr-1.5 max-md:max-w-full">
+                  <div class="flex gap-5 max-md:flex-col">
+                    <article class="w-[33%] max-md:ml-0 max-md:w-full">
+                      <div
+                        class="flex flex-col grow px-6 py-4 w-full text-lg tracking-normal leading-5 text-center bg-white rounded-xl shadow-[0px_0px_5px_rgba(0,0,0,0.05)] text-zinc-700 max-md:px-5 max-md:mt-4"
+                      >
+                        <img
+                          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23f3f4f6'/%3E%3C/svg%3E"
+                          class="object-contain self-center w-12 aspect-square img-placeholder"
+                          alt="Targets Germs & Bacteria"
+                          loading="lazy"
+                          data-src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/149d39f9f96309d677d8c7650e9caaa3708e8d13?placeholderIfAbsent=true"
+                        />
+                        <p class="mt-2.5">Targets Germs & Bacteria</p>
+                      </div>
+                    </article>
+                    <article class="ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+                      <div
+                        class="flex flex-col grow px-9 py-4 w-full text-lg tracking-normal leading-5 text-center bg-white rounded-xl shadow-[0px_0px_5px_rgba(0,0,0,0.05)] text-zinc-700 max-md:px-5 max-md:mt-4"
+                      >
+                        <img
+                          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23f3f4f6'/%3E%3C/svg%3E"
+                          class="object-contain self-center w-12 aspect-square img-placeholder"
+                          alt="UV-C + Ozone Technology"
+                          loading="lazy"
+                          data-src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/f0f3f1ee1fde19690c270218fbd7e7b545df9e4b?placeholderIfAbsent=true"
+                        />
+                        <p class="mt-2.5">UV-C + Ozone Technology</p>
+                      </div>
+                    </article>
+                    <article class="ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+                      <div
+                        class="flex flex-col grow px-10 py-4 w-full text-lg tracking-normal leading-5 text-center bg-white rounded-xl shadow-[0px_0px_5px_rgba(0,0,0,0.05)] text-zinc-700 max-md:px-5 max-md:mt-4"
+                      >
+                        <img
+                          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23f3f4f6'/%3E%3C/svg%3E"
+                          class="object-contain self-center w-12 aspect-square img-placeholder"
+                          alt="Whole-Room Disinfection"
+                          loading="lazy"
+                          data-src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/8a648a8e35d73593a8394f3c72b7c1064b24c94a?placeholderIfAbsent=true"
+                        />
+                        <p class="mt-2.5">Whole-Room Disinfection</p>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+                <button
+                  class="px-16 py-6 mt-10 text-2xl font-bold leading-tight text-center text-white uppercase bg-red-700 rounded-[100px] max-md:px-5 max-md:max-w-full"
+                >
+                  Yes i want a clean home
+                </button>
+                <div class="flex gap-2 self-center mt-3 max-w-full w-[313px]">
+                  <div
+                    class="flex overflow-hidden relative flex-col aspect-square w-[72px]"
+                  >
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 72'%3E%3Crect width='72' height='72' fill='%23f3f4f6'/%3E%3C/svg%3E"
+                      class="object-cover absolute inset-0 size-full img-placeholder"
+                      alt="Background"
+                      loading="lazy"
+                      data-src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/46ab33c9b17b00bd396b7bf05f46e910cd838545?placeholderIfAbsent=true"
+                    />
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 72'%3E%3Crect width='72' height='72' fill='%23f3f4f6'/%3E%3C/svg%3E"
+                      class="object-contain w-full aspect-square img-placeholder"
+                      alt="Guarantee Badge"
+                      loading="lazy"
+                      data-src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b5f5de78477e9ec499eb3f17f62954a162f5743d?placeholderIfAbsent=true"
+                    />
+                  </div>
+                  <p
+                    class="flex-auto text-base tracking-wider text-center text-neutral-800 w-[276px]"
+                  >
+                    60-DAY MONEY BACK GUARANTEE
+                  </p>
+                </div>
+              </div>
+            </article>
+            <article class="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 492'%3E%3Crect width='600' height='492' fill='%23f3f4f6'/%3E%3C/svg%3E"
+                class="object-contain self-stretch my-auto w-full aspect-[1.22] max-md:mt-10 max-md:max-w-full img-placeholder"
+                alt="LumiClean Device"
+                loading="lazy"
+                data-src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/f0ccbd5e1d357764176633e8ff24a7ec2c46311a?placeholderIfAbsent=true"
+              />
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Did You Know Section -->
+      <section
+        class="flex flex-col items-center px-16 w-full bg-slate-50 max-md:px-5 max-md:max-w-full"
+      >
+        <div class="w-full max-w-[1366px] max-md:max-w-full">
+          <div class="flex gap-5 max-md:flex-col">
+            <article class="w-[54%] max-md:ml-0 max-md:w-full">
+              <div
+                class="flex relative flex-col grow justify-center items-center px-20 py-96 min-h-[950px] max-md:px-5 max-md:py-24 max-md:mt-10 max-md:max-w-full"
+              >
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/94a62829f50520aa97c3e35be02dfa3164e3dc2b?placeholderIfAbsent=true"
+                  class="object-cover absolute inset-0 size-full"
+                  alt="Background"
+                />
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/c9440aa63ec877e7ad91350c10a943a5d4b3b523?placeholderIfAbsent=true"
+                  class="object-contain max-w-full aspect-square w-[200px]"
+                  alt="LumiClean Logo"
+                />
+              </div>
+            </article>
+            <article class="ml-5 w-[46%] max-md:ml-0 max-md:w-full">
+              <div
+                class="flex flex-col self-stretch my-auto w-full max-md:mt-10 max-md:max-w-full"
+              >
+                <h2
+                  class="self-center text-4xl font-bold leading-10 text-center text-sky-700 max-md:max-w-full"
+                >
+                  Did You Know that 20% of Pathogens Survive After Cleaning
+                </h2>
+                <p
+                  class="mt-4 text-lg leading-6 text-center text-neutral-800 max-md:mr-1 max-md:max-w-full"
+                >
+                  You meticulously wipe down surfaces. You vacuum religiously.
+                  But deep down, a nagging worry persists:
+                  <strong class="font-bold text-[rgba(34,38,39,1)]"
+                    >is it really clean enough?</strong
+                  >
+                  <br />
+                  <strong class="font-bold text-[rgba(34,38,39,1)]"
+                    >The truth is,</strong
+                  >
+                  standard cleaning methods often fall short. Wipes and sprays
+                  only sanitize where they touch, missing hidden crevices,
+                  fabrics, and even the air you breathe. Microscopic germs and
+                  bacteria can linger, silently impacting your peace of mind.
+                  <br />
+                  <strong class="font-bold text-[rgba(34,38,39,1)]"
+                    >Think about it:</strong
+                  >
+                  Dust mites thrive in mattresses, bacteria cling to
+                  countertops, and odor sticks into walls, furniture and trash
+                  cans.
+                </p>
+                <button
+                  class="px-16 py-3 mt-10 text-2xl font-bold leading-7 text-center text-white uppercase bg-red-700 rounded-[100px] max-md:px-5 max-md:max-w-full"
+                >
+                  Deep clean my house from unseen threats
+                </button>
+                <div class="flex gap-2 self-center mt-3 max-w-full w-[313px]">
+                  <div
+                    class="flex overflow-hidden relative flex-col w-6 aspect-square"
+                  >
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/46ab33c9b17b00bd396b7bf05f46e910cd838545?placeholderIfAbsent=true"
+                      class="object-cover absolute inset-0 size-full"
+                      alt="Background"
+                    />
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b5f5de78477e9ec499eb3f17f62954a162f5743d?placeholderIfAbsent=true"
+                      class="object-contain w-full aspect-square"
+                      alt="Guarantee Badge"
+                    />
+                  </div>
+                  <p
+                    class="flex-auto text-base tracking-wider text-center text-neutral-800 w-[276px]"
+                  >
+                    60-DAY MONEY BACK GUARANTEE
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Introducing LumiClean Section -->
+      <section
+        class="flex flex-col items-center px-16 w-full bg-slate-50 max-md:px-5 max-md:max-w-full"
+      >
+        <div class="ml-8 w-full max-w-[1361px] max-md:max-w-full">
+          <div class="flex gap-5 max-md:flex-col">
+            <article class="w-[45%] max-md:ml-0 max-md:w-full">
+              <div
+                class="flex flex-col self-stretch my-auto w-full max-md:mt-10 max-md:max-w-full"
+              >
+                <div
+                  class="flex gap-1.5 items-center self-center px-4 py-2 text-lg font-semibold tracking-wider text-center text-black uppercase bg-white rounded-[50px] shadow-[0px_0px_25px_rgba(0,43,91,0.05)]"
+                >
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b07fc152a4ee4e62ef9905cf95ad4cff4e1b6403?placeholderIfAbsent=true"
+                    class="object-contain shrink-0 self-stretch my-auto w-6 aspect-square"
+                    alt="Icon"
+                  />
+                  <span class="self-stretch my-auto"
+                    >Introducing lumiclean</span
+                  >
+                </div>
+                <h2
+                  class="mt-4 mr-4 ml-5 text-4xl font-bold leading-10 text-center text-sky-700 max-md:mr-2.5 max-md:max-w-full"
+                >
+                  Hospital-like Disinfection,
+                  <br />
+                  Reimagined for Your Home.
+                </h2>
+                <p
+                  class="mt-6 text-lg leading-6 text-center text-neutral-800 max-md:max-w-full"
+                >
+                  <span class="text-[rgba(34,38,39,1)]">
+                    Imagine a device that goes beyond surface cleaning, reaching
+                    every corner of your room – sanitizing not just surfaces,
+                    but the very air you breathe.
+                  </span>
+                  <br />
+                  <span class="text-[rgba(34,38,39,1)]"
+                    >LUMICLEAN harnesses of</span
+                  >
+                  <strong class="font-bold text-[rgba(34,38,39,1)]"
+                    >hospital-like UV-C light and natural ozone</strong
+                  >
+                  <span class="text-[rgba(34,38,39,1)]">
+                    to deliver a level of cleanliness you simply can't achieve
+                    with conventional methods. It's the same technology trusted
+                    in operating rooms and laboratories, now designed for safe
+                    and easy use in your home.
+                  </span>
+                  <br />
+                  <span class="text-[rgba(34,38,39,1)]">
+                    With just the push of a button, LUMICLEAN floods your room
+                    with germ-killing power,
+                  </span>
+                  Targeting
+                  <span class="text-[rgba(34,38,39,1)]">
+                    bacteria, viruses, mold spores, and dust mites. It's
+                    hands-free, chemical-free, and incredibly effective.
+                  </span>
+                </p>
+                <div
+                  class="self-center mt-14 max-w-full w-[548px] max-md:mt-10"
+                >
+                  <div class="flex gap-5 max-md:flex-col">
+                    <div class="w-[33%] max-md:ml-0 max-md:w-full">
+                      <div
+                        class="flex flex-col items-center text-base font-medium leading-5 text-center text-neutral-800 max-md:mt-10"
+                      >
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/f52aa0fc35eb4002f85690689d035b317e47e22c?placeholderIfAbsent=true"
+                          class="object-contain w-20 aspect-square"
+                          alt="Dual UV-C + Ozone Technology"
+                        />
+                        <p class="self-stretch mt-3">
+                          Dual UV-C + Ozone Technology
+                        </p>
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/cba2e4c0fc81517f231cf3491503a59150c7c4ea?placeholderIfAbsent=true"
+                          class="object-contain mt-8 w-20 aspect-square"
+                          alt="Chemical-Free & Eco-Friendly"
+                        />
+                        <p class="mt-5">Chemical-Free & Eco-Friendly</p>
+                      </div>
+                    </div>
+                    <div class="ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+                      <div
+                        class="flex flex-col grow items-center text-base font-medium leading-5 text-center text-neutral-800 max-md:mt-10"
+                      >
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/4b4a4381e200ad5e9526f7c89f7c7255dddc9f7a?placeholderIfAbsent=true"
+                          class="object-contain w-20 aspect-square"
+                          alt="Targets Germs, Viruses & particles"
+                        />
+                        <p class="mt-5">Targets Germs, Viruses & particles</p>
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/d34562f5a1a0e49b10dbf871c7f5a37bc54e5564?placeholderIfAbsent=true"
+                          class="object-contain mt-9 w-20 aspect-square"
+                          alt="Targets allergens"
+                        />
+                        <p class="self-stretch mt-5">
+                          Targets allergens like dust mite & MOLD spores
+                        </p>
+                      </div>
+                    </div>
+                    <div class="ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+                      <div
+                        class="flex flex-col items-center text-base font-medium leading-5 text-center text-neutral-800 max-md:mt-10"
+                      >
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/a3344f4d1215d9e95c842dcb3c3ce5806762de3d?placeholderIfAbsent=true"
+                          class="object-contain w-20 aspect-square"
+                          alt="Disinfects both air and surfaces"
+                        />
+                        <p class="self-stretch mt-5">
+                          Disinfects both air and surfaces
+                        </p>
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/8dbd36db62a61bf6d63d342d431b79ec16d8e844?placeholderIfAbsent=true"
+                          class="object-contain mt-10 w-20 aspect-square"
+                          alt="Eliminates Musty Odor"
+                        />
+                        <p class="mt-5">Eliminates Musty Odor</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="ml-5 w-[55%] max-md:ml-0 max-md:w-full">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/441e7f5c96d8b2a5b681976f09c24b46e1bb7c37?placeholderIfAbsent=true"
+                class="object-contain grow w-full aspect-[0.75] max-md:mt-10 max-md:max-w-full"
+                alt="LumiClean Device"
+              />
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Benefits Section -->
+      <section
+        class="flex flex-col justify-center items-center px-16 py-24 w-full max-md:px-5 max-md:pb-24 max-md:max-w-full"
+      >
+        <div class="mb-0 max-w-full w-[1278px] max-md:mb-2.5">
+          <div class="flex gap-5 max-md:flex-col">
+            <article class="w-[44%] max-md:ml-0 max-md:w-full">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/6748ffdf-2358-4278-b211-fcbada8f521c?placeholderIfAbsent=true"
+                class="object-contain grow w-full aspect-[1.02] max-md:mt-10 max-md:max-w-full"
+                alt="LumiClean Device"
+              />
+            </article>
+            <article class="ml-5 w-[56%] max-md:ml-0 max-md:w-full">
+              <div
+                class="flex flex-col mt-3.5 w-full text-lg leading-6 text-white max-md:mt-10 max-md:max-w-full"
+              >
+                <h2
+                  class="text-4xl font-bold leading-10 max-md:mr-1.5 max-md:max-w-full"
+                >
+                  This is What Lumiclean Disinfection Towers Can Do For You
+                </h2>
+                <ul class="mt-4 space-y-4">
+                  <li class="flex flex-wrap gap-2 self-start">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/84c6c4b483fa96106c8b189197efb3ac8a831468?placeholderIfAbsent=true"
+                      class="object-contain shrink-0 self-start w-7 aspect-square"
+                      alt="Checkmark"
+                    />
+                    <p class="flex-auto max-md:max-w-full">
+                      Targets dust mites, mold spores, bacteria, and other
+                      unseen biological threats.
+                    </p>
+                  </li>
+                  <li class="flex flex-wrap gap-2">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/84c6c4b483fa96106c8b189197efb3ac8a831468?placeholderIfAbsent=true"
+                      class="object-contain shrink-0 self-start w-7 aspect-square"
+                      alt="Checkmark"
+                    />
+                    <p class="flex-auto w-[594px] max-md:max-w-full">
+                      Transforms your indoor air into a fresh, clean oasis
+                      that's a joy to breathe.
+                    </p>
+                  </li>
+                  <li class="flex flex-wrap gap-2">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/84c6c4b483fa96106c8b189197efb3ac8a831468?placeholderIfAbsent=true"
+                      class="object-contain shrink-0 self-start w-7 aspect-square"
+                      alt="Checkmark"
+                    />
+                    <p class="flex-auto w-[594px] max-md:max-w-full">
+                      Removes foul odors caused by bacteria, cooking oils,
+                      tobacco smoke, and pets…making your house smell
+                      like...home.
+                    </p>
+                  </li>
+                  <li class="flex flex-wrap gap-2">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/84c6c4b483fa96106c8b189197efb3ac8a831468?placeholderIfAbsent=true"
+                      class="object-contain shrink-0 self-start w-7 aspect-square"
+                      alt="Checkmark"
+                    />
+                    <p class="flex-auto w-[594px] max-md:max-w-full">
+                      Makes your home safer by disinfecting surfaces and air at
+                      the same time.
+                    </p>
+                  </li>
+                  <li class="flex flex-wrap gap-2">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/84c6c4b483fa96106c8b189197efb3ac8a831468?placeholderIfAbsent=true"
+                      class="object-contain shrink-0 self-start w-7 aspect-square"
+                      alt="Checkmark"
+                    />
+                    <p class="flex-auto w-[594px] max-md:max-w-full">
+                      Helps decrease the risk of flu and transmission of
+                      diseases indoors, providing extra safety for your family.
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section
+        class="flex relative flex-col justify-center items-center px-20 py-24 w-full min-h-[922px] max-md:px-5 max-md:max-w-full"
+      >
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/d6e8640755529f30e3c64d524c5d67cb3a463d22?placeholderIfAbsent=true"
+          class="object-cover absolute inset-0 size-full"
+          alt="Background"
+        />
+        <div
+          class="flex relative flex-col w-full max-w-[1420px] max-md:max-w-full"
+        >
+          <h2
+            class="self-center text-4xl font-bold text-center text-black leading-[52px] max-md:max-w-full"
+          >
+            Don't Just Take Our Word For It.
+            <br />
+            <span class="italic text-[rgba(52,150,214,1)]"
+              >See What Others Are Saying About LumiClean.</span
+            >
+          </h2>
+          <div class="mt-12 max-md:mt-10 max-md:max-w-full">
+            <div class="flex gap-5 max-md:flex-col">
+              <article class="w-[33%] max-md:ml-0 max-md:w-full">
+                <div
+                  class="pb-6 mx-auto w-full bg-white rounded-2xl shadow-[0px_4px_8px_rgba(0,0,0,0.08)] max-md:mt-7 max-md:max-w-full"
+                >
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/7dbf3453c33476761d541fbcadf9de23f6b1d24c?placeholderIfAbsent=true"
+                    class="object-contain w-full rounded-2xl aspect-[1.51] max-md:max-w-full"
+                    alt="Testimonial Image"
+                  />
+                  <blockquote
+                    class="mx-6 mt-16 text-lg leading-6 text-black max-md:mx-2.5 max-md:mt-10"
+                  >
+                    I used to constantly worry about germs, especially with my
+                    kids. LUMICLEAN has been a game-changer. I finally feel like
+                    my home is truly clean, and I have so much more peace of
+                    mind.
+                  </blockquote>
+                  <div
+                    class="flex gap-5 justify-between mx-6 mt-8 text-sm max-md:mx-2.5"
+                  >
+                    <cite class="leading-5 text-black">
+                      <span class="font-bold text-base">- Jessica M.</span>
+                      <br />
+                      <span class="italic">(Mom of Two)</span>
+                    </cite>
+                    <div
+                      class="flex gap-1 items-center px-3 py-1.5 my-auto font-medium tracking-wider text-center text-teal-600 bg-white border border-teal-600 border-solid rounded-[50px] shadow-[0px_0px_25px_rgba(0,43,91,0.05)]"
+                    >
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b8868de0490a16187fb72951e100f1829e4deee9?placeholderIfAbsent=true"
+                        class="object-contain shrink-0 self-stretch my-auto w-4 aspect-square"
+                        alt="Verified"
+                      />
+                      <span class="self-stretch my-auto">Verified Buyer</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article class="ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+                <div
+                  class="pb-6 mx-auto w-full bg-white rounded-2xl shadow-[0px_4px_8px_rgba(0,0,0,0.08)] max-md:mt-7 max-md:max-w-full"
+                >
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/94ba35b42e1d6c88f3714fd4b06995315cd28b70?placeholderIfAbsent=true"
+                    class="object-contain w-full rounded-2xl aspect-[1.51] max-md:max-w-full"
+                    alt="Testimonial Image"
+                  />
+                  <blockquote
+                    class="mx-6 mt-16 text-lg leading-6 text-black max-md:mx-2.5 max-md:mt-10"
+                  >
+                    As someone with severe allergies, I've tried everything.
+                    LUMICLEAN is the first thing that's actually made a
+                    noticeable difference in my symptoms. I can breathe so much
+                    easier now!
+                  </blockquote>
+                  <div
+                    class="flex gap-5 justify-between mx-6 mt-8 text-sm max-md:mx-2.5"
+                  >
+                    <cite class="leading-5 text-black">
+                      <span class="font-bold text-base">- David L.</span>
+                      <br />
+                      <span class="italic">(Allergy Sufferer)</span>
+                    </cite>
+                    <div
+                      class="flex gap-1 items-center px-3 py-1.5 my-auto font-medium tracking-wider text-center text-teal-600 bg-white border border-teal-600 border-solid rounded-[50px] shadow-[0px_0px_25px_rgba(0,43,91,0.05)]"
+                    >
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b8868de0490a16187fb72951e100f1829e4deee9?placeholderIfAbsent=true"
+                        class="object-contain shrink-0 self-stretch my-auto w-4 aspect-square"
+                        alt="Verified"
+                      />
+                      <span class="self-stretch my-auto">Verified Buyer</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article class="ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+                <div
+                  class="pb-6 mx-auto w-full bg-white rounded-2xl shadow-[0px_4px_8px_rgba(0,0,0,0.08)] max-md:mt-7 max-md:max-w-full"
+                >
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b80cad9d598e363092c5931e44d66a84fdd8aab3?placeholderIfAbsent=true"
+                    class="object-contain w-full rounded-2xl aspect-[1.51] max-md:max-w-full"
+                    alt="Testimonial Image"
+                  />
+                  <blockquote
+                    class="mx-6 mt-16 text-lg leading-6 text-black max-md:mx-2.5 max-md:mt-10"
+                  >
+                    So easy to use! I just set it and forget it. It's a
+                    lifesaver for my busy schedule. Knowing my home is sanitized
+                    without any effort from me is incredible.
+                  </blockquote>
+                  <div
+                    class="flex gap-10 mx-6 mt-14 text-sm max-md:mx-2.5 max-md:mt-10"
+                  >
+                    <cite class="leading-5 text-black">
+                      <span class="font-bold text-base">- Maria S.</span>
+                      <br />
+                      <span class="italic">(Working Professional)</span>
+                    </cite>
+                    <div
+                      class="flex flex-1 gap-1 items-center px-3 py-1.5 my-auto font-medium tracking-wider text-center text-teal-600 bg-white border border-teal-600 border-solid rounded-[50px] shadow-[0px_0px_25px_rgba(0,43,91,0.05)]"
+                    >
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b8868de0490a16187fb72951e100f1829e4deee9?placeholderIfAbsent=true"
+                        class="object-contain shrink-0 self-stretch my-auto w-4 aspect-square"
+                        alt="Verified"
+                      />
+                      <span class="self-stretch my-auto">Verified Buyer</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comparison Section -->
+      <section class="comparison-section">
+        <h3
+          class="self-center mt-24 text-2xl font-semibold leading-tight text-center text-sky-700 max-md:mt-10"
+        >
+          What Makes LumiClean
+        </h3>
+        <h2
+          class="self-center mt-2 text-4xl font-bold leading-tight text-center text-sky-700 max-md:max-w-full"
+        >
+          Far Superior to Others
+        </h2>
+        <div class="self-center mt-12 max-w-full w-[1025px] max-md:mt-10">
+          <div class="flex gap-5 max-md:flex-col">
+            <div class="w-6/12 max-md:ml-0 max-md:w-full">
+              <div class="grow max-md:mt-2.5 max-md:max-w-full">
+                <div class="flex gap-5 max-md:flex-col">
+                  <div class="w-[74%] max-md:ml-0 max-md:w-full">
+                    <ul
+                      class="mt-24 text-base font-medium tracking-normal leading-5 text-black max-md:mt-10"
+                    >
+                      <li class="p-5 bg-white">
+                        Disinfects air, surfaces, and hidden areas
+                      </li>
+                      <li class="p-5 bg-blue-50 rounded-xl">
+                        Uses chemical-free UV-c + ozone technology
+                      </li>
+                      <li class="p-5 bg-white">
+                        Effortlessly sanitizes entire rooms hands-free
+                      </li>
+                      <li class="px-5 py-8 leading-tight bg-blue-50 rounded-xl">
+                        Eliminates deep-rooted odors
+                      </li>
+                      <li class="z-10 p-5 bg-white">
+                        Provides hospital-like disinfection at home
+                      </li>
+                      <li class="p-5 bg-blue-50 rounded-xl">
+                        Keeps kids and pets safe with auto shut-off
+                      </li>
+                      <li class="p-5 bg-white">
+                        Lasts for years—zero hassle, zero replacements
+                      </li>
+                      <li class="p-5 bg-blue-50 rounded-xl">
+                        Fits beautifully into any room with its sleek, compact
+                        style
+                      </li>
+                      <li class="p-5 bg-white">
+                        Unbeatable pricing. Hospital-like technology for under
+                        $80
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="ml-5 w-[26%] max-md:ml-0 max-md:w-full">
+                    <div
+                      class="flex flex-col grow px-5 py-10 text-base font-bold leading-tight text-center text-white whitespace-nowrap rounded-2xl"
+                    >
+                      <h4>LumiClean</h4>
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/09fefba70d21d27af35beb29a65890ae945be061?placeholderIfAbsent=true"
+                        class="object-contain self-center mt-14 w-8 aspect-[0.05] max-md:hidden max-md:mt-10"
+                        alt="Checkmark"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+              <div class="grow max-md:mt-2.5 max-md:max-w-full">
+                <div class="flex gap-5 max-md:flex-col">
+                  <div class="w-3/12 max-md:ml-0 max-md:w-full">
+                    <div
+                      class="flex flex-col grow px-6 pt-7 pb-11 w-full text-base leading-5 text-center text-black bg-blue-50 rounded-2xl max-md:px-5 max-md:mt-2.5"
+                    >
+                      <h4>Other UVC towers</h4>
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/e0135b02cb0c9dfe8d6dce2b0bd059132513359b?placeholderIfAbsent=true"
+                        class="object-contain self-center mt-12 w-8 aspect-[0.05] max-md:hidden max-md:mt-10"
+                        alt="X Mark"
+                      />
+                    </div>
+                  </div>
+                  <div class="ml-5 w-3/12 max-md:ml-0 max-md:w-full">
+                    <div
+                      class="flex flex-col grow px-5 py-10 w-full text-base leading-tight text-center text-black bg-blue-50 rounded-2xl max-md:mt-2.5"
+                    >
+                      <h4>Air purifiers</h4>
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/e0135b02cb0c9dfe8d6dce2b0bd059132513359b?placeholderIfAbsent=true"
+                        class="object-contain self-center mt-14 w-8 aspect-[0.05] max-md:hidden max-md:mt-10"
+                        alt="X Mark"
+                      />
+                    </div>
+                  </div>
+                  <div class="ml-5 w-3/12 max-md:ml-0 max-md:w-full">
+                    <div
+                      class="flex flex-col grow px-6 pt-7 pb-11 w-full text-base leading-5 text-center text-black bg-blue-50 rounded-2xl max-md:px-5 max-md:mt-2.5"
+                    >
+                      <h4>Allergen vacuums</h4>
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/e0135b02cb0c9dfe8d6dce2b0bd059132513359b?placeholderIfAbsent=true"
+                        class="object-contain self-center mt-12 w-8 aspect-[0.05] max-md:hidden max-md:mt-10"
+                        alt="X Mark"
+                      />
+                    </div>
+                  </div>
+                  <div class="ml-5 w-3/12 max-md:ml-0 max-md:w-full">
+                    <div
+                      class="flex flex-col grow px-2 pt-7 pb-11 w-full text-base leading-5 text-center text-black bg-blue-50 rounded-2xl max-md:mt-2.5"
+                    >
+                      <h4>Common cleaning tools</h4>
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/e0135b02cb0c9dfe8d6dce2b0bd059132513359b?placeholderIfAbsent=true"
+                        class="object-contain self-center mt-12 w-8 aspect-[0.05] max-md:hidden max-md:mt-10"
+                        alt="X Mark"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Benefits Cards -->
+        <div
+          class="flex flex-wrap gap-7 self-center mt-12 w-full max-w-[1420px] max-md:mt-10 max-md:max-w-full"
+        >
+          <article class="flex flex-1 gap-4 bg-blue-50 rounded-3xl">
+            <div
+              class="flex flex-col justify-center items-center px-5 w-24 h-24 bg-blue-100 rounded-3xl"
+            >
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/67a04510f0393237b5c5c6fdb614aae32cbc1e88?placeholderIfAbsent=true"
+                class="object-contain w-12 aspect-square"
+                alt="Happy Customers"
+              />
+            </div>
+            <h3
+              class="flex-auto my-auto text-xl font-medium leading-tight text-black"
+            >
+              1000K+ Happy Customers
+            </h3>
+          </article>
+          <article class="flex flex-1 gap-4 bg-blue-50 rounded-3xl">
+            <div
+              class="flex flex-col justify-center items-center px-5 w-24 h-24 bg-blue-100 rounded-3xl"
+            >
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/803885a5441098604144f9d890d621cc491e3f3c?placeholderIfAbsent=true"
+                class="object-contain w-12 aspect-square"
+                alt="Hospital Technology"
+              />
+            </div>
+            <h3
+              class="flex-auto my-auto text-xl font-medium leading-tight text-black"
+            >
+              Hospital-like Technology
+            </h3>
+          </article>
+          <article class="flex flex-1 gap-4 bg-blue-50 rounded-3xl">
+            <div
+              class="flex flex-col justify-center items-center px-5 w-24 h-24 bg-blue-100 rounded-3xl"
+            >
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/412653514081b904ba2c58ca09a6b434dd7f6324?placeholderIfAbsent=true"
+                class="object-contain w-12 aspect-square"
+                alt="Money-Back Guarantee"
+              />
+            </div>
+            <h3
+              class="flex-auto my-auto text-xl font-medium leading-tight text-black"
+            >
+              60-Day Money-Back Guarantee
+            </h3>
+          </article>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section
+        class="flex flex-col justify-center items-center p-20 mt-24 w-full max-md:px-5 max-md:mt-10 max-md:max-w-full"
+      >
+        <div class="flex flex-col items-center max-w-full w-[1159px]">
+          <h2
+            class="text-4xl font-extrabold leading-tight text-center text-sky-700 max-md:max-w-full"
+          >
+            Get a Free Gift With Your Order Today!
+          </h2>
+          <p
+            class="mt-2 text-xl leading-tight text-center text-black max-md:max-w-full"
+          >
+            Hurry! This special offer is only available while supplies last!
+          </p>
+          <div class="self-stretch mt-10 max-md:max-w-full">
+            <div class="flex gap-5 max-md:flex-col">
+              <article class="w-[33%] max-md:ml-0 max-md:w-full">
+                <div
+                  class="flex flex-col grow pt-24 pb-5 w-full font-bold leading-tight bg-white rounded-2xl shadow-[0px_0px_20px_rgba(52,150,214,0.1)] max-md:mt-5"
+                >
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/760a1ca7a552c72d68729207701de5efb180cecc?placeholderIfAbsent=true"
+                    class="object-contain self-center max-w-full aspect-[0.63] w-[127px]"
+                    alt="LumiClean Device"
+                  />
+                  <div class="flex flex-col px-5 mt-8 w-full">
+                    <h3 class="self-start text-2xl text-center text-black">
+                      1x LuminClean Device
+                    </h3>
+                    <hr
+                      class="shrink-0 mt-5 h-px border border-solid border-zinc-300"
+                    />
+                    <div class="flex gap-2 self-start mt-5 whitespace-nowrap">
+                      <span class="grow text-2xl line-through text-neutral-400"
+                        >$99.99</span
+                      >
+                      <span class="text-2xl text-black">$79.95</span>
+                    </div>
+                    <button
+                      class="px-16 py-4 mt-5 text-lg text-center text-white bg-red-700 rounded-[100px] max-md:px-5"
+                    >
+                      Add to cart
+                    </button>
+                    <div
+                      class="flex gap-2 px-3 py-2 mt-2 text-sm font-medium text-center text-black bg-amber-100 rounded-xl"
+                    >
+                      <div
+                        class="flex shrink-0 my-auto w-2 h-2 bg-green-600 rounded-full"
+                      ></div>
+                      <p class="flex-auto w-[291px]">Ships Tomorrow, March 1</p>
+                    </div>
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/90501b4cf92b56ec3fa7da89cfd217fd80046aaa?placeholderIfAbsent=true"
+                      class="object-contain mt-2 aspect-[10.1] w-[333px]"
+                      alt="Payment Methods"
+                    />
+                  </div>
+                </div>
+              </article>
+              <article class="ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+                <div
+                  class="grow pb-5 w-full bg-white rounded-xl shadow-[0px_0px_20px_rgba(52,150,214,0.1)] max-md:mt-5"
+                >
+                  <div
+                    class="px-16 py-3 text-xl font-bold leading-tight text-center text-white uppercase bg-red-500 rounded-xl max-md:px-5"
+                  >
+                    Most Popular
+                  </div>
+                  <div class="flex flex-col px-5 mt-12 w-full max-md:mt-10">
+                    <div class="flex gap-1 self-center max-w-full w-[258px]">
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/a98536e44120bea7cced83e6f7e77ea5622e971e?placeholderIfAbsent=true"
+                        class="object-contain shrink-0 max-w-full aspect-[0.63] w-[127px]"
+                        alt="LumiClean Device"
+                      />
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/f016ecef4af73f03f2ac79d9a3c60a84694e527c?placeholderIfAbsent=true"
+                        class="object-contain shrink-0 w-32 max-w-full aspect-[0.64]"
+                        alt="LumiClean Device"
+                      />
+                    </div>
+                    <h3
+                      class="self-start mt-8 text-2xl font-bold leading-tight text-center text-black"
+                    >
+                      2x LuminClean Device
+                    </h3>
+                    <hr
+                      class="shrink-0 mt-5 max-w-full h-px border border-solid border-zinc-300 w-[333px] max-md:ml-0.5"
+                    />
+                    <div
+                      class="flex gap-2 self-start mt-5 font-bold leading-tight whitespace-nowrap max-md:ml-0.5"
+                    >
+                      <span class="grow text-2xl line-through text-neutral-400"
+                        >$199.98</span
+                      >
+                      <span class="text-2xl text-black">$139.90</span>
+                    </div>
+                    <button
+                      class="px-16 py-4 mt-5 text-lg font-bold leading-tight text-center text-white bg-red-700 rounded-[100px] max-md:px-5 max-md:ml-0.5"
+                    >
+                      Add to cart
+                    </button>
+                    <div
+                      class="flex gap-2 px-3 py-2 mt-2 text-sm font-medium leading-tight text-center text-black bg-amber-100 rounded-xl max-md:ml-0.5"
+                    >
+                      <div
+                        class="flex shrink-0 my-auto w-2 h-2 bg-green-600 rounded-full"
+                      ></div>
+                      <p class="flex-auto w-[291px]">Ships Tomorrow, March 1</p>
+                    </div>
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/90501b4cf92b56ec3fa7da89cfd217fd80046aaa?placeholderIfAbsent=true"
+                      class="object-contain mt-2 aspect-[10.1] w-[333px] max-md:ml-0.5"
+                      alt="Payment Methods"
+                    />
+                  </div>
+                </div>
+              </article>
+              <article class="ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+                <div
+                  class="grow pb-5 w-full font-bold leading-tight bg-white rounded-xl shadow-[0px_0px_20px_rgba(52,150,214,0.1)] max-md:mt-5"
+                >
+                  <div
+                    class="px-16 py-3 text-xl text-center text-white uppercase bg-red-500 rounded-xl max-md:px-5"
+                  >
+                    Best Value
+                  </div>
+                  <div class="flex flex-col px-4 mt-12 w-full max-md:mt-10">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/7a1a1e2532e4c56898e5ddb26bdefae5dd3449c3?placeholderIfAbsent=true"
+                      class="object-contain self-center max-w-full aspect-[1.22] w-[244px]"
+                      alt="LumiClean Devices"
+                    />
+                    <h3 class="self-start mt-8 text-2xl text-center text-black">
+                      3x LuminClean Device
+                    </h3>
+                    <hr
+                      class="shrink-0 mt-5 max-w-full h-px border border-solid border-zinc-300 w-[333px] max-md:ml-1"
+                    />
+                    <div
+                      class="flex gap-2 self-start mt-5 whitespace-nowrap max-md:ml-1"
+                    >
+                      <span class="grow text-2xl line-through text-neutral-400"
+                        >$299.97</span
+                      >
+                      <span class="text-2xl text-black">$194.70</span>
+                    </div>
+                    <button
+                      class="px-16 py-4 mt-5 text-lg text-center text-white bg-red-700 rounded-[100px] max-md:px-5 max-md:ml-1"
+                    >
+                      Add to cart
+                    </button>
+                    <div
+                      class="flex gap-2 px-3 py-2 mt-2 text-sm font-medium text-center text-black bg-amber-100 rounded-xl max-md:ml-1"
+                    >
+                      <div
+                        class="flex shrink-0 my-auto w-2 h-2 bg-green-600 rounded-full"
+                      ></div>
+                      <p class="flex-auto w-[291px]">Ships Tomorrow, March 1</p>
+                    </div>
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/90501b4cf92b56ec3fa7da89cfd217fd80046aaa?placeholderIfAbsent=true"
+                      class="object-contain mt-2 aspect-[10.1] w-[333px] max-md:ml-1"
+                      alt="Payment Methods"
+                    />
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Guarantee Section -->
+      <section class="self-center ml-4 w-full max-w-[1351px] max-md:max-w-full">
+        <div class="flex gap-5 max-md:flex-col">
+          <article class="w-6/12 max-md:ml-0 max-md:w-full">
+            <div
+              class="self-stretch my-auto text-black max-md:mt-10 max-md:max-w-full"
+            >
+              <h2
+                class="text-4xl font-bold tracking-wider leading-10 uppercase max-md:max-w-full"
+              >
+                Real Results or Money Back Guarantee
+              </h2>
+              <p
+                class="p-4 mt-6 text-lg tracking-wider leading-7 rounded-2xl bg-slate-100 max-md:max-w-full"
+              >
+                <strong class="font-extrabold text-[rgba(23,115,176,1)]"
+                  >Try the LumiClean Towers</strong
+                >
+                for 60 days. If you dont feel a difference in your air, or for
+                any given reason you don't like it..return it for a full
+                refund—no questions asked.
+              </p>
+            </div>
+          </article>
+          <article class="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/8b43e669ca674eeb7b5ce13d10c298668f817244?placeholderIfAbsent=true"
+              class="object-contain w-full aspect-square max-md:mt-10 max-md:max-w-full"
+              alt="Money Back Guarantee"
+            />
+          </article>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section
+        class="flex flex-col justify-center items-center px-16 py-24 w-full bg-slate-50 max-md:px-5 max-md:max-w-full"
+      >
+        <div class="max-w-full w-[1289px]">
+          <div class="flex gap-5 max-md:flex-col">
+            <article class="w-[43%] max-md:ml-0 max-md:w-full">
+              <div
+                class="flex flex-col grow text-4xl font-bold leading-10 text-black max-md:mt-10 max-md:max-w-full"
+              >
+                <h2 class="max-md:max-w-full">
+                  <span class="text-[rgba(24,144,213,1)]">Features</span>
+                  of LumiClean's disinfection towers
+                </h2>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/2c0cd147e4347236677bb3e0dc5aad039caf37e4?placeholderIfAbsent=true"
+                  class="object-contain self-center mt-6 max-w-full aspect-[0.64] w-[318px]"
+                  alt="LumiClean Device"
+                />
+              </div>
+            </article>
+            <article class="ml-5 w-[57%] max-md:ml-0 max-md:w-full">
+              <div class="w-full text-zinc-700 max-md:mt-10 max-md:max-w-full">
+                <div
+                  class="p-6 w-full text-white bg-sky-600 rounded-[40px] max-md:px-5 max-md:max-w-full"
+                >
+                  <div
+                    class="flex flex-wrap gap-5 justify-between text-xl font-semibold max-md:max-w-full"
+                  >
+                    <h3>Chemical-Free Disinfection</h3>
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/8a95f7e3d2e4781506d64f61cd1c9b7b37932257?placeholderIfAbsent=true"
+                      class="object-contain shrink-0 aspect-square w-[30px]"
+                      alt="Minus Icon"
+                    />
+                  </div>
+                  <p class="mt-2 text-lg leading-6 max-md:max-w-full">
+                    Unlike sprays, and chemical disinfectants, the UVO254™ Lamp
+                    is chemical-free. Our bodies are already exposed to tons of
+                    toxins. By using LumiClean's Lamp, you minimize the use of
+                    chemical cleaning products and thus, reduce the toxic burden
+                    on your body. The UVO254™ Lamp is great for surfaces, the
+                    environment, your time, and your wallet.
+                  </p>
+                </div>
+                <button
+                  class="flex flex-wrap gap-5 justify-between px-5 py-6 mt-4 text-xl font-semibold bg-white rounded-3xl shadow-[0px_0px_25px_rgba(52,150,214,0.08)] max-md:pl-5 max-md:max-w-full w-full text-left"
+                >
+                  <span>Disinfects The Air And The Surfaces</span>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/925fe541792d226fdafe913f350f67386a580dba?placeholderIfAbsent=true"
+                    class="object-contain shrink-0 aspect-square w-[30px]"
+                    alt="Plus Icon"
+                  />
+                </button>
+                <button
+                  class="flex flex-wrap gap-5 justify-between px-5 py-6 mt-4 text-xl font-semibold bg-white rounded-3xl shadow-[0px_0px_25px_rgba(52,150,214,0.08)] max-md:pl-5 max-md:max-w-full w-full text-left"
+                >
+                  <span>Not Only For Your Home</span>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/925fe541792d226fdafe913f350f67386a580dba?placeholderIfAbsent=true"
+                    class="object-contain shrink-0 aspect-square w-[30px]"
+                    alt="Plus Icon"
+                  />
+                </button>
+                <button
+                  class="flex flex-wrap gap-5 justify-between px-5 py-6 mt-4 text-xl font-semibold bg-white rounded-3xl shadow-[0px_0px_25px_rgba(52,150,214,0.08)] max-md:pl-5 max-md:max-w-full w-full text-left"
+                >
+                  <span>Built-in Safety Feature</span>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/925fe541792d226fdafe913f350f67386a580dba?placeholderIfAbsent=true"
+                    class="object-contain shrink-0 aspect-square w-[30px]"
+                    alt="Plus Icon"
+                  />
+                </button>
+                <button
+                  class="flex flex-wrap gap-5 justify-between px-5 py-6 mt-4 text-xl font-semibold bg-white rounded-3xl shadow-[0px_0px_25px_rgba(52,150,214,0.08)] max-md:pl-5 max-md:max-w-full w-full text-left"
+                >
+                  <span>Suitable For 100-250 Sq Ft</span>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/925fe541792d226fdafe913f350f67386a580dba?placeholderIfAbsent=true"
+                    class="object-contain shrink-0 aspect-square w-[30px]"
+                    alt="Plus Icon"
+                  />
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section class="how-it-works">
+        <h2
+          class="self-center mt-24 text-4xl font-bold leading-tight text-center text-sky-700 max-md:mt-10"
+        >
+          It's As Easy As 1, 2, 3
+        </h2>
+        <div class="self-center mt-10 w-full max-w-[1475px] max-md:max-w-full">
+          <div class="flex gap-5 max-md:flex-col">
+            <article class="w-[33%] max-md:ml-0 max-md:w-full">
+              <div
+                class="flex relative flex-col pb-52 w-full min-h-[769px] rounded-[40px] max-md:pb-24 max-md:mt-6 max-md:max-w-full"
+              >
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/6df75b7d1f3667894b8c5a39d3b56ad68972f342?placeholderIfAbsent=true"
+                  class="object-cover absolute inset-0 size-full"
+                  alt="Background"
+                />
+                <div
+                  class="flex relative flex-col items-start pt-40 pr-20 pb-6 pl-5 w-full font-bold leading-tight rounded-none min-h-[338px] max-md:pt-24 max-md:pr-5 max-md:max-w-full"
+                >
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/02b1e0489ebb6ed20f40421b235d498035f26670?placeholderIfAbsent=true"
+                    class="object-cover absolute inset-0 size-full"
+                    alt="Background"
+                  />
+                  <span class="relative text-9xl text-cyan-900 max-md:text-4xl"
+                    >1.</span
+                  >
+                  <h3 class="relative mt-8 text-2xl text-black">Turn it on.</h3>
+                </div>
+                <div
+                  class="flex relative gap-2.5 mx-5 mt-5 text-xl leading-8 text-black max-md:mr-2.5"
+                >
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3d1cdcc06146e22c116a2b1c858d36c0defdc370?placeholderIfAbsent=true"
+                    class="object-contain shrink-0 self-start mt-1 w-6 aspect-square"
+                    alt="Checkmark"
+                  />
+                  <p class="flex-auto w-[396px]">
+                    Simply place your UVO lamps in every room you want to
+                    disinfect, whether it's the bedroom, bathroom, kitchen, or
+                    office, then use the remote to turn all of your UVO lamps
+                    simultaneously, making it incredibly easy to disinfect your
+                    entire living space.
+                  </p>
+                </div>
+              </div>
+            </article>
+            <article class="ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+              <div
+                class="flex relative flex-col pb-16 w-full min-h-[769px] rounded-[40px] max-md:mt-6 max-md:max-w-full"
+              >
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/6df75b7d1f3667894b8c5a39d3b56ad68972f342?placeholderIfAbsent=true"
+                  class="object-cover absolute inset-0 size-full"
+                  alt="Background"
+                />
+                <div
+                  class="flex relative flex-col px-5 pt-40 w-full font-bold rounded-none min-h-[338px] max-md:pt-24 max-md:max-w-full"
+                >
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/16e70217658e844098abbf935e939a273d553e0b?placeholderIfAbsent=true"
+                    class="object-cover absolute inset-0 size-full"
+                    alt="Background"
+                  />
+                  <span
+                    class="relative self-start text-9xl leading-tight text-cyan-900 max-md:text-4xl"
+                    >2.</span
+                  >
+                  <h3
+                    class="relative z-10 mt-8 -mb-1.5 text-2xl leading-7 text-black max-md:max-w-full"
+                  >
+                    Take your furry friends out & Leave the room.
+                  </h3>
+                </div>
+                <div
+                  class="flex relative gap-2.5 self-center mt-5 max-w-full text-xl leading-8 text-black w-[430px]"
+                >
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b673a87599b0dfd1e90c8caa77793f74a5172414?placeholderIfAbsent=true"
+                    class="object-contain shrink-0 self-start mt-1 w-6 aspect-square"
+                    alt="Checkmark"
+                  />
+                  <p class="flex-auto w-[391px]">
+                    After Turning your UVO lamps on, make sure to bring your
+                    pets and every other family member to another room until the
+                    disinfection cycle ends.
+                    <br />
+                    I know. It might seem like a hassle to stay away until the
+                    UVO lamps have completed disinfecting allergens, foul
+                    smells, pet dander, and other unseen threats from your home.
+                    <br />
+                    But trust me this small investment of time will pay huge
+                    dividends in protecting the health of your furry friends and
+                    loved ones.
+                    <br />
+                    Seriously, it's just 15 minutes. You can use that time to
+                    walk your dogs, catch up on your favorite show, read a few
+                    pages of that book you've meant to finish or relax and
+                    unwind.
+                  </p>
+                </div>
+              </div>
+            </article>
+            <article class="ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+              <div
+                class="flex relative flex-col pb-64 w-full text-xl leading-8 text-black min-h-[769px] rounded-[40px] max-md:pb-24 max-md:mt-6 max-md:max-w-full"
+              >
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/6df75b7d1f3667894b8c5a39d3b56ad68972f342?placeholderIfAbsent=true"
+                  class="object-cover absolute inset-0 size-full"
+                  alt="Background"
+                />
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/42b9f502-ee25-4308-8601-19bf07e0e57e?placeholderIfAbsent=true"
+                  class="object-contain w-full rounded-none aspect-[1.38] max-md:max-w-full"
+                  alt="Step 3"
+                />
+                <div class="flex relative gap-2.5 mx-5 mt-3 max-md:mr-2.5">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/a10f96558cb8a7946de1647b95e31adeba8d36a8?placeholderIfAbsent=true"
+                    class="object-contain shrink-0 self-start mt-1 w-6 aspect-square"
+                    alt="Checkmark"
+                  />
+                  <p class="flex-auto w-[396px]">
+                    The moment you step back into the room, you'll be greeted by
+                    a refreshingly crisp smell because your home is finally free
+                    from the musty odors and allergens that once weighed you
+                    down.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action Section -->
+      <section class="cta-section">
+        <h2
+          class="self-center mt-24 ml-5 text-4xl font-bold leading-10 text-center text-sky-700 w-[1120px] max-md:mt-10 max-md:max-w-full"
+        >
+          Make Sure To Hurry And Grab Your LumiClean Towers Before They Run Out!
+        </h2>
+        <p
+          class="self-center mt-4 text-lg leading-6 text-center text-neutral-800 w-[876px] max-md:max-w-full"
+        >
+          Whenever we do these promotions, people start buying three, five, or
+          even 10 lamps for their homes and offices. So they fly off our
+          warehouse shelves super quickly.
+          <br />
+          And once we're out of stock, we'll have to take this page down and
+          wait for our next shipment.
+          <br />
+          Because of what's happening in the world and logistical issues, the
+          next shipment could take months, depending on supply and
+          transportation lines.
+          <br />
+          So if you're interested in getting Lumiclean towers and finally have a
+          cleaner space...
+          <br />
+          Go ahead and click the &quot;Buy Now&quot; button at the bottom of
+          this page to secure your devices today.
+        </p>
+        <div
+          class="self-center px-16 py-20 mt-12 max-w-full rounded-[40px] w-[1120px] max-md:px-5 max-md:mt-10"
+        >
+          <div class="flex gap-5 max-md:flex-col">
+            <div class="w-[64%] max-md:ml-0 max-md:w-full">
+              <div class="grow max-md:mt-10 max-md:max-w-full">
+                <div class="flex gap-5 max-md:flex-col">
+                  <div class="w-[22%] max-md:ml-0 max-md:w-full">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/5d5629403223647a96568998e0202c226cebbb88?placeholderIfAbsent=true"
+                      class="object-contain shrink-0 max-w-full aspect-square w-[117px] max-md:mt-6"
+                      alt="Limited Time"
+                    />
+                  </div>
+                  <div class="ml-5 w-[78%] max-md:ml-0 max-md:w-full">
+                    <h3
+                      class="self-stretch my-auto text-5xl font-bold tracking-wide leading-tight text-sky-950 max-md:mt-10"
+                    >
+                      Limited Time Sale
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ml-5 w-[36%] max-md:ml-0 max-md:w-full">
+              <div
+                class="flex flex-col grow text-2xl font-bold leading-tight text-center uppercase max-md:mt-10"
+              >
+                <p class="self-center text-red-700">Offer Ends Soon</p>
+                <button
+                  class="px-16 py-6 mt-1.5 text-white whitespace-nowrap bg-red-700 rounded-[100px] max-md:px-5"
+                >
+                  REDEEM
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section
+        class="flex relative flex-col items-center px-20 pt-20 mt-24 w-full min-h-[774px] max-md:px-5 max-md:mt-10 max-md:max-w-full"
+      >
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/9a51c6aede472fdb313265f7bc679223ee07fb98?placeholderIfAbsent=true"
+          class="object-cover absolute inset-0 size-full"
+          alt="Background"
+        />
+        <div
+          class="flex relative z-10 flex-col mb-0 w-full max-w-[1320px] max-md:mb-2.5 max-md:max-w-full"
+        >
+          <h2
+            class="self-center text-4xl font-bold leading-tight text-white max-md:max-w-full"
+          >
+            Frequently Asked Questions
+          </h2>
+          <div
+            class="p-12 mt-14 w-full text-2xl font-semibold text-black bg-white rounded-2xl shadow-[0px_0px_20px_rgba(52,150,214,0.1)] max-md:px-5 max-md:mt-10 max-md:max-w-full"
+          >
+            <details open>
+              <summary
+                class="flex flex-wrap gap-5 justify-between tracking-wider max-md:max-w-full cursor-pointer"
+              >
+                <h3 class="max-md:max-w-full">
+                  Is this a scam? Do you have any evidence it works?
+                </h3>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/a04babb493f3c2e4a38a140ba0471eb59665e843?placeholderIfAbsent=true"
+                  class="object-contain shrink-0 my-auto aspect-square w-[30px]"
+                  alt="Minus Icon"
+                />
+              </summary>
+              <div class="mt-3 mr-16 text-xl max-md:mr-2.5 max-md:max-w-full">
+                UVC disinfection is not a scam. Many scientific studies,
+                including CDC and EPA studies, prove that UVC light kills almost
+                all biological pollutants and germs.
+                <br />
+                For example, a study published in the Asian Pacific Journal of
+                Tropical Biomedicine named &quot;Effect of germicidal UV-C
+                light(254 nm) on eggs and adult of house dust mites,
+                Dermatophagoides pteronyssinus and Dermatophagoides
+                farinae&quot; showed the efficacy of UVC on killing dust mites
+                and their eggs.
+                <br />
+                The EPA also states that &quot;UV lamps may destroy indoor
+                biological pollutants such as viruses, bacteria, and
+                molds.&quot;
+                <br />
+                In addition to UVC, countless research suggests that Ozone
+                fumigation applied at appropriate concentrations could
+                effectively control several disturbing organisms like dust
+                mites, bacteria, viruses, pests, etc.
+                <br />
+                UVO254™ lamps combine both UVC and Ozone for maximum
+                effectiveness.
+              </div>
+            </details>
+            <hr
+              class="shrink-0 mt-6 h-px border border-solid border-stone-300 max-md:max-w-full"
+            />
+            <details>
+              <summary
+                class="flex flex-wrap gap-5 justify-between mt-6 tracking-wider max-md:max-w-full cursor-pointer"
+              >
+                <h3 class="max-md:max-w-full">
+                  Is LumiClean UVO254™ Lamp Safe?
+                </h3>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true"
+                  class="object-contain shrink-0 my-auto aspect-square w-[30px]"
+                  alt="Plus Icon"
+                />
+              </summary>
+            </details>
+            <hr
+              class="shrink-0 mt-6 h-px border border-solid border-stone-300 max-md:max-w-full"
+            />
+            <details>
+              <summary
+                class="flex flex-wrap gap-10 mt-6 tracking-wider max-md:max-w-full cursor-pointer"
+              >
+                <h3 class="flex-auto max-md:max-w-full">
+                  How is the UVO254™ Lamp different from traditional UVC lamps
+                  or Ozone generators?
+                </h3>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true"
+                  class="object-contain shrink-0 my-auto aspect-square w-[30px]"
+                  alt="Plus Icon"
+                />
+              </summary>
+            </details>
+            <hr
+              class="shrink-0 mt-6 h-px border border-solid border-stone-300 max-md:max-w-full"
+            />
+            <details>
+              <summary
+                class="flex flex-wrap gap-5 justify-between mt-6 tracking-wider max-md:max-w-full cursor-pointer"
+              >
+                <h3>Does it work on mold?</h3>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true"
+                  class="object-contain shrink-0 my-auto aspect-square w-[30px]"
+                  alt="Plus Icon"
+                />
+              </summary>
+            </details>
+            <hr
+              class="shrink-0 mt-6 h-px border border-solid border-stone-300 max-md:max-w-full"
+            />
+            <details>
+              <summary
+                class="flex flex-wrap gap-5 justify-between mt-6 tracking-wider max-md:max-w-full cursor-pointer"
+              >
+                <h3 class="max-md:max-w-full">
+                  What happens to allergens and germs after being broken down?
+                </h3>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true"
+                  class="object-contain shrink-0 my-auto aspect-square w-[30px]"
+                  alt="Plus Icon"
+                />
+              </summary>
+            </details>
+            <hr
+              class="shrink-0 mt-6 h-px border border-solid border-stone-300 max-md:max-w-full"
+            />
+            <details>
+              <summary
+                class="flex flex-wrap gap-5 justify-between mt-6 tracking-wider max-md:max-w-full cursor-pointer"
+              >
+                <h3 class="max-md:max-w-full">
+                  How long does the bulb last? What if I need a new bulb?
+                </h3>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true"
+                  class="object-contain shrink-0 my-auto aspect-square w-[30px]"
+                  alt="Plus Icon"
+                />
+              </summary>
+            </details>
+            <hr
+              class="shrink-0 mt-6 h-px border border-solid border-stone-300 max-md:max-w-full"
+            />
+            <details>
+              <summary
+                class="flex flex-wrap gap-5 justify-between mt-6 tracking-wider max-md:max-w-full cursor-pointer"
+              >
+                <h3 class="max-md:max-w-full">
+                  Does the UV light lose potency over time?
+                </h3>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true"
+                  class="object-contain shrink-0 my-auto aspect-square w-[30px]"
+                  alt="Plus Icon"
+                />
+              </summary>
+            </details>
+            <hr
+              class="shrink-0 mt-6 h-px border border-solid border-stone-300 max-md:max-w-full"
+            />
+            <details>
+              <summary
+                class="flex flex-wrap gap-5 justify-between mt-6 tracking-wider max-md:max-w-full cursor-pointer"
+              >
+                <h3 class="max-md:max-w-full">
+                  Can I use LumiClean to sterilize my phone or other personal
+                  items?
+                </h3>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true"
+                  class="object-contain shrink-0 my-auto aspect-square w-[30px]"
+                  alt="Plus Icon"
+                />
+              </summary>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer
+        class="flex flex-col pt-12 pb-8 w-full bg-zinc-900 mt-[567px] max-md:mt-10 max-md:max-w-full"
+      >
+        <div class="flex gap-10 items-start self-center max-w-full w-[956px]">
+          <nav
+            class="flex flex-col items-start text-sm leading-none text-white"
+          >
+            <h4 class="text-base font-semibold tracking-normal">Company</h4>
+            <a href="#" class="mt-4">About Us</a>
+            <a href="#" class="mt-5">Track Your Order</a>
+            <a href="#" class="mt-5">Contact Us</a>
+            <a href="#" class="self-stretch mt-4">Become an Affiliate</a>
+          </nav>
+          <nav class="leading-none text-white">
+            <h4 class="text-base font-semibold tracking-normal">Support</h4>
+            <a href="#" class="mt-4 text-sm max-md:mr-1">Get Help</a>
+          </nav>
+          <div class="flex-auto self-stretch max-md:max-w-full">
+            <div class="flex gap-5 max-md:flex-col">
+              <nav class="w-[46%] max-md:ml-0 max-md:w-full">
+                <div
+                  class="flex flex-col grow items-start text-sm leading-none text-white max-md:mt-10"
+                >
+                  <h4 class="text-base font-semibold tracking-normal">
+                    Information
+                  </h4>
+                  <a href="#" class="mt-5">Privacy Policy</a>
+                  <a href="#" class="self-stretch mt-3.5 leading-4">
+                    Terms of Sale, Service and
+                    <br />
+                    Conditions of Use
+                  </a>
+                  <a href="#" class="mt-4">Refund & Return Policy</a>
+                  <a href="#" class="mt-3.5">Shipping Policy</a>
+                  <a href="#" class="self-stretch mt-3.5 max-md:mr-2.5"
+                    >Billing Terms & Condition</a
+                  >
+                </div>
+              </nav>
+              <div class="ml-5 w-[54%] max-md:ml-0 max-md:w-full">
+                <div class="flex flex-col w-full max-md:mt-10">
+                  <h4
+                    class="self-start text-base font-semibold tracking-normal leading-none text-white"
+                  >
+                    Pay Securely with
+                  </h4>
+                  <div class="flex gap-1 mt-4">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/c63b08ab5b85c4203faecd777ea5dc7a6f6df0fd?placeholderIfAbsent=true"
+                      class="object-contain shrink-0 aspect-[1.58] w-[38px]"
+                      alt="Payment Method"
+                    />
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/048251b0897139b26368b9e9104720e36f02846b?placeholderIfAbsent=true"
+                      class="object-contain shrink-0 aspect-[1.58] w-[38px]"
+                      alt="Payment Method"
+                    />
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/a20884e326294276d304cf7923228316b1963807?placeholderIfAbsent=true"
+                      class="object-contain shrink-0 aspect-[1.58] w-[38px]"
+                      alt="Payment Method"
+                    />
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/e6e8ea3b22a0c87405ff1e3c5ed22f162f25d412?placeholderIfAbsent=true"
+                      class="object-contain shrink-0 aspect-[1.58] w-[38px]"
+                      alt="Payment Method"
+                    />
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b1424a7eb214d8e07157ed612c0fa832b7df6d6e?placeholderIfAbsent=true"
+                      class="object-contain shrink-0 aspect-[1.58] w-[38px]"
+                      alt="Payment Method"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="px-16 py-9 mt-4 w-full text-xs leading-5 text-center text-white bg-zinc-900 max-md:px-5 max-md:max-w-full"
+        >
+          LumiClean is not a medical device and is not intended to diagnose,
+          treat, cure, or prevent any disease. The statements regarding UVC and
+          ozone technology refer to general disinfection purposes
+          <br />
+          for air and surfaces and do not imply any specific endorsement by the
+          FDA, EPA, or medical professionals. Results mentioned in this page may
+          vary depending on individual conditions and
+          <br />
+          usage. UVC and ozone must be used in accordance with safety
+          guidelines. Avoid direct exposure to UVC light and excessive ozone.
+          Please refer to the product's instructions for safe and proper
+          <br />
+          use. This is a paid advertisement for LumiClean.
+        </div>
+      </footer>
+    </main>
+    <script>
+      // Wait for DOM to be fully loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize lazy loading
+        initLazyLoading();
+
+        /**
+         * Initializes lazy loading for images
+         */
+        function initLazyLoading() {
+          // Get all images with data-src attribute
+          const lazyImages = document.querySelectorAll("img[data-src]");
+
+          // Check if Intersection Observer is supported
+          if ("IntersectionObserver" in window) {
+            const imageObserver = new IntersectionObserver(
+              (entries, observer) => {
+                entries.forEach((entry) => {
+                  // If image is in viewport
+                  if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.getAttribute("data-src");
+
+                    // Load the image
+                    img.onload = function () {
+                      // Remove placeholder class and add loaded class
+                      img.classList.remove("img-placeholder");
+                      img.classList.add("lazy-loaded");
+                    };
+
+                    img.src = src;
+
+                    // Stop observing the image
+                    observer.unobserve(img);
+                  }
+                });
+              },
+              {
+                rootMargin: "50px 0px", // Load images 50px before they appear in viewport
+                threshold: 0.01, // Trigger when at least 1% of the image is visible
+              },
+            );
+
+            // Observe all lazy images
+            lazyImages.forEach((img) => {
+              imageObserver.observe(img);
+            });
+          } else {
+            // Fallback for browsers that don't support Intersection Observer
+            // Load all images immediately
+            lazyLoadImagesImmediately(lazyImages);
+          }
+        }
+
+        /**
+         * Fallback function to load images immediately
+         */
+        function lazyLoadImagesImmediately(lazyImages) {
+          lazyImages.forEach((img) => {
+            const src = img.getAttribute("data-src");
+
+            img.onload = function () {
+              img.classList.remove("img-placeholder");
+              img.classList.add("lazy-loaded");
+            };
+
+            img.src = src;
+          });
+        }
+
+        // FAQ Accordion Functionality
+        setupFaqAccordion();
+
+        // Pricing Selection Functionality
+        setupPricingSelection();
+
+        // Feature Toggles Functionality
+        setupFeatureToggles();
+
+        // Mobile Menu Functionality
+        setupMobileMenu();
+
+        /**
+         * Sets up the FAQ accordion functionality
+         */
+        function setupFaqAccordion() {
+          const faqItems = document.querySelectorAll("details");
+
+          faqItems.forEach((item) => {
+            const summary = item.querySelector("summary");
+            const content = item.querySelector("div");
+            const icon = summary.querySelector("img");
+
+            // Add click event listener
+            summary.addEventListener("click", (e) => {
+              // Prevent default behavior to handle it manually
+              e.preventDefault();
+
+              // Toggle the open state
+              const isOpen = item.hasAttribute("open");
+
+              // Close all other items
+              faqItems.forEach((otherItem) => {
+                if (otherItem !== item && otherItem.hasAttribute("open")) {
+                  otherItem.removeAttribute("open");
+                  const otherIcon = otherItem.querySelector("summary img");
+                  if (otherIcon) {
+                    otherIcon.src =
+                      "https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true";
+                    otherIcon.alt = "Plus Icon";
+                  }
+                }
+              });
+
+              // Toggle current item
+              if (isOpen) {
+                item.removeAttribute("open");
+                if (icon) {
+                  icon.src =
+                    "https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/3a26144f34885f44e3b568e837462bb804f288ef?placeholderIfAbsent=true";
+                  icon.alt = "Plus Icon";
+                }
+              } else {
+                item.setAttribute("open", "");
+                if (icon) {
+                  icon.src =
+                    "https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/a04babb493f3c2e4a38a140ba0471eb59665e843?placeholderIfAbsent=true";
+                  icon.alt = "Minus Icon";
+                }
+              }
+            });
+          });
+        }
+
+        /**
+         * Sets up the pricing selection functionality
+         */
+        function setupPricingSelection() {
+          const pricingCards = document.querySelectorAll(
+            ".self-stretch.mt-10 article",
+          );
+          const addToCartButtons = document.querySelectorAll(
+            ".self-stretch.mt-10 button",
+          );
+
+          pricingCards.forEach((card, index) => {
+            card.addEventListener("click", () => {
+              // Remove highlight from all cards
+              pricingCards.forEach((c) => {
+                c.classList.remove("ring-4", "ring-sky-500");
+              });
+
+              // Highlight selected card
+              card.classList.add("ring-4", "ring-sky-500");
+
+              // Update all buttons
+              addToCartButtons.forEach((btn, btnIndex) => {
+                if (btnIndex === index) {
+                  btn.textContent = "Selected!";
+                  btn.classList.add("bg-green-600");
+                  btn.classList.remove("bg-red-700");
+
+                  // Change back after 1 second
+                  setTimeout(() => {
+                    btn.textContent = "Add to cart";
+                    btn.classList.remove("bg-green-600");
+                    btn.classList.add("bg-red-700");
+                  }, 1000);
+                }
+              });
+            });
+          });
+        }
+
+        /**
+         * Sets up the feature toggles functionality
+         */
+        function setupFeatureToggles() {
+          const featureButtons = document.querySelectorAll(
+            ".w-full.text-zinc-700 button",
+          );
+
+          featureButtons.forEach((button) => {
+            // Create a content div after each button
+            const content = document.createElement("div");
+            content.className =
+              "hidden p-6 mt-2 text-lg leading-6 text-zinc-700 bg-white rounded-xl";
+            content.innerHTML = `
+              <p>The UVO254™ Lamp combines both UVC light and ozone technology to provide comprehensive disinfection.
+              It effectively eliminates bacteria, viruses, mold spores, and allergens from both surfaces and the air.</p>
+              <p class="mt-2">This feature allows you to sanitize your entire room with just the push of a button,
+              providing hospital-grade disinfection for your home.</p>
+            `;
+
+            button.parentNode.insertBefore(content, button.nextSibling);
+
+            // Add click event listener
+            button.addEventListener("click", () => {
+              const icon = button.querySelector("img");
+              const isExpanded = !content.classList.contains("hidden");
+
+              if (isExpanded) {
+                // Collapse
+                content.classList.add("hidden");
+                if (icon) {
+                  icon.src =
+                    "https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/925fe541792d226fdafe913f350f67386a580dba?placeholderIfAbsent=true";
+                  icon.alt = "Plus Icon";
+                }
+              } else {
+                // Expand
+                content.classList.remove("hidden");
+                if (icon) {
+                  icon.src =
+                    "https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/8a95f7e3d2e4781506d64f61cd1c9b7b37932257?placeholderIfAbsent=true";
+                  icon.alt = "Minus Icon";
+                }
+              }
+            });
+          });
+        }
+
+        /**
+         * Sets up the mobile menu functionality
+         */
+        function setupMobileMenu() {
+          const menuIcon = document.querySelector("nav img:last-child");
+
+          // Create mobile menu
+          const mobileMenu = document.createElement("div");
+          mobileMenu.className =
+            "fixed inset-0 bg-black bg-opacity-80 z-50 transform translate-x-full transition-transform duration-300 ease-in-out";
+          mobileMenu.innerHTML = `
+            <div class="bg-white h-full w-4/5 ml-auto p-6">
+              <div class="flex justify-between items-center mb-8">
+                <img src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/13c5ffdc11f4995d66ae52e485173407c4007baa?placeholderIfAbsent=true"
+                     class="w-8 h-8" alt="LumiClean Logo">
+                <button class="close-menu text-2xl">&times;</button>
+              </div>
+              <nav class="flex flex-col space-y-4">
+                <a href="#" class="text-lg py-2 border-b border-gray-200">Home</a>
+                <a href="#" class="text-lg py-2 border-b border-gray-200">Products</a>
+                <a href="#" class="text-lg py-2 border-b border-gray-200">About Us</a>
+                <a href="#" class="text-lg py-2 border-b border-gray-200">Testimonials</a>
+                <a href="#" class="text-lg py-2 border-b border-gray-200">FAQ</a>
+                <a href="#" class="text-lg py-2 border-b border-gray-200">Contact</a>
+              </nav>
+            </div>
+          `;
+
+          document.body.appendChild(mobileMenu);
+
+          // Toggle mobile menu
+          menuIcon.addEventListener("click", () => {
+            mobileMenu.classList.toggle("translate-x-full");
+          });
+
+          // Close mobile menu
+          const closeButton = mobileMenu.querySelector(".close-menu");
+          closeButton.addEventListener("click", () => {
+            mobileMenu.classList.add("translate-x-full");
+          });
+        }
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -16,6 +16,7 @@
         background-color: rgba(255, 255, 255, 1);
         font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
         overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
       }
 
       /* Landing page container */
@@ -2021,10 +2022,16 @@
         .hero-heading {
           max-width: 100%;
           margin-right: 7px;
+          font-size: 32px;
+          line-height: 1.3;
+          margin: 16px 0;
         }
 
         .hero-subheading {
           max-width: 100%;
+          font-size: 18px;
+          line-height: 1.4;
+          margin: 16px 0;
         }
 
         .features-row {
@@ -2052,6 +2059,9 @@
           max-width: 100%;
           padding-left: 20px;
           padding-right: 20px;
+          width: 100%;
+          padding: 20px;
+          font-size: 20px;
         }
 
         .hero-right-column {
@@ -2711,6 +2721,175 @@
           padding-right: 20px;
         }
       }
+
+      @media (max-width: 576px) {
+        .header {
+          padding: 15px;
+        }
+
+        .hero-section {
+          padding: 40px 15px;
+        }
+
+        .hero-heading {
+          font-size: 28px;
+        }
+
+        .hero-subheading {
+          font-size: 16px;
+        }
+
+        .features-container {
+          padding: 0 15px;
+        }
+
+        .feature-card {
+          margin: 10px 0;
+        }
+
+        .testimonial-card {
+          margin: 15px 0;
+        }
+
+        .testimonial-text {
+          font-size: 16px;
+          margin: 40px 15px 20px;
+        }
+
+        .testimonial-footer {
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .comparison-heading-secondary {
+          font-size: 28px;
+          padding: 0 15px;
+        }
+
+        .comparison-feature,
+        .comparison-feature-alt,
+        .comparison-feature-alt-tall {
+          font-size: 14px;
+          padding: 15px;
+        }
+
+        .trust-badges {
+          flex-direction: column;
+          padding: 0 15px;
+        }
+
+        .trust-badge {
+          margin: 10px 0;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          padding: 0 15px;
+          gap: 30px;
+        }
+
+        .footer-column {
+          width: 100%;
+        }
+
+        .footer-payment-icons {
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        /* Fix overflow issues */
+        .landing-page {
+          overflow-x: hidden;
+          width: 100%;
+        }
+
+        /* Improve touch targets */
+        .footer-link,
+        .cta-button,
+        .pricing-cta {
+          min-height: 44px;
+          padding: 12px 20px;
+        }
+
+        /* Improve readability */
+        .problem-description,
+        .solution-description,
+        .benefits-text-container,
+        .faq-answer {
+          font-size: 16px;
+          line-height: 1.5;
+        }
+
+        /* Fix image scaling */
+        .hero-image,
+        .problem-icon,
+        .solution-image,
+        .benefits-image,
+        .guarantee-image {
+          width: 100%;
+          height: auto;
+          max-width: 100%;
+        }
+      }
+
+      /* Add these styles to the CSS section */
+
+      /* Testimonials slider styles */
+      .testimonials-slider {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+      }
+
+      .testimonials-track {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .testimonial-slide {
+        min-width: 100%;
+        display: flex;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+
+      .testimonial-slide.active {
+        opacity: 1;
+      }
+
+      .slider-nav {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .slider-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #D9D9D9;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .slider-dot.active {
+        background-color: #1773B0;
+      }
+
+      @media (min-width: 992px) {
+        .testimonial-slide {
+          min-width: 33.333%;
+        }
+      }
+
+      @media (max-width: 991px) {
+        .testimonials-track {
+          flex-wrap: nowrap;
+        }
+      }
     </style>
   </head>
   <body>
@@ -3104,9 +3283,9 @@
             <em>See What Others Are Saying About LumiClean.</em>
           </h2>
 
-          <div class="testimonials-grid">
-            <div class="testimonials-row">
-              <div class="testimonial-column">
+          <div class="testimonials-slider">
+            <div class="testimonials-track">
+              <div class="testimonial-slide active">
                 <div class="testimonial-card">
                   <img
                     src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/7dbf3453c33476761d541fbcadf9de23f6b1d24c?placeholderIfAbsent=true"
@@ -3135,8 +3314,7 @@
                   </div>
                 </div>
               </div>
-
-              <div class="testimonial-column">
+              <div class="testimonial-slide">
                 <div class="testimonial-card">
                   <img
                     src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/94ba35b42e1d6c88f3714fd4b06995315cd28b70?placeholderIfAbsent=true"
@@ -3165,8 +3343,7 @@
                   </div>
                 </div>
               </div>
-
-              <div class="testimonial-column">
+              <div class="testimonial-slide">
                 <div class="testimonial-card">
                   <img
                     src="https://cdn.builder.io/api/v1/image/assets/ca002a3e33334ff69f11b80f2d432627/b80cad9d598e363092c5931e44d66a84fdd8aab3?placeholderIfAbsent=true"
@@ -3194,6 +3371,11 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="slider-nav">
+              <div class="slider-dot active"></div>
+              <div class="slider-dot"></div>
+              <div class="slider-dot"></div>
             </div>
           </div>
         </div>
@@ -4063,6 +4245,82 @@
         // Update with initial state on first load
         update();
       })();
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.querySelector('.testimonials-track');
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+
+        function updateSlider() {
+          // Update slides
+          slides.forEach((slide, index) => {
+            slide.classList.remove('active');
+            if (index === currentSlide) {
+              slide.classList.add('active');
+            }
+          });
+
+          // Update dots
+          dots.forEach((dot, index) => {
+            dot.classList.remove('active');
+            if (index === currentSlide) {
+              dot.classList.add('active');
+            }
+          });
+
+          // Move track
+          const slideWidth = slides[0].offsetWidth;
+          track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        }
+
+        // Add click handlers to dots
+        dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            currentSlide = index;
+            updateSlider();
+          });
+        });
+
+        // Auto advance slides every 5 seconds
+        setInterval(() => {
+          currentSlide = (currentSlide + 1) % slides.length;
+          updateSlider();
+        }, 5000);
+
+        // Handle touch events for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener('touchstart', (e) => {
+          touchStartX = e.touches[0].clientX;
+        });
+
+        track.addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].clientX;
+          handleSwipe();
+        });
+
+        function handleSwipe() {
+          const swipeThreshold = 50;
+          const diff = touchStartX - touchEndX;
+
+          if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0 && currentSlide < slides.length - 1) {
+              // Swipe left
+              currentSlide++;
+            } else if (diff < 0 && currentSlide > 0) {
+              // Swipe right
+              currentSlide--;
+            }
+            updateSlider();
+          }
+        }
+
+        // Initial setup
+        updateSlider();
+      });
     </script>
   </body>
 </html>
