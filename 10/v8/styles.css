@@ -1,0 +1,115 @@
+/* Money Back Guarantee Section Styles */
+.guarantee-section {
+  display: flex;
+  width: 100%;
+  padding: 100px;
+  background-color: #fff;
+}
+
+.guarantee-container {
+  display: flex;
+  align-items: center;
+  gap: 151px;
+  max-width: 1376px;
+  margin: 0 auto;
+}
+
+.guarantee-content {
+  display: flex;
+  width: 600px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.guarantee-heading {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 43.2px;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+  width: 100%;
+  margin: 0;
+}
+
+.guarantee-box {
+  display: flex;
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 18px;
+  background-color: #f1f8fa;
+}
+
+.guarantee-text {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0.72px;
+  margin: 0;
+}
+
+.highlight {
+  color: #1773b0;
+  font-weight: 700;
+}
+
+.image-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.product-image {
+  width: 625px;
+  height: 625px;
+  object-fit: contain;
+}
+
+/* Media Queries */
+@media (max-width: 991px) {
+  .guarantee-container {
+    flex-direction: column;
+    gap: 40px;
+    padding: 0 20px;
+  }
+
+  .guarantee-content {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .product-image {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 640px) {
+  .guarantee-section {
+    padding: 40px 20px;
+  }
+
+  .guarantee-heading {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .guarantee-box {
+    padding: 12px;
+  }
+
+  .guarantee-text {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .product-image {
+    max-width: 100%;
+  }
+}
