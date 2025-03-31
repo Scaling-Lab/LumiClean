@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumiclean - Hospital-like Disinfection for Your Home</title>
+    <link rel="stylesheet" href="lumiclean-section.css" />
+    <link rel="stylesheet" href="v1/styles.css" />
+    <link rel="stylesheet" href="v2/styles.css" />
+    <link rel="stylesheet" href="v3/lumiclean-section.css" />
+    <link rel="stylesheet" href="v5/styles.css" />
+    <link rel="stylesheet" href="v7/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Include the Lumiclean section component -->
+    <main>
+      <include src="header/header.html"></include>
+      <include src="v1/hero-section.html"></include>
+      <include src="v2/pathogens-info-section.html"></include>
+      <include src="v3/lumiclean-section.html"></include>
+      <include src="v5/testimonials-section.html"></include>
+      <include src="v7/product-offer-section.html"></include>
+    </main>
+
+    <!-- Simple script to handle includes -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const includes = document.getElementsByTagName("include");
+        for (let i = 0; i < includes.length; i++) {
+          const include = includes[i];
+          const src = include.getAttribute("src");
+
+          fetch(src)
+            .then((response) => response.text())
+            .then((html) => {
+              const div = document.createElement("div");
+              div.innerHTML = html;
+              include.parentNode.replaceChild(div.firstChild, include);
+            })
+            .catch((error) => {
+              console.error("Error loading include:", error);
+            });
+        }
+      });
+    </script>
+  </body>
+</html>
