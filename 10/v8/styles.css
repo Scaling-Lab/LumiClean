@@ -1,12 +1,12 @@
 /* Money Back Guarantee Section Styles */
-.guarantee-section {
+.guarantee-section-v8 {
   display: flex;
   width: 100%;
   padding: 100px;
   background-color: #fff;
 }
 
-.guarantee-container {
+.guarantee-container-v8 {
   display: flex;
   align-items: center;
   gap: 151px;
@@ -14,7 +14,7 @@
   margin: 0 auto;
 }
 
-.guarantee-content {
+.guarantee-content-v8 {
   display: flex;
   width: 600px;
   flex-direction: column;
@@ -22,7 +22,7 @@
   gap: 24px;
 }
 
-.guarantee-heading {
+.guarantee-heading-v8 {
   color: #000;
   font-family: "Poppins", sans-serif;
   font-size: 36px;
@@ -34,7 +34,7 @@
   margin: 0;
 }
 
-.guarantee-box {
+.guarantee-box-v8 {
   display: flex;
   padding: 16px;
   justify-content: center;
@@ -44,7 +44,7 @@
   background-color: #f1f8fa;
 }
 
-.guarantee-text {
+.guarantee-text-v8 {
   color: #000;
   font-family: "Poppins", sans-serif;
   font-size: 18px;
@@ -54,17 +54,17 @@
   margin: 0;
 }
 
-.highlight {
+.highlight-v8 {
   color: #1773b0;
   font-weight: 700;
 }
 
-.image-wrapper {
+.image-wrapper-v8 {
   display: flex;
   align-items: center;
 }
 
-.product-image {
+.product-image-v8 {
   width: 625px;
   height: 625px;
   object-fit: contain;
@@ -72,18 +72,18 @@
 
 /* Media Queries */
 @media (max-width: 991px) {
-  .guarantee-container {
+  .guarantee-container-v8 {
     flex-direction: column;
     gap: 40px;
     padding: 0 20px;
   }
 
-  .guarantee-content {
+  .guarantee-content-v8 {
     width: 100%;
     max-width: 600px;
   }
 
-  .product-image {
+  .product-image-v8 {
     width: 100%;
     height: auto;
     max-width: 500px;
@@ -91,25 +91,25 @@
 }
 
 @media (max-width: 640px) {
-  .guarantee-section {
+  .guarantee-section-v8 {
     padding: 40px 20px;
   }
 
-  .guarantee-heading {
+  .guarantee-heading-v8 {
     font-size: 28px;
     line-height: 34px;
   }
 
-  .guarantee-box {
+  .guarantee-box-v8 {
     padding: 12px;
   }
 
-  .guarantee-text {
+  .guarantee-text-v8 {
     font-size: 16px;
     line-height: 24px;
   }
 
-  .product-image {
+  .product-image-v8 {
     max-width: 100%;
   }
 }
