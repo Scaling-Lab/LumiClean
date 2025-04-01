@@ -15,7 +15,7 @@ body {
 }
 
 /* Superior Section Styles */
-.superior-section {
+.superior-section-v6 {
   background-color: rgba(255, 255, 255, 1);
   display: flex;
   padding: 100px 255px;
@@ -24,7 +24,7 @@ body {
   justify-content: center;
 }
 
-.section-container {
+.section-container-v6 {
   display: flex;
   width: 100%;
   max-width: 1410px;
@@ -33,7 +33,7 @@ body {
   justify-content: start;
 }
 
-.header-container {
+.header-container-v6 {
   width: 447px;
   max-width: 100%;
   font-family:
@@ -47,18 +47,18 @@ body {
   line-height: 1.2;
 }
 
-.section-subtitle {
+.section-subtitle-v6 {
   font-size: 24px;
   font-weight: 600;
 }
 
-.section-title {
+.section-title-v6 {
   font-size: 40px;
   font-weight: 700;
   margin-top: 8px;
 }
 
-.product-image {
+.product-image-v6 {
   aspect-ratio: 1.21;
   object-fit: contain;
   object-position: center;
@@ -67,7 +67,7 @@ body {
   max-width: 100%;
 }
 
-.features-container {
+.features-container-v6 {
   align-self: stretch;
   display: flex;
   margin-top: 48px;
@@ -78,7 +78,7 @@ body {
   flex-wrap: wrap;
 }
 
-.feature-card {
+.feature-card-v6 {
   border-radius: 25px;
   background-color: rgba(235, 246, 254, 1);
   align-self: stretch;
@@ -91,7 +91,7 @@ body {
   width: 363px;
 }
 
-.feature-content {
+.feature-content-v6 {
   display: flex;
   width: 100%;
   align-items: center;
@@ -99,7 +99,7 @@ body {
   justify-content: start;
 }
 
-.icon-container {
+.icon-container-v6 {
   border-radius: 25px 0 0 25px;
   background-color: rgba(215, 239, 255, 1);
   align-self: stretch;
@@ -115,7 +115,7 @@ body {
   height: 96px;
 }
 
-.feature-icon {
+.feature-icon-v6 {
   aspect-ratio: 1;
   object-fit: contain;
   object-position: center;
@@ -125,7 +125,7 @@ body {
   margin-bottom: auto;
 }
 
-.feature-text {
+.feature-text-v6 {
   color: rgba(0, 0, 0, 1);
   font-size: 20px;
   font-family:
@@ -146,41 +146,41 @@ body {
 
 /* Media Queries */
 @media (max-width: 991px) {
-  .superior-section {
+  .superior-section-v6 {
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  .section-container {
+  .section-container-v6 {
     max-width: 100%;
   }
 
-  .section-subtitle {
+  .section-subtitle-v6 {
     max-width: 100%;
   }
 
-  .section-title {
+  .section-title-v6 {
     max-width: 100%;
   }
 
-  .product-image {
+  .product-image-v6 {
     margin-top: 40px;
   }
 
-  .features-container {
+  .features-container-v6 {
     max-width: 100%;
     margin-top: 40px;
   }
 
-  .feature-card {
+  .feature-card-v6 {
     max-width: 100%;
   }
 
-  .feature-content {
+  .feature-content-v6 {
     max-width: 100%;
   }
 
-  .icon-container {
+  .icon-container-v6 {
     padding-left: 20px;
     padding-right: 20px;
   }
