@@ -19,57 +19,8 @@
     <link rel="stylesheet" href="v12/styles.css" />
     <link rel="stylesheet" href="footer/styles.css" />
 
-<!--    <script src="https://cdn.tailwindcss.com"></script>-->
-<!--    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>-->
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- Include the Lumiclean section component -->
-    <main>
-      <include src="header/header.html"></include>
-      <include src="v1/hero-section.html"></include>
-      <include src="v2/pathogens-info-section.html"></include>
-      <include src="v3/lumiclean-section.html"></include>
-      <include src="v4/lumiclean-section.html"></include>
-      <include src="v5/testimonials-section.html"></include>
-      <include src="v6/section-v6.html"></include>
-      <include src="v7/product-offer-section.html"></include>
-      <include src="v8/guarantee-section.html"></include>
-      <include src="v9/section.html"></include>
-      <include src="v10/section.html"></include>
-      <include src="v11/promotion-section.html"></include>
-      <include src="v12/faq-section.html"></include>
-      <include src="footer/footer.html"></include>
-    </main>
-
-    <!-- Simple script to handle includes -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const includes = document.getElementsByTagName("include");
-        for (let i = 0; i < includes.length; i++) {
-          const include = includes[i];
-          const src = include.getAttribute("src");
-
-          fetch(src)
-            .then((response) => response.text())
-            .then((html) => {
-              const div = document.createElement("div");
-              div.innerHTML = html;
-              include.parentNode.replaceChild(div.firstChild, include);
-            })
-            .catch((error) => {
-              console.error("Error loading include:", error);
-            });
-        }
-      });
-    </script>
-
-<!--    <div id='product-component-1743418359294'></div>-->
-    <script type="text/javascript" defer>
+    <!--    <div id='product-component-1743418359294'></div>-->
+    <script type="text/javascript">
       /*<![CDATA[*/
       (function () {
         var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
@@ -230,6 +181,57 @@
       })();
       /*]]>*/
     </script>
+
+<!--    <script src="https://cdn.tailwindcss.com"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>-->
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Include the Lumiclean section component -->
+    <main>
+      <include src="header/header.html"></include>
+      <include src="v1/hero-section.html"></include>
+      <include src="v2/pathogens-info-section.html"></include>
+      <include src="v3/lumiclean-section.html"></include>
+      <include src="v4/lumiclean-section.html"></include>
+      <include src="v5/testimonials-section.html"></include>
+      <include src="v6/section-v6.html"></include>
+      <include src="v7/product-offer-section.html"></include>
+      <include src="v8/guarantee-section.html"></include>
+      <include src="v9/section.html"></include>
+      <include src="v10/section.html"></include>
+      <include src="v11/promotion-section.html"></include>
+      <include src="v12/faq-section.html"></include>
+      <include src="footer/footer.html"></include>
+    </main>
+
+    <!-- Simple script to handle includes -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const includes = document.getElementsByTagName("include");
+        for (let i = 0; i < includes.length; i++) {
+          const include = includes[i];
+          const src = include.getAttribute("src");
+
+          fetch(src)
+            .then((response) => response.text())
+            .then((html) => {
+              const div = document.createElement("div");
+              div.innerHTML = html;
+              include.parentNode.replaceChild(div.firstChild, include);
+            })
+            .catch((error) => {
+              console.error("Error loading include:", error);
+            });
+        }
+      });
+    </script>
+
+
 
 
 <!--&lt;!&ndash;    Load the FAQ section HTML&ndash;&gt;-->
