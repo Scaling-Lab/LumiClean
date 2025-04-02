@@ -113,12 +113,25 @@ body {
   font-weight: 600;
   justify-content: center;
   margin-top: 16px;
+  cursor: pointer;
 }
 
-.feature-card-v9.primary-v9 {
+/* Primary and active card styles */
+.feature-card-v9.primary-v9,
+.feature-card-v9.faq-item-open {
   background-color: rgba(24, 144, 213, 1);
   color: rgba(255, 255, 255, 1);
-  margin-top: 0;
+}
+
+/* Description text color for active cards */
+.feature-card-v9.faq-item-open .feature-description-v9 {
+  display: block;
+  color: black;
+}
+
+/* Rotate icon when open - changing to rotate upward */
+.feature-card-v9.faq-item-open .feature-icon {
+  transform: rotate(-180deg);
 }
 
 @media (max-width: 991px) {
@@ -169,6 +182,7 @@ body {
   }
 }
 
+/* Default icon color (blue) */
 .feature-icon {
   aspect-ratio: 1;
   object-fit: contain;
@@ -177,17 +191,75 @@ body {
   align-self: stretch;
   margin: auto 0;
   flex-shrink: 0;
+  transition: transform 0.3s ease;
 }
 
 .feature-description-v9 {
+  display: none;
+  padding: 16px;
+  color: #222627;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Override FAQ styles for v9 section */
+.features-section-v9 .faq-item {
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+}
+
+.features-section-v9 .faq-header {
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.features-section-v9 .feature-card-v9 {
+  background-color: #fff;
+  color: black;
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 16px;
+  cursor: pointer;
+}
+
+.features-section-v9 .feature-card-v9.faq-item-open {
+  color: white;
+}
+
+/* Restore original feature card styles */
+.features-section-v9 .feature-header-v9 {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 40px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.features-section-v9 .feature-description-v9 {
   font-size: 18px;
   font-weight: 400;
   line-height: 25px;
   margin-top: 8px;
+  padding: 0;
+  display: none;
 }
 
-@media (max-width: 991px) {
-  .feature-description-v9 {
-    max-width: 100%;
-  }
+/* Show description when card is open */
+.features-section-v9 .feature-card-v9.faq-item-open .feature-description-v9 {
+  display: block;
+  color: white;
+}
+
+/* Primary card specific styles */
+.features-section-v9 .feature-card-v9.faq-item-open {
+  background-color: #2599dc;
 }
