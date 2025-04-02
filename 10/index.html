@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="v12/styles.css" />
     <link rel="stylesheet" href="footer/styles.css" />
 
-    <!--    <div id='product-component-1743418359294'></div>-->
-    <script src="js/shopify-button.js"></script>
+<!--    &lt;!&ndash;    <div id='product-component-1743418359294'></div>&ndash;&gt;-->
+<!--    <script src="js/shopify-button.js"></script>-->
 
     <!--    <script src="https://cdn.tailwindcss.com"></script>-->
     <!--    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>-->
@@ -49,7 +49,7 @@
       <include src="footer/footer.html"></include>
     </main>
 
-    <!-- Simple script to handle includes -->
+    <!-- Initialize components and Shopify -->
     <script>
       let componentsLoaded = 0;
       const totalComponents = document.getElementsByTagName("include").length;
@@ -69,9 +69,13 @@
               
               componentsLoaded++;
               
-              if (componentsLoaded === totalComponents && !window.shopifyButtonInitialized) {
-                window.shopifyButtonInitialized = true;
-                initShopify();
+              // Initialize accordion after components are loaded
+              if (componentsLoaded === totalComponents) {
+                if (!window.shopifyButtonInitialized) {
+                  window.shopifyButtonInitialized = true;
+                  initShopify();
+                }
+                initAccordion('.faq-item'); // Initialize accordion
               }
             })
             .catch((error) => {
@@ -82,22 +86,8 @@
       });
     </script>
 
-<!--    <script>-->
-<!--      // Load the FAQ section HTML-->
-<!--      document.addEventListener("DOMContentLoaded", function () {-->
-<!--        fetch("v12/faq-section.html")-->
-<!--                .then((response) => response.text())-->
-<!--                .then((html) => {-->
-<!--                  document.getElementById("faq-section").innerHTML = html;-->
-<!--                  // Initialize the accordion after loading the HTML-->
-<!--                  initAccordion();-->
-<!--                })-->
-<!--                .catch((error) => {-->
-<!--                  console.error("Error loading FAQ section:", error);-->
-<!--                });-->
-<!--      });-->
-<!--    </script>-->
-<!--    <script src="v12/script.js"></script>-->
-
+    <!-- Scripts -->
+    <script src="js/shopify-button.js"></script>
+    <script src="js/accordion.js"></script>
   </body>
 </html>
