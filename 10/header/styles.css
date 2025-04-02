@@ -92,10 +92,11 @@
   }
 
   .nav-container {
-    gap: 1rem;
+    gap: 3.5rem;
   }
 
   .nav-links {
     display: none;
   }
 }
+
