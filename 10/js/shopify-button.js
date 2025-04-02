@@ -45,6 +45,8 @@ function initShopify() {
                   }
                 },
                 "button": {
+                  "width": "100%",
+                  "margin-top": "-10px !important",
                   "font-size": "18px",
                   "padding-top": "17px",
                   "padding-bottom": "17px",

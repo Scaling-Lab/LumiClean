@@ -1,3 +1,9 @@
+/* Shopify Buy Button */
+.shopify-buy-frame--product {
+  margin: 0 auto;
+  min-width: 100%;
+}
+
 /* Base styles and reset */
 * {
   margin: 0;
@@ -169,12 +175,12 @@ body {
   width: 100%;
 }
 
-/*!* Product Image *!*/
-/*.product-image {*/
-/*  height: 215px;*/
-/*  width: 100%;*/
-/*  object-fit: contain;*/
-/*}*/
+/* Product Image */
+.product-image-v7 {
+  height: 215px;
+  width: 100%;
+  object-fit: contain;
+}
 
 /* Product Title */
 .product-title {
