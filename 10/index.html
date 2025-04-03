@@ -4,90 +4,125 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lumiclean - Hospital-like Disinfection for Your Home</title>
+    <!-- Initial stylesheets for first 3 sections -->
     <link rel="stylesheet" href="header/styles.css" />
     <link rel="stylesheet" href="v1/styles.css" />
     <link rel="stylesheet" href="v2/styles.css" />
-    <link rel="stylesheet" href="v3/lumiclean-section.css" />
-    <link rel="stylesheet" href="v4/styles.css" />
-    <link rel="stylesheet" href="v5/styles.css" />
-    <link rel="stylesheet" href="v6/styles.css" />
-    <link rel="stylesheet" href="v7/styles.css" />
-    <link rel="stylesheet" href="v8/styles.css" />
-    <link rel="stylesheet" href="v9/styles.css" />
-    <link rel="stylesheet" href="v10/styles.css" />
-    <link rel="stylesheet" href="v11/styles.css" />
-    <link rel="stylesheet" href="v12/styles.css" />
     <link rel="stylesheet" href="footer/styles.css" />
-
-    <!--    <div id='product-component-1743418359294'></div>-->
-    <script src="js/shopify-button.js"></script>
-
-    <!--    <script src="https://cdn.tailwindcss.com"></script>-->
-    <!--    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>-->
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <!-- Include the Lumiclean section component -->
     <main>
+      <!-- Initial sections that load immediately -->
       <include src="header/header.html"></include>
       <include src="v1/hero-section.html"></include>
       <include src="v2/pathogens-info-section.html"></include>
-      <include src="v3/lumiclean-section.html"></include>
-      <include src="v4/lumiclean-section.html"></include>
-      <include src="v5/testimonials-section.html"></include>
-      <include src="v6/section-v6.html"></include>
-      <include src="v7/product-offer-section.html"></include>
-      <include src="v8/guarantee-section.html"></include>
-      <include src="v9/section.html"></include>
-      <include src="v10/section.html"></include>
-      <include src="v11/promotion-section.html"></include>
-      <include src="v12/faq-section.html"></include>
+      
+      <!-- Lazy loaded sections -->
+      <div id="lazy-sections">
+        <include data-src="v3/lumiclean-section.html"></include>
+        <include data-src="v4/lumiclean-section.html"></include>
+        <include data-src="v5/testimonials-section.html"></include>
+        <include data-src="v6/section-v6.html"></include>
+        <include data-src="v7/product-offer-section.html"></include>
+        <include data-src="v8/guarantee-section.html"></include>
+        <include data-src="v9/section.html"></include>
+        <include data-src="v10/section.html"></include>
+        <include data-src="v11/promotion-section.html"></include>
+        <include data-src="v12/faq-section.html"></include>
+      </div>
+      
       <include src="footer/footer.html"></include>
     </main>
 
-    <!-- Simple script to handle includes & Shopify-->
+    <!-- Core scripts -->
+    <script src="js/shopify-button.js"></script>
+    <script src="js/accordion.js"></script>
+    
+    <!-- Lazy loading implementation -->
     <script>
       let componentsLoaded = 0;
       const totalComponents = document.getElementsByTagName("include").length;
+      const stylesheets = {
+        'v3': 'v3/lumiclean-section.css',
+        'v4': 'v4/styles.css',
+        'v5': 'v5/styles.css',
+        'v6': 'v6/styles.css',
+        'v7': 'v7/styles.css',
+        'v8': 'v8/styles.css',
+        'v9': 'v9/styles.css',
+        'v10': 'v10/styles.css',
+        'v11': 'v11/styles.css',
+        'v12': 'v12/styles.css'
+      };
 
-      window.addEventListener('load', function() {
-        const includes = document.getElementsByTagName("include");
-        for (let i = 0; i < includes.length; i++) {
-          const include = includes[i];
-          const src = include.getAttribute("src");
-
-          fetch(src)
-            .then((response) => response.text())
-            .then((html) => {
-              const div = document.createElement("div");
-              div.innerHTML = html;
-              include.parentNode.replaceChild(div.firstChild, include);
-              
-              componentsLoaded++;
-              
-              // Initialize accordion after components are loaded
-              if (componentsLoaded === totalComponents) {
-                if (!window.shopifyButtonInitialized) {
-                  window.shopifyButtonInitialized = true;
-                  initShopify();
-                }
-                initAccordion('.faq-item'); // Initialize accordion
-              }
-            })
-            .catch((error) => {
-              console.error("Error loading include:", error);
-              componentsLoaded++;
-            });
+      // Function to load stylesheet
+      function loadStylesheet(href) {
+        if (!document.querySelector(`link[href="${href}"]`)) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = href;
+          document.head.appendChild(link);
         }
-      });
-    </script>
+      }
 
-    <!-- Scripts -->
-<!--    <script src="js/shopify-button.js"></script>-->
-    <script src="js/accordion.js"></script>
+      // Function to load section
+      async function loadSection(include) {
+        const src = include.getAttribute("src") || include.getAttribute("data-src");
+        if (!src) return;
+
+        try {
+          const response = await fetch(src);
+          const html = await response.text();
+          const div = document.createElement("div");
+          div.innerHTML = html;
+          include.parentNode.replaceChild(div.firstChild, include);
+          
+          // Load corresponding stylesheet
+          const sectionId = src.split('/')[0];
+          if (stylesheets[sectionId]) {
+            loadStylesheet(stylesheets[sectionId]);
+          }
+          
+          componentsLoaded++;
+          
+          // Initialize components based on section type
+          if (src.includes('faq-section.html')) {
+            initAccordion('.faq-item');
+          }
+          
+          // Initialize Shopify button only once
+          if (!window.shopifyButtonInitialized && src.includes('product-offer-section.html')) {
+            window.shopifyButtonInitialized = true;
+            initShopify();
+          }
+        } catch (error) {
+          console.error("Error loading include:", error);
+          componentsLoaded++;
+        }
+      }
+
+      // Load initial sections
+      window.addEventListener('load', function() {
+        const initialIncludes = document.querySelectorAll('include:not([data-src])');
+        initialIncludes.forEach(loadSection);
+      });
+
+      // Lazy load remaining sections on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const includes = entry.target.querySelectorAll('include[data-src]');
+            includes.forEach(loadSection);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        rootMargin: '50px'
+      });
+
+      observer.observe(document.getElementById('lazy-sections'));
+    </script>
   </body>
 </html>
