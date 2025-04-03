@@ -8,19 +8,21 @@
     <link rel="stylesheet" href="header/styles.css" />
     <link rel="stylesheet" href="v1/styles.css" />
     <link rel="stylesheet" href="v2/styles.css" />
-<!--    <link rel="stylesheet" href="footer/styles.css" />-->
+    <link rel="stylesheet" href="footer/styles.css" />
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
     <main>
       <!-- Initial sections that load immediately -->
-      <include src="header/header.html"></include>
-      <include src="v1/hero-section.html"></include>
-
+      <div id="initial-sections">
+        <include src="header/header.html"></include>
+        <include src="v1/hero-section.html"></include>
+        <include src="v2/pathogens-info-section.html"></include>
+      </div>
+      
       <!-- Lazy loaded sections -->
       <div id="lazy-sections">
-        <include src="v2/pathogens-info-section.html"></include>
         <include data-src="v3/lumiclean-section.html"></include>
         <include data-src="v4/lumiclean-section.html"></include>
         <include data-src="v5/testimonials-section.html"></include>
@@ -31,114 +33,53 @@
         <include data-src="v10/section.html"></include>
         <include data-src="v11/promotion-section.html"></include>
         <include data-src="v12/faq-section.html"></include>
+        <include data-src="footer/footer.html"></include>
       </div>
-
-      <include src="footer/footer.html"></include>
     </main>
 
-    <!-- Lazy loading implementation -->
+    <!-- Initial loader -->
     <script>
-      let componentsLoaded = 0;
-      const totalComponents = document.getElementsByTagName("include").length;
-      const stylesheets = {
-        'v3': 'v3/lumiclean-section.css',
-        'v4': 'v4/styles.css',
-        'v5': 'v5/styles.css',
-        'v6': 'v6/styles.css',
-        'v7': 'v7/styles.css',
-        'v8': 'v8/styles.css',
-        'v9': 'v9/styles.css',
-        'v10': 'v10/styles.css',
-        'v11': 'v11/styles.css',
-        'v12': 'v12/styles.css',
-        'footer': 'footer/styles.css'
-      };
-
-      // Script loading state
-      let scriptsLoaded = {
-        shopify: false,
-        accordion: false
-      };
-
-      // Function to load script
-      function loadScript(src) {
-        return new Promise((resolve, reject) => {
-          const script = document.createElement('script');
-          script.src = src;
-          script.onload = resolve;
-          script.onerror = reject;
-          document.body.appendChild(script);
-        });
-      }
-
-      // Function to load stylesheet
-      function loadStylesheet(href) {
-        if (!document.querySelector(`link[href="${href}"]`)) {
-          const link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.href = href;
-          document.head.appendChild(link);
-        }
-      }
-
-      // Function to load section
-      async function loadSection(include) {
-        const src = include.getAttribute("src") || include.getAttribute("data-src");
-        if (!src) return;
-
-        try {
-          const response = await fetch(src);
-          const html = await response.text();
-          const div = document.createElement("div");
-          div.innerHTML = html;
-          include.parentNode.replaceChild(div.firstChild, include);
-          
-          // Load corresponding stylesheet
-          const sectionId = src.split('/')[0];
-          if (stylesheets[sectionId]) {
-            loadStylesheet(stylesheets[sectionId]);
-          }
-          
-          componentsLoaded++;
-          
-          // Load and initialize components based on section type
-          if (src.includes('faq-section.html') && !scriptsLoaded.accordion) {
-            await loadScript('js/accordion.js');
-            scriptsLoaded.accordion = true;
-            initAccordion('.faq-item');
-          }
-          
-          if (src.includes('product-offer-section.html') && !scriptsLoaded.shopify) {
-            await loadScript('js/shopify-button.js');
-            scriptsLoaded.shopify = true;
-            initShopify();
-          }
-        } catch (error) {
-          console.error("Error loading include:", error);
-          componentsLoaded++;
-        }
-      }
-
       // Load initial sections
-      window.addEventListener('load', function() {
-        const initialIncludes = document.querySelectorAll('include:not([data-src])');
-        initialIncludes.forEach(loadSection);
-      });
+      function loadInitialSections() {
+        const initialIncludes = document.querySelectorAll('#initial-sections include');
+        initialIncludes.forEach(include => {
+          const src = include.getAttribute("src");
+          if (!src) return;
 
-      // Lazy load remaining sections on scroll
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const includes = entry.target.querySelectorAll('include[data-src]');
-            includes.forEach(loadSection);
-            observer.unobserve(entry.target);
-          }
+          fetch(src)
+            .then(response => response.text())
+            .then(html => {
+              const div = document.createElement("div");
+              div.innerHTML = html;
+              include.parentNode.replaceChild(div.firstChild, include);
+            })
+            .catch(error => {
+              console.error("Error loading include:", error);
+            });
         });
-      }, {
-        rootMargin: '50px'
-      });
+      }
 
-      observer.observe(document.getElementById('lazy-sections'));
+      // Load initial sections on page load
+      window.addEventListener('load', loadInitialSections);
+
+      // Function to load main script
+      function loadMainScript() {
+        const script = document.createElement('script');
+        script.src = 'js/lazy-loader.js';
+        document.body.appendChild(script);
+        
+        // Remove event listeners after first interaction
+        document.removeEventListener('touchstart', loadMainScript);
+        document.removeEventListener('scroll', loadMainScript);
+        document.removeEventListener('mousemove', loadMainScript);
+        document.removeEventListener('mousedown', loadMainScript);
+      }
+
+      // Add event listeners for user interaction
+      document.addEventListener('touchstart', loadMainScript, { once: true });
+      document.addEventListener('scroll', loadMainScript, { once: true });
+      document.addEventListener('mousemove', loadMainScript, { once: true });
+      document.addEventListener('mousedown', loadMainScript, { once: true });
     </script>
   </body>
 </html>
