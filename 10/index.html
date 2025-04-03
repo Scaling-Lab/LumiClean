@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="header/styles.css" />
     <link rel="stylesheet" href="v1/styles.css" />
     <link rel="stylesheet" href="v2/styles.css" />
-    <link rel="stylesheet" href="footer/styles.css" />
+<!--    <link rel="stylesheet" href="footer/styles.css" />-->
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
@@ -17,10 +17,10 @@
       <!-- Initial sections that load immediately -->
       <include src="header/header.html"></include>
       <include src="v1/hero-section.html"></include>
-      <include src="v2/pathogens-info-section.html"></include>
-      
+
       <!-- Lazy loaded sections -->
       <div id="lazy-sections">
+        <include src="v2/pathogens-info-section.html"></include>
         <include data-src="v3/lumiclean-section.html"></include>
         <include data-src="v4/lumiclean-section.html"></include>
         <include data-src="v5/testimonials-section.html"></include>
@@ -32,14 +32,10 @@
         <include data-src="v11/promotion-section.html"></include>
         <include data-src="v12/faq-section.html"></include>
       </div>
-      
+
       <include src="footer/footer.html"></include>
     </main>
 
-    <!-- Core scripts -->
-    <script src="js/shopify-button.js"></script>
-    <script src="js/accordion.js"></script>
-    
     <!-- Lazy loading implementation -->
     <script>
       let componentsLoaded = 0;
@@ -54,8 +50,26 @@
         'v9': 'v9/styles.css',
         'v10': 'v10/styles.css',
         'v11': 'v11/styles.css',
-        'v12': 'v12/styles.css'
+        'v12': 'v12/styles.css',
+        'footer': 'footer/styles.css'
       };
+
+      // Script loading state
+      let scriptsLoaded = {
+        shopify: false,
+        accordion: false
+      };
+
+      // Function to load script
+      function loadScript(src) {
+        return new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = src;
+          script.onload = resolve;
+          script.onerror = reject;
+          document.body.appendChild(script);
+        });
+      }
 
       // Function to load stylesheet
       function loadStylesheet(href) {
@@ -87,14 +101,16 @@
           
           componentsLoaded++;
           
-          // Initialize components based on section type
-          if (src.includes('faq-section.html')) {
+          // Load and initialize components based on section type
+          if (src.includes('faq-section.html') && !scriptsLoaded.accordion) {
+            await loadScript('js/accordion.js');
+            scriptsLoaded.accordion = true;
             initAccordion('.faq-item');
           }
           
-          // Initialize Shopify button only once
-          if (!window.shopifyButtonInitialized && src.includes('product-offer-section.html')) {
-            window.shopifyButtonInitialized = true;
+          if (src.includes('product-offer-section.html') && !scriptsLoaded.shopify) {
+            await loadScript('js/shopify-button.js');
+            scriptsLoaded.shopify = true;
             initShopify();
           }
         } catch (error) {
