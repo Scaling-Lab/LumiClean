@@ -14,7 +14,7 @@ body {
 .easy-steps-section {
   background-color: #ffffff;
   display: flex;
-  padding: 100px 222px;
+  padding: 60px 222px;
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
@@ -49,12 +49,10 @@ body {
   flex-direction: column;
   border-radius: 40px;
   position: relative;
-  min-height: 758px;
+  /*min-height: 758px;*/
   min-width: 240px;
-  padding: 164px 20px;
   overflow: hidden;
   align-items: stretch;
-  justify-content: center;
   flex-grow: 1;
   flex-shrink: 1;
   width: 380px;
@@ -72,7 +70,9 @@ body {
 .easy-steps-section .card-content {
   position: relative;
   width: 100%;
-  max-width: 435px;
+  max-width: 100%;
+  padding-top: 170px;
+  padding-bottom: 40px;
 }
 
 .easy-steps-section .step-header {
@@ -97,7 +97,7 @@ body {
 
 .easy-steps-section .step-description {
   display: flex;
-  margin-top: 40px;
+  margin-top: 10px;
   width: 100%;
   align-items: flex-start;
   gap: 10px;
@@ -119,12 +119,13 @@ body {
 .easy-steps-section .description-text {
   width: 401px;
   margin: 0;
+  font-size: 18px;
 }
 
 /* Media Queries */
 @media (max-width: 991px) {
   .easy-steps-section {
-    padding: 100px 20px;
+    padding: 40px 20px;
   }
 
   .easy-steps-section .container {
@@ -142,11 +143,13 @@ body {
 
   .easy-steps-section .step-card {
     max-width: 100%;
-    padding: 100px 20px;
+    padding: 20px 10px;
   }
 
   .easy-steps-section .card-content {
     max-width: 100%;
+    padding-top: 100px;
+    padding-bottom: 20px;
   }
 
   .easy-steps-section .step-header {
@@ -154,7 +157,7 @@ body {
   }
 
   .easy-steps-section .step-number {
-    font-size: 40px;
+    font-size: 96px;
     max-width: 100%;
   }
 
@@ -164,5 +167,14 @@ body {
 
   .easy-steps-section .step-description {
     max-width: 100%;
+  }
+  .easy-steps-section .section-title {
+    font-size: 28px;
+  }
+  .easy-steps-section .container {
+    gap: 0;
+  }
+  .easy-steps-section .description-text {
+    font-size: 16px;
   }
 }

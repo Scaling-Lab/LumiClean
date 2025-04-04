@@ -19,7 +19,7 @@ body {
 .features-section-v9 {
   background-color: rgba(246, 252, 254, 1);
   display: flex;
-  padding: 100px 310px;
+  padding: 80px 310px;
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
