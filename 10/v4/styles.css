@@ -85,7 +85,7 @@ body {
 @media (max-width: 991px) {
   .lumiclean-section-v4 {
     padding: 40px;
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 40px;
   }
 

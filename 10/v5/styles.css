@@ -71,6 +71,7 @@ body {
   font-weight: 700;
   line-height: 130%;
   color: #3496d6;
+  font-style: italic;
 }
 
 @media (max-width: 991px) {
@@ -154,6 +155,12 @@ body {
 
 .customer-info {
   color: #000;
+  display: flex;
+  flex-direction: column;
+}
+
+.customer-role {
+  font-style: italic;
 }
 
 .customer-name {

@@ -164,7 +164,7 @@
 
 @media (max-width: 991px) {
   .lumiclean-section-v3 {
-    padding: 0 20px;
+    padding: 30px;
   }
 
   .info-column-v3 {
@@ -188,5 +188,9 @@
   .main-heading-v3 {
     font-size: 28px;
     line-height: 34px;
+  }
+  .content-container-v3 {
+    flex-direction: column-reverse;
+    gap: 20px;
   }
 }
