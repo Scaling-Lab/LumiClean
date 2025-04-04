@@ -52,8 +52,8 @@ body {
 /* Review Badge */
 .review-badge {
   display: flex;
-  padding: 8px 16px;
-  align-items: center;
+  padding: 8px 6px 0px;
+  align-items: start;
   gap: 6px;
   border-radius: 50px;
   box-shadow: 0 0 25px 0 rgba(0, 43, 91, 0.05);
@@ -80,7 +80,7 @@ body {
 
 @media (max-width: 640px) {
   .hero-title {
-    font-size: 32px;
+    font-size: 28px;
   }
 }
 
@@ -143,6 +143,7 @@ body {
   .feature-card {
     width: 100%;
     height: unset;
+    padding: 5px 20px;
   }
   .feature-content {
     width: unset !important;
@@ -184,6 +185,13 @@ body {
 }
 
 @media (max-width: 991px) {
+
+  .feature-icon {
+    width: 28px;
+    height: 28px;
+    margin-top: 5px;
+  }
+
   .cta-container {
     width: 100%;
   }

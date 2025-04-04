@@ -61,7 +61,7 @@ body {
 
 @media (max-width: 640px) {
   .title-main {
-    font-size: 24px;
+    font-size: 28px;
   }
 }
 
@@ -81,7 +81,7 @@ body {
 
 @media (max-width: 640px) {
   .title-highlight {
-    font-size: 24px;
+    font-size: 28px;
   }
 }
 

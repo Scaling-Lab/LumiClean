@@ -183,3 +183,10 @@
     max-width: 100%;
   }
 }
+
+@media (max-width: 640px) {
+  .main-heading-v3 {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}

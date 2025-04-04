@@ -185,3 +185,9 @@ body {
     padding-right: 20px;
   }
 }
+
+@media (max-width: 640px) {
+  .section-title-v6 {
+    font-size: 28px;
+  }
+}
