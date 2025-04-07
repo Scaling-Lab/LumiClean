@@ -81,17 +81,18 @@ body {
   font-weight: 400;
   line-height: 130%;
   max-width: 876px;
+  white-space: pre-line;
 }
 
 @media (max-width: 991px) {
   .promotion-description {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
 @media (max-width: 640px) {
   .promotion-description {
-    font-size: 14px;
+    font-size: 18px;
   }
 }
 
