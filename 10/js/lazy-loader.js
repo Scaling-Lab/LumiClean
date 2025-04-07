@@ -113,7 +113,6 @@ function initShopifyIframePosition() {
       top: 40% !important;
       right: 0%;
       padding: 0px;
-      }
     }
   `;
   document.head.appendChild(style);
@@ -126,8 +125,11 @@ function initShopifyIframePosition() {
       return;
     }
     
+    // Check if we're at the top of the page
+    const isAtTop = window.scrollY < 300;
+    
     shopifyFrames.forEach(frame => {
-      if (window.scrollY < 300) {
+      if (isAtTop) {
         // We're near the top of the page
         frame.classList.remove('is-default');
         frame.classList.add('is-sticky');
