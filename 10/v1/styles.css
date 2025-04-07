@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   line-height: 1.6;
@@ -212,6 +216,10 @@ body {
   text-transform: uppercase;
   cursor: pointer;
   background-color: #cb0d20;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 991px) {
