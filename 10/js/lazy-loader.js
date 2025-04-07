@@ -72,6 +72,10 @@ async function loadShopifyButton(retryCount = 0, maxRetries = 3) {
     if (isShopifyInitialized()) {
       console.log('Shopify is initialized, calling initShopify()');
       initShopify();
+      
+      // Initialize Shopify iframe position tracking after initialization
+      setTimeout(initShopifyIframePosition, 1000);
+      
       return true;
     }
 
@@ -93,6 +97,62 @@ async function loadShopifyButton(retryCount = 0, maxRetries = 3) {
     }
     return false;
   }
+}
+
+// Initialize Shopify iframe position tracking
+function initShopifyIframePosition() {
+  // Add CSS for iframe positioning
+  const style = document.createElement('style');
+  style.textContent = `
+    .shopify-buy-frame--toggle.is-sticky {
+      position: absolute !important;
+      top: 36px !important;
+    }
+    .shopify-buy-frame--toggle.is-default {
+      position: fixed !important;
+      top: 40% !important;
+      right: 0%;
+      padding: 0px;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+  
+  // Function to update iframe position based on scroll
+  function updateIframePosition() {
+    const shopifyFrames = document.querySelectorAll('.shopify-buy-frame--toggle');
+    
+    if (shopifyFrames.length === 0) {
+      return;
+    }
+    
+    shopifyFrames.forEach(frame => {
+      if (window.scrollY < 300) {
+        // We're near the top of the page
+        frame.classList.remove('is-default');
+        frame.classList.add('is-sticky');
+      } else {
+        // We're scrolled down
+        frame.classList.remove('is-sticky');
+        frame.classList.add('is-default');
+      }
+    });
+  }
+  
+  // Initial check
+  updateIframePosition();
+  
+  // Check on scroll with throttling
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateIframePosition();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
 }
 
 // Load section 7 (product offer section) with Shopify integration
