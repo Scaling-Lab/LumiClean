@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LumiClean Superior Features</title>
+    <link rel="stylesheet" href="section-v6.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Include the section component -->
+      <div w3-include-html="section-v6.html"></div>
+    </div>
+
+    <!-- Simple include HTML functionality -->
+    <script>
+      async function includeHTML() {
+        const elements = document.querySelectorAll("[w3-include-html]");
+        for (const element of elements) {
+          const file = element.getAttribute("w3-include-html");
+          try {
+            const response = await fetch(file);
+            if (response.ok) {
+              const html = await response.text();
+              element.innerHTML = html;
+              element.removeAttribute("w3-include-html");
+            } else {
+              element.innerHTML = "Page not found";
+            }
+          } catch (error) {
+            element.innerHTML = "Error loading page";
+          }
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", includeHTML);
+    </script>
+  </body>
+</html>
