@@ -62,14 +62,12 @@
             z-index: 1000;
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
         }
 
         .cart-drawer.translate-x-0 {
             transform: translateX(0);
-        }
-
-        .cart-drawer.translate-x-full {
-            transform: translateX(100%);
         }
 
         /* Cart Overlay */
@@ -82,20 +80,35 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
             opacity: 0;
+            visibility: hidden;
             transition: opacity 0.3s ease-in-out;
         }
 
-        .cart-overlay.opacity-100 {
+        .cart-overlay.open {
             opacity: 1;
+            visibility: visible;
         }
 
         /* Cart Header */
         .cart-header {
-            padding: 1rem;
+            padding: 1.5rem;
             border-bottom: 1px solid #e5e7eb;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: white;
+        }
+
+        .cart-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cart-header h2::before {
+            content: "🛒";
         }
 
         .close-cart-btn {
@@ -103,14 +116,15 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            padding: 0.5rem;
+            color: #666;
+            padding: 0;
         }
 
         /* Cart Items */
         .cart-items-container {
             padding: 1rem;
             overflow-y: auto;
-            max-height: calc(100vh - 200px);
+            flex-grow: 1;
         }
 
         .cart-item {
@@ -118,12 +132,14 @@
             gap: 1rem;
             padding: 1rem 0;
             border-bottom: 1px solid #e5e7eb;
+            position: relative;
         }
 
         .cart-item-image {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            background: #f5f5f5;
             border-radius: 4px;
         }
 
@@ -133,90 +149,151 @@
 
         .cart-item-title {
             font-weight: 500;
-            margin-bottom: 0.5rem;
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
         }
 
         .cart-item-price {
-            margin-bottom: 0.5rem;
-        }
-
-        .cart-item-quantity {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cart-item-price [data-cart-item-price] {
+            color: #dc2626;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .cart-item-price [data-cart-item-original-price] {
+            color: #666;
+            text-decoration: line-through;
+        }
+
+        .cart-item-quantity {
+            display: inline-flex;
+            align-items: center;
+            background: #f5f5f5;
+            border-radius: 6px;
+            padding: 0.25rem;
         }
 
         .quantity-btn {
-            background: #f3f4f6;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
             border: 1px solid #e5e7eb;
-            padding: 0.25rem 0.5rem;
             border-radius: 4px;
+            font-size: 1.25rem;
             cursor: pointer;
-        }
-
-        .quantity-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
         }
 
         .quantity-display {
-            min-width: 2rem;
+            width: 40px;
             text-align: center;
+            font-weight: 500;
         }
 
         .remove-item-btn {
-            color: #ef4444;
+            position: absolute;
+            top: 1rem;
+            right: 0;
             background: none;
             border: none;
-            padding: 0;
-            font-size: 0.875rem;
+            color: #999;
             cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .remove-item-btn svg {
+            width: 20px;
+            height: 20px;
         }
 
         /* Cart Summary */
         .cart-summary {
-            position: sticky;
-            bottom: 0;
-            background: #fff;
-            padding: 1rem;
+            padding: 1.5rem;
             border-top: 1px solid #e5e7eb;
+            background: white;
         }
 
-        .cart-subtotal {
+        .price-row {
             display: flex;
             justify-content: space-between;
-            font-weight: 500;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .price-row.original-price {
+            color: #666;
+        }
+
+        .price-row.discount {
+            color: #22c55e;
+        }
+
+        .price-row.total-savings {
+            color: #22c55e;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 0.75rem;
+        }
+
+        .price-row.final-price {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
+        }
+
+        .free-shipping-banner {
+            background: #f0fdf4;
+            border: 1px solid #22c55e;
+            border-radius: 6px;
+            padding: 0.75rem;
+            text-align: center;
+            color: #15803d;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .checkout-features {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
         }
 
         .checkout-btn {
             width: 100%;
-            background: #000;
-            color: #fff;
-            padding: 0.75rem;
+            background: #dc2626;
+            color: white;
+            padding: 1rem;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             font-weight: 500;
+            font-size: 1.125rem;
             cursor: pointer;
-            transition: opacity 0.2s;
+            margin-bottom: 0.5rem;
         }
 
-        .checkout-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .continue-shopping-btn {
-            width: 100%;
-            background: #fff;
-            color: #000;
-            padding: 0.75rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 4px;
-            font-weight: 500;
-            cursor: pointer;
-            margin-top: 0.5rem;
+        .taxes-notice {
+            text-align: center;
+            color: #666;
+            font-size: 0.875rem;
         }
 
         /* Loading Overlay */
@@ -319,15 +396,19 @@
                     <div data-cart-item-name class="cart-item-title"></div>
                     <div class="cart-item-price">
                         <span data-cart-item-price></span>
-                        <span data-cart-item-original-price class="line-through text-gray-500 ml-2"></span>
+                        <span data-cart-item-original-price></span>
                     </div>
                     <div class="cart-item-quantity">
-                        <button class="quantity-btn quantity-minus-btn" aria-label="Decrease quantity">-</button>
-                        <span data-cart-item-quantity class="quantity-display"></span>
+                        <button class="quantity-btn quantity-minus-btn" aria-label="Decrease quantity">−</button>
+                        <span data-cart-item-quantity class="quantity-display">1</span>
                         <button class="quantity-btn quantity-plus-btn" aria-label="Increase quantity">+</button>
                     </div>
-                    <button class="remove-item-btn">Remove</button>
                 </div>
+                <button class="remove-item-btn" aria-label="Remove item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
             </div>
             
             <!-- Empty Cart Message -->
@@ -335,19 +416,47 @@
                 Your cart is empty
             </div>
         </div>
-        
+
         <!-- Cart Summary -->
         <div class="cart-summary">
-            <div id="cart-original-total"></div>
-            <div id="initial-discount-amount"></div>
-            <div id="total-savings-amount"></div>
-            <div class="cart-subtotal">
-                <span>Subtotal:</span>
+            <div class="price-row original-price">
+                <span>Original Price:</span>
+                <span id="cart-original-total"></span>
+            </div>
+            <div class="price-row discount">
+                <span>Initial Discount:</span>
+                <span id="initial-discount-amount"></span>
+            </div>
+            <div class="price-row total-savings">
+                <span>Total Savings:</span>
+                <span id="total-savings-amount"></span>
+            </div>
+            <div class="price-row final-price">
+                <span>Final Price:</span>
                 <span id="cart-subtotal"></span>
             </div>
-            <div id="installment-info" class="text-sm text-gray-600 mb-4"></div>
+
+<!--            <div id="installment-info" class="text-sm text-gray-600 mb-4"></div>-->
+            
+            <div class="free-shipping-banner">
+                <span>🚚</span>
+                Free Shipping Included
+            </div>
+
+            <div class="checkout-features">
+                <div class="feature">
+                    <span>🔒</span>
+                    Secure Checkout
+                </div>
+                <div class="feature">
+                    <span>✓</span>
+                    60-Day Guarantee
+                </div>
+            </div>
+
+
             <button id="checkout-btn" class="checkout-btn">Proceed to Checkout</button>
-            <button id="continue-shopping-btn" class="continue-shopping-btn mt-4">Continue Shopping</button>
+            <div class="taxes-notice">Taxes calculated at checkout.</div>
         </div>
         
         <!-- Loading Overlay -->
