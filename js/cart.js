@@ -1,5 +1,9 @@
-    // --- Product Variant ID (Replace with your actual Product Variant ID) ---
-    const PRODUCT_VARIANT_ID = 'gid://shopify/ProductVariant/44103628357881'; // UVO254™ - Powered Home Disinfection Tower
+    // --- Product Variant IDs ---
+    const PRODUCT_VARIANTS = {
+        UVO254: 'gid://shopify/ProductVariant/46379699044601',  // UVO254™ - Powered Home Disinfection Tower
+        UVO108: 'gid://shopify/ProductVariant/46379702943993',  // UVO108™
+        UVO72: 'gid://shopify/ProductVariant/46379707695353'    // UVO72™
+    };
 
     // --- Cart Drawer Elements (Keep elements from previous answer) ---
     const cartDrawer = document.getElementById('cart-drawer');
@@ -994,412 +998,414 @@
 
      // --- Event Listeners Setup ---
      function setupEventListeners() {
-        console.log('[Cart Debug] setupEventListeners START'); // <-- ADDED LOG
+        console.log('[Cart Debug] setupEventListeners START');
 
-         // Open Cart Trigger
-         const openCartTrigger = document.getElementById('open-cart-trigger');
-         if (openCartTrigger) {
-             openCartTrigger.addEventListener('click', openDrawer);
-         } else {
-             console.warn("Element with ID 'open-cart-trigger' not found.");
-         }
+        // Add to Cart Buttons
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const variant = button.getAttribute('data-variant');
+                if (variant && PRODUCT_VARIANTS[variant]) {
+                    handleAddItemClick(PRODUCT_VARIANTS[variant]);
+                } else {
+                    console.error('Invalid variant ID for button:', button);
+                }
+            });
+        });
 
-         // Close Drawer
-         closeCartBtn.addEventListener('click', closeDrawer);
-         cartOverlay.addEventListener('click', closeDrawer);
+        // Open Cart Trigger
+        const openCartTrigger = document.getElementById('open-cart-trigger');
+        if (openCartTrigger) {
+            openCartTrigger.addEventListener('click', openDrawer);
+        } else {
+            console.warn("Element with ID 'open-cart-trigger' not found.");
+        }
 
-         // Checkout Button
-         checkoutBtn.addEventListener('click', () => {
-             const baseUrl = cart?.checkoutUrl; // Get base URL from cart state
-             console.log('[Cart Debug] Checkout button clicked. URL:', baseUrl, 'Cart Quantity:', cart?.totalQuantity); // <-- ADDED LOG
-             if (cart && cart.totalQuantity > 0 && baseUrl && baseUrl !== '#') {
-                 // Disable button immediately
-                 checkoutBtn.disabled = true;
-                 checkoutBtn.classList.add('opacity-50');
-                 checkoutBtn.textContent = 'Redirecting...';
+        // Close Drawer
+        closeCartBtn.addEventListener('click', closeDrawer);
+        cartOverlay.addEventListener('click', closeDrawer);
 
-                 // 1. Get the parameters captured on initial page load
-                 const capturedAttributes = getUrlParameters(); // Use the helper function
+        // Checkout Button
+        checkoutBtn.addEventListener('click', () => {
+            const baseUrl = cart?.checkoutUrl; // Get base URL from cart state
+            console.log('[Cart Debug] Checkout button clicked. URL:', baseUrl, 'Cart Quantity:', cart?.totalQuantity); // <-- ADDED LOG
+            if (cart && cart.totalQuantity > 0 && baseUrl && baseUrl !== '#') {
+                // Disable button immediately
+                checkoutBtn.disabled = true;
+                checkoutBtn.classList.add('opacity-50');
+                checkoutBtn.textContent = 'Redirecting...';
 
-                 // 2. Convert attributes back into a query string
-                 const params = new URLSearchParams();
-                 capturedAttributes.forEach(attr => {
-                     // Ensure we don't append empty values if somehow captured
-                     if (attr.value) { 
-                          params.append(attr.key, attr.value);
-                     }
-                 });
-                 const queryString = params.toString();
+                // 1. Get the parameters captured on initial page load
+                const capturedAttributes = getUrlParameters(); // Use the helper function
 
-                 // 3. Construct the final URL
-                 let finalUrl = baseUrl;
-                 if (queryString) {
-                     // Check if the base URL already has query parameters
-                     if (baseUrl.includes('?')) {
-                         finalUrl += '&' + queryString;
-                     } else {
-                         finalUrl += '?' + queryString;
-                     }
-                 }
-                 
-                 console.log("Redirecting to checkout with params:", finalUrl); // Log the final URL
+                // 2. Convert attributes back into a query string
+                const params = new URLSearchParams();
+                capturedAttributes.forEach(attr => {
+                    // Ensure we don't append empty values if somehow captured
+                    if (attr.value) { 
+                         params.append(attr.key, attr.value);
+                    }
+                });
+                const queryString = params.toString();
 
-                 // 4. Redirect the user
-                 window.location.href = finalUrl;
+                // 3. Construct the final URL
+                let finalUrl = baseUrl;
+                if (queryString) {
+                    // Check if the base URL already has query parameters
+                    if (baseUrl.includes('?')) {
+                        finalUrl += '&' + queryString;
+                    } else {
+                        finalUrl += '?' + queryString;
+                    }
+                }
+                
+                console.log("Redirecting to checkout with params:", finalUrl); // Log the final URL
 
-             } else if (cart && cart.totalQuantity === 0) {
-                 showCartError("Your cart is empty."); // Using our new error display
-                  // Re-enable button if cart is empty
-                  checkoutBtn.disabled = false;
-                  checkoutBtn.classList.remove('opacity-50');
-                  checkoutBtn.textContent = 'Proceed to Checkout';
-             } else {
-                 console.error("Checkout URL not available or cart invalid.");
-                 showCartError("Could not proceed to checkout. Please try again later.");
-                  // Re-enable button on error
-                  checkoutBtn.disabled = false;
-                  checkoutBtn.classList.remove('opacity-50');
-                  checkoutBtn.textContent = 'Proceed to Checkout';
-             }
-         });
+                // 4. Redirect the user
+                window.location.href = finalUrl;
 
-         // Add to Cart Button
-         const addToCartBtn = document.getElementById('add-to-cart-btn');
-         if (addToCartBtn) {
-             addToCartBtn.addEventListener('click', () => {
-                 handleAddItemClick(PRODUCT_VARIANT_ID);
-             });
-         } else {
-             console.warn("Element with ID 'add-to-cart-btn' not found.");
-         }
-
-         // Continue Shopping Button
-         const continueShoppingBtn = document.getElementById('continue-shopping-btn');
-         if (continueShoppingBtn) {
-             continueShoppingBtn.addEventListener('click', closeDrawer);
-         } else {
-             console.warn("Element with ID 'continue-shopping-btn' not found.");
-         }
-
-         // NEW Listener for Main CTAs (including 'Start my payments')
-         document.querySelectorAll('.js-main-cta').forEach(button => {
-             button.addEventListener('click', (e) => {
-                 e.preventDefault(); // Prevent default link behavior
-
-                 // Check if product is already in the cart
-                 const isProductInCart = cart?.lines?.nodes?.some(
-                     line => line.merchandise.id === PRODUCT_VARIANT_ID
-                 );
-
-                 if (isProductInCart) {
-                     console.log("Product already in cart, opening drawer.");
-                     openDrawer();
-                 } else {
-                     console.log("Product not in cart or cart empty, adding product...");
-                     handleAddItemClick(PRODUCT_VARIANT_ID);
-                     // handleAddItemClick already opens the drawer on success
-                 }
-             });
-         });
-
-         // Page Visibility Handler - Reset checkout button when returning to the page
-         document.addEventListener('visibilitychange', () => {
-             if (document.visibilityState === 'visible') {
-                 console.log("Page became visible again, resetting checkout button state");
-                 const checkoutBtn = document.getElementById('checkout-btn');
-                 if (checkoutBtn) {
-                     checkoutBtn.disabled = cart && cart.totalQuantity === 0;
-                     checkoutBtn.classList.toggle('opacity-50', cart && cart.totalQuantity === 0);
-                     checkoutBtn.textContent = 'Proceed to Checkout';
-                 }
-             }
-         });
-
-         // Also handle page load/reload to ensure button is reset
-         window.addEventListener('pageshow', (event) => {
-             // This catches both normal loads and loads from back/forward cache
-             console.log("Page shown (including from back/forward navigation)");
-             const checkoutBtn = document.getElementById('checkout-btn');
-             if (checkoutBtn) {
-                 checkoutBtn.disabled = cart && cart.totalQuantity === 0;
-                 checkoutBtn.classList.toggle('opacity-50', cart && cart.totalQuantity === 0);
+            } else if (cart && cart.totalQuantity === 0) {
+                showCartError("Your cart is empty."); // Using our new error display
+                 // Re-enable button if cart is empty
+                 checkoutBtn.disabled = false;
+                 checkoutBtn.classList.remove('opacity-50');
                  checkoutBtn.textContent = 'Proceed to Checkout';
-             }
-         });
+            } else {
+                console.error("Checkout URL not available or cart invalid.");
+                showCartError("Could not proceed to checkout. Please try again later.");
+                 // Re-enable button on error
+                 checkoutBtn.disabled = false;
+                 checkoutBtn.classList.remove('opacity-50');
+                 checkoutBtn.textContent = 'Proceed to Checkout';
+            }
+        });
 
-         // Alia Event Listener - Reward Claimed
-         document.addEventListener("alia:rewardClaimed", async (e) => {
-             if (isLoading) return; // Prevent overlapping updates or actions
+        // Continue Shopping Button
+        const continueShoppingBtn = document.getElementById('continue-shopping-btn');
+        if (continueShoppingBtn) {
+            continueShoppingBtn.addEventListener('click', closeDrawer);
+        } else {
+            console.warn("Element with ID 'continue-shopping-btn' not found.");
+        }
 
-            console.log("Alia reward claimed:", e.detail);
-            const { rewardText, discountCode } = e.detail;
+        // NEW Listener for Main CTAs (including 'Start my payments')
+        document.querySelectorAll('.js-main-cta').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent default link behavior
 
-            if (!discountCode) {
-                console.warn("Alia event triggered without a discount code.");
+                // Check if product is already in the cart
+                const isProductInCart = cart?.lines?.nodes?.some(
+                    line => line.merchandise.id === PRODUCT_VARIANTS.UVO254
+                );
+
+                if (isProductInCart) {
+                    console.log("Product already in cart, opening drawer.");
+                    openDrawer();
+                } else {
+                    console.log("Product not in cart or cart empty, adding product...");
+                    handleAddItemClick(PRODUCT_VARIANTS.UVO254);
+                    // handleAddItemClick already opens the drawer on success
+                }
+            });
+        });
+
+        // Page Visibility Handler - Reset checkout button when returning to the page
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                console.log("Page became visible again, resetting checkout button state");
+                const checkoutBtn = document.getElementById('checkout-btn');
+                if (checkoutBtn) {
+                    checkoutBtn.disabled = cart && cart.totalQuantity === 0;
+                    checkoutBtn.classList.toggle('opacity-50', cart && cart.totalQuantity === 0);
+                    checkoutBtn.textContent = 'Proceed to Checkout';
+                }
+            }
+        });
+
+        // Also handle page load/reload to ensure button is reset
+        window.addEventListener('pageshow', (event) => {
+            // This catches both normal loads and loads from back/forward cache
+            console.log("Page shown (including from back/forward navigation)");
+            const checkoutBtn = document.getElementById('checkout-btn');
+            if (checkoutBtn) {
+                checkoutBtn.disabled = cart && cart.totalQuantity === 0;
+                checkoutBtn.classList.toggle('opacity-50', cart && cart.totalQuantity === 0);
+                checkoutBtn.textContent = 'Proceed to Checkout';
+            }
+        });
+
+        // Alia Event Listener - Reward Claimed
+        document.addEventListener("alia:rewardClaimed", async (e) => {
+            if (isLoading) return; // Prevent overlapping updates or actions
+
+           console.log("Alia reward claimed:", e.detail);
+           const { rewardText, discountCode } = e.detail;
+
+           if (!discountCode) {
+               console.warn("Alia event triggered without a discount code.");
+               return;
+           }
+
+            // Set expiry timestamp (30 minutes from now)
+            const expiryTimestamp = Date.now() + 30 * 60 * 1000;
+
+            // If cart doesn't exist yet, initialize it
+            if (!cart) {
+                console.log("Cart not initialized yet, creating new cart...");
+                try {
+                    cart = await createCart();
+                    if (!cart) throw new Error("Failed to create cart after Alia event.");
+                } catch (error) {
+                    console.error("Failed to create cart:", error);
+                    showCartError("Could not initialize cart to apply discount."); // Using our new error display
+                    return;
+                }
+            }
+
+            try {
+                console.log(`Attempting to apply Alia discount code: ${discountCode} to cart ${cart.id}`);
+                const updatedCart = await applyDiscountCode(cart.id, discountCode);
+
+                if (updatedCart) {
+                    // Check if the code was *actually* applied successfully in the *updated* cart
+                    const isCodeApplied = updatedCart.discountCodes?.some(dc => dc.code === discountCode);
+
+                    if (isCodeApplied) {
+                        console.log(`Discount code ${discountCode} successfully applied.`);
+                        // SUCCESS: Persist the details and update UI
+                        localStorage.setItem(ALIA_CODE_STORAGE_KEY, discountCode);
+                        localStorage.setItem(ALIA_TEXT_STORAGE_KEY, rewardText);
+                        localStorage.setItem(ALIA_EXPIRY_STORAGE_KEY, expiryTimestamp.toString());
+
+                        cart = updatedCart; // IMPORTANT: Update global cart state
+                        renderCart(); // This will call renderAppliedDiscounts
+
+                        // Open drawer only if the cart has items after applying discount
+                        if (updatedCart.totalQuantity > 0) {
+                             console.log("Opening drawer: Discount applied and cart has items.");
+                             openDrawer();
+                        } else {
+                             console.log("Discount applied, but cart is empty. Drawer remains closed.");
+                        }
+                    } else {
+                        // If the code wasn't in the updatedCart.discountCodes
+                        console.error(`Discount code '${discountCode}' was NOT found in updated cart discountCodes.`, updatedCart.discountCodes);
+                         throw new Error("Discount code was not applied successfully by Shopify.");
+                    }
+                } else {
+                    // If the mutation itself returned no cart data
+                    throw new Error("Failed to update cart with discount code.");
+                }
+
+            } catch (error) {
+                console.error("Error applying Alia discount code:", error); // Log the actual error
+                showCartError(`Could not apply discount: ${error.message}`); // Using our new error display
+
+                // Clear potentially stale storage if application failed
+                console.log("Clearing Alia data from localStorage due to application error.");
+                localStorage.removeItem(ALIA_CODE_STORAGE_KEY);
+                localStorage.removeItem(ALIA_TEXT_STORAGE_KEY);
+                localStorage.removeItem(ALIA_EXPIRY_STORAGE_KEY);
+
+                renderAppliedDiscounts(); // Update UI to hide any discount messaging
+            }
+        });
+
+        // Alia Event Listener - Signup
+        document.addEventListener("alia:signup", async (e) => {
+            if (isLoading) return;
+            console.log("Alia signup event received:", e.detail);
+            const { email, phone } = e.detail;
+
+            if (!email && !phone) {
+                console.warn("Alia signup event received without email or phone.");
                 return;
             }
 
-             // Set expiry timestamp (30 minutes from now)
-             const expiryTimestamp = Date.now() + 30 * 60 * 1000;
+            // Ensure cart exists
+            if (!cart) {
+                console.log("Signup event: Cart not initialized, creating...");
+                try {
+                    cart = await createCart();
+                    if (!cart) throw new Error("Failed to create cart for signup event.");
+                } catch (error) {
+                    console.error("Failed to create cart for signup event:", error);
+                    showCartError("Could not initialize cart to save contact info."); // Using our new error display
+                    return;
+                }
+            }
 
-             // If cart doesn't exist yet, initialize it
-             if (!cart) {
-                 console.log("Cart not initialized yet, creating new cart...");
-                 try {
-                     cart = await createCart();
-                     if (!cart) throw new Error("Failed to create cart after Alia event.");
-                 } catch (error) {
-                     console.error("Failed to create cart:", error);
-                     showCartError("Could not initialize cart to apply discount."); // Using our new error display
-                     return;
-                 }
-             }
+            const buyerIdentity = {};
+            if (email) buyerIdentity.email = email;
+            if (phone) buyerIdentity.phone = phone; // Assuming Shopify accepts phone in buyerIdentity
 
-             try {
-                 console.log(`Attempting to apply Alia discount code: ${discountCode} to cart ${cart.id}`);
-                 const updatedCart = await applyDiscountCode(cart.id, discountCode);
+            try {
+                console.log(`Updating buyer identity for cart ${cart.id}:`, buyerIdentity);
+                const data = await callShopifyAPI(CART_BUYER_IDENTITY_UPDATE_MUTATION, {
+                    cartId: cart.id,
+                    buyerIdentity: buyerIdentity
+                });
 
-                 if (updatedCart) {
-                     // Check if the code was *actually* applied successfully in the *updated* cart
-                     const isCodeApplied = updatedCart.discountCodes?.some(dc => dc.code === discountCode);
+                if (data?.cartBuyerIdentityUpdate?.cart) {
+                    console.log("Buyer identity updated successfully.");
+                    cart = data.cartBuyerIdentityUpdate.cart; // Update global cart state
+                    // Optionally re-render if needed, though buyer identity isn't usually visible in cart
+                    // renderCart();
+                } else {
+                    console.error("Failed to update buyer identity. Response:", data);
+                    throw new Error(data?.cartBuyerIdentityUpdate?.userErrors?.[0]?.message || "Unknown error updating buyer identity.");
+                }
+            } catch (error) {
+                console.error("Error updating buyer identity:", error);
+                showCartError(`Could not save contact information: ${error.message}`); // Using our new error display
+            }
+        });
 
-                     if (isCodeApplied) {
-                         console.log(`Discount code ${discountCode} successfully applied.`);
-                         // SUCCESS: Persist the details and update UI
-                         localStorage.setItem(ALIA_CODE_STORAGE_KEY, discountCode);
-                         localStorage.setItem(ALIA_TEXT_STORAGE_KEY, rewardText);
-                         localStorage.setItem(ALIA_EXPIRY_STORAGE_KEY, expiryTimestamp.toString());
+        // Alia Event Listener - Poll Answered
+        document.addEventListener("alia:pollAnswered", async (e) => {
+            if (isLoading) return;
+            console.log("Alia poll answered event received:", e.detail);
+            const { answers } = e.detail;
 
-                         cart = updatedCart; // IMPORTANT: Update global cart state
-                         renderCart(); // This will call renderAppliedDiscounts
+            if (!answers || answers.length === 0) {
+                console.warn("Alia poll answered event received without answers.");
+                return;
+            }
 
-                         // Open drawer only if the cart has items after applying discount
-                         if (updatedCart.totalQuantity > 0) {
-                              console.log("Opening drawer: Discount applied and cart has items.");
-                              openDrawer();
-                         } else {
-                              console.log("Discount applied, but cart is empty. Drawer remains closed.");
-                         }
-                     } else {
-                         // If the code wasn't in the updatedCart.discountCodes
-                         console.error(`Discount code '${discountCode}' was NOT found in updated cart discountCodes.`, updatedCart.discountCodes);
-                          throw new Error("Discount code was not applied successfully by Shopify.");
-                     }
-                 } else {
-                     // If the mutation itself returned no cart data
-                     throw new Error("Failed to update cart with discount code.");
-                 }
+            // Ensure cart exists
+            if (!cart) {
+                console.log("Poll event: Cart not initialized, creating...");
+                try {
+                    cart = await createCart();
+                    if (!cart) throw new Error("Failed to create cart for poll event.");
+                } catch (error) {
+                    console.error("Failed to create cart for poll event:", error);
+                    showCartError("Could not initialize cart to save poll answers."); // Using our new error display
+                    return;
+                }
+            }
 
-             } catch (error) {
-                 console.error("Error applying Alia discount code:", error); // Log the actual error
-                 showCartError(`Could not apply discount: ${error.message}`); // Using our new error display
+            // Format answers into Shopify attributes
+            // Prefix keys to avoid conflicts with UTM attributes
+            const newPollAttributes = answers.map(answer => ({
+                key: `poll_${answer.questionID || 'question'}`, // Use questionID or a generic prefix
+                value: `${answer.questionText}: ${answer.answerText}` // Combine question and answer text
+            }));
 
-                 // Clear potentially stale storage if application failed
-                 console.log("Clearing Alia data from localStorage due to application error.");
-                 localStorage.removeItem(ALIA_CODE_STORAGE_KEY);
-                 localStorage.removeItem(ALIA_TEXT_STORAGE_KEY);
-                 localStorage.removeItem(ALIA_EXPIRY_STORAGE_KEY);
+            // Simple check for attribute length limits
+            const validNewPollAttributes = newPollAttributes.filter(attr => {
+                if (attr.key.length > 100 || attr.value.length > 255) { // Shopify limits: key 100, value 255
+                    console.warn(`Skipping poll attribute due to length limit: Key=${attr.key.substring(0,50)}..., Value=${attr.value.substring(0,50)}...`);
+                    return false;
+                }
+                return true;
+            });
 
-                 renderAppliedDiscounts(); // Update UI to hide any discount messaging
-             }
-         });
-
-         // Alia Event Listener - Signup
-         document.addEventListener("alia:signup", async (e) => {
-             if (isLoading) return;
-             console.log("Alia signup event received:", e.detail);
-             const { email, phone } = e.detail;
-
-             if (!email && !phone) {
-                 console.warn("Alia signup event received without email or phone.");
+            if (validNewPollAttributes.length === 0) {
+                 console.log("No valid poll attributes to update after length check.");
                  return;
-             }
+            }
 
-             // Ensure cart exists
-             if (!cart) {
-                 console.log("Signup event: Cart not initialized, creating...");
-                 try {
-                     cart = await createCart();
-                     if (!cart) throw new Error("Failed to create cart for signup event.");
-                 } catch (error) {
-                     console.error("Failed to create cart for signup event:", error);
-                     showCartError("Could not initialize cart to save contact info."); // Using our new error display
-                     return;
-                 }
-             }
+            // --- MERGE LOGIC START ---
+            // Get existing attributes (UTMs, etc.) - check if cart.attributes exists and is an array
+            const existingAttributes = (cart && Array.isArray(cart.attributes)) ? cart.attributes : [];
 
-             const buyerIdentity = {};
-             if (email) buyerIdentity.email = email;
-             if (phone) buyerIdentity.phone = phone; // Assuming Shopify accepts phone in buyerIdentity
+            // Filter out any *old* poll attributes to prevent duplicates if answered again
+            const nonPollExistingAttributes = existingAttributes.filter(attr => !attr.key.startsWith('poll_'));
 
-             try {
-                 console.log(`Updating buyer identity for cart ${cart.id}:`, buyerIdentity);
-                 const data = await callShopifyAPI(CART_BUYER_IDENTITY_UPDATE_MUTATION, {
-                     cartId: cart.id,
-                     buyerIdentity: buyerIdentity
-                 });
+            // Combine non-poll existing attributes with the new valid poll attributes
+            const mergedAttributes = [...nonPollExistingAttributes, ...validNewPollAttributes];
+            // --- MERGE LOGIC END ---
 
-                 if (data?.cartBuyerIdentityUpdate?.cart) {
-                     console.log("Buyer identity updated successfully.");
-                     cart = data.cartBuyerIdentityUpdate.cart; // Update global cart state
-                     // Optionally re-render if needed, though buyer identity isn't usually visible in cart
-                     // renderCart();
+            try {
+                console.log(`Updating attributes for cart ${cart.id}:`, mergedAttributes);
+                const data = await callShopifyAPI(CART_ATTRIBUTES_UPDATE_MUTATION, {
+                    cartId: cart.id,
+                    attributes: mergedAttributes // Use the merged list
+                });
+
+                if (data?.cartAttributesUpdate?.cart) {
+                    console.log("Cart attributes updated successfully with poll answers.");
+                    cart = data.cartAttributesUpdate.cart; // Update global cart state
+                    // Optionally re-render if needed
+                    // renderCart();
+                } else {
+                    console.error("Failed to update cart attributes. Response:", data);
+                    throw new Error(data?.cartAttributesUpdate?.userErrors?.[0]?.message || "Unknown error updating cart attributes.");
+                }
+            } catch (error) {
+                console.error("Error updating cart attributes with poll answers:", error);
+                showCartError(`Could not save poll answers: ${error.message}`); // Using our new error display
+            }
+        });
+
+        // ---- START TEMPORARY ALIA TEST ----
+        // Removed Test Alia Trigger Event Listener
+        // ---- END TEMPORARY ALIA TEST ----
+    }
+
+    // --- Function to Update Experiment Attribute on Existing Cart ---
+    async function updateExperimentAttributeIfNeeded() {
+        console.log("[AttribUpdate] Checking if experiment attribute needs update...");
+        const experimentAttribute = getExperimentAttribute(); // { key: 'experiment_branch', value: '...' } or null
+
+        // If no variant in URL, nothing to do
+        if (!experimentAttribute) {
+            console.log("[AttribUpdate] No ab_variant found in URL. Skipping update.");
+            return;
+        }
+
+        // If cart doesn't exist or has no ID yet, creation logic will handle it
+        if (!cart || !cart.id) {
+            console.log("[AttribUpdate] Cart not yet available. Attribute will be set during creation.");
+            return;
+        }
+
+        // Ensure cart.attributes is an array (it might be missing if fragment wasn't updated yet)
+        const currentAttributes = cart.attributes && Array.isArray(cart.attributes) ? cart.attributes : [];
+        const existingAttr = currentAttributes.find(attr => attr.key === experimentAttribute.key);
+
+        // Check if the attribute already exists with the *same* value
+        if (existingAttr && existingAttr.value === experimentAttribute.value) {
+            console.log(`[AttribUpdate] Cart attribute '${experimentAttribute.key}' already set to '${experimentAttribute.value}'. No update needed.`);
+            return;
+        }
+
+        // If attribute is missing or has a different value, proceed with update
+        console.log(`[AttribUpdate] Updating cart attribute '${experimentAttribute.key}' to '${experimentAttribute.value}'.`);
+
+        // Prepare the new list of attributes:
+        // Keep all existing attributes *except* the old experiment_branch, then add the new one.
+        const newAttributes = currentAttributes.filter(attr => attr.key !== experimentAttribute.key);
+        newAttributes.push(experimentAttribute);
+
+        try {
+            const data = await callShopifyAPI(CART_ATTRIBUTES_UPDATE_MUTATION, {
+                cartId: cart.id,
+                attributes: newAttributes,
+            });
+
+            if (data?.cartAttributesUpdate?.cart) {
+                console.log("[AttribUpdate] Cart attributes updated successfully.");
+                cart = data.cartAttributesUpdate.cart; // Update global cart state
+                // Optionally re-render if attributes affect the display, though unlikely here
+                // renderCart();
+            } else {
+                // Handle potential user errors returned from the mutation
+                const userErrors = data?.cartAttributesUpdate?.userErrors;
+                 if (userErrors && userErrors.length > 0) {
+                     console.error('[AttribUpdate] Shopify User Errors during attribute update:', userErrors);
+                     throw new Error(`Shopify error during attribute update: ${userErrors[0].message}`);
                  } else {
-                     console.error("Failed to update buyer identity. Response:", data);
-                     throw new Error(data?.cartBuyerIdentityUpdate?.userErrors?.[0]?.message || "Unknown error updating buyer identity.");
+                     console.error("[AttribUpdate] Cart attribute update API call succeeded but returned no cart data.", data);
+                     throw new Error("Cart attribute update failed silently.");
                  }
-             } catch (error) {
-                 console.error("Error updating buyer identity:", error);
-                 showCartError(`Could not save contact information: ${error.message}`); // Using our new error display
-             }
-         });
-
-         // Alia Event Listener - Poll Answered
-         document.addEventListener("alia:pollAnswered", async (e) => {
-             if (isLoading) return;
-             console.log("Alia poll answered event received:", e.detail);
-             const { answers } = e.detail;
-
-             if (!answers || answers.length === 0) {
-                 console.warn("Alia poll answered event received without answers.");
-                 return;
-             }
-
-             // Ensure cart exists
-             if (!cart) {
-                 console.log("Poll event: Cart not initialized, creating...");
-                 try {
-                     cart = await createCart();
-                     if (!cart) throw new Error("Failed to create cart for poll event.");
-                 } catch (error) {
-                     console.error("Failed to create cart for poll event:", error);
-                     showCartError("Could not initialize cart to save poll answers."); // Using our new error display
-                     return;
-                 }
-             }
-
-             // Format answers into Shopify attributes
-             // Prefix keys to avoid conflicts with UTM attributes
-             const newPollAttributes = answers.map(answer => ({
-                 key: `poll_${answer.questionID || 'question'}`, // Use questionID or a generic prefix
-                 value: `${answer.questionText}: ${answer.answerText}` // Combine question and answer text
-             }));
-
-             // Simple check for attribute length limits
-             const validNewPollAttributes = newPollAttributes.filter(attr => {
-                 if (attr.key.length > 100 || attr.value.length > 255) { // Shopify limits: key 100, value 255
-                     console.warn(`Skipping poll attribute due to length limit: Key=${attr.key.substring(0,50)}..., Value=${attr.value.substring(0,50)}...`);
-                     return false;
-                 }
-                 return true;
-             });
-
-             if (validNewPollAttributes.length === 0) {
-                  console.log("No valid poll attributes to update after length check.");
-                  return;
-             }
-
-             // --- MERGE LOGIC START ---
-             // Get existing attributes (UTMs, etc.) - check if cart.attributes exists and is an array
-             const existingAttributes = (cart && Array.isArray(cart.attributes)) ? cart.attributes : [];
-
-             // Filter out any *old* poll attributes to prevent duplicates if answered again
-             const nonPollExistingAttributes = existingAttributes.filter(attr => !attr.key.startsWith('poll_'));
-
-             // Combine non-poll existing attributes with the new valid poll attributes
-             const mergedAttributes = [...nonPollExistingAttributes, ...validNewPollAttributes];
-             // --- MERGE LOGIC END ---
-
-             try {
-                 console.log(`Updating attributes for cart ${cart.id}:`, mergedAttributes);
-                 const data = await callShopifyAPI(CART_ATTRIBUTES_UPDATE_MUTATION, {
-                     cartId: cart.id,
-                     attributes: mergedAttributes // Use the merged list
-                 });
-
-                 if (data?.cartAttributesUpdate?.cart) {
-                     console.log("Cart attributes updated successfully with poll answers.");
-                     cart = data.cartAttributesUpdate.cart; // Update global cart state
-                     // Optionally re-render if needed
-                     // renderCart();
-                 } else {
-                     console.error("Failed to update cart attributes. Response:", data);
-                     throw new Error(data?.cartAttributesUpdate?.userErrors?.[0]?.message || "Unknown error updating cart attributes.");
-                 }
-             } catch (error) {
-                 console.error("Error updating cart attributes with poll answers:", error);
-                 showCartError(`Could not save poll answers: ${error.message}`); // Using our new error display
-             }
-         });
-
-         // ---- START TEMPORARY ALIA TEST ----
-         // Removed Test Alia Trigger Event Listener
-         // ---- END TEMPORARY ALIA TEST ----
-     }
-
-     // --- Function to Update Experiment Attribute on Existing Cart ---
-     async function updateExperimentAttributeIfNeeded() {
-         console.log("[AttribUpdate] Checking if experiment attribute needs update...");
-         const experimentAttribute = getExperimentAttribute(); // { key: 'experiment_branch', value: '...' } or null
-
-         // If no variant in URL, nothing to do
-         if (!experimentAttribute) {
-             console.log("[AttribUpdate] No ab_variant found in URL. Skipping update.");
-             return;
-         }
-
-         // If cart doesn't exist or has no ID yet, creation logic will handle it
-         if (!cart || !cart.id) {
-             console.log("[AttribUpdate] Cart not yet available. Attribute will be set during creation.");
-             return;
-         }
-
-         // Ensure cart.attributes is an array (it might be missing if fragment wasn't updated yet)
-         const currentAttributes = cart.attributes && Array.isArray(cart.attributes) ? cart.attributes : [];
-         const existingAttr = currentAttributes.find(attr => attr.key === experimentAttribute.key);
-
-         // Check if the attribute already exists with the *same* value
-         if (existingAttr && existingAttr.value === experimentAttribute.value) {
-             console.log(`[AttribUpdate] Cart attribute '${experimentAttribute.key}' already set to '${experimentAttribute.value}'. No update needed.`);
-             return;
-         }
-
-         // If attribute is missing or has a different value, proceed with update
-         console.log(`[AttribUpdate] Updating cart attribute '${experimentAttribute.key}' to '${experimentAttribute.value}'.`);
-
-         // Prepare the new list of attributes:
-         // Keep all existing attributes *except* the old experiment_branch, then add the new one.
-         const newAttributes = currentAttributes.filter(attr => attr.key !== experimentAttribute.key);
-         newAttributes.push(experimentAttribute);
-
-         try {
-             const data = await callShopifyAPI(CART_ATTRIBUTES_UPDATE_MUTATION, {
-                 cartId: cart.id,
-                 attributes: newAttributes,
-             });
-
-             if (data?.cartAttributesUpdate?.cart) {
-                 console.log("[AttribUpdate] Cart attributes updated successfully.");
-                 cart = data.cartAttributesUpdate.cart; // Update global cart state
-                 // Optionally re-render if attributes affect the display, though unlikely here
-                 // renderCart();
-             } else {
-                 // Handle potential user errors returned from the mutation
-                 const userErrors = data?.cartAttributesUpdate?.userErrors;
-                  if (userErrors && userErrors.length > 0) {
-                      console.error('[AttribUpdate] Shopify User Errors during attribute update:', userErrors);
-                      throw new Error(`Shopify error during attribute update: ${userErrors[0].message}`);
-                  } else {
-                      console.error("[AttribUpdate] Cart attribute update API call succeeded but returned no cart data.", data);
-                      throw new Error("Cart attribute update failed silently.");
-                  }
-             }
-         } catch (error) {
-             console.error("[AttribUpdate] Error updating cart attributes:", error);
-             // Show error to user? Depends on how critical this is.
-             showCartError("Could not update cart details. Please try again later.");
-         }
-     }
+            }
+        } catch (error) {
+            console.error("[AttribUpdate] Error updating cart attributes:", error);
+            // Show error to user? Depends on how critical this is.
+            showCartError("Could not update cart details. Please try again later.");
+        }
+    }
 
     // --- Initial Load ---
     document.addEventListener('DOMContentLoaded', async () => {

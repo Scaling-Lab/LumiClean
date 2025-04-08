@@ -420,6 +420,41 @@
                 width: 100%;
             }
         }
+
+        /* Add to Cart Button Styles */
+        .add-to-cart-btn {
+            display: flex;
+            height: 56px;
+            padding: 16px 115px;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            align-self: stretch;
+            border-radius: 100px;
+            background: #CB0D20;
+            border: none;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 120%;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #a30a19;
+        }
+
+        .add-to-cart-btn:disabled {
+            background: #e5e7eb;
+            cursor: not-allowed;
+        }
+
+        .add-to-cart-btn svg {
+            width: 24px;
+            height: 24px;
+        }
     </style>
 </head>
 <body>
@@ -531,9 +566,21 @@
     <!-- Cart Overlay -->
     <div id="cart-overlay" class="cart-overlay"></div>
     
-    <!-- Add to Cart Button (for testing) -->
-    <button id="add-to-cart-btn">Add to Cart</button>
-    
+    <!-- Add to Cart Buttons -->
+    <div style="display: flex; flex-direction: column; gap: 20px; padding: 20px;">
+        <button id="add-to-cart-uvo254" class="add-to-cart-btn" data-variant="UVO254">
+            Add to Cart
+        </button>
+        
+        <button id="add-to-cart-uvo108" class="add-to-cart-btn" data-variant="UVO108">
+            Add to Cart
+        </button>
+        
+        <button id="add-to-cart-uvo72" class="add-to-cart-btn" data-variant="UVO72">
+            Add to Cart
+        </button>
+    </div>
+
     <!-- Include Shopify API JS -->
     <script src="js/api.js"></script>
     
