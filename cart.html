@@ -357,13 +357,61 @@
             position: fixed;
             top: 1rem;
             right: 1rem;
-            background: #31e6ea;
-            color: #fff;
-            padding: 0.5rem 1rem;
+            background: white;
+            color: #00a3fb;
+            padding: 12px;
             border: none;
-            border-radius: 9999px;
+            border-radius: 50%;
             cursor: pointer;
             z-index: 998;
+            font-weight: 500;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #open-cart-trigger:hover {
+            background: white;
+            transform: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #open-cart-trigger span:first-child {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #cart-item-count {
+            background: #00a3fb;
+            color: white;
+            border-radius: 50%;
+            min-width: 20px;
+            height: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            margin: 0;
+        }
+
+        /* Replace cart emoji with SVG icon */
+        #open-cart-trigger span:first-child::before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2300a3fb'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin: 0 auto;
         }
 
         /* Responsive Adjustments */
@@ -377,7 +425,7 @@
 <body>
     <!-- Open Cart Trigger Button -->
     <button id="open-cart-trigger">
-        <span>🛒</span>
+        <span></span>
         <span id="cart-item-count" class="hidden">0</span>
     </button>
     
