@@ -231,6 +231,7 @@ body {
 
 .price-row.discount {
     color: #22c55e;
+    display: none;
 }
 
 .price-row.total-savings {
