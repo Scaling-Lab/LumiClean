@@ -17,34 +17,36 @@ npm install
 npm run build
 ```
 
+### Step 4: Watch mode (optional)
+For automatic CSS minification when files change:
+```bash
+npm run watch
+```
+
 ## Optimizations
 
 The project includes the following optimizations:
 - CSS minification
-- HTML minification
 - Critical and non-critical CSS separation
-- Server response compression
-- Static file caching
+- Automatic CSS compilation on file changes
 
 ## Project Structure
 
 ```
 14/
 ├── css/              # Minified CSS files
-├── dist/             # Minified HTML files
 ├── header/           # Header styles
 ├── v1-v12/           # Section styles
 ├── footer/           # Footer styles
 ├── build.js          # Build script
-├── package.json      # Project dependencies
-└── server.js         # Development server
+└── package.json      # Project dependencies
 ```
 
 ## Development
 
-To start the development server:
-```bash
-npm run dev
-```
-
-Server will be available at: http://localhost:3000 
+When working on CSS files:
+1. Edit the original CSS files in their respective directories
+2. The watch mode will automatically minify and combine them
+3. Minified files will be available in the `css` directory:
+   - `critical.min.css` - Critical styles
+   - `non-critical.min.css` - Non-critical styles 
