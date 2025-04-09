@@ -225,6 +225,8 @@ body {
 
 .price-row.original-price {
     color: #666;
+    font-size: 1rem;
+    font-weight: 400;
 }
 
 .price-row.discount {
@@ -419,7 +421,7 @@ body {
 .add-to-cart-btn {
     display: flex;
     height: 56px;
-    padding: 16px 115px;
+    /*padding: 16px 115px;*/
     justify-content: center;
     align-items: center;
     gap: 8px;
