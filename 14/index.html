@@ -5,28 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lumiclean - Hospital-like Disinfection for Your Home</title>
     
-    <!-- Critical CSS -->
-    <link rel="stylesheet" href="header/styles.css" />
-    <link rel="stylesheet" href="v1/styles.css" />
-    <link rel="stylesheet" href="v2/styles.css" />
-    <link rel="stylesheet" href="../css/style-buy.css">
-
-    <!-- Non-critical CSS with media attribute -->
-    <link rel="stylesheet" href="v3/lumiclean-section.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="v4/styles.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="v5/styles.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="v6/styles.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="v7/styles.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="v8/styles.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="v9/styles.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="v10/styles.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="v11/styles.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="v12/styles.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="footer/styles.css" media="print" onload="this.media='all'">
+    <!-- Critical CSS - Combined and minified -->
+    <link rel="preload" href="css/critical.min.css" as="style">
+    <link rel="stylesheet" href="css/critical.min.css">
     
-    <!-- Preload critical fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <!-- Non-critical CSS with optimized loading -->
+    <link rel="preload" href="css/non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/non-critical.min.css"></noscript>
+    
+    <!-- Preload critical fonts with display=swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Preload critical images with responsive sizes -->
+    <link rel="preload" as="image" href="https://res.cloudinary.com/dg8ibuag5/image/upload/dpr_auto,f_auto,q_auto,w_auto/v1/lumiclean/lumiclean/fb937714554c1fcf983fcb03737c9a0186126b8d?_a=BAMAJaP8A" media="(min-width: 768px)">
+    <link rel="preload" as="image" href="https://res.cloudinary.com/dg8ibuag5/image/upload/dpr_auto,f_auto,q_auto,w_auto,c_scale,w_400/v1/lumiclean/lumiclean/fb937714554c1fcf983fcb03737c9a0186126b8d?_a=BAMAJaP8A" media="(max-width: 767px)">
+    
+    <!-- Add resource hints -->
+    <link rel="dns-prefetch" href="https://res.cloudinary.com">
+    <link rel="preconnect" href="https://res.cloudinary.com">
     
     <!-- Preload critical images -->
     <link rel="preload" as="image" href="https://res.cloudinary.com/dg8ibuag5/image/upload/dpr_auto,f_auto,q_auto,w_auto/v1/lumiclean/lumiclean/fb937714554c1fcf983fcb03737c9a0186126b8d?_a=BAMAJaP8A">

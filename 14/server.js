@@ -1,32 +1,33 @@
 const express = require('express');
-const cors = require('cors');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+const path = require('path');
+const compression = require('compression');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// Enable CORS for all routes
-app.use(cors());
+// Enable compression
+app.use(compression());
 
-// Serve static files
-app.use(express.static(__dirname));
+// Serve static files with caching
+app.use(express.static(path.join(__dirname, 'dist'), {
+    maxAge: '1d',
+    etag: true,
+    lastModified: true
+}));
 
-// Proxy middleware configuration
-const proxyOptions = {
-    target: 'https://uvlizer.myshopify.com',
-    changeOrigin: true,
-    pathRewrite: {
-        '^/api': '/api'
-    },
-    onProxyRes: function(proxyRes, req, res) {
-        proxyRes.headers['Access-Control-Allow-Origin'] = '*';
-    }
-};
+// Serve CSS files with caching
+app.use('/css', express.static(path.join(__dirname, 'css'), {
+    maxAge: '1d',
+    etag: true,
+    lastModified: true
+}));
 
-// Use proxy for /api routes
-app.use('/api', createProxyMiddleware(proxyOptions));
+// Serve the main HTML file
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.min.html'));
+});
 
 // Start server
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 }); 
