@@ -392,10 +392,10 @@
       document.addEventListener('mousedown', loadMainScript, { once: true });
     </script>
 
-    <!--     Include Shopify API JS-->
-    <script src="/js/api.js" defer></script>
+    <!-- Include Shopify API JS with async to load it as soon as possible but not block parsing -->
+    <script src="/js/api.js" async></script>
 
-    <!-- Include Shopify Cart JS -->
+    <!-- Include Shopify Cart JS with defer to ensure it loads after API but doesn't block parsing -->
     <script src="/js/cart.js" defer></script>
   </body>
 </html>
