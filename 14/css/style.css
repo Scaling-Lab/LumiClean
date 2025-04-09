@@ -1,0 +1,117 @@
+/*!* Main stylesheet that imports all other stylesheets *!*/
+
+/*!* Import base styles *!*/
+/*@import url('/css/style-buy.css');*/
+
+/*!* Import section-specific styles *!*/
+/*@import url('../header/styles.css');*/
+/*@import url('../v1/styles.css');*/
+/*@import url('../v2/styles.css');*/
+/*@import url('../v3/lumiclean-section.css');*/
+/*@import url('../v4/styles.css');*/
+/*@import url('../v5/styles.css');*/
+/*@import url('../v6/styles.css');*/
+/*@import url('../v7/styles.css');*/
+/*@import url('../v8/styles.css');*/
+/*@import url('../v9/styles.css');*/
+/*@import url('../v10/styles.css');*/
+/*@import url('../v11/styles.css');*/
+/*@import url('../v12/styles.css');*/
+/*@import url('../footer/styles.css');*/
+
+/*!* Main layout styles *!*/
+/*body {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*  font-family: 'Poppins', sans-serif;*/
+/*  line-height: 1.5;*/
+/*  color: #333;*/
+/*}*/
+
+/*!* Section-specific styles *!*/
+/*#main-header {*/
+/*  position: fixed;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  right: 0;*/
+/*  z-index: 1000;*/
+/*  background: #fff;*/
+/*  box-shadow: 0 2px 4px rgba(0,0,0,0.1);*/
+/*}*/
+
+/*#hero-section {*/
+/*  padding-top: 80px;*/
+/*  min-height: 100vh;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*}*/
+
+/*#pathogens-section {*/
+/*  padding: 4rem 0;*/
+/*  background: #f8f9fa;*/
+/*}*/
+
+/*#product-offer-section {*/
+/*  padding: 4rem 0;*/
+/*  background: #fff;*/
+/*}*/
+
+/*#guarantee-section {*/
+/*  padding: 4rem 0;*/
+/*  background: #f8f9fa;*/
+/*}*/
+
+/*#features-section {*/
+/*  padding: 4rem 0;*/
+/*  background: #fff;*/
+/*}*/
+
+/*#easy-steps-section {*/
+/*  padding: 4rem 0;*/
+/*  background: #f8f9fa;*/
+/*}*/
+
+/*#promotion-section {*/
+/*  padding: 4rem 0;*/
+/*  background: #fff;*/
+/*}*/
+
+/*#faq-section {*/
+/*  padding: 4rem 0;*/
+/*  background: #f8f9fa;*/
+/*}*/
+
+/*#main-footer {*/
+/*  background: #333;*/
+/*  color: #fff;*/
+/*  padding: 4rem 0;*/
+/*}*/
+
+/*!* Utility classes *!*/
+/*.container {*/
+/*  max-width: 1200px;*/
+/*  margin: 0 auto;*/
+/*  padding: 0 1rem;*/
+/*}*/
+
+/*.section-title {*/
+/*  font-size: 2.5rem;*/
+/*  font-weight: 700;*/
+/*  text-align: center;*/
+/*  margin-bottom: 2rem;*/
+/*}*/
+
+/*!* Responsive styles *!*/
+/*@media (max-width: 768px) {*/
+/*  .section-title {*/
+/*    font-size: 2rem;*/
+/*  }*/
+/*  */
+/*  #hero-section {*/
+/*    padding-top: 60px;*/
+/*  }*/
+/*  */
+/*  .container {*/
+/*    padding: 0 0.5rem;*/
+/*  }*/
+/*}*/
