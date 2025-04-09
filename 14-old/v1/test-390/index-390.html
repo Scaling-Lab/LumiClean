@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Disinfection Promotional Section</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <!-- Include the promotional section -->
+  <div id="promotional-section-container"></div>
+</main>
+
+<script>
+  // Load the section content
+  fetch('section.html')
+          .then(response => response.text())
+          .then(html => {
+            document.getElementById('promotional-section-container').innerHTML = html;
+          })
+          .catch(error => {
+            console.error('Error loading section:', error);
+          });
+</script>
+</body>
+</html>
