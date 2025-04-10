@@ -17,73 +17,33 @@
   position: relative;
 }
 
-@media (min-width: 1024px) {
-  .header {
-    padding-left: 16rem;
-    padding-right: 16rem;
-  }
-}
-
 /* Navigation Container */
 .nav-container {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 1rem;
 }
 
-@media (min-width: 1024px) {
-  .nav-container {
-    gap: 565px;
-  }
-}
-
-/* Logo Container */
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-
-.logo-container svg {
+/* Menu toggle styles */
+#menuToggle {
+  position: relative;
+  z-index: 10;
+  width: 40px;
   height: 40px;
-  width: auto;
-}
-
-/* Navigation Links */
-.nav-links {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-    list-style: none;
-  }
-}
-
-/* Navigation Link */
-.nav-link {
-  font-size: 1rem;
-  font-weight: 500;
-  color: black;
-  text-decoration: none;
-  transition: opacity 0.3s ease;
-}
-
-.nav-link:hover {
-  opacity: 0.7;
-}
-
-/* Cart Container */
-.cart-container {
   display: flex;
   align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .cart-link {
-  /*display: flex;*/
-  display: none;
+  visibility: hidden;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
