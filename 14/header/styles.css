@@ -100,11 +100,11 @@
   margin-right: 15px;
 }
 
-@media (min-width: 768px) {
-  #menuToggle {
-    display: none;
-  }
-}
+/*@media (min-width: 768px) {*/
+/*  #menuToggle {*/
+/*    display: none;*/
+/*  }*/
+/*}*/
 
 #menuToggle input {
   display: block;

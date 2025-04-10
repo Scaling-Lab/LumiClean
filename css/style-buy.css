@@ -352,8 +352,8 @@ body {
 /* Cart Trigger Button */
 #open-cart-trigger {
     position: fixed;
-    top: 1rem;
-    right: 1rem;
+    top: 15px;
+    right: 20px;
     background: white;
     color: #00a3fb;
     padding: 12px;
@@ -368,6 +368,19 @@ body {
     gap: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+    @media (min-width: 1440px) {
+        #open-cart-trigger {
+            right: 10%;
+        }
+    }
+
+    @media (max-width: 1440px) {
+        .header {
+            padding-left: 16px;
+        }
+
+    }
 
 #open-cart-trigger:hover {
     background: white;
