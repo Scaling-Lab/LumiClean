@@ -1,0 +1,307 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+<div class="cart">
+  <div class="cart-header">
+    <div class="cart-title">Your Cart</div>
+    <button class="close-btn">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.53366 25.3333L6.66699 23.4666L14.1337 16L6.66699 8.53329L8.53366 6.66663L16.0003 14.1333L23.467 6.66663L25.3337 8.53329L17.867 16L25.3337 23.4666L23.467 25.3333L16.0003 17.8666L8.53366 25.3333Z" fill="white"/>
+      </svg>
+    </button>
+  </div>
+  
+  <div class="congrats-banner">
+    <strong>Congrats!</strong> You've earned FREE SHIPPING 🎉
+  </div>
+
+  <div class="cart-items">
+    <div class="cart-item">
+      <div class="item-image">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/db00b5f66090edf493e640150c39f8d843ccc149" alt="LuminClean Device" />
+      </div>
+      <div class="item-details">
+        <div class="item-header">
+          <div class="item-title">1x LuminClean Device</div>
+          <button class="remove-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z" fill="black"/>
+            </svg>
+          </button>
+        </div>
+        <div class="item-price">$79.95</div>
+        <div class="quantity-controls">
+          <button class="qty-btn minus">
+            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.625 11.375H4.375V9.625H9.625H11.375H16.625V11.375H11.375H9.625Z" fill="black"/>
+            </svg>
+          </button>
+          <span class="qty">1</span>
+          <button class="qty-btn plus">
+            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.625 11.375H4.375V9.625H9.625V4.375H11.375V9.625H16.625V11.375H11.375V16.625H9.625V11.375Z" fill="black"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-summary">
+    <div class="summary-row">
+      <span>Subtotal:</span>
+      <span>$79.95</span>
+    </div>
+    <div class="divider"></div>
+    
+    <div class="order-protection">
+      <div class="protection-header">
+        <div class="protection-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="20" fill="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M28.75 11.25H11.25V21.4583C11.25 23.779 12.1719 26.0046 13.8128 27.6455C15.4538 29.2865 17.6794 30.2083 20 30.2083C22.3206 30.2083 24.5462 29.2865 26.1872 27.6455C27.8281 26.0046 28.75 23.779 28.75 21.4583V11.25ZM16.8704 18.7546L15.8379 19.7871L19.2708 23.2185L24.8913 17.5996L23.8602 16.5671L19.2708 21.1565L16.8704 18.7546Z" fill="white"/>
+          </svg>
+        </div>
+        <div class="protection-info">
+          <h3>Order Protection Checkout</h3>
+          <p>Protection for Damage, Loss & Theft</p>
+        </div>
+        <div class="protection-price">$13.00</div>
+      </div>
+    </div>
+    
+    <div class="divider"></div>
+    <div class="summary-row total">
+      <span>Subtotal:</span>
+      <span>$93.95</span>
+    </div>
+  </div>
+
+  <div class="cart-footer">
+    <div class="guarantee">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/95f43e81edf1a25170e95afc72a4b77caf92f4cb" alt="Guarantee" />
+      <span>60-DAY MONEY BACK GUARANTEE</span>
+    </div>
+    <button class="checkout-btn">Secure Checkout</button>
+    <button class="skip-protection">Continue without Order Protection</button>
+  </div>
+</div>
+
+<style>
+.cart {
+  background: linear-gradient(180deg, #d5f4ff 0%, #f6fcfe 100%);
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.cart-header {
+  height: 60px;
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1890d5;
+}
+
+.cart-title {
+  color: #f4f6f5;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.congrats-banner {
+  text-align: center;
+  padding: 20px 16px;
+  color: #191d21;
+  font-size: 14px;
+  letter-spacing: 0.28px;
+  line-height: 140%;
+  background-color: #f6fcfe;
+}
+
+.cart-items {
+  margin: 0 16px;
+}
+
+.cart-item {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  gap: 18px;
+}
+
+.item-image {
+  width: 125px;
+  height: 125px;
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.item-title {
+  font-size: 16px;
+  color: #000;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.item-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #191d21;
+  margin-bottom: 12px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #effafe;
+  padding: 10px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.qty-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty {
+  font-size: 18px;
+  font-weight: 600;
+  color: #191d21;
+}
+
+.cart-summary {
+  margin: 20px 16px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  font-size: 16px;
+  color: #191d21;
+}
+
+.summary-row.total {
+  font-weight: 700;
+}
+
+.divider {
+  height: 1px;
+  background-color: #d6d3d3;
+  margin: 12px 0;
+}
+
+.order-protection {
+  padding: 12px 0;
+}
+
+.protection-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.protection-info h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+}
+
+.protection-info p {
+  font-size: 12px;
+  color: #404749;
+  margin: 4px 0 0;
+}
+
+.protection-price {
+  margin-left: auto;
+  font-size: 18px;
+  color: #000;
+}
+
+.cart-footer {
+  margin: 0 16px;
+}
+
+.guarantee {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 29px;
+}
+
+.guarantee span {
+  color: #222627;
+  font-size: 14px;
+  letter-spacing: 0.72px;
+}
+
+.checkout-btn {
+  width: 100%;
+  background: #cb0d20;
+  color: white;
+  border: none;
+  border-radius: 100px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.skip-protection {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #404749;
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 8px;
+}
+</style>

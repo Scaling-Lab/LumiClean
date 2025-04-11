@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopify Cart</title>
+    <link rel="stylesheet" href="css/style-buy-new.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Cart Drawer Section -->
+    <div class="cart-drawer-section">
+        <!-- Open Cart Trigger Button -->
+        <button id="open-cart-trigger">
+            <span></span>
+            <span id="cart-item-count" class="hidden">0</span>
+        </button>
+
+        <!-- Cart Drawer -->
+        <div id="cart-drawer" class="cart-drawer">
+            <div class="cart-header">
+                <h2 class="cart-title">Items in your cart</h2>
+                <button id="close-cart-btn" class="close-cart-btn" aria-label="Close cart">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="close-icon">
+                        <path d="M8.53366 25.3333L6.66699 23.4666L14.1337 16L6.66699 8.53329L8.53366 6.66663L16.0003 14.1333L23.467 6.66663L25.3337 8.53329L17.867 16L25.3337 23.4666L23.467 25.3333L16.0003 17.8666L8.53366 25.3333Z" fill="white"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="shipping-notification">
+                <p><strong>Congrats!</strong> You've earned FREE SHIPPING 🎉</p>
+            </div>
+
+            <div class="cart-items-container">
+                <!-- Cart Item Template -->
+                <div id="cart-item-template" class="cart-item hidden">
+                    <div class="item-image-container">
+                        <img data-cart-item-image class="cart-item-image" src="" alt="">
+                    </div>
+                    <div class="cart-item-details">
+                        <div class="item-header">
+                            <h2 data-cart-item-name class="cart-item-title"></h2>
+                            <button class="remove-item-btn" aria-label="Remove item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="item-close">
+                                    <path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z" fill="black"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn quantity-minus-btn" aria-label="Decrease quantity">
+                                <svg width="18" height="18" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" class="minus-icon">
+                                    <path d="M9.625 11.375H4.375V9.625H9.625H11.375H16.625V11.375H11.375H9.625Z" fill="black"></path>
+                                </svg>
+                            </button>
+                            <span data-cart-item-quantity class="quantity-display">1</span>
+                            <button class="quantity-btn quantity-plus-btn" aria-label="Increase quantity">
+                                <svg width="18" height="18" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" class="plus-icon">
+                                    <path d="M9.625 11.375H4.375V9.625H9.625V4.375H11.375V9.625H16.625V11.375H11.375V16.625H9.625V11.375Z" fill="black"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="cart-item-price">
+                            <span data-cart-item-price></span>
+                            <span data-cart-item-original-price></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty Cart Message -->
+                <div id="empty-cart-message" class="empty-cart-message">
+                    Your cart is empty
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <div class="price-row original-price">
+                    <span>Original Price:</span>
+                    <span id="cart-original-total"></span>
+                </div>
+                <div class="price-row discount">
+                    <span>Initial Discount:</span>
+                    <span id="initial-discount-amount"></span>
+                </div>
+                <div class="price-row total-savings">
+                    <span>Total Savings:</span>
+                    <span id="total-savings-amount"></span>
+                </div>
+
+                <div class="protection-option">
+                    <svg width="267" height="41" viewBox="0 0 267 41" fill="none" xmlns="http://www.w3.org/2000/svg" class="protection-icon">
+                        <text fill="#404749" xml:space="preserve" style="white-space: pre" font-family="Poppins" font-size="12" letter-spacing="0em">
+                            <tspan x="48" y="35.6">Protection for Damage, Loss &amp; Theft</tspan>
+                        </text>
+                        <text fill="black" xml:space="preserve" style="white-space: pre" font-family="Poppins" font-size="16" font-weight="bold" letter-spacing="0em">
+                            <tspan x="48" y="17.6">Order Protection Checkout</tspan>
+                        </text>
+                        <circle cx="20" cy="20" r="20" fill="black"></circle>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M28.75 11.25H11.25V21.4583C11.25 23.779 12.1719 26.0046 13.8128 27.6455C15.4538 29.2865 17.6794 30.2083 20 30.2083C22.3206 30.2083 24.5462 29.2865 26.1872 27.6455C27.8281 26.0046 28.75 23.779 28.75 21.4583V11.25ZM16.8704 18.7546L15.8379 19.7871L19.2708 23.2185L24.8913 17.5996L23.8602 16.5671L19.2708 21.1565L16.8704 18.7546Z" fill="white"></path>
+                    </svg>
+                    <p class="protection-price">$13.00</p>
+                </div>
+
+                <div class="price-row final-price">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal"></span>
+                </div>
+
+                <div class="guarantee-banner">
+                    <div class="guarantee-icon">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/95f43e81edf1a25170e95afc72a4b77caf92f4cb" alt="Guarantee" />
+                    </div>
+                    <p class="guarantee-text">60-DAY MONEY BACK GUARANTEE</p>
+                </div>
+
+                <button id="checkout-btn" class="checkout-btn">Secure Checkout</button>
+                <button class="continue-without-protection">Continue without Order Protection</button>
+                <div class="taxes-notice">Taxes calculated at checkout.</div>
+            </div>
+
+            <!-- Loading Overlay -->
+            <div id="cart-loading-overlay" class="cart-loading-overlay hidden">
+                <div class="loading-spinner"></div>
+            </div>
+
+            <!-- Error Message -->
+            <div id="cart-error" class="cart-error hidden">
+                <span id="cart-error-message"></span>
+            </div>
+
+            <!-- Discount Section -->
+            <div id="discount-section" class="discount-section hidden">
+                <div id="reward-text"></div>
+                <div>Code: <span id="discount-code"></span></div>
+                <div>Expires in: <span id="timer" class="timer"></span></div>
+            </div>
+            <div id="expired-message" class="expired-message hidden">
+                Your discount code has expired
+            </div>
+        </div>
+
+        <!-- Cart Overlay -->
+        <div id="cart-overlay" class="cart-overlay"></div>
+    </div>
+
+    <!-- Add to Cart Buttons -->
+    <div style="display: flex; flex-direction: column; gap: 20px; padding: 20px;">
+        <button id="add-to-cart-uvo254" class="add-to-cart-btn" data-variant="UVO254">
+            Add to Cart
+        </button>
+        
+        <button id="add-to-cart-uvo108" class="add-to-cart-btn" data-variant="UVO108">
+            Add to Cart
+        </button>
+        
+        <button id="add-to-cart-uvo72" class="add-to-cart-btn" data-variant="UVO72">
+            Add to Cart
+        </button>
+    </div>
+
+    <!-- Include Shopify API JS -->
+    <script src="js/api.js"></script>
+    
+    <!-- Include Shopify Cart JS -->
+    <script src="js/cart.js"></script>
+</body>
+</html> 
