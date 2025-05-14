@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LumiClean Landing Page</title>
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Smooth scrolling for anchor links -->
+  <style>
+    html { scroll-behavior: smooth }
+    .no-scrollbar::-webkit-scrollbar { display: none }
+    .no-scrollbar { scrollbar-width: none }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 leading-relaxed">
+
+  <!-- Smart Floating Sticky CTA (No Image) -->
+  <a href="#how-get" 
+     id="smart-floating-cta" 
+     class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 flex items-center bg-blue-600 text-white font-semibold px-6 py-4 rounded-full shadow-lg hover:bg-blue-700 transition opacity-0 invisible pointer-events-none" 
+     style="transition: opacity 0.3s ease, visibility 0.3s ease;"> 
+    <span>Check Availability &raquo;</span>
+  </a>
+
+  <!-- Main centered container start -->
+  <div class="max-w-6xl mx-auto px-4">
+    <!-- Top Bar -->
+    <div class="bg-gray-100 text-xs py-2 flex items-center gap-2 pl-4">
+      <div class="h-4 w-6 border border-gray-300 flex items-center justify-center rounded-sm overflow-hidden">
+        <!-- Simple US Flag Placeholder SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" class="w-full h-full">
+          <rect width="1200" height="630" fill="#fff"/>
+          <path fill="#b22234" d="M0 0h1200v54H0zm0 108h1200v54H0zm0 108h1200v54H0zm0 108h1200v54H0zm0 108h1200v54H0zm0 108h1200v54H0zm0 108h1200v54H0z"/>
+          <path fill="#3c3b6e" d="M0 0h456.4v378H0z"/>
+        </svg>
+      </div>
+      <span class="tracking-wide uppercase">Advertorial</span>
+    </div>
+
+    <!-- ================= HERO SECTION (Stack on Mobile, Flex on Desktop) ================= -->
+    <section class="max-w-6xl mx-auto px-4 md:flex md:gap-10 items-start py-6 bg-white shadow-sm">
+      
+      <!-- Left Column -->
+      <div class="w-full">
+        <div class="w-40 mb-6"> <!-- Logo container -->
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071040/LumiClean%20ADvertorial/fzxb2anofyzymtv7ivil.png"
+               alt="LumiClean Logo"
+               class="h-12 w-auto object-contain" />
+        </div>
+
+        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold w-full leading-tight mb-4" id="hero-headline">
+          How This Revolutionary Device Is Helping Thousands of Americans Fight Germs, Bacteria, and More
+        </h1>
+
+        <div class="flex items-center flex-wrap gap-2 text-sm mb-6" id="author-line">
+          <!-- Stars -->
+          <div class="flex gap-[1px] text-yellow-400 text-base">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071037/LumiClean%20ADvertorial/ckogop0ndhqtk2jkqhao.png" alt="Author avatar" class="w-6 h-6 rounded-full bg-gray-300 object-cover" />
+          <span class="text-gray-600">by</span>
+          <span class="font-semibold">Linda Smith</span>
+          <span class="text-gray-500">• March&nbsp;26,&nbsp;2025</span>
+          <span class="text-gray-600">in</span>
+          <span class="font-semibold">Lifestyle&nbsp;&amp;&nbsp;Tech</span>
+        </div>
+
+        <!-- Hero image -->
+        <!-- TODO: Confirm 'assets/images/On.png' is the correct Hero Image -->
+        <div class="w-full rounded-lg overflow-hidden shadow-md" id="hero-image-block">
+           <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071045/LumiClean%20ADvertorial/kzlsrvjxygftdzkklk0j.png" alt="LumiClean Hero Image" class="w-full h-auto rounded-lg">
+        </div>
+      </div>
+
+      <!-- Right Column (Author Card) -->
+      <aside class="hidden md:block w-72 shrink-0 md:mt-36">
+        <div class="relative rounded-lg shadow-lg overflow-hidden border border-gray-200">
+          <div class="relative bg-gray-900 text-white text-sm font-semibold px-4 py-2">
+            About the Author
+            <!-- decorative red dots -->
+            <span class="absolute left-2 top-1/2 -translate-y-1/2 h-1.5 w-1.5 bg-red-500 rounded-full"></span>
+            <span class="absolute right-2 top-1/2 -translate-y-1/2 h-1.5 w-1.5 bg-red-500 rounded-full"></span>
+          </div>
+          <div class="h-64 overflow-hidden">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071037/LumiClean%20ADvertorial/ckogop0ndhqtk2jkqhao.png"
+                 alt="Author Linda Smith"
+                 class="w-full h-full object-cover" />
+          </div>
+          <p class="p-4 text-sm leading-relaxed">
+            Linda Smith is an avid garden lover who also adores the latest lifestyle tech.
+            She has two granddaughters, aged&nbsp;4&nbsp;and&nbsp;7, whom she adores. Linda has a soft spot
+            for French wine and appreciates a good reading routine.
+          </p>
+        </div>
+      </aside>
+    </section>
+    
+    <!-- Intro Paragraph (Now a styled section) -->
+    <section class="py-6 bg-white shadow-sm">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="w-full md:max-w-3xl">
+          <p class="text-base sm:text-lg text-gray-700">
+              Did you know there's a new compact device that combines
+              <span class="font-semibold">UV-C light</span> and
+              <span class="font-semibold">ozone technology</span> to help target the dangerous germs and
+              bacteria lurking in your home?
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================ Intro Section ================= -->
+    <section class="py-6 bg-white shadow-sm">
+      <div class="w-full md:max-w-3xl px-4">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6">The Problem With Traditional Cleaning</h2>
+        <div class="space-y-4 text-gray-700">
+          <p class="uppercase font-bold text-gray-900">
+            For the past few years, the cleaning industry has been dominated by a handful of giants who can use any ingredients they want and set any price they want.
+          </p>
+          <p>
+            These companies sell products that only clean <em>visible</em> surfaces — leaving countless invisible germs behind — and fill your home with chemical fumes in the process.
+          </p>
+          <p>
+            Now, a revolutionary startup is shaking up this <span class="font-semibold">$35 billion-dollar</span> industry.
+          </p>
+          <p>
+            A company called <span class="font-semibold">LumiClean</span> has figured out a way to offer an innovative germ-fighting product at a fraction of the cost.
+          </p>
+          <p class="font-bold text-gray-900">
+            With experts reporting higher germ counts every year, LumiClean is quickly becoming a <span class="font-semibold">must-have cleaning tool</span> in 2025.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================ What Is It? ================= -->
+    <section id="what-is-it" class="bg-white py-6 shadow-sm">
+      <div class="w-full md:max-w-3xl px-4">
+        <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold mb-8">What Is It?</h2>
+
+        <!-- collage -->
+        <div class="grid gap-4">
+          <div class="w-full h-80 md:h-[420px] rounded-lg overflow-hidden">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071044/LumiClean%20ADvertorial/xx3yluz5wfrqrjgwhwtk.png"
+                 alt="LumiClean in bathroom setting"
+                 class="w-full h-full object-cover rounded-lg" />
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="h-48 md:h-56 rounded-lg overflow-hidden">
+              <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071037/LumiClean%20ADvertorial/jqdrdxugxe81bqlz9q4a.png"
+                   alt="LumiClean product in box"
+                   class="w-full h-full object-cover rounded-lg" />
+            </div>
+            <div class="h-48 md:h-56 rounded-lg overflow-hidden">
+              <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071045/LumiClean%20ADvertorial/kzlsrvjxygftdzkklk0j.png"
+                   alt="LumiClean plugged in and on"
+                   class="w-full h-full object-cover rounded-lg" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Text content below image -->
+        <div class="space-y-4 text-gray-700 mt-8">
+          <p class="text-lg font-black text-black mb-4">Meet the LumiClean</p>
+          <p>
+            The company behind LumiClean worked with leading experts in UV-C disinfection technology to create their revolutionary Germ-fighting device.
+          </p>
+          <p>
+            It's compact, user-friendly, energy-efficient, and most importantly, effective against all types of germs.
+          </p>
+          <p>
+            Their goal was to design a low-cost and low-maintenance cleaning solution that tackles germs at the DNA level. And they delivered. LumiClean has transformed the entire sanitization industry with this innovative approach.
+          </p>
+          <p>
+            So, what can it do? Practically what no other 'outdated cleaning tools' can — sanitize both air and surfaces in just 15 minutes, target microbes on hard-to-reach surfaces at their source, eliminate persistent odors, and more…
+          </p>
+          <p>
+            But what truly sets LumiClean apart, is <span class="font-semibold text-black">its scientifically-backed UVO technology</span> and its hassle-free operation (<span class="font-semibold text-black">100% filter-free</span>).
+          </p>
+          <p>
+            With no expensive filter replacements, no maintenance, and its hospital-grade technology that's proven to target germs at the DNA level.— <span class="font-semibold text-black">it's considerably LESS expensive than leading germ-fighting solutions.</span>
+          </p>
+          <p>
+            — you can easily sanitize your whole house, from top to bottom WITHOUT the outrageous hassle or price.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== How Does It Work? ============== -->
+    <section class="py-6 bg-white shadow-sm">
+      <div class="w-full md:max-w-3xl px-4">
+        <h2 class="text-2xl md:text-3xl font-bold mb-8">How Does It Work?</h2>
+
+        <div class="max-w-2xl mx-auto rounded-lg overflow-hidden mb-8 shadow">
+        <img 
+          src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071203/LumiClean%20ADvertorial/jyg3m6dzrdwyumuyfmeb.gif"
+          alt="How LumiClean works animation"
+          class="w-full h-full object-cover"
+        />
+      </div>
+
+      <!-- New Text Block 1 (Replacing H3 and UL) -->
+      <div class="space-y-4 text-gray-700 mb-6">
+        <p><span class="font-semibold text-black">Lumiclean uses the power of UVO disinfection:</span></p>
+        <p><span class="font-semibold text-black">A whole-home sterilization technology that reaches into every crack and crevice where dangerous germs hide and multiply.</span></p>
+        <p>It's super easy to use.</p>
+      </div>
+      <!-- New Text Block 2 (Replacing H3 and UL) -->
+      <div class="space-y-4 text-gray-700">
+        <p>Just touch the button and walk away. That's all you need to do!</p>
+        <p>Don't let LumiClean's small size fool you. It's just a 1/4 of an air purifier's size, but extremely powerful.</p>
+        <p>As soon as it's activated, the UVO bulb immediately starts releasing UV-C rays at the most studied and optimum wavelength for maximum disinfection efficacy (254nm) combined with Ozone oxidative properties.</p>
+        <p>These strong components successfully target 99% of germs, bacteria, allergens, microscopic contaminants, dangerous microbes, and unwanted odors from air and surfaces.</p>
+        <p><span class="font-semibold text-black">This scientific process helps reduce the number of hidden contaminants in air and surfaces, eliminating cleaning anxiety.</span></p>
+      </div>
+      <!-- Second GIF -->
+      <div class="max-w-2xl mx-auto rounded-lg overflow-hidden mt-4 mb-12 shadow">
+        <img 
+          src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071220/LumiClean%20ADvertorial/otxst2dsx3mehklf6nzd.gif"
+          alt="How LumiClean works animation"
+          class="w-full h-auto object-cover rounded-lg">
+      </div>
+
+      <!-- New text block after Home.gif -->
+      <div class="space-y-4 text-gray-700 mt-6">
+        <p>
+          LumiClean is small enough to move easily and can be used practically anywhere—office, bedroom, living room or any space you regularly use. Since it's budget-friendly, most Americans prefer buying one Lumiclean for every room.
+        </p>
+        <p>
+          No need to worry about noise either. LumiClean operates whisper-quietly.
+        </p>
+      </div>
+
+    </div>
+    </section>
+
+    <!-- ============== Features ================= -->
+    <section class="py-6 bg-white shadow-sm">
+      <div class="w-full md:max-w-3xl px-4">
+        <h2 class="text-2xl md:text-3xl font-bold mb-8">
+          What Exactly Can LumiClean Do?
+        </h2>
+        <div class="max-w-2xl mx-auto rounded-lg overflow-hidden mb-12 shadow">
+          <img
+            src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747144273/LumiClean%20ADvertorial/k0pqyxbdxjnmav0poeni.gif"
+            alt="LumiClean benefits animation"
+            class="w-full h-full object-cover"
+          />
+        </div>
+
+        <p class="text-lg font-semibold mb-6 text-gray-800">More than you think!</p>
+        
+        <ul class="list-none space-y-3 text-gray-700 mb-6">
+          <li class="flex items-start"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8.414 8.414a1 1 0 01-1.414 0L3.293 11.414a1 1 0 011.414-1.414L8 13.293l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg><span class="ml-2"><span class="font-semibold text-black">Targets Unseen Threats</span> – Effectively targets germs, bacteria, dust mites, mold spores, and other biological pollutants.</span></li>
+          <li class="flex items-start"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8.414 8.414a1 1 0 01-1.414 0L3.293 11.414a1 1 0 011.414-1.414L8 13.293l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg><span class="ml-2"><span class="font-semibold text-black">Advanced UVO Technology</span> – It emits hospital-grade UVC light and safe ozone to help address microscopic threats at the DNA level.</span></li>
+          <li class="flex items-start"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8.414 8.414a1 1 0 01-1.414 0L3.293 11.414a1 1 0 011.414-1.414L8 13.293l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg><span class="ml-2"><span class="font-semibold text-black">Quick and Powerful</span> – The moment you turn it on, LumiClean starts cleaning your whole room right away in just 15 minutes.</span></li>
+          <li class="flex items-start"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8.414 8.414a1 1 0 01-1.414 0L3.293 11.414a1 1 0 011.414-1.414L8 13.293l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg><span class="ml-2"><span class="font-semibold text-black">Fresh & Inviting Air</span> – Quickly transforms indoor air into a clean, breathable oasis that you'll love.</span></li>
+          <li class="flex items-start"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8.414 8.414a1 1 0 01-1.414 0L3.293 11.414a1 1 0 011.414-1.414L8 13.293l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg><span class="ml-2"><span class="font-semibold text-black">Neutralizes Odors</span> – Removes unpleasant odors from bacteria, cooking oils, tobacco smoke, and pets, leaving your home smelling fresh and welcoming.</span></li>
+          <li class="flex items-start"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8.414 8.414a1 1 0 01-1.414 0L3.293 11.414a1 1 0 011.414-1.414L8 13.293l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg><span class="ml-2"><span class="font-semibold text-black">Plug and Play</span> – Just turn LumiClean on, leave the room, and come back to a clean, fresh-smelling space.</span></li>
+          <li class="flex items-start"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8.414 8.414a1 1 0 01-1.414 0L3.293 11.414a1 1 0 011.414-1.414L8 13.293l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg><span class="ml-2"><span class="font-semibold text-black">Small and Portable</span> – Small enough to move easily so you can fight germs wherever you go!</span></li>
+          <li class="flex items-start"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8.414 8.414a1 1 0 01-1.414 0L3.293 11.414a1 1 0 011.414-1.414L8 13.293l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg><span class="ml-2"><span class="font-semibold text-black">No Filters Needed</span> – LumiClean works without filters so you never need to clean or fix anything.</span></li>
+          <li class="flex items-start"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8.414 8.414a1 1 0 01-1.414 0L3.293 11.414a1 1 0 011.414-1.414L8 13.293l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg><span class="ml-2"><span class="font-semibold text-black">Super Quiet</span> – No loud fan noise to bother you when working or sleeping.</span></li>
+          <li class="flex items-start"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8.414 8.414a1 1 0 01-1.414 0L3.293 11.414a1 1 0 011.414-1.414L8 13.293l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg><span class="ml-2"><span class="font-semibold text-black">Family & Pet Safe</span> – Keeps kids and pets safe with auto shut-off.</span></li>
+          <li class="flex items-start"><svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8.414 8.414a1 1 0 01-1.414 0L3.293 11.414a1 1 0 011.414-1.414L8 13.293l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg><span class="ml-2"><span class="font-semibold text-black">Super Affordable</span> – Big discounts when you buy several, and no costly filters to replace ever.</span></li>
+        </ul>
+
+        <!-- Image paired below Feature List -->
+        <div class="max-w-2xl mx-auto rounded-lg overflow-hidden mb-8 shadow">
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747074696/LumiClean%20ADvertorial/vu15jchqpyvjzi8omypu.png"
+               alt="Quiet operation of LumiClean"
+               class="w-full h-auto object-contain rounded-lg">
+        </div>
+      </div>
+    </section>
+    <!-- ============== Bathroom germs note ============== -->
+    <div class="py-6 bg-white shadow-sm">
+      <div class="w-full md:max-w-3xl px-4">
+        <div class="bg-blue-100 border-l-4 border-blue-600 p-4 rounded-lg">
+          <p class="text-gray-800">
+            The bathroom germs don't stay in the bathroom. They follow you to the kitchen, bedroom, and living room on your skin and clothing. And that's why Most LumiClean customers order <span class="font-semibold">multiple units</span> and run one in each room.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============== Affordable ================= -->
+    <section class="py-6 bg-white shadow-sm">
+      <div class="w-full md:max-w-3xl px-4">
+        <h2 class="text-2xl md:text-3xl font-bold mb-8">How Can It Be So Affordable?</h2>
+
+        <div class="max-w-2xl mx-auto rounded-lg overflow-hidden mb-8 shadow">
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071122/LumiClean%20ADvertorial/gemaorsfl2gflwh3w9sm.gif"
+               alt="LumiClean AI Animation"
+               class="w-full h-auto object-contain rounded-lg" />
+        </div>
+
+        <div class="space-y-4 text-gray-700 mt-6">
+          <p><span class="font-semibold text-black">Famous brands use many middlemen who all take a cut.</span> You end up paying way too much and feeling ripped off.</p>
+          <p><span class="font-semibold text-black">LumiClean, on the other hand, sells online directly to customers like you</span> — which removes these costly middlemen.</p>
+          <p>This allows them to offer web-only deals and give you <span class="font-semibold text-black">lower prices.</span></p>
+          <p><span class="font-semibold text-black">PLUS, they save you more money</span> when you buy more than one.</p>
+          <p>It's a smart solution for germophobes who can't rest until every inch of their living space is properly sanitized without breaking the bank.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== Conclusion ================= -->
+    <section id="conclusion" class="bg-white py-6 shadow-sm">
+      <div class="w-full md:max-w-3xl px-4">
+        <h2 class="text-2xl md:text-3xl font-bold mb-8">Conclusion: Is It Worth It?</h2>
+
+        <div class="max-w-2xl mx-auto rounded-lg overflow-hidden mb-8 shadow">
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071037/LumiClean%20ADvertorial/ckogop0ndhqtk2jkqhao.png"
+               alt="Charlene - Conclusion"
+               class="w-full h-auto object-contain rounded-lg" />
+        </div>
+
+        <div class="space-y-4 text-gray-700 mt-6">
+          <p>Yes, <span class="font-semibold text-black">LumiClean is truly cheap</span> and easy to use against <span class="font-semibold text-black">all kinds of invisible germs</span> lurking in your home.</p>
+          <p>Don't wait to buy your LumiClean- they sell out fast!</p>
+          <p>You'll quickly see why so many American Germophobes can't stop talking about it!</p>
+          <p>The icing on the cake is the price. <span class="font-semibold text-black">If they haven't sold out yet, grab one before it's too late.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Packaging GIF Section -->
+    <div class="py-6 bg-white shadow-sm">
+      <div class="w-full md:max-w-3xl px-4">
+        <div class="max-w-2xl mx-auto rounded-lg overflow-hidden shadow">
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071167/LumiClean%20ADvertorial/juifpiucim3go70qxsz0.gif"
+               alt="LumiClean Packaging"
+               class="w-full h-auto object-contain rounded-lg">
+        </div>
+      </div>
+    </div>
+
+    <!-- =================  HOW DO I GET LUMICLEAN?  ================= -->
+    <section id="how-get" class="py-6 bg-white shadow-sm">
+      <div class="w-full md:max-w-3xl px-4">
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-8">How Do I Get LumiClean?</h2>
+        <p class="font-semibold">Get your LumiClean from their official website below.</p>
+
+        <!-- info box -->
+        <div class="border-2 border-red-500 bg-blue-50 p-6 rounded-md">
+          <p>
+            As of March&nbsp;26,&nbsp;2025, LumiClean has become the must-have tool for germ-conscious
+            buyers. Due to its popularity and positive reviews, LumiClean is now presenting an
+            exclusive "Internet Only Promotion" and bundle discount with a 60-Day Guarantee — just
+            pay a small processing fee and return shipping for returns/exchanges.
+          </p>
+        </div>
+
+        <!-- red CTA -->
+        <div class="text-center mt-8">
+          <a href="https://official-lumiclean-link.com"
+             id="final-static-cta"
+             class="inline-block bg-red-500 hover:bg-red-600 text-white font-bold text-xl py-4 px-12 rounded-full shadow-lg transition transform hover:scale-105">
+            Check Availability &raquo;
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const floatingCta = document.getElementById('smart-floating-cta');
+      const finalStaticCta = document.getElementById('final-static-cta');
+      
+      if (!floatingCta || !finalStaticCta) {
+        console.warn('Floating CTA or Final Static CTA not found. Hiding logic will not run.');
+        return;
+      }
+  
+      // Function to show the floating CTA
+      function showFloatingCta() {
+        floatingCta.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+        floatingCta.classList.add('opacity-100', 'visible');
+      }
+  
+      // Function to hide the floating CTA
+      function hideFloatingCta() {
+        floatingCta.classList.remove('opacity-100', 'visible');
+        floatingCta.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+      }
+  
+      // Determine when to show/hide based on scroll
+      function handleScroll() {
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        
+        // Point where the final static CTA starts
+        const finalCtaTop = finalStaticCta.offsetTop;
+        
+        // Point where the bottom of the viewport is
+        const viewportBottom = scrollPosition + windowHeight;
+  
+        // Threshold: How far above the final static CTA should the floating one disappear?
+        // This might need adjustment. e.g., height of floating CTA + some buffer.
+        const hideThreshold = 100; // pixels. Adjust this value.
+  
+        // Show after scrolling down a bit (e.g., 300px)
+        if (scrollPosition > 300) {
+          if (viewportBottom < (finalCtaTop - hideThreshold)) {
+            showFloatingCta();
+          } else {
+            hideFloatingCta();
+          }
+        } else {
+          // Hide if near the top of the page
+          hideFloatingCta();
+        }
+      }
+  
+      window.addEventListener('scroll', handleScroll);
+      handleScroll(); // Initial check
+    });
+  </script>
+
+</body>
+</html> 
