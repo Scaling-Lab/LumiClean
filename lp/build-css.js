@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const CleanCSS = require('clean-css');
+const chokidar = require('chokidar');
 
 // Define critical and non-critical CSS files
 const criticalFiles = [
@@ -50,12 +51,37 @@ const minifyCSS = (css) => {
     return minifier.minify(css).styles;
 };
 
-// Process critical CSS
-const criticalCSS = combineCSS(criticalFiles);
-fs.writeFileSync('css/critical.min.css', minifyCSS(criticalCSS));
+function buildAll() {
+    // Process critical CSS
+    const criticalCSS = combineCSS(criticalFiles);
+    fs.writeFileSync('css/critical.min.css', minifyCSS(criticalCSS));
 
-// Process non-critical CSS
-const nonCriticalCSS = combineCSS(nonCriticalFiles);
-fs.writeFileSync('css/non-critical.min.css', minifyCSS(nonCriticalCSS));
+    // Process non-critical CSS
+    const nonCriticalCSS = combineCSS(nonCriticalFiles);
+    fs.writeFileSync('css/non-critical.min.css', minifyCSS(nonCriticalCSS));
 
-console.log('CSS files have been combined and minified successfully!');
+    console.log('CSS files have been combined and minified successfully!');
+}
+
+// Check for --watch argument
+if (process.argv.includes('--watch')) {
+    // Watch all CSS files in both arrays
+    const filesToWatch = [...criticalFiles, ...nonCriticalFiles];
+    const watcher = chokidar.watch(filesToWatch, { ignoreInitial: true });
+    console.log('Watching CSS files for changes...');
+    buildAll();
+    watcher.on('change', (filePath) => {
+        console.log(`File changed: ${filePath}`);
+        buildAll();
+    });
+    watcher.on('add', (filePath) => {
+        console.log(`File added: ${filePath}`);
+        buildAll();
+    });
+    watcher.on('unlink', (filePath) => {
+        console.log(`File removed: ${filePath}`);
+        buildAll();
+    });
+} else {
+    buildAll();
+}
