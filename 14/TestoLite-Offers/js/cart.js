@@ -1,7 +1,7 @@
     // --- Product Variant ID (Replace with your actual TestoLite PRO Variant ID) ---
     const TESTOLITE_PRO_VARIANT_ID = 'gid://shopify/ProductVariant/45184215875820'; // Example: 'gid://shopify/ProductVariant/1234567890'
 
-    // --- cart Drawer Elements (Keep elements from previous answer) ---
+    // --- Cart Drawer Elements (Keep elements from previous answer) ---
     const cartDrawer = document.getElementById('cart-drawer');
     const cartOverlay = document.getElementById('cart-overlay');
     const closeCartBtn = document.getElementById('close-cart-btn');
@@ -21,12 +21,12 @@
     const aliaTimerElement = document.getElementById('alia-timer');
     const aliaExpiredMessageElement = document.getElementById('alia-expired-message');
 
-    // --- cart State & Data ---
+    // --- Cart State & Data ---
     let cart = null; // Will hold the entire cart object from Shopify
     let aliaTimerInterval = null;
     let isLoading = false; // Simple loading state flag
 
-    // --- Local Storage Key for cart ID ---
+    // --- Local Storage Key for Cart ID ---
     const CART_ID_STORAGE_KEY = 'shopify_cart_id';
     const ALIA_CODE_STORAGE_KEY = 'alia_discount_code';
     const ALIA_TEXT_STORAGE_KEY = 'alia_reward_text';
@@ -308,7 +308,7 @@ async function callShopifyAPI(query, variables = {}) {
             }
         } else {
             // Fallback to alert if DOM elements not found
-            console.warn("cart error elements not found, falling back to alert");
+            console.warn("Cart error elements not found, falling back to alert");
             alert(message);
         }
     }
@@ -324,7 +324,7 @@ async function callShopifyAPI(query, variables = {}) {
         }
     }
 
-    // --- cart Functions ---
+    // --- Cart Functions ---
 
     // Fetches cart if ID exists, otherwise creates a new one
     async function getOrCreateCart() {
@@ -340,7 +340,7 @@ async function callShopifyAPI(query, variables = {}) {
                     cart = data.cart;
                     return cart;
                 } else {
-                    // cart ID was invalid or cart was deleted/expired
+                    // Cart ID was invalid or cart was deleted/expired
                     console.warn("getOrCreateCart: Fetch failed for stored cart ID, creating new cart."); // Log failure
                     cartId = null; // Force creation
                     localStorage.removeItem(CART_ID_STORAGE_KEY);
@@ -394,7 +394,7 @@ async function callShopifyAPI(query, variables = {}) {
                          showCartError(`Cart Error: ${userErrors[0].message}`);
                          throw new Error(`Shopify User Error: ${userErrors[0].message}`);
                      } else {
-                        throw new Error("cart creation failed unexpectedly. Check network logs.");
+                        throw new Error("Cart creation failed unexpectedly. Check network logs.");
                      }
                 }
             } catch (error) {
@@ -565,7 +565,7 @@ async function callShopifyAPI(query, variables = {}) {
                 renderCart(); // Re-render the entire cart with updated info
             } else {
                  // If cart data didn't come back as expected, log it but might not be fatal
-                 console.warn("cart data not returned as expected after quantity update.", data);
+                 console.warn("Cart data not returned as expected after quantity update.", data);
                  renderCart(); // Still try to re-render
             }
         } catch (error) {
@@ -632,7 +632,7 @@ async function callShopifyAPI(query, variables = {}) {
 
     function renderAppliedDiscounts() {
         // Add debug logging to see what we're working with
-        console.log("[RenderCheck] cart State:", cart);
+        console.log("[RenderCheck] Cart State:", cart);
         console.log("[RenderCheck] Local Storage:", {
             code: localStorage.getItem(ALIA_CODE_STORAGE_KEY),
             text: localStorage.getItem(ALIA_TEXT_STORAGE_KEY),
@@ -741,7 +741,7 @@ async function callShopifyAPI(query, variables = {}) {
                                  if (aliaExpiredMessageElement) aliaExpiredMessageElement.classList.remove('hidden');
                              } else {
                                  // Handle case where cart became invalid or API didn't return cart
-                                 console.warn("[AliaTimer] cart update/discount removal might have failed or cart became invalid. Re-initializing.");
+                                 console.warn("[AliaTimer] Cart update/discount removal might have failed or cart became invalid. Re-initializing.");
                                  initializeCart(); 
                              }
                          })
@@ -810,15 +810,15 @@ async function callShopifyAPI(query, variables = {}) {
         // Hide any error message when drawer is closed
         hideCartError();
     }
-    // --- Initialize cart ---
+    // --- Initialize Cart ---
     async function initializeCart() {
-        console.log("[cart Init] Initializing cart...");
+        console.log("[Cart Init] Initializing cart...");
         try {
             // Use the consolidated function
             const loadedCart = await getOrCreateCart();
 
             if (!loadedCart) {
-                 console.error("[cart Init] Failed to load or create cart after getOrCreateCart call.");
+                 console.error("[Cart Init] Failed to load or create cart after getOrCreateCart call.");
                  // Error should have been shown by getOrCreateCart, maybe add a generic fallback?
                  // showCartError("Failed to initialize cart. Please refresh.");
                  setLoading(false); // Ensure loading state is reset
@@ -826,16 +826,16 @@ async function callShopifyAPI(query, variables = {}) {
             }
             
             // cart variable is already updated globally within getOrCreateCart
-            console.log("[cart Debug] cart initialized. Now checking/updating experiment attribute...");
+            console.log("[Cart Debug] Cart initialized. Now checking/updating experiment attribute...");
             await updateExperimentAttributeIfNeeded(); // Check/update experiment attribute
-            console.log("[cart Debug] Attribute check/update complete.");
+            console.log("[Cart Debug] Attribute check/update complete.");
             
         } catch (error) {
             // Catch any unexpected errors during the initialization process itself
-            console.error("[cart Init] Unexpected error during cart initialization:", error);
+            console.error("[Cart Init] Unexpected error during cart initialization:", error);
             showCartError("An unexpected error occurred while initializing the cart.");
         } finally {
-             console.log("[cart Init] Rendering cart after initialization attempt.");
+             console.log("[Cart Init] Rendering cart after initialization attempt.");
              renderCart(); // Always render the cart UI state, even on failure
              setLoading(false); // Ensure loading is always false after init
         }
@@ -900,7 +900,7 @@ async function callShopifyAPI(query, variables = {}) {
                      console.log('GA4 dataLayer push for add_to_cart:', window.dataLayer[window.dataLayer.length-1]);
 
 
-                     // 4. Prepare Klaviyo Data (Structure based on Klaviyo's Added to cart spec)
+                     // 4. Prepare Klaviyo Data (Structure based on Klaviyo's Added to Cart spec)
                      const klaviyoCartItems = updatedCart.lines.nodes.map(line => {
                          const merch = line.merchandise;
                          return {
@@ -925,11 +925,11 @@ async function callShopifyAPI(query, variables = {}) {
                          // Optionally add other cart-level info if needed by Klaviyo
                      };
 
-                     // 5. Push Klaviyo 'Added to cart' event
+                     // 5. Push Klaviyo 'Added to Cart' event
                      // Ensure _learnq is initialized (Klaviyo base script should do this)
                      var _learnq = window._learnq || [];
-                     _learnq.push(['track', 'Added to cart', klaviyoCartData]);
-                     console.log('Klaviyo _learnq push for Added to cart:', klaviyoCartData);
+                     _learnq.push(['track', 'Added to Cart', klaviyoCartData]);
+                     console.log('Klaviyo _learnq push for Added to Cart:', klaviyoCartData);
 
                  } else {
                      console.warn("Could not find the added line item in the updated cart to send tracking events.");
@@ -953,9 +953,9 @@ async function callShopifyAPI(query, variables = {}) {
 
      // --- Event Listeners Setup ---
      function setupEventListeners() {
-        console.log('[cart Debug] setupEventListeners START'); // <-- ADDED LOG
+        console.log('[Cart Debug] setupEventListeners START'); // <-- ADDED LOG
 
-         // Open cart Trigger
+         // Open Cart Trigger
          const openCartTrigger = document.getElementById('open-cart-trigger');
          if (openCartTrigger) {
              openCartTrigger.addEventListener('click', openDrawer);
@@ -976,7 +976,7 @@ async function callShopifyAPI(query, variables = {}) {
          // Checkout Button
          checkoutBtn.addEventListener('click', () => {
              const baseUrl = cart?.checkoutUrl; // Get base URL from cart state
-             console.log('[cart Debug] Checkout button clicked. URL:', baseUrl, 'cart Quantity:', cart?.totalQuantity); // <-- ADDED LOG
+             console.log('[Cart Debug] Checkout button clicked. URL:', baseUrl, 'Cart Quantity:', cart?.totalQuantity); // <-- ADDED LOG
              if (cart && cart.totalQuantity > 0 && baseUrl && baseUrl !== '#') {
                  // Disable button immediately
                  checkoutBtn.disabled = true;
@@ -1099,7 +1099,7 @@ async function callShopifyAPI(query, variables = {}) {
 
              // If cart doesn't exist yet, initialize it
              if (!cart) {
-                 console.log("cart not initialized yet, creating new cart...");
+                 console.log("Cart not initialized yet, creating new cart...");
                  try {
                      cart = await createCart();
                      if (!cart) throw new Error("Failed to create cart after Alia event.");
@@ -1172,7 +1172,7 @@ async function callShopifyAPI(query, variables = {}) {
 
              // Ensure cart exists
              if (!cart) {
-                 console.log("Signup event: cart not initialized, creating...");
+                 console.log("Signup event: Cart not initialized, creating...");
                  try {
                      cart = await createCart();
                      if (!cart) throw new Error("Failed to create cart for signup event.");
@@ -1222,7 +1222,7 @@ async function callShopifyAPI(query, variables = {}) {
 
              // Ensure cart exists
              if (!cart) {
-                 console.log("Poll event: cart not initialized, creating...");
+                 console.log("Poll event: Cart not initialized, creating...");
                  try {
                      cart = await createCart();
                      if (!cart) throw new Error("Failed to create cart for poll event.");
@@ -1273,7 +1273,7 @@ async function callShopifyAPI(query, variables = {}) {
                  });
 
                  if (data?.cartAttributesUpdate?.cart) {
-                     console.log("cart attributes updated successfully with poll answers.");
+                     console.log("Cart attributes updated successfully with poll answers.");
                      cart = data.cartAttributesUpdate.cart; // Update global cart state
                      // Optionally re-render if needed
                      // renderCart();
@@ -1292,7 +1292,7 @@ async function callShopifyAPI(query, variables = {}) {
          // ---- END TEMPORARY ALIA TEST ----
      }
 
-     // --- Function to Update Experiment Attribute on Existing cart ---
+     // --- Function to Update Experiment Attribute on Existing Cart ---
      async function updateExperimentAttributeIfNeeded() {
          console.log("[AttribUpdate] Checking if experiment attribute needs update...");
          const experimentAttribute = getExperimentAttribute(); // { key: 'experiment_branch', value: '...' } or null
@@ -1305,7 +1305,7 @@ async function callShopifyAPI(query, variables = {}) {
 
          // If cart doesn't exist or has no ID yet, creation logic will handle it
          if (!cart || !cart.id) {
-             console.log("[AttribUpdate] cart not yet available. Attribute will be set during creation.");
+             console.log("[AttribUpdate] Cart not yet available. Attribute will be set during creation.");
              return;
          }
 
@@ -1334,7 +1334,7 @@ async function callShopifyAPI(query, variables = {}) {
              });
 
              if (data?.cartAttributesUpdate?.cart) {
-                 console.log("[AttribUpdate] cart attributes updated successfully.");
+                 console.log("[AttribUpdate] Cart attributes updated successfully.");
                  cart = data.cartAttributesUpdate.cart; // Update global cart state
                  // Optionally re-render if attributes affect the display, though unlikely here
                  // renderCart();
@@ -1345,8 +1345,8 @@ async function callShopifyAPI(query, variables = {}) {
                       console.error('[AttribUpdate] Shopify User Errors during attribute update:', userErrors);
                       throw new Error(`Shopify error during attribute update: ${userErrors[0].message}`);
                   } else {
-                      console.error("[AttribUpdate] cart attribute update API call succeeded but returned no cart data.", data);
-                      throw new Error("cart attribute update failed silently.");
+                      console.error("[AttribUpdate] Cart attribute update API call succeeded but returned no cart data.", data);
+                      throw new Error("Cart attribute update failed silently.");
                   }
              }
          } catch (error) {
@@ -1358,7 +1358,7 @@ async function callShopifyAPI(query, variables = {}) {
 
     // --- Initial Load ---
     document.addEventListener('DOMContentLoaded', async () => {
-        console.log('[cart Debug] DOMContentLoaded event');
+        console.log('[Cart Debug] DOMContentLoaded event'); 
         try {
             await initializeCart(); // Wait for cart initialization to complete
             // Attribute check is now handled within initializeCart

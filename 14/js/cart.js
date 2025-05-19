@@ -1,6 +1,6 @@
 // const TESTOLITE_PRO_VARIANT_ID = 'gid://shopify/ProductVariant/45184215875820';
 //
-// // --- cart Drawer Elements ---
+// // --- Cart Drawer Elements ---
 // const cartDrawer = document.getElementById('cart-drawer');
 // const cartOverlay = document.getElementById('cart-overlay');
 // const closeCartBtn = document.getElementById('close-cart-btn');
@@ -20,7 +20,7 @@
 // const aliaTimerElement = document.getElementById('alia-timer');
 // const aliaExpiredMessageElement = document.getElementById('alia-expired-message');
 //
-// // --- cart State & Data ---
+// // --- Cart State & Data ---
 // let cart = null;
 // let aliaTimerInterval = null;
 // let isLoading = false;
@@ -33,7 +33,7 @@
 //
 // // --- GraphQL Definitions ---
 // const CartFragment = `
-//     fragment CartFragment on cart {
+//     fragment CartFragment on Cart {
 //         id
 //         checkoutUrl
 //         totalQuantity
@@ -110,13 +110,13 @@
 //     }
 // }
 //
-// // --- cart Management Functions ---
+// // --- Cart Management Functions ---
 // async function getOrCreateCart() {
 //     try {
 //         let cartId = localStorage.getItem(CART_ID_STORAGE_KEY);
 //
 //         if (cartId) {
-//             console.log('[cart Debug] Stored cart ID:', cartId);
+//             console.log('[Cart Debug] Stored cart ID:', cartId);
 //             try {
 //                 const query = `
 //                     query GetCart($cartId: ID!) {
@@ -129,11 +129,11 @@
 //
 //                 const response = await callShopifyAPI(query, { cartId });
 //                 if (response.data?.cart) {
-//                     console.log('[cart Debug] Successfully fetched existing cart:', cartId);
+//                     console.log('[Cart Debug] Successfully fetched existing cart:', cartId);
 //                     return response.data.cart;
 //                 }
 //             } catch (error) {
-//                 console.warn('[cart Debug] Failed to fetch existing cart, creating new one');
+//                 console.warn('[Cart Debug] Failed to fetch existing cart, creating new one');
 //             }
 //         }
 //
@@ -162,7 +162,7 @@
 //
 //         throw new Error('Failed to create cart');
 //     } catch (error) {
-//         console.error('[cart Debug] Error in getOrCreateCart:', error);
+//         console.error('[Cart Debug] Error in getOrCreateCart:', error);
 //         throw error;
 //     }
 // }
@@ -192,7 +192,7 @@
 //     }
 // }
 //
-// // --- cart Operations ---
+// // --- Cart Operations ---
 // async function addCartLine(cartId, merchandiseId, quantity = 1) {
 //     const query = `
 //         mutation AddToCart($cartId: ID!, $lines: [CartLineInput!]!) {
@@ -261,22 +261,22 @@
 // // --- Initialization ---
 // async function initializeCart() {
 //     try {
-//         console.log('[cart Init] Initializing cart...');
+//         console.log('[Cart Init] Initializing cart...');
 //         cart = await getOrCreateCart();
-//         console.log('[cart Debug] cart initialized. Now checking/updating experiment attribute...');
+//         console.log('[Cart Debug] Cart initialized. Now checking/updating experiment attribute...');
 //         await updateExperimentAttributeIfNeeded();
-//         console.log('[cart Debug] Attribute check/update complete.');
-//         console.log('[cart Init] Rendering cart after initialization attempt.');
+//         console.log('[Cart Debug] Attribute check/update complete.');
+//         console.log('[Cart Init] Rendering cart after initialization attempt.');
 //         renderCart();
 //         setupEventListeners();
 //     } catch (error) {
-//         console.error('[cart Init] Error initializing cart:', error);
+//         console.error('[Cart Init] Error initializing cart:', error);
 //         showCartError('Failed to initialize cart. Please refresh the page.');
 //     }
 // }
 //
 // // Initialize on DOM load
 // document.addEventListener('DOMContentLoaded', () => {
-//     console.log('[cart Debug] DOMContentLoaded event');
+//     console.log('[Cart Debug] DOMContentLoaded event');
 //     initializeCart();
 // });

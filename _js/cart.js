@@ -1,7 +1,11 @@
-    // --- Product Variant ID (Replace with your actual TestoLite PRO Variant ID) ---
-    const TESTOLITE_PRO_VARIANT_ID = 'gid://shopify/ProductVariant/45184215875820'; // Example: 'gid://shopify/ProductVariant/1234567890'
+    // --- Product Variant IDs ---
+    const PRODUCT_VARIANTS = {
+        UVO254: 'gid://shopify/ProductVariant/44103628357881',  // UVO254™ - Powered Home Disinfection Tower
+        UVO108: 'gid://shopify/ProductVariant/42904402526457',  // UVO108™
+        UVO72: 'gid://shopify/ProductVariant/42910843764985'    // UVO72™
+    };
 
-    // --- Cart Drawer Elements (Keep elements from previous answer) ---
+    // --- cart Drawer Elements (Keep elements from previous answer) ---
     const cartDrawer = document.getElementById('cart-drawer');
     const cartOverlay = document.getElementById('cart-overlay');
     const closeCartBtn = document.getElementById('close-cart-btn');
@@ -15,18 +19,18 @@
     const cartErrorMessage = document.getElementById('cart-error-message'); // Added error message element
 
     // --- Alia Discount Elements (Keep elements from previous answer) ---
-    const aliaDiscountSection = document.getElementById('alia-discount-section');
-    const aliaRewardTextElement = document.getElementById('alia-reward-text');
-    const aliaDiscountCodeElement = document.getElementById('alia-discount-code');
-    const aliaTimerElement = document.getElementById('alia-timer');
-    const aliaExpiredMessageElement = document.getElementById('alia-expired-message');
+    const discountSection = document.getElementById('discount-section');
+    const rewardTextElement = document.getElementById('reward-text');
+    const discountCodeElement = document.getElementById('discount-code');
+    const timerElement = document.getElementById('timer');
+    const expiredMessageElement = document.getElementById('expired-message');
 
-    // --- Cart State & Data ---
+    // --- cart State & Data ---
     let cart = null; // Will hold the entire cart object from Shopify
     let aliaTimerInterval = null;
     let isLoading = false; // Simple loading state flag
 
-    // --- Local Storage Key for Cart ID ---
+    // --- Local Storage Key for cart ID ---
     const CART_ID_STORAGE_KEY = 'shopify_cart_id';
     const ALIA_CODE_STORAGE_KEY = 'alia_discount_code';
     const ALIA_TEXT_STORAGE_KEY = 'alia_reward_text';
@@ -193,64 +197,55 @@
     `;
 
     // --- API Call Helper ---
-    // --- API Call Helper (Updated for Netlify Function) ---
-async function callShopifyAPI(query, variables = {}) {
-    if (isLoading) {
-        console.warn("API call blocked, already loading.");
-        return;
-    }
-    setLoading(true);
-
-    // The path to your Netlify function
-    const netlifyFunctionEndpoint = '/.netlify/functions/shopify-proxy';
-
-    try {
-        const response = await fetch(netlifyFunctionEndpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                // NO Storefront Access Token header needed here!
-            },
-            // Send the query and variables TO the Netlify function
-            body: JSON.stringify({ query, variables }),
-        });
-
-        // Check if the function call itself was successful
-        if (!response.ok) {
-            const errorBody = await response.text();
-            console.error(`Netlify Function error: ${response.status}`, errorBody);
-            throw new Error(`Function call failed with status ${response.status}. ${errorBody}`);
+    async function callShopifyAPI(query, variables = {}) {
+        if (isLoading) {
+            console.warn("API call blocked, already loading.");
+            return;
         }
+        setLoading(true);
 
-        const result = await response.json();
+        try {
+            const response = await fetch('https://kathyfox.myshopify.com/api/2023-10/graphql.json', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Shopify-Storefront-Access-Token': '1f82e769f19c8016e34d580af41cb329'
+                },
+                body: JSON.stringify({ query, variables }),
+            });
 
-        // Now, check for GraphQL errors *returned by Shopify* via the function
-        if (result.errors) {
-            console.error('GraphQL Errors (via Netlify Function):', result.errors);
-            throw new Error(`GraphQL error: ${result.errors[0].message}`);
+            if (!response.ok) {
+                const errorBody = await response.text();
+                console.error(`Shopify API error: ${response.status}`, errorBody);
+                throw new Error(`API call failed with status ${response.status}. ${errorBody}`);
+            }
+
+            const result = await response.json();
+
+            if (result.errors) {
+                console.error('GraphQL Errors:', result.errors);
+                throw new Error(`GraphQL error: ${result.errors[0].message}`);
+            }
+
+            const dataKeys = Object.keys(result.data || {});
+            if (dataKeys.length > 0) {
+                const mutationKey = dataKeys[0];
+                const operationResult = result.data[mutationKey];
+                if (operationResult && operationResult.userErrors && operationResult.userErrors.length > 0) {
+                    console.error('Shopify User Errors:', operationResult.userErrors);
+                    throw new Error(`Shopify error: ${operationResult.userErrors[0].message}`);
+                }
+            }
+
+            return result.data;
+
+        } catch (error) {
+            console.error('Failed during Shopify API call:', error);
+            throw error;
+        } finally {
+            setLoading(false);
         }
-
-         // Check for userErrors passed through by the function
-         // Assuming the function forwards the structure { data: { cartCreate: { userErrors: [...] } } }
-         const dataKeys = Object.keys(result.data || {});
-         if (dataKeys.length > 0) {
-             const mutationKey = dataKeys[0];
-             const operationResult = result.data[mutationKey];
-             if (operationResult && operationResult.userErrors && operationResult.userErrors.length > 0) {
-                 console.error('Shopify User Errors (via Netlify Function):', operationResult.userErrors);
-                 throw new Error(`Shopify error: ${operationResult.userErrors[0].message}`);
-             }
-         }
-
-        return result.data; // Return the 'data' part of the Shopify response
-
-    } catch (error) {
-        console.error('Failed during Netlify Function call or processing:', error);
-        throw error; // Re-throw for calling function to handle
-    } finally {
-        setLoading(false);
     }
-}
 
     function setLoading(state) {
         isLoading = state;
@@ -308,7 +303,7 @@ async function callShopifyAPI(query, variables = {}) {
             }
         } else {
             // Fallback to alert if DOM elements not found
-            console.warn("Cart error elements not found, falling back to alert");
+            console.warn("cart error elements not found, falling back to alert");
             alert(message);
         }
     }
@@ -324,7 +319,57 @@ async function callShopifyAPI(query, variables = {}) {
         }
     }
 
-    // --- Cart Functions ---
+    // --- cart Functions ---
+
+    // Creates a new cart
+    async function createCart() {
+        try {
+            const utmAttributes = getUrlParameters();
+            const experimentAttribute = getExperimentAttribute();
+            let combinedAttributes = utmAttributes;
+
+            if (experimentAttribute) {
+                const existingIndex = combinedAttributes.findIndex(attr => attr.key === experimentAttribute.key);
+                if (existingIndex !== -1) {
+                    console.warn(`Attribute key "${experimentAttribute.key}" already exists. Overwriting with experiment value.`);
+                    combinedAttributes[existingIndex] = experimentAttribute;
+                } else {
+                    combinedAttributes.push(experimentAttribute);
+                }
+            }
+
+            console.log("createCart: Creating new cart with attributes:", combinedAttributes);
+
+            const variables = {
+                input: {
+                    lines: [],
+                    attributes: combinedAttributes
+                }
+            };
+            const data = await callShopifyAPI(CREATE_CART_MUTATION, variables);
+            if (data && data.cartCreate && data.cartCreate.cart) {
+                cart = data.cartCreate.cart;
+                console.log("createCart: Successfully created new cart:", cart.id);
+                localStorage.setItem(CART_ID_STORAGE_KEY, cart.id);
+                return cart;
+            } else {
+                console.error("createCart: Failed to create new cart. Response data:", data);
+                const userErrors = data?.cartCreate?.userErrors;
+                if (userErrors && userErrors.length > 0) {
+                    showCartError(`Cart Error: ${userErrors[0].message}`);
+                    throw new Error(`Shopify User Error: ${userErrors[0].message}`);
+                } else {
+                    throw new Error("cart creation failed unexpectedly. Check network logs.");
+                }
+            }
+        } catch (error) {
+            console.error("createCart: Error creating new cart:", error);
+            if (!error.message.startsWith("Shopify User Error:")) {
+                showCartError("Could not create a shopping cart. Please refresh and try again.");
+            }
+            return null;
+        }
+    }
 
     // Fetches cart if ID exists, otherwise creates a new one
     async function getOrCreateCart() {
@@ -340,7 +385,7 @@ async function callShopifyAPI(query, variables = {}) {
                     cart = data.cart;
                     return cart;
                 } else {
-                    // Cart ID was invalid or cart was deleted/expired
+                    // cart ID was invalid or cart was deleted/expired
                     console.warn("getOrCreateCart: Fetch failed for stored cart ID, creating new cart."); // Log failure
                     cartId = null; // Force creation
                     localStorage.removeItem(CART_ID_STORAGE_KEY);
@@ -394,7 +439,7 @@ async function callShopifyAPI(query, variables = {}) {
                          showCartError(`Cart Error: ${userErrors[0].message}`);
                          throw new Error(`Shopify User Error: ${userErrors[0].message}`);
                      } else {
-                        throw new Error("Cart creation failed unexpectedly. Check network logs.");
+                        throw new Error("cart creation failed unexpectedly. Check network logs.");
                      }
                 }
             } catch (error) {
@@ -565,7 +610,7 @@ async function callShopifyAPI(query, variables = {}) {
                 renderCart(); // Re-render the entire cart with updated info
             } else {
                  // If cart data didn't come back as expected, log it but might not be fatal
-                 console.warn("Cart data not returned as expected after quantity update.", data);
+                 console.warn("cart data not returned as expected after quantity update.", data);
                  renderCart(); // Still try to re-render
             }
         } catch (error) {
@@ -632,7 +677,7 @@ async function callShopifyAPI(query, variables = {}) {
 
     function renderAppliedDiscounts() {
         // Add debug logging to see what we're working with
-        console.log("[RenderCheck] Cart State:", cart);
+        console.log("[RenderCheck] cart State:", cart);
         console.log("[RenderCheck] Local Storage:", {
             code: localStorage.getItem(ALIA_CODE_STORAGE_KEY),
             text: localStorage.getItem(ALIA_TEXT_STORAGE_KEY),
@@ -655,9 +700,9 @@ async function callShopifyAPI(query, variables = {}) {
             // Only show if BOTH localStorage is valid AND the code is actually in the current Shopify cart
             const aliaText = localStorage.getItem(ALIA_TEXT_STORAGE_KEY);
             console.log("[RenderCheck] Showing Alia discount section");
-            aliaRewardTextElement.textContent = aliaText || 'Discount Applied';
-             aliaDiscountCodeElement.textContent = aliaCode;
-             aliaDiscountSection.classList.remove('hidden');
+            rewardTextElement.textContent = aliaText || 'Discount Applied';
+             discountCodeElement.textContent = aliaCode;
+             discountSection.classList.remove('hidden');
             startAliaTimer(Math.floor((storedExpiry - Date.now()) / 1000));
          } else {
             console.log("[RenderCheck] Hiding Alia discount section. Conditions:", {
@@ -665,8 +710,8 @@ async function callShopifyAPI(query, variables = {}) {
                 isValidExpiry: Boolean(storedExpiry && storedExpiry > Date.now()),
                 isAppliedInShopify: isCodeInShopifyCart,
              });
-            aliaDiscountSection.classList.add('hidden');
-            if (aliaExpiredMessageElement) aliaExpiredMessageElement.classList.add('hidden');
+            discountSection.classList.add('hidden');
+            if (expiredMessageElement) expiredMessageElement.classList.add('hidden');
             clearInterval(aliaTimerInterval);
 
             // Clear storage if the reason for hiding is an expired timer in localStorage
@@ -684,8 +729,8 @@ async function callShopifyAPI(query, variables = {}) {
     function startAliaTimer(durationSeconds) {
          clearInterval(aliaTimerInterval);
          if (durationSeconds <= 0) { // Already expired when called
-             aliaTimerElement.textContent = "Expired";
-             aliaDiscountSection.classList.add('opacity-50');
+             timerElement.textContent = "Expired";
+             discountSection.classList.add('opacity-50');
              console.log("[AliaTimer] Timer called with duration <= 0, marking as expired immediately.");
              // Clear storage as it's already expired
              localStorage.removeItem(ALIA_CODE_STORAGE_KEY);
@@ -705,12 +750,12 @@ async function callShopifyAPI(query, variables = {}) {
              });
              return;
          }
-         aliaDiscountSection.classList.remove('opacity-50');
+         discountSection.classList.remove('opacity-50');
          let timer = durationSeconds;
          const updateTimerDisplay = () => {
              const minutes = Math.floor(timer / 60);
              const seconds = timer % 60;
-             aliaTimerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+             timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
          };
          updateTimerDisplay();
          aliaTimerInterval = setInterval(() => {
@@ -719,8 +764,8 @@ async function callShopifyAPI(query, variables = {}) {
              if (timer < 0) {
                  console.log("[AliaTimer] Interval timer expired.");
                  clearInterval(aliaTimerInterval);
-                 aliaTimerElement.textContent = "Expired";
-                 aliaDiscountSection.classList.add('opacity-50');
+                 timerElement.textContent = "Expired";
+                 discountSection.classList.add('opacity-50');
 
                  // Clear Alia keys from localStorage now that UI timer has expired
                  console.log("[AliaTimer] Clearing Alia data from localStorage due to UI timer expiry.");
@@ -738,10 +783,10 @@ async function callShopifyAPI(query, variables = {}) {
                                  cart = updatedCart; // Update global cart state
                                  console.log("[AliaTimer] Discount removed from Shopify cart, updated cart rendered, showing expired message.");
                                  renderCart(); // Re-render with accurate (non-discounted) prices
-                                 if (aliaExpiredMessageElement) aliaExpiredMessageElement.classList.remove('hidden');
+                                 if (expiredMessageElement) expiredMessageElement.classList.remove('hidden');
                              } else {
                                  // Handle case where cart became invalid or API didn't return cart
-                                 console.warn("[AliaTimer] Cart update/discount removal might have failed or cart became invalid. Re-initializing.");
+                                 console.warn("[AliaTimer] cart update/discount removal might have failed or cart became invalid. Re-initializing.");
                                  initializeCart(); 
                              }
                          })
@@ -749,12 +794,12 @@ async function callShopifyAPI(query, variables = {}) {
                              console.error("[AliaTimer] Error removing discount code from Shopify cart:", error);
                              // Still render cart to hide the Alia section based on cleared local storage
                              renderCart();
-                             if (aliaExpiredMessageElement) aliaExpiredMessageElement.classList.remove('hidden');
+                             if (expiredMessageElement) expiredMessageElement.classList.remove('hidden');
                          });
                  } else {
                      console.warn("[AliaTimer] No cart ID found to remove discount from Shopify after expiry.");
                      renderCart(); // Still re-render UI to hide Alia section
-                     if (aliaExpiredMessageElement) aliaExpiredMessageElement.classList.remove('hidden');
+                     if (expiredMessageElement) expiredMessageElement.classList.remove('hidden');
                  }
              }
          }, 1000);
@@ -810,15 +855,15 @@ async function callShopifyAPI(query, variables = {}) {
         // Hide any error message when drawer is closed
         hideCartError();
     }
-    // --- Initialize Cart ---
+    // --- Initialize cart ---
     async function initializeCart() {
-        console.log("[Cart Init] Initializing cart...");
+        console.log("[cart Init] Initializing cart...");
         try {
             // Use the consolidated function
             const loadedCart = await getOrCreateCart();
 
             if (!loadedCart) {
-                 console.error("[Cart Init] Failed to load or create cart after getOrCreateCart call.");
+                 console.error("[cart Init] Failed to load or create cart after getOrCreateCart call.");
                  // Error should have been shown by getOrCreateCart, maybe add a generic fallback?
                  // showCartError("Failed to initialize cart. Please refresh.");
                  setLoading(false); // Ensure loading state is reset
@@ -826,16 +871,16 @@ async function callShopifyAPI(query, variables = {}) {
             }
             
             // cart variable is already updated globally within getOrCreateCart
-            console.log("[Cart Debug] Cart initialized. Now checking/updating experiment attribute...");
+            console.log("[cart Debug] cart initialized. Now checking/updating experiment attribute...");
             await updateExperimentAttributeIfNeeded(); // Check/update experiment attribute
-            console.log("[Cart Debug] Attribute check/update complete.");
+            console.log("[cart Debug] Attribute check/update complete.");
             
         } catch (error) {
             // Catch any unexpected errors during the initialization process itself
-            console.error("[Cart Init] Unexpected error during cart initialization:", error);
+            console.error("[cart Init] Unexpected error during cart initialization:", error);
             showCartError("An unexpected error occurred while initializing the cart.");
         } finally {
-             console.log("[Cart Init] Rendering cart after initialization attempt.");
+             console.log("[cart Init] Rendering cart after initialization attempt.");
              renderCart(); // Always render the cart UI state, even on failure
              setLoading(false); // Ensure loading is always false after init
         }
@@ -900,7 +945,7 @@ async function callShopifyAPI(query, variables = {}) {
                      console.log('GA4 dataLayer push for add_to_cart:', window.dataLayer[window.dataLayer.length-1]);
 
 
-                     // 4. Prepare Klaviyo Data (Structure based on Klaviyo's Added to Cart spec)
+                     // 4. Prepare Klaviyo Data (Structure based on Klaviyo's Added to cart spec)
                      const klaviyoCartItems = updatedCart.lines.nodes.map(line => {
                          const merch = line.merchandise;
                          return {
@@ -925,11 +970,11 @@ async function callShopifyAPI(query, variables = {}) {
                          // Optionally add other cart-level info if needed by Klaviyo
                      };
 
-                     // 5. Push Klaviyo 'Added to Cart' event
+                     // 5. Push Klaviyo 'Added to cart' event
                      // Ensure _learnq is initialized (Klaviyo base script should do this)
                      var _learnq = window._learnq || [];
-                     _learnq.push(['track', 'Added to Cart', klaviyoCartData]);
-                     console.log('Klaviyo _learnq push for Added to Cart:', klaviyoCartData);
+                     _learnq.push(['track', 'Added to cart', klaviyoCartData]);
+                     console.log('Klaviyo _learnq push for Added to cart:', klaviyoCartData);
 
                  } else {
                      console.warn("Could not find the added line item in the updated cart to send tracking events.");
@@ -953,412 +998,418 @@ async function callShopifyAPI(query, variables = {}) {
 
      // --- Event Listeners Setup ---
      function setupEventListeners() {
-        console.log('[Cart Debug] setupEventListeners START'); // <-- ADDED LOG
+        console.log('[cart Debug] setupEventListeners START');
 
-         // Open Cart Trigger
-         const openCartTrigger = document.getElementById('open-cart-trigger');
-         if (openCartTrigger) {
-             openCartTrigger.addEventListener('click', openDrawer);
-         } else {
-             console.warn("Element with ID 'open-cart-trigger' not found.");
-         }
+        // Add to cart Buttons
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const variant = button.getAttribute('data-variant');
+                if (variant && PRODUCT_VARIANTS[variant]) {
+                    handleAddItemClick(PRODUCT_VARIANTS[variant]);
+                } else {
+                    console.error('Invalid variant ID for button:', button);
+                }
+            });
+        });
 
-         // Close Drawer
-         closeCartBtn.addEventListener('click', closeDrawer);
-         cartOverlay.addEventListener('click', closeDrawer);
+        // Open cart Trigger
+        const openCartTrigger = document.getElementById('open-cart-trigger');
+        if (openCartTrigger) {
+            openCartTrigger.addEventListener('click', openDrawer);
+        } else {
+            console.warn("Element with ID 'open-cart-trigger' not found.");
+        }
 
-         // Continue Shopping Button
-         const continueShoppingBtn = document.getElementById('continue-shopping-btn');
-         if (continueShoppingBtn) {
-             continueShoppingBtn.addEventListener('click', closeDrawer);
-         }
+        // Close Drawer
+        closeCartBtn.addEventListener('click', closeDrawer);
+        cartOverlay.addEventListener('click', closeDrawer);
 
-         // Checkout Button
-         checkoutBtn.addEventListener('click', () => {
-             const baseUrl = cart?.checkoutUrl; // Get base URL from cart state
-             console.log('[Cart Debug] Checkout button clicked. URL:', baseUrl, 'Cart Quantity:', cart?.totalQuantity); // <-- ADDED LOG
-             if (cart && cart.totalQuantity > 0 && baseUrl && baseUrl !== '#') {
-                 // Disable button immediately
-                 checkoutBtn.disabled = true;
-                 checkoutBtn.classList.add('opacity-50');
-                 checkoutBtn.textContent = 'Redirecting...';
+        // Checkout Button
+        checkoutBtn.addEventListener('click', () => {
+            const baseUrl = cart?.checkoutUrl; // Get base URL from cart state
+            console.log('[cart Debug] Checkout button clicked. URL:', baseUrl, 'cart Quantity:', cart?.totalQuantity); // <-- ADDED LOG
+            if (cart && cart.totalQuantity > 0 && baseUrl && baseUrl !== '#') {
+                // Disable button immediately
+                checkoutBtn.disabled = true;
+                checkoutBtn.classList.add('opacity-50');
+                checkoutBtn.textContent = 'Redirecting...';
 
-                 // 1. Get the parameters captured on initial page load
-                 const capturedAttributes = getUrlParameters(); // Use the helper function
+                // 1. Get the parameters captured on initial page load
+                const capturedAttributes = getUrlParameters(); // Use the helper function
 
-                 // 2. Convert attributes back into a query string
-                 const params = new URLSearchParams();
-                 capturedAttributes.forEach(attr => {
-                     // Ensure we don't append empty values if somehow captured
-                     if (attr.value) { 
-                          params.append(attr.key, attr.value);
-                     }
-                 });
-                 const queryString = params.toString();
+                // 2. Convert attributes back into a query string
+                const params = new URLSearchParams();
+                capturedAttributes.forEach(attr => {
+                    // Ensure we don't append empty values if somehow captured
+                    if (attr.value) { 
+                         params.append(attr.key, attr.value);
+                    }
+                });
+                const queryString = params.toString();
 
-                 // 3. Construct the final URL
-                 let finalUrl = baseUrl;
-                 if (queryString) {
-                     // Check if the base URL already has query parameters
-                     if (baseUrl.includes('?')) {
-                         finalUrl += '&' + queryString;
-                     } else {
-                         finalUrl += '?' + queryString;
-                     }
-                 }
-                 
-                 console.log("Redirecting to checkout with params:", finalUrl); // Log the final URL
+                // 3. Construct the final URL
+                let finalUrl = baseUrl;
+                if (queryString) {
+                    // Check if the base URL already has query parameters
+                    if (baseUrl.includes('?')) {
+                        finalUrl += '&' + queryString;
+                    } else {
+                        finalUrl += '?' + queryString;
+                    }
+                }
+                
+                console.log("Redirecting to checkout with params:", finalUrl); // Log the final URL
 
-                 // 4. Redirect the user
-                 window.location.href = finalUrl;
+                // 4. Redirect the user
+                window.location.href = finalUrl;
 
-             } else if (cart && cart.totalQuantity === 0) {
-                 showCartError("Your cart is empty."); // Using our new error display
-                  // Re-enable button if cart is empty
-                  checkoutBtn.disabled = false;
-                  checkoutBtn.classList.remove('opacity-50');
-                  checkoutBtn.textContent = 'Proceed to Checkout';
-             } else {
-                 console.error("Checkout URL not available or cart invalid.");
-                 showCartError("Could not proceed to checkout. Please try again later.");
-                  // Re-enable button on error
-                  checkoutBtn.disabled = false;
-                  checkoutBtn.classList.remove('opacity-50');
-                  checkoutBtn.textContent = 'Proceed to Checkout';
-             }
-         });
-
-         // REMOVED old js-add-to-cart listeners
-         // document.querySelectorAll('.js-add-to-cart').forEach(button => {
-         //     button.addEventListener('click', (e) => {
-         //         e.preventDefault(); // Prevent default link behavior
-         //         handleAddItemClick(TESTOLITE_PRO_VARIANT_ID);
-         //     });
-         // });
-
-         // NEW Listener for Main CTAs (including 'Start my payments')
-         document.querySelectorAll('.js-main-cta').forEach(button => {
-             button.addEventListener('click', (e) => {
-                 e.preventDefault(); // Prevent default link behavior
-
-                 // Check if TestoLite Pro is already in the cart
-                 const isProductInCart = cart?.lines?.nodes?.some(
-                     line => line.merchandise.id === TESTOLITE_PRO_VARIANT_ID
-                 );
-
-                 if (isProductInCart) {
-                     console.log("Product already in cart, opening drawer.");
-                     openDrawer();
-                 } else {
-                     console.log("Product not in cart or cart empty, adding product...");
-                     handleAddItemClick(TESTOLITE_PRO_VARIANT_ID);
-                     // handleAddItemClick already opens the drawer on success
-                 }
-             });
-         });
-
-         // Page Visibility Handler - Reset checkout button when returning to the page
-         document.addEventListener('visibilitychange', () => {
-             if (document.visibilityState === 'visible') {
-                 console.log("Page became visible again, resetting checkout button state");
-                 const checkoutBtn = document.getElementById('checkout-btn');
-                 if (checkoutBtn) {
-                     checkoutBtn.disabled = cart && cart.totalQuantity === 0;
-                     checkoutBtn.classList.toggle('opacity-50', cart && cart.totalQuantity === 0);
-                     checkoutBtn.textContent = 'Proceed to Checkout';
-                 }
-             }
-         });
-
-         // Also handle page load/reload to ensure button is reset
-         window.addEventListener('pageshow', (event) => {
-             // This catches both normal loads and loads from back/forward cache
-             console.log("Page shown (including from back/forward navigation)");
-             const checkoutBtn = document.getElementById('checkout-btn');
-             if (checkoutBtn) {
-                 checkoutBtn.disabled = cart && cart.totalQuantity === 0;
-                 checkoutBtn.classList.toggle('opacity-50', cart && cart.totalQuantity === 0);
+            } else if (cart && cart.totalQuantity === 0) {
+                showCartError("Your cart is empty."); // Using our new error display
+                 // Re-enable button if cart is empty
+                 checkoutBtn.disabled = false;
+                 checkoutBtn.classList.remove('opacity-50');
                  checkoutBtn.textContent = 'Proceed to Checkout';
-             }
-         });
+            } else {
+                console.error("Checkout URL not available or cart invalid.");
+                showCartError("Could not proceed to checkout. Please try again later.");
+                 // Re-enable button on error
+                 checkoutBtn.disabled = false;
+                 checkoutBtn.classList.remove('opacity-50');
+                 checkoutBtn.textContent = 'Proceed to Checkout';
+            }
+        });
 
-         // Alia Event Listener - Reward Claimed
-         document.addEventListener("alia:rewardClaimed", async (e) => {
-             if (isLoading) return; // Prevent overlapping updates or actions
+        // Continue Shopping Button
+        const continueShoppingBtn = document.getElementById('continue-shopping-btn');
+        if (continueShoppingBtn) {
+            continueShoppingBtn.addEventListener('click', closeDrawer);
+        } else {
+            console.warn("Element with ID 'continue-shopping-btn' not found.");
+        }
 
-            console.log("Alia reward claimed:", e.detail);
-            const { rewardText, discountCode } = e.detail;
+        // NEW Listener for Main CTAs (including 'Start my payments')
+        document.querySelectorAll('.js-main-cta').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent default link behavior
 
-            if (!discountCode) {
-                console.warn("Alia event triggered without a discount code.");
+                // Check if product is already in the cart
+                const isProductInCart = cart?.lines?.nodes?.some(
+                    line => line.merchandise.id === PRODUCT_VARIANTS.UVO254
+                );
+
+                if (isProductInCart) {
+                    console.log("Product already in cart, opening drawer.");
+                    openDrawer();
+                } else {
+                    console.log("Product not in cart or cart empty, adding product...");
+                    handleAddItemClick(PRODUCT_VARIANTS.UVO254);
+                    // handleAddItemClick already opens the drawer on success
+                }
+            });
+        });
+
+        // Page Visibility Handler - Reset checkout button when returning to the page
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                console.log("Page became visible again, resetting checkout button state");
+                const checkoutBtn = document.getElementById('checkout-btn');
+                if (checkoutBtn) {
+                    checkoutBtn.disabled = cart && cart.totalQuantity === 0;
+                    checkoutBtn.classList.toggle('opacity-50', cart && cart.totalQuantity === 0);
+                    checkoutBtn.textContent = 'Proceed to Checkout';
+                }
+            }
+        });
+
+        // Also handle page load/reload to ensure button is reset
+        window.addEventListener('pageshow', (event) => {
+            // This catches both normal loads and loads from back/forward cache
+            console.log("Page shown (including from back/forward navigation)");
+            const checkoutBtn = document.getElementById('checkout-btn');
+            if (checkoutBtn) {
+                checkoutBtn.disabled = cart && cart.totalQuantity === 0;
+                checkoutBtn.classList.toggle('opacity-50', cart && cart.totalQuantity === 0);
+                checkoutBtn.textContent = 'Proceed to Checkout';
+            }
+        });
+
+        // Alia Event Listener - Reward Claimed
+        document.addEventListener("alia:rewardClaimed", async (e) => {
+            if (isLoading) return; // Prevent overlapping updates or actions
+
+           console.log("Alia reward claimed:", e.detail);
+           const { rewardText, discountCode } = e.detail;
+
+           if (!discountCode) {
+               console.warn("Alia event triggered without a discount code.");
+               return;
+           }
+
+            // Set expiry timestamp (30 minutes from now)
+            const expiryTimestamp = Date.now() + 30 * 60 * 1000;
+
+            // If cart doesn't exist yet, initialize it
+            if (!cart) {
+                console.log("cart not initialized yet, creating new cart...");
+                try {
+                    cart = await createCart();
+                    if (!cart) throw new Error("Failed to create cart after Alia event.");
+                } catch (error) {
+                    console.error("Failed to create cart:", error);
+                    showCartError("Could not initialize cart to apply discount."); // Using our new error display
+                    return;
+                }
+            }
+
+            try {
+                console.log(`Attempting to apply Alia discount code: ${discountCode} to cart ${cart.id}`);
+                const updatedCart = await applyDiscountCode(cart.id, discountCode);
+
+                if (updatedCart) {
+                    // Check if the code was *actually* applied successfully in the *updated* cart
+                    const isCodeApplied = updatedCart.discountCodes?.some(dc => dc.code === discountCode);
+
+                    if (isCodeApplied) {
+                        console.log(`Discount code ${discountCode} successfully applied.`);
+                        // SUCCESS: Persist the details and update UI
+                        localStorage.setItem(ALIA_CODE_STORAGE_KEY, discountCode);
+                        localStorage.setItem(ALIA_TEXT_STORAGE_KEY, rewardText);
+                        localStorage.setItem(ALIA_EXPIRY_STORAGE_KEY, expiryTimestamp.toString());
+
+                        cart = updatedCart; // IMPORTANT: Update global cart state
+                        renderCart(); // This will call renderAppliedDiscounts
+
+                        // Open drawer only if the cart has items after applying discount
+                        if (updatedCart.totalQuantity > 0) {
+                             console.log("Opening drawer: Discount applied and cart has items.");
+                             openDrawer();
+                        } else {
+                             console.log("Discount applied, but cart is empty. Drawer remains closed.");
+                        }
+                    } else {
+                        // If the code wasn't in the updatedCart.discountCodes
+                        console.error(`Discount code '${discountCode}' was NOT found in updated cart discountCodes.`, updatedCart.discountCodes);
+                         throw new Error("Discount code was not applied successfully by Shopify.");
+                    }
+                } else {
+                    // If the mutation itself returned no cart data
+                    throw new Error("Failed to update cart with discount code.");
+                }
+
+            } catch (error) {
+                console.error("Error applying Alia discount code:", error); // Log the actual error
+                showCartError(`Could not apply discount: ${error.message}`); // Using our new error display
+
+                // Clear potentially stale storage if application failed
+                console.log("Clearing Alia data from localStorage due to application error.");
+                localStorage.removeItem(ALIA_CODE_STORAGE_KEY);
+                localStorage.removeItem(ALIA_TEXT_STORAGE_KEY);
+                localStorage.removeItem(ALIA_EXPIRY_STORAGE_KEY);
+
+                renderAppliedDiscounts(); // Update UI to hide any discount messaging
+            }
+        });
+
+        // Alia Event Listener - Signup
+        document.addEventListener("alia:signup", async (e) => {
+            if (isLoading) return;
+            console.log("Alia signup event received:", e.detail);
+            const { email, phone } = e.detail;
+
+            if (!email && !phone) {
+                console.warn("Alia signup event received without email or phone.");
                 return;
             }
 
-             // Set expiry timestamp (30 minutes from now)
-             const expiryTimestamp = Date.now() + 30 * 60 * 1000;
+            // Ensure cart exists
+            if (!cart) {
+                console.log("Signup event: cart not initialized, creating...");
+                try {
+                    cart = await createCart();
+                    if (!cart) throw new Error("Failed to create cart for signup event.");
+                } catch (error) {
+                    console.error("Failed to create cart for signup event:", error);
+                    showCartError("Could not initialize cart to save contact info."); // Using our new error display
+                    return;
+                }
+            }
 
-             // If cart doesn't exist yet, initialize it
-             if (!cart) {
-                 console.log("Cart not initialized yet, creating new cart...");
-                 try {
-                     cart = await createCart();
-                     if (!cart) throw new Error("Failed to create cart after Alia event.");
-                 } catch (error) {
-                     console.error("Failed to create cart:", error);
-                     showCartError("Could not initialize cart to apply discount."); // Using our new error display
-                     return;
-                 }
-             }
+            const buyerIdentity = {};
+            if (email) buyerIdentity.email = email;
+            if (phone) buyerIdentity.phone = phone; // Assuming Shopify accepts phone in buyerIdentity
 
-             try {
-                 console.log(`Attempting to apply Alia discount code: ${discountCode} to cart ${cart.id}`);
-                 const updatedCart = await applyDiscountCode(cart.id, discountCode);
+            try {
+                console.log(`Updating buyer identity for cart ${cart.id}:`, buyerIdentity);
+                const data = await callShopifyAPI(CART_BUYER_IDENTITY_UPDATE_MUTATION, {
+                    cartId: cart.id,
+                    buyerIdentity: buyerIdentity
+                });
 
-                 if (updatedCart) {
-                     // Check if the code was *actually* applied successfully in the *updated* cart
-                     const isCodeApplied = updatedCart.discountCodes?.some(dc => dc.code === discountCode);
+                if (data?.cartBuyerIdentityUpdate?.cart) {
+                    console.log("Buyer identity updated successfully.");
+                    cart = data.cartBuyerIdentityUpdate.cart; // Update global cart state
+                    // Optionally re-render if needed, though buyer identity isn't usually visible in cart
+                    // renderCart();
+                } else {
+                    console.error("Failed to update buyer identity. Response:", data);
+                    throw new Error(data?.cartBuyerIdentityUpdate?.userErrors?.[0]?.message || "Unknown error updating buyer identity.");
+                }
+            } catch (error) {
+                console.error("Error updating buyer identity:", error);
+                showCartError(`Could not save contact information: ${error.message}`); // Using our new error display
+            }
+        });
 
-                     if (isCodeApplied) {
-                         console.log(`Discount code ${discountCode} successfully applied.`);
-                         // SUCCESS: Persist the details and update UI
-                         localStorage.setItem(ALIA_CODE_STORAGE_KEY, discountCode);
-                         localStorage.setItem(ALIA_TEXT_STORAGE_KEY, rewardText);
-                         localStorage.setItem(ALIA_EXPIRY_STORAGE_KEY, expiryTimestamp.toString());
+        // Alia Event Listener - Poll Answered
+        document.addEventListener("alia:pollAnswered", async (e) => {
+            if (isLoading) return;
+            console.log("Alia poll answered event received:", e.detail);
+            const { answers } = e.detail;
 
-                         cart = updatedCart; // IMPORTANT: Update global cart state
-                         renderCart(); // This will call renderAppliedDiscounts
+            if (!answers || answers.length === 0) {
+                console.warn("Alia poll answered event received without answers.");
+                return;
+            }
 
-                         // Open drawer only if the cart has items after applying discount
-                         if (updatedCart.totalQuantity > 0) {
-                              console.log("Opening drawer: Discount applied and cart has items.");
-                              openDrawer();
-                         } else {
-                              console.log("Discount applied, but cart is empty. Drawer remains closed.");
-                         }
-                     } else {
-                         // If the code wasn't in the updatedCart.discountCodes
-                         console.error(`Discount code '${discountCode}' was NOT found in updated cart discountCodes.`, updatedCart.discountCodes);
-                          throw new Error("Discount code was not applied successfully by Shopify.");
-                     }
-                 } else {
-                     // If the mutation itself returned no cart data
-                     throw new Error("Failed to update cart with discount code.");
-                 }
+            // Ensure cart exists
+            if (!cart) {
+                console.log("Poll event: cart not initialized, creating...");
+                try {
+                    cart = await createCart();
+                    if (!cart) throw new Error("Failed to create cart for poll event.");
+                } catch (error) {
+                    console.error("Failed to create cart for poll event:", error);
+                    showCartError("Could not initialize cart to save poll answers."); // Using our new error display
+                    return;
+                }
+            }
 
-             } catch (error) {
-                 console.error("Error applying Alia discount code:", error); // Log the actual error
-                 showCartError(`Could not apply discount: ${error.message}`); // Using our new error display
+            // Format answers into Shopify attributes
+            // Prefix keys to avoid conflicts with UTM attributes
+            const newPollAttributes = answers.map(answer => ({
+                key: `poll_${answer.questionID || 'question'}`, // Use questionID or a generic prefix
+                value: `${answer.questionText}: ${answer.answerText}` // Combine question and answer text
+            }));
 
-                 // Clear potentially stale storage if application failed
-                 console.log("Clearing Alia data from localStorage due to application error.");
-                 localStorage.removeItem(ALIA_CODE_STORAGE_KEY);
-                 localStorage.removeItem(ALIA_TEXT_STORAGE_KEY);
-                 localStorage.removeItem(ALIA_EXPIRY_STORAGE_KEY);
+            // Simple check for attribute length limits
+            const validNewPollAttributes = newPollAttributes.filter(attr => {
+                if (attr.key.length > 100 || attr.value.length > 255) { // Shopify limits: key 100, value 255
+                    console.warn(`Skipping poll attribute due to length limit: Key=${attr.key.substring(0,50)}..., Value=${attr.value.substring(0,50)}...`);
+                    return false;
+                }
+                return true;
+            });
 
-                 renderAppliedDiscounts(); // Update UI to hide any discount messaging
-             }
-         });
-
-         // Alia Event Listener - Signup
-         document.addEventListener("alia:signup", async (e) => {
-             if (isLoading) return;
-             console.log("Alia signup event received:", e.detail);
-             const { email, phone } = e.detail;
-
-             if (!email && !phone) {
-                 console.warn("Alia signup event received without email or phone.");
+            if (validNewPollAttributes.length === 0) {
+                 console.log("No valid poll attributes to update after length check.");
                  return;
-             }
+            }
 
-             // Ensure cart exists
-             if (!cart) {
-                 console.log("Signup event: Cart not initialized, creating...");
-                 try {
-                     cart = await createCart();
-                     if (!cart) throw new Error("Failed to create cart for signup event.");
-                 } catch (error) {
-                     console.error("Failed to create cart for signup event:", error);
-                     showCartError("Could not initialize cart to save contact info."); // Using our new error display
-                     return;
-                 }
-             }
+            // --- MERGE LOGIC START ---
+            // Get existing attributes (UTMs, etc.) - check if cart.attributes exists and is an array
+            const existingAttributes = (cart && Array.isArray(cart.attributes)) ? cart.attributes : [];
 
-             const buyerIdentity = {};
-             if (email) buyerIdentity.email = email;
-             if (phone) buyerIdentity.phone = phone; // Assuming Shopify accepts phone in buyerIdentity
+            // Filter out any *old* poll attributes to prevent duplicates if answered again
+            const nonPollExistingAttributes = existingAttributes.filter(attr => !attr.key.startsWith('poll_'));
 
-             try {
-                 console.log(`Updating buyer identity for cart ${cart.id}:`, buyerIdentity);
-                 const data = await callShopifyAPI(CART_BUYER_IDENTITY_UPDATE_MUTATION, {
-                     cartId: cart.id,
-                     buyerIdentity: buyerIdentity
-                 });
+            // Combine non-poll existing attributes with the new valid poll attributes
+            const mergedAttributes = [...nonPollExistingAttributes, ...validNewPollAttributes];
+            // --- MERGE LOGIC END ---
 
-                 if (data?.cartBuyerIdentityUpdate?.cart) {
-                     console.log("Buyer identity updated successfully.");
-                     cart = data.cartBuyerIdentityUpdate.cart; // Update global cart state
-                     // Optionally re-render if needed, though buyer identity isn't usually visible in cart
-                     // renderCart();
+            try {
+                console.log(`Updating attributes for cart ${cart.id}:`, mergedAttributes);
+                const data = await callShopifyAPI(CART_ATTRIBUTES_UPDATE_MUTATION, {
+                    cartId: cart.id,
+                    attributes: mergedAttributes // Use the merged list
+                });
+
+                if (data?.cartAttributesUpdate?.cart) {
+                    console.log("cart attributes updated successfully with poll answers.");
+                    cart = data.cartAttributesUpdate.cart; // Update global cart state
+                    // Optionally re-render if needed
+                    // renderCart();
+                } else {
+                    console.error("Failed to update cart attributes. Response:", data);
+                    throw new Error(data?.cartAttributesUpdate?.userErrors?.[0]?.message || "Unknown error updating cart attributes.");
+                }
+            } catch (error) {
+                console.error("Error updating cart attributes with poll answers:", error);
+                showCartError(`Could not save poll answers: ${error.message}`); // Using our new error display
+            }
+        });
+
+        // ---- START TEMPORARY ALIA TEST ----
+        // Removed Test Alia Trigger Event Listener
+        // ---- END TEMPORARY ALIA TEST ----
+    }
+
+    // --- Function to Update Experiment Attribute on Existing cart ---
+    async function updateExperimentAttributeIfNeeded() {
+        console.log("[AttribUpdate] Checking if experiment attribute needs update...");
+        const experimentAttribute = getExperimentAttribute(); // { key: 'experiment_branch', value: '...' } or null
+
+        // If no variant in URL, nothing to do
+        if (!experimentAttribute) {
+            console.log("[AttribUpdate] No ab_variant found in URL. Skipping update.");
+            return;
+        }
+
+        // If cart doesn't exist or has no ID yet, creation logic will handle it
+        if (!cart || !cart.id) {
+            console.log("[AttribUpdate] cart not yet available. Attribute will be set during creation.");
+            return;
+        }
+
+        // Ensure cart.attributes is an array (it might be missing if fragment wasn't updated yet)
+        const currentAttributes = cart.attributes && Array.isArray(cart.attributes) ? cart.attributes : [];
+        const existingAttr = currentAttributes.find(attr => attr.key === experimentAttribute.key);
+
+        // Check if the attribute already exists with the *same* value
+        if (existingAttr && existingAttr.value === experimentAttribute.value) {
+            console.log(`[AttribUpdate] Cart attribute '${experimentAttribute.key}' already set to '${experimentAttribute.value}'. No update needed.`);
+            return;
+        }
+
+        // If attribute is missing or has a different value, proceed with update
+        console.log(`[AttribUpdate] Updating cart attribute '${experimentAttribute.key}' to '${experimentAttribute.value}'.`);
+
+        // Prepare the new list of attributes:
+        // Keep all existing attributes *except* the old experiment_branch, then add the new one.
+        const newAttributes = currentAttributes.filter(attr => attr.key !== experimentAttribute.key);
+        newAttributes.push(experimentAttribute);
+
+        try {
+            const data = await callShopifyAPI(CART_ATTRIBUTES_UPDATE_MUTATION, {
+                cartId: cart.id,
+                attributes: newAttributes,
+            });
+
+            if (data?.cartAttributesUpdate?.cart) {
+                console.log("[AttribUpdate] cart attributes updated successfully.");
+                cart = data.cartAttributesUpdate.cart; // Update global cart state
+                // Optionally re-render if attributes affect the display, though unlikely here
+                // renderCart();
+            } else {
+                // Handle potential user errors returned from the mutation
+                const userErrors = data?.cartAttributesUpdate?.userErrors;
+                 if (userErrors && userErrors.length > 0) {
+                     console.error('[AttribUpdate] Shopify User Errors during attribute update:', userErrors);
+                     throw new Error(`Shopify error during attribute update: ${userErrors[0].message}`);
                  } else {
-                     console.error("Failed to update buyer identity. Response:", data);
-                     throw new Error(data?.cartBuyerIdentityUpdate?.userErrors?.[0]?.message || "Unknown error updating buyer identity.");
+                     console.error("[AttribUpdate] cart attribute update API call succeeded but returned no cart data.", data);
+                     throw new Error("cart attribute update failed silently.");
                  }
-             } catch (error) {
-                 console.error("Error updating buyer identity:", error);
-                 showCartError(`Could not save contact information: ${error.message}`); // Using our new error display
-             }
-         });
-
-         // Alia Event Listener - Poll Answered
-         document.addEventListener("alia:pollAnswered", async (e) => {
-             if (isLoading) return;
-             console.log("Alia poll answered event received:", e.detail);
-             const { answers } = e.detail;
-
-             if (!answers || answers.length === 0) {
-                 console.warn("Alia poll answered event received without answers.");
-                 return;
-             }
-
-             // Ensure cart exists
-             if (!cart) {
-                 console.log("Poll event: Cart not initialized, creating...");
-                 try {
-                     cart = await createCart();
-                     if (!cart) throw new Error("Failed to create cart for poll event.");
-                 } catch (error) {
-                     console.error("Failed to create cart for poll event:", error);
-                     showCartError("Could not initialize cart to save poll answers."); // Using our new error display
-                     return;
-                 }
-             }
-
-             // Format answers into Shopify attributes
-             // Prefix keys to avoid conflicts with UTM attributes
-             const newPollAttributes = answers.map(answer => ({
-                 key: `poll_${answer.questionID || 'question'}`, // Use questionID or a generic prefix
-                 value: `${answer.questionText}: ${answer.answerText}` // Combine question and answer text
-             }));
-
-             // Simple check for attribute length limits
-             const validNewPollAttributes = newPollAttributes.filter(attr => {
-                 if (attr.key.length > 100 || attr.value.length > 255) { // Shopify limits: key 100, value 255
-                     console.warn(`Skipping poll attribute due to length limit: Key=${attr.key.substring(0,50)}..., Value=${attr.value.substring(0,50)}...`);
-                     return false;
-                 }
-                 return true;
-             });
-
-             if (validNewPollAttributes.length === 0) {
-                  console.log("No valid poll attributes to update after length check.");
-                  return;
-             }
-
-             // --- MERGE LOGIC START ---
-             // Get existing attributes (UTMs, etc.) - check if cart.attributes exists and is an array
-             const existingAttributes = (cart && Array.isArray(cart.attributes)) ? cart.attributes : [];
-
-             // Filter out any *old* poll attributes to prevent duplicates if answered again
-             const nonPollExistingAttributes = existingAttributes.filter(attr => !attr.key.startsWith('poll_'));
-
-             // Combine non-poll existing attributes with the new valid poll attributes
-             const mergedAttributes = [...nonPollExistingAttributes, ...validNewPollAttributes];
-             // --- MERGE LOGIC END ---
-
-             try {
-                 console.log(`Updating attributes for cart ${cart.id}:`, mergedAttributes);
-                 const data = await callShopifyAPI(CART_ATTRIBUTES_UPDATE_MUTATION, {
-                     cartId: cart.id,
-                     attributes: mergedAttributes // Use the merged list
-                 });
-
-                 if (data?.cartAttributesUpdate?.cart) {
-                     console.log("Cart attributes updated successfully with poll answers.");
-                     cart = data.cartAttributesUpdate.cart; // Update global cart state
-                     // Optionally re-render if needed
-                     // renderCart();
-                 } else {
-                     console.error("Failed to update cart attributes. Response:", data);
-                     throw new Error(data?.cartAttributesUpdate?.userErrors?.[0]?.message || "Unknown error updating cart attributes.");
-                 }
-             } catch (error) {
-                 console.error("Error updating cart attributes with poll answers:", error);
-                 showCartError(`Could not save poll answers: ${error.message}`); // Using our new error display
-             }
-         });
-
-         // ---- START TEMPORARY ALIA TEST ----
-         // Removed Test Alia Trigger Event Listener
-         // ---- END TEMPORARY ALIA TEST ----
-     }
-
-     // --- Function to Update Experiment Attribute on Existing Cart ---
-     async function updateExperimentAttributeIfNeeded() {
-         console.log("[AttribUpdate] Checking if experiment attribute needs update...");
-         const experimentAttribute = getExperimentAttribute(); // { key: 'experiment_branch', value: '...' } or null
-
-         // If no variant in URL, nothing to do
-         if (!experimentAttribute) {
-             console.log("[AttribUpdate] No ab_variant found in URL. Skipping update.");
-             return;
-         }
-
-         // If cart doesn't exist or has no ID yet, creation logic will handle it
-         if (!cart || !cart.id) {
-             console.log("[AttribUpdate] Cart not yet available. Attribute will be set during creation.");
-             return;
-         }
-
-         // Ensure cart.attributes is an array (it might be missing if fragment wasn't updated yet)
-         const currentAttributes = cart.attributes && Array.isArray(cart.attributes) ? cart.attributes : [];
-         const existingAttr = currentAttributes.find(attr => attr.key === experimentAttribute.key);
-
-         // Check if the attribute already exists with the *same* value
-         if (existingAttr && existingAttr.value === experimentAttribute.value) {
-             console.log(`[AttribUpdate] Cart attribute '${experimentAttribute.key}' already set to '${experimentAttribute.value}'. No update needed.`);
-             return;
-         }
-
-         // If attribute is missing or has a different value, proceed with update
-         console.log(`[AttribUpdate] Updating cart attribute '${experimentAttribute.key}' to '${experimentAttribute.value}'.`);
-
-         // Prepare the new list of attributes:
-         // Keep all existing attributes *except* the old experiment_branch, then add the new one.
-         const newAttributes = currentAttributes.filter(attr => attr.key !== experimentAttribute.key);
-         newAttributes.push(experimentAttribute);
-
-         try {
-             const data = await callShopifyAPI(CART_ATTRIBUTES_UPDATE_MUTATION, {
-                 cartId: cart.id,
-                 attributes: newAttributes,
-             });
-
-             if (data?.cartAttributesUpdate?.cart) {
-                 console.log("[AttribUpdate] Cart attributes updated successfully.");
-                 cart = data.cartAttributesUpdate.cart; // Update global cart state
-                 // Optionally re-render if attributes affect the display, though unlikely here
-                 // renderCart();
-             } else {
-                 // Handle potential user errors returned from the mutation
-                 const userErrors = data?.cartAttributesUpdate?.userErrors;
-                  if (userErrors && userErrors.length > 0) {
-                      console.error('[AttribUpdate] Shopify User Errors during attribute update:', userErrors);
-                      throw new Error(`Shopify error during attribute update: ${userErrors[0].message}`);
-                  } else {
-                      console.error("[AttribUpdate] Cart attribute update API call succeeded but returned no cart data.", data);
-                      throw new Error("Cart attribute update failed silently.");
-                  }
-             }
-         } catch (error) {
-             console.error("[AttribUpdate] Error updating cart attributes:", error);
-             // Show error to user? Depends on how critical this is.
-             showCartError("Could not update cart details. Please try again later.");
-         }
-     }
+            }
+        } catch (error) {
+            console.error("[AttribUpdate] Error updating cart attributes:", error);
+            // Show error to user? Depends on how critical this is.
+            showCartError("Could not update cart details. Please try again later.");
+        }
+    }
 
     // --- Initial Load ---
     document.addEventListener('DOMContentLoaded', async () => {
-        console.log('[Cart Debug] DOMContentLoaded event'); 
+        console.log('[cart Debug] DOMContentLoaded event');
         try {
             await initializeCart(); // Wait for cart initialization to complete
             // Attribute check is now handled within initializeCart
