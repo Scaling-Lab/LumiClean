@@ -43,12 +43,12 @@ body {
     margin-top: 1rem;
 }
 
-/* Cart Drawer Section */
+/* cart Drawer Section */
 .cart-drawer-section {
     position: relative;
 }
 
-/* Cart Drawer */
+/* cart Drawer */
 .cart-drawer {
     position: fixed;
     top: 0;
@@ -67,7 +67,7 @@ body {
     transform: translateX(0);
 }
 
-/* Cart Overlay */
+/* cart Overlay */
 .cart-overlay {
     position: fixed;
     top: 0;
@@ -86,7 +86,7 @@ body {
     visibility: visible;
 }
 
-/* Cart Header */
+/* cart Header */
 .cart-header {
     height: 60px;
     padding: 0 16px;
@@ -136,7 +136,7 @@ body {
     letter-spacing: 0.28px;
 }
 
-/* Cart Items */
+/* cart Items */
 .cart-items-container {
     flex: 1;
     overflow-y: auto;
@@ -266,7 +266,7 @@ body {
     color: #cb0d20;
 }
 
-/* Cart Summary */
+/* cart Summary */
 .cart-summary {
     padding: 16px;
     border-top: 1px solid #e5e7eb;
@@ -442,7 +442,7 @@ body {
     font-size: 14px;
 }
 
-/* Cart Trigger Button */
+/* cart Trigger Button */
 #open-cart-trigger {
     position: fixed;
     top: 16px;
@@ -513,7 +513,7 @@ body {
     }
 }
 
-/* Add to Cart Button */
+/* Add to cart Button */
 .add-to-cart-btn {
     background: #cb0d20;
     color: white;

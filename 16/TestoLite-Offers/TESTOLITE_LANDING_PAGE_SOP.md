@@ -145,7 +145,7 @@ This Standard Operating Procedure (SOP) document outlines the process for implem
    - Copy the cart drawer HTML from existing pages
    - Reference the shared cart.js script with the correct relative path
    ```html
-   <!-- Cart JS -->
+   <!-- cart JS -->
    <script src="../js/cart.js" defer></script>
    ```
    - Ensure all cart-related HTML elements have the correct IDs and classes
@@ -278,7 +278,7 @@ This Standard Operating Procedure (SOP) document outlines the process for implem
      - Do NOT copy cart.js to the landing page's js directory
      - Simply include the shared cart.js file with the correct relative path:
      ```html
-     <!-- Cart JS -->
+     <!-- cart JS -->
      <script src="../js/cart.js" defer></script>
      ```
      - Ensure all CTA buttons have the `js-main-cta` class:

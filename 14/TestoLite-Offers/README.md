@@ -244,13 +244,13 @@ The following HTML elements and structure **must** be present on the page for `c
         <div id="cart-content-wrapper" class="...">
             <!-- Items Container -->
             <div class="... cart-items-container ...">
-                <!-- Empty Cart Message -->
+                <!-- Empty cart Message -->
                 <div id="empty-cart-message" class="... hidden">
                     <i data-lucide="shopping-cart" class="..."></i>
                     <p class="...">Your cart is currently empty.</p>
                     <button id="continue-shopping-btn" class="...">Continue Shopping</button>
                  </div>
-                <!-- Cart Item Template (Hidden by default) -->
+                <!-- cart Item Template (Hidden by default) -->
                 <div class="cart-item hidden" id="cart-item-template">
                     <img data-cart-item-image src="..." alt="..." class="...">
                     <div>
@@ -324,7 +324,7 @@ The following HTML elements and structure **must** be present on the page for `c
                 </p>
             </div>
         </div> <!-- End Content Wrapper -->
-    </div> <!-- End Cart Drawer -->
+    </div> <!-- End cart Drawer -->
     ```
 
 4.  **Add-to-Cart Buttons:**
