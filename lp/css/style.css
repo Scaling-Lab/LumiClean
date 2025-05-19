@@ -1,7 +1,7 @@
 /*!* Main stylesheet that imports all other stylesheets *!*/
 
 /*!* Import base styles *!*/
-/*@import url('/_css/style-buy.css');*/
+/*@import url('/css/style-buy.css');*/
 
 /*!* Import section-specific styles *!*/
 /*@import url('../header/styles.css');*/

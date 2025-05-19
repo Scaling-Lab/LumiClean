@@ -92,7 +92,7 @@
 
     // --- Run builds for all pages ---
     (async () => {
-        await buildBundle('manhood-reboot/_js/lucide-bundle._js', manhoodIconNames);
-        await buildBundle('young-at-52/_js/lucide-bundle._js', youngAt52IconNames);
-        await buildBundle('saved-my-marriage/_js/lucide-bundle._js', savedMyMarriageIconNames);
+        await buildBundle('manhood-reboot/js/lucide-bundle.js', manhoodIconNames);
+        await buildBundle('young-at-52/js/lucide-bundle.js', youngAt52IconNames);
+        await buildBundle('saved-my-marriage/js/lucide-bundle.js', savedMyMarriageIconNames);
     })();
