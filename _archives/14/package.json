@@ -1,0 +1,16 @@
+{
+  "name": "lumiclean",
+  "version": "1.0.0",
+  "description": "Lumiclean landing page",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "nodemon --watch header --watch v1 --watch v2 --watch v3 --watch v4 --watch v5 --watch v6 --watch v7 --watch v8 --watch v9 --watch v10 --watch v11 --watch v12 --watch footer --ext css --exec 'npm run build'"
+  },
+  "dependencies": {
+    "clean-css": "^5.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+} 

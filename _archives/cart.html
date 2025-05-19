@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopify Cart</title>
+    <link rel="stylesheet" href="css/style-buy.css">
+<body>
+    <!-- Open Cart Trigger Button -->
+    <button id="open-cart-trigger">
+        <span></span>
+        <span id="cart-item-count" class="hidden">0</span>
+    </button>
+    
+    <!-- Cart Drawer -->
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button id="close-cart-btn" class="close-cart-btn">&times;</button>
+        </div>
+        
+        <div class="cart-items-container">
+            <!-- Cart Item Template -->
+            <div id="cart-item-template" class="cart-item hidden">
+                <img data-cart-item-image class="cart-item-image" src="" alt="">
+                <div class="cart-item-details">
+                    <div data-cart-item-name class="cart-item-title"></div>
+                    <div class="cart-item-price">
+                        <span data-cart-item-price></span>
+                        <span data-cart-item-original-price></span>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <button class="quantity-btn quantity-minus-btn" aria-label="Decrease quantity">−</button>
+                        <span data-cart-item-quantity class="quantity-display">1</span>
+                        <button class="quantity-btn quantity-plus-btn" aria-label="Increase quantity">+</button>
+                    </div>
+                </div>
+                <button class="remove-item-btn" aria-label="Remove item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Empty Cart Message -->
+            <div id="empty-cart-message" class="empty-cart-message">
+                Your cart is empty
+            </div>
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="cart-summary">
+            <div class="price-row original-price">
+                <span>Original Price:</span>
+                <span id="cart-original-total"></span>
+            </div>
+            <div class="price-row discount">
+                <span>Initial Discount:</span>
+                <span id="initial-discount-amount"></span>
+            </div>
+            <div class="price-row total-savings">
+                <span>Total Savings:</span>
+                <span id="total-savings-amount"></span>
+            </div>
+            <div class="price-row final-price">
+                <span>Final Price:</span>
+                <span id="cart-subtotal"></span>
+            </div>
+
+<!--            <div id="installment-info" class="text-sm text-gray-600 mb-4"></div>-->
+            
+            <div class="free-shipping-banner">
+                <span>🚚</span>
+                Free Shipping Included
+            </div>
+
+            <div class="checkout-features">
+                <div class="feature">
+                    <span>🔒</span>
+                    Secure Checkout
+                </div>
+                <div class="feature">
+                    <span>✓</span>
+                    60-Day Guarantee
+                </div>
+            </div>
+
+
+            <button id="checkout-btn" class="checkout-btn">Proceed to Checkout</button>
+            <div class="taxes-notice">Taxes calculated at checkout.</div>
+        </div>
+        
+        <!-- Loading Overlay -->
+        <div id="cart-loading-overlay" class="cart-loading-overlay hidden">
+            <div class="loading-spinner"></div>
+        </div>
+        
+        <!-- Error Message -->
+        <div id="cart-error" class="cart-error hidden">
+            <span id="cart-error-message"></span>
+        </div>
+        
+        <!-- Discount Section -->
+        <div id="discount-section" class="discount-section hidden">
+            <div id="reward-text"></div>
+            <div>Code: <span id="discount-code"></span></div>
+            <div>Expires in: <span id="timer" class="timer"></span></div>
+        </div>
+        <div id="expired-message" class="expired-message hidden">
+            Your discount code has expired
+        </div>
+    </div>
+    
+    <!-- Cart Overlay -->
+    <div id="cart-overlay" class="cart-overlay"></div>
+    
+    <!-- Add to Cart Buttons -->
+    <div style="display: flex; flex-direction: column; gap: 20px; padding: 20px;">
+        <button id="add-to-cart-uvo254" class="add-to-cart-btn" data-variant="UVO254">
+            Add to Cart
+        </button>
+        
+        <button id="add-to-cart-uvo108" class="add-to-cart-btn" data-variant="UVO108">
+            Add to Cart
+        </button>
+        
+        <button id="add-to-cart-uvo72" class="add-to-cart-btn" data-variant="UVO72">
+            Add to Cart
+        </button>
+    </div>
+
+    <!-- Include Shopify API JS -->
+    <script src="js/api.js"></script>
+    
+    <!-- Include Shopify Cart JS -->
+    <script src="js/cart.js"></script>
+</body>
+</html> 

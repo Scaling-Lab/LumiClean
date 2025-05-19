@@ -1,0 +1,116 @@
+/* Money Back Guarantee Section Styles */
+.guarantee-section-v8 {
+  display: flex;
+  width: 100%;
+  padding: 40px;
+  background-color: #fff;
+}
+
+.guarantee-container-v8 {
+  display: flex;
+  align-items: center;
+  gap: 151px;
+  max-width: 1376px;
+  margin: 0 auto;
+}
+
+.guarantee-content-v8 {
+  display: flex;
+  width: 600px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.guarantee-heading-v8 {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 43.2px;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+  width: 100%;
+  margin: 0;
+}
+
+.guarantee-box-v8 {
+  display: flex;
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 18px;
+  background-color: #f1f8fa;
+}
+
+.guarantee-text-v8 {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0.72px;
+  margin: 0;
+}
+
+.highlight-v8 {
+  color: #1773b0;
+  font-weight: 700;
+}
+
+.image-wrapper-v8 {
+  display: flex;
+  align-items: center;
+}
+
+.product-image-v8 {
+  width: 625px;
+  height: 625px;
+  object-fit: contain;
+}
+
+/* Media Queries */
+@media (max-width: 991px) {
+  .guarantee-container-v8 {
+    flex-direction: column;
+    gap: 40px;
+    padding: 0 20px;
+  }
+
+  .guarantee-content-v8 {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .product-image-v8 {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 640px) {
+  .guarantee-section-v8 {
+    padding: 40px 20px;
+  }
+
+  .guarantee-heading-v8 {
+    font-size: 28px;
+    line-height: 34px;
+    text-align: center;
+  }
+
+  .guarantee-box-v8 {
+    padding: 12px;
+  }
+
+  .guarantee-text-v8 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .product-image-v8 {
+    max-width: 100%;
+  }
+}

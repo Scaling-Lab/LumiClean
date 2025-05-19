@@ -1,0 +1,180 @@
+/* Base styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family:
+    Poppins,
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+}
+
+/* Easy Steps Section Styles */
+.easy-steps-section {
+  background-color: #ffffff;
+  display: flex;
+  padding: 60px 222px;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.easy-steps-section .container {
+  width: 100%;
+  max-width: 1475px;
+}
+
+.easy-steps-section .section-title {
+  color: #1773b0;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  margin: 0;
+}
+
+.easy-steps-section .steps-container {
+  display: flex;
+  margin-top: 48px;
+  width: 100%;
+  align-items: stretch;
+  gap: 25px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.easy-steps-section .step-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 40px;
+  position: relative;
+  /*min-height: 758px;*/
+  min-width: 240px;
+  overflow: hidden;
+  align-items: stretch;
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: 380px;
+}
+
+.easy-steps-section .card-background {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.easy-steps-section .card-content {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  padding-top: 170px;
+  padding-bottom: 40px;
+}
+
+.easy-steps-section .step-header {
+  width: 100%;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.easy-steps-section .step-number {
+  color: #18426c;
+  font-size: 128px;
+  display: block;
+}
+
+.easy-steps-section .step-title {
+  color: #000000;
+  font-size: 24px;
+  margin: 32px 0 0 0;
+  font-weight: 700;
+  line-height: 29px;
+}
+
+.easy-steps-section .step-description {
+  display: flex;
+  margin-top: 10px;
+  width: 100%;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 20px;
+  color: #000000;
+  font-weight: 400;
+  line-height: 30px;
+  justify-content: flex-start;
+}
+
+.easy-steps-section .icon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 24px;
+  flex-shrink: 0;
+}
+
+.easy-steps-section .description-text {
+  width: 401px;
+  margin: 0;
+  font-size: 18px;
+}
+
+/* Media Queries */
+@media (max-width: 991px) {
+  .easy-steps-section {
+    padding: 40px 20px;
+  }
+
+  .easy-steps-section .container {
+    max-width: 100%;
+  }
+
+  .easy-steps-section .section-title {
+    max-width: 100%;
+  }
+
+  .easy-steps-section .steps-container {
+    max-width: 100%;
+    margin-top: 40px;
+  }
+
+  .easy-steps-section .step-card {
+    max-width: 100%;
+    padding: 20px 10px;
+  }
+
+  .easy-steps-section .card-content {
+    max-width: 100%;
+    padding-top: 100px;
+    padding-bottom: 20px;
+  }
+
+  .easy-steps-section .step-header {
+    max-width: 100%;
+  }
+
+  .easy-steps-section .step-number {
+    font-size: 96px;
+    max-width: 100%;
+  }
+
+  .easy-steps-section .step-title {
+    max-width: 100%;
+  }
+
+  .easy-steps-section .step-description {
+    max-width: 100%;
+  }
+  .easy-steps-section .section-title {
+    font-size: 28px;
+  }
+  .easy-steps-section .container {
+    gap: 0;
+  }
+  .easy-steps-section .description-text {
+    font-size: 16px;
+  }
+}

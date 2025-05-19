@@ -1,0 +1,113 @@
+/* Import Poppins font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+}
+
+.container-v4 {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+/* Lumiclean section styles */
+.lumiclean-section-v4 {
+  display: flex;
+  padding: 78px 260px;
+  align-items: center;
+  gap: 125px;
+  background: linear-gradient(180deg, #0072bd 0%, #3496d6 100%);
+}
+
+.product-image-container-v4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.product-image-v4 {
+  width: 100%;
+  height: auto;
+}
+
+.benefits-container-v4 {
+  display: flex;
+  width: 700px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section-title-v4 {
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 120%;
+  margin-bottom: 8px;
+}
+
+.benefit-item-v4 {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.check-icon-wrapper-v4 {
+  flex-shrink: 0;
+}
+
+.check-icon-v4 {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.benefit-text-v4 {
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 130%;
+  width: 600px;
+}
+
+/* Responsive styles */
+@media (max-width: 991px) {
+  .lumiclean-section-v4 {
+    padding: 40px;
+    flex-direction: column-reverse;
+    gap: 40px;
+  }
+
+  .benefits-container-v4 {
+    width: 100%;
+  }
+
+  .benefit-text-v4 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .lumiclean-section-v4 {
+    padding: 20px;
+  }
+
+  .section-title-v4 {
+    font-size: 28px;
+  }
+
+  .benefit-text-v4 {
+    font-size: 16px;
+  }
+}
