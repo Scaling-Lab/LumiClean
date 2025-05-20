@@ -1,0 +1,2912 @@
+<!--
+  UvLizer Hero Section – Tailwind CSS (rev 2)
+  -------------------------------------------------
+  * Desktop header is now absolute/transparent.
+  * Trustpilot badge centered & enlarged.
+-->
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UvLizer - Revolutionary Home Disinfection Device</title>
+  
+  <!-- Local CSS build -->
+  <link rel="stylesheet" href="/dist/styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://res.cloudinary.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <!-- Fallback for browsers that don't support preload or JS disabled -->
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"></noscript>
+  
+  
+  <!-- User ID Script (MUST RUN BEFORE ELEVAR SNIPPET) -->
+  <script>
+    (function(){
+      // Helper to read cookies
+      function readCookie(name) {
+        const m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return m ? decodeURIComponent(m[1]) : null;
+      }
+      
+      const newStorageKey = 'uvl_userId'; 
+      const oldStorageKey = 'userId';
+      const cookieName = 'uvl_userId'; // Only check for the new cookie name
+      
+      let vid = null;
+      let idSource = ''; // Track where the ID came from
+
+      // 1) New localStorage CHECK
+      vid = localStorage.getItem(newStorageKey);
+      if (vid) idSource = 'localStorage_new';
+
+      // 2) Old localStorage CHECK (fallback)
+      if (!vid) {
+        vid = localStorage.getItem(oldStorageKey);
+        if (vid) idSource = 'localStorage_old';
+      }
+      
+      // 3) Cookie CHECK (only new name)
+      if (!vid) {
+          vid = readCookie(cookieName);
+          if (vid) idSource = 'cookie_new';
+      }
+      
+      // 4) GENERATE NEW ID
+      if (!vid) {
+        vid = crypto.randomUUID();
+        idSource = 'generated_client';
+        console.log('Generated new user ID:', vid);
+        sessionStorage.setItem('visitorSynced', 'false'); // Mark for server sync
+      } else {
+        // If ID was loaded, assume it might need syncing if not generated
+        if (sessionStorage.getItem('visitorSynced') !== 'true') { 
+           sessionStorage.setItem('visitorSynced', 'false');
+        }
+      }
+      
+      // Sync to *new* localStorage key if needed (or if found via old key)
+      if (localStorage.getItem(newStorageKey) !== vid) {
+        localStorage.setItem(newStorageKey, vid);
+        // Clean up old key if we found the ID there
+        if (idSource === 'localStorage_old') {
+            localStorage.removeItem(oldStorageKey);
+        }
+      }
+      
+      // Expose globally (use new name)
+      window.uvl_userId = vid;
+      
+      // Define ElevarUserIdFn *synchronously*
+      window.ElevarUserIdFn = function() { 
+        return vid; 
+      };
+
+      // Initialize ElevarDataLayer *only if it doesn't exist*
+      window.ElevarDataLayer = window.ElevarDataLayer || [];
+
+      // Server sync logic remains, triggered on load
+      window.addEventListener('load', function() {
+        if (sessionStorage.getItem('visitorSynced') === 'false') {
+          const endpoint = '/api/create-user-id';
+          const data = JSON.stringify({ uvl_userId: vid });
+          
+          if (navigator.sendBeacon) {
+            const blob = new Blob([data], { type: 'application/json' });
+            navigator.sendBeacon(endpoint, blob);
+          } else {
+            fetch(endpoint, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: data,
+              keepalive: true,
+              credentials: 'include' 
+            }).catch(e => console.warn('Failed to sync visitor ID:', e));
+          }
+          sessionStorage.setItem('visitorSynced', 'true');
+        }
+      });
+    })();
+  </script>
+
+  <!-- Elevar Analytics Integration -->
+  <script type="module">
+      try {
+      const settings  = { proxyPath: "/elevar" };
+      const config = (await import("/elevar/static/configs/f4d4c41a0ed093339678a8934fc524d8e026ba61/config.js")).default;
+      const scriptUrl = settings.proxyPath
+          ? settings.proxyPath + config.script_src_custom_pages_proxied
+          : config.script_src_custom_pages;
+
+      if (scriptUrl) {
+          const { handler } = await import(scriptUrl);
+          await handler(config, settings);
+      }
+      } catch (e) {
+      console.error(e);
+      }
+  </script>
+  
+  <style>html.cart-drawer-open{overflow:hidden}</style>
+  <style>
+    /* Add smooth scrolling for intra-page links */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Force hide mobile-only credibility slider on desktop, show only below md */
+    .credibility-swiper-mobile { display: none !important; }
+    @media (max-width: 767px) {
+      .credibility-swiper-mobile { display: block !important; }
+    }
+  </style>
+
+  <style>
+    /* Custom styles for mobile credibility slider */
+    .credibility-swiper-mobile .swiper-button-prev::after,
+    .credibility-swiper-mobile .swiper-button-next::after {
+      font-size: 1rem; /* Smaller arrow icon */
+      font-weight: bold;
+    }
+    .credibility-swiper-mobile .swiper-button-prev,
+    .credibility-swiper-mobile .swiper-button-next {
+        width: 24px; /* Adjust width */
+        height: 24px; /* Adjust height */
+        top: 50%; /* Keep vertically centered */
+        margin-top: -12px; /* Adjust for new height */
+        color: #2563eb; /* Blue-600 */
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 9999px; /* Circular background */
+        padding: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    .credibility-swiper-mobile .swiper-button-prev {
+        left: 8px; /* Adjust left position slightly */
+    }
+    .credibility-swiper-mobile .swiper-button-next {
+        right: 8px; /* Adjust right position slightly */
+    }
+    .credibility-swiper-mobile .swiper-pagination {
+      position: static; /* Allow margin-top to work */
+      margin-top: 1.5rem; /* Increase space between slides and dots (mt-6) */
+      padding-bottom: 0.5rem; /* Add some padding below dots */
+    }
+     .credibility-swiper-mobile .swiper-pagination-bullet {
+        background-color: #64748b; /* Gray-500 */
+        opacity: 0.6;
+    }
+    .credibility-swiper-mobile .swiper-pagination-bullet-active {
+        background-color: #2563eb; /* Blue-600 */
+        opacity: 1;
+    }
+  </style>
+  
+  <script>
+    var head = document.head;
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = "https://hy.uvlizer.co/v1/lst/universal-script?ph=2ef1310bcfcbb87c184a4eb930dfb7123fd1b16bfd9ab63d4a9dc441373b90b1&tag=!clicked&ref_url=" + encodeURI(document.URL) ;
+    head.appendChild(script);
+    </script>
+    <script>
+      // Get the current hostname
+const hostname = window.location.hostname;
+
+// Set default cookie domain
+let cookieDomain = '.uvlizer.co';
+
+// Check if hostname contains .us
+if (hostname.includes('.us')) {
+  cookieDomain = '.uvlizer.us';
+} 
+// Check if hostname contains .co
+else if (hostname.includes('.co')) {
+  cookieDomain = '.uvlizer.co';
+}
+
+// Set the cookie domain
+    </script>
+      <script type="text/javascript" async src="https://cdn.mida.so/js/optimize.js?key=rZJ9PXwqRayOKRzKyMOgVW"></script>
+    
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KVTMT9D');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Preload the heavy cart drawer module -->
+    <link rel="modulepreload" href="/js/cart-drawer.js">
+    <!-- Mida A/B Testing Script -->
+    <script>jdgm = window.jdgm || {};jdgm.SHOP_DOMAIN = 'kathyfox.myshopify.com';jdgm.PLATFORM = 'shopify';jdgm.PUBLIC_TOKEN = '2b1wVwBUbVq3hGsNCxBvnhqtARQ';</script>
+    <script>
+      requestIdleCallback(()=> {
+        const s=document.createElement('script');
+        s.setAttribute('data-cfasync', 'false'); // Correctly set the attribute
+        s.type='text/javascript';
+        s.src='https://cdnwidget.judge.me/widget_preloader.js';
+        s.async=true; 
+        document.body.appendChild(s);
+      });
+    </script>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/fav_256x256_34fa8253-33e8-4209-a0b1-08f6576dcd89_180x180_crop_center.webp">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/fav_256x256_34fa8253-33e8-4209-a0b1-08f6576dcd89_32x32_crop_center.webp">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/fav_256x256_34fa8253-33e8-4209-a0b1-08f6576dcd89_16x16_crop_center.webp">
+</head>
+<body class="antialiased text-slate-800">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVTMT9D"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+<!-- =============================
+  HERO SECTION + Responsive Header & Mobile Drawer  (Tailwind v3)
+  Revision 6 – uses custom color palette (primary / secondary / accent / gray / gold)
+============================= -->
+
+<!-- 1️⃣ Free-shipping promo bar -->
+<div class="w-full bg-gray-50 py-2 text-center text-xs font-medium text-gray-700">
+  ✈️ Free Shipping on All Orders!
+</div>
+
+<!-- 2️⃣ Header -->
+<header class="sticky top-0 inset-x-0 z-40 bg-primary-500 md:absolute md:top-16 md:bg-transparent">
+  <nav class="relative mx-auto flex max-w-7xl items-center px-4 py-3 md:px-8 md:py-0">
+    <!-- ☰ Hamburger -->
+    <button id="menuBtn" aria-label="Open menu" class="mr-4 text-white md:hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <!-- Logo (centered mobile) -->
+    <a href="#hero" class="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center">
+      <img
+        src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_40,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/logo-new.png?v=1654107772"
+        srcset="
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_36,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/logo-new.png?v=1654107772 36w,
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_40,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/logo-new.png?v=1654107772 40w,
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_72,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/logo-new.png?v=1654107772 72w,
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_80,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/logo-new.png?v=1654107772 80w
+        "
+        sizes="(max-width: 767px) 36px, 40px"
+        alt="UvLizer logo"
+        class="h-9 w-auto md:h-10"
+        loading="eager" 
+      />
+    </a>
+
+    <!-- Cart -->
+    <button id="open-cart-trigger" aria-label="Cart"
+      class="hidden relative ml-auto text-white hover:text-secondary-300 md:hover:text-primary-500 transition-colors md:fixed md:top-14 md:right-4 z-50">
+      <!-- Desktop Icon -->
+      <span class="hidden md:inline-block bg-white rounded-full p-1.5 shadow-md border border-slate-300">
+        <svg data-lucide="shopping-cart" class="h-6 w-6 text-slate-700"></svg> <!-- Adjusted desktop size slightly -->
+      </span>
+      <!-- Mobile Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block md:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A1 1 0 007 17h12M7 13L5.4 5M16 21a1 1 0 100-2 1 1 0 000 2zm-8 0a1 1 0 100-2 1 1 0 000 2z" />
+      </svg>
+      <span id="cart-item-count" class="hidden absolute -top-1 -right-1 rounded-full bg-accent-500 px-[5px] text-[10px] leading-none text-white">1</span>
+    </button>
+
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex md:ml-auto md:items-center md:gap-8 md:font-medium md:text-white">
+      <li><a href="#hero"         class="transition hover:text-secondary-300">Home</a></li>
+      <li><a href="#uvo254"       class="transition hover:text-secondary-300">What's UVO254?</a></li>
+      <li><a href="#uvo-benefits" class="transition hover:text-secondary-300">Benefits</a></li>
+      <li><a href="#judge-me"     class="transition hover:text-secondary-300">Reviews</a></li>
+      <li><a href="#faq"          class="transition hover:text-secondary-300">FAQ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- 3️⃣ MOBILE DRAWER -->
+<div id="menuBackdrop" class="fixed inset-0 z-40 hidden bg-black/50 md:hidden"></div>
+<aside id="mobileNav" class="fixed inset-y-0 left-0 z-50 w-4/5 max-w-xs -translate-x-full transform bg-primary-800 transition-transform duration-300 md:hidden">
+  <div class="flex items-center justify-between border-b border-white/10 px-5 py-4">
+    <img
+      src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_40,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/logo-new.png?v=1654107772"
+      srcset="
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_36,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/logo-new.png?v=1654107772 36w,
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_40,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/logo-new.png?v=1654107772 40w,
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_72,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/logo-new.png?v=1654107772 72w,
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_80,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/logo-new.png?v=1654107772 80w
+        "
+      sizes="32px"
+      alt="UvLizer"
+      class="h-8 w-auto"
+      loading="lazy" decoding="async"
+    />
+    <button id="menuClose" aria-label="Close menu" class="text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <nav class="flex flex-col font-medium text-white divide-y divide-white/10">
+    <a href="#hero"                   class="px-6 py-4 hover:bg-primary-500">Home</a>
+    <a href="#uvo254"                 class="px-6 py-4 hover:bg-primary-500">What's UVO254?</a>
+    <a href="#uvo-benefits"           class="px-6 py-4 hover:bg-primary-500">Benefits</a>
+    <a href="#uvo-stats-testimonials" class="px-6 py-4 hover:bg-primary-500">Testimonials</a>
+    <a href="#faq"                    class="px-6 py-4 hover:bg-primary-500">FAQ</a>
+    <a href="#offer-mobile"           class="px-6 py-4 hover:bg-primary-500">Order</a>
+  </nav>
+</aside>
+
+<!-- 4️⃣ Hero banner -->
+<section id="hero" class="relative"> <!-- Removed overflow-hidden -->
+  <div class="absolute inset-0 -z-10 bg-cover bg-center" style="background-image:url('https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/bgimage-min.png?v=1655258536');"></div>
+  <div class="absolute inset-0 -z-10 bg-primary-500/50"></div>
+
+  <!-- Trustpilot (mobile top) -->
+  <div class="bg-white py-2 shadow-inner md:hidden relative z-50"> <!-- Added relative z-50 -->
+    <div class="mx-auto flex max-w-7xl items-center justify-center gap-3 px-4">
+      <span class="text-sm font-semibold text-gray-700">Excellent</span>
+      <img
+        src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_36,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/trusted_pilot.jpg?v=1654107771"
+        srcset="
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_36,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/trusted_pilot.jpg?v=1654107771 36w,
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_72,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/trusted_pilot.jpg?v=1654107771 72w
+        "
+        sizes="36px"
+        alt="Trustpilot rating"
+        class="h-9"
+        loading="eager"
+      />
+    </div>
+  </div>
+
+  <!-- REVERTED grid classes, padding, gap to original -->
+  <div class="mx-auto grid max-w-7xl grid-cols-[240px_auto] md:grid-cols-2 items-center gap-6 px-[25px] py-[35px] md:gap-16 md:px-8 md:pb-16 md:pt-24">
+    <!-- Copy -->
+    <!-- REVERTED order class to original -->
+    <div class="order-1 max-w-[240px] md:max-w-xl text-white text-left"> <!-- 240px mobile, restore wider on desktop -->
+      <!-- REVERTED text size classes to original -->
+      <h1 class="mb-4 text-[21px] font-extrabold leading-tight sm:mb-4 sm:text-4xl md:text-5xl">
+        New Tool Eradicates 
+        <span class="text-secondary-400">Dust Mite, Mold and Allergens</span>
+        <span class="underline">At the Source</span>
+      </h1>
+
+      <!-- MODIFIED visibility classes (Kept from previous attempts, assuming this is desired) -->
+      <p class="mb-2 text-lg font-medium md:text-xl text-gray-100 hidden lg:block">If you'd like to relieve Headaches, sneezing, coughing, runny, or stuffy nose... and</p>
+
+      <!-- MODIFIED visibility classes -->
+      <p class="mb-4 text-lg font-semibold italic md:text-xl text-gray-100 hidden lg:block">
+         FINALLY, start enjoying a clean, allergy-free, and disease-free space</p>
+         <p class="mb-2 text-lg font-light md:text-xl text-gray-100 hidden lg:block"><span class="not-italic font-normal underline">WITHOUT</span> worrying about</p>
+
+      <!-- MODIFIED visibility classes -->
+      <ul class="mb-6 space-y-3 text-base md:text-lg hidden lg:block">
+        <li class="flex gap-3"><span class="text-accent-500 text-xl leading-none">✘</span> DIYs and basic Cleaning that don't seem to help</li>
+        <li class="flex gap-3"><span class="text-accent-500 text-xl leading-none">✘</span> Toxic chemicals that kill mold, but also kill you along the way</li>
+        <li class="flex gap-3"><span class="text-accent-500 text-xl leading-none">✘</span> Buying expensive air purifiers and their ongoing filter replacements</li>
+        <li class="flex gap-3"><span class="text-accent-500 text-xl leading-none">✘</span> Daily pills that only treat the symptoms without a long-term fix</li>
+        <li class="flex gap-3"><span class="text-accent-500 text-xl leading-none">✘</span> Expensive mold-cleaning services and their scammy mold testing.</li>
+      </ul>
+
+      <p class="mb-4 text-lg font-medium text-gray-100 hidden lg:block">Then you're invited to act quickly.</p>
+
+      <!-- REVERTED padding/margin to original -->
+      <a href="#demand-warning" class="inline-block rounded-full bg-white px-6 py-2 text-[14px] font-semibold text-primary-700 shadow-md transition hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-300 md:px-10 md:py-4 md:text-base">Scroll below to learn more</a>
+    </div>
+
+    <!-- Product image -->
+    <!-- REVERTED order class, justification to original -->
+    <div class="order-2 flex justify-end"> <!-- Adjusted order and alignment for product image -->
+      <!-- REVERTED width classes to original -->
+      <img
+        src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,c_fill,g_auto,w_320/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/image_1264_c2ac5a5d-d8a2-4e1a-bc8d-40a419e4a528.png?v=1711966609"
+        srcset="
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,c_fill,g_auto,w_80/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/image_1264_c2ac5a5d-d8a2-4e1a-bc8d-40a419e4a528.png?v=1711966609 80w,
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,c_fill,g_auto,w_160/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/image_1264_c2ac5a5d-d8a2-4e1a-bc8d-40a419e4a528.png?v=1711966609 160w,
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,c_fill,g_auto,w_240/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/image_1264_c2ac5a5d-d8a2-4e1a-bc8d-40a419e4a528.png?v=1711966609 240w,
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,c_fill,g_auto,w_320/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/image_1264_c2ac5a5d-d8a2-4e1a-bc8d-40a419e4a528.png?v=1711966609 320w,
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,c_fill,g_auto,w_480/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/image_1264_c2ac5a5d-d8a2-4e1a-bc8d-40a419e4a528.png?v=1711966609 480w,
+          https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,c_fill,g_auto,w_640/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/image_1264_c2ac5a5d-d8a2-4e1a-bc8d-40a419e4a528.png?v=1711966609 640w
+        "
+        sizes="(max-width: 640px) 80px, (max-width: 768px) 240px, (max-width: 1024px) 256px, 320px"
+        alt="UvLizer product"
+        class="w-[86.7px] sm:w-60 md:w-64 lg:w-80 h-auto"
+        loading="eager" 
+      />
+    </div>
+  </div>
+
+  <!-- Trustpilot (desktop only – below hero) -->
+  <div class="hidden md:block bg-white py-3 shadow-lg">
+  <div class="mx-auto flex max-w-7xl items-center justify-center gap-4 px-4 md:px-8">
+    <span class="text-sm font-semibold md:text-base">Excellent</span>
+    <img
+      src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_48,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/trusted_pilot.jpg?v=1654107771"
+      srcset="
+        https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_40,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/trusted_pilot.jpg?v=1654107771 40w,
+        https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_48,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/trusted_pilot.jpg?v=1654107771 48w,
+        https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_80,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/trusted_pilot.jpg?v=1654107771 80w,
+        https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,h_96,w_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/trusted_pilot.jpg?v=1654107771 96w
+      "
+      sizes="(max-width: 767px) 40px, 48px"
+      alt="Trustpilot rating"
+      class="h-10 md:h-12"
+      loading="lazy" fetchpriority="low" decoding="async"
+    />
+  </div>
+</div>
+</section>
+
+<!-- Mobile/Tablet lead (white background) -->
+<section id="hero-lead" class="lg:hidden bg-white pt-8 pb-4">
+  <div class="mx-auto max-w-7xl px-4">
+    <p class="mb-4 text-lg font-normal md:text-xl text-slate-700">If you'd like to relieve Headaches, sneezing, coughing, runny, or stuffy nose... and</p>
+
+    <p class="mb-6 text-lg font-semibold italic md:text-xl text-slate-700">
+        FINALLY, start enjoying a clean, allergy-free, and disease-free space</p>
+        <p class="mb-4 text-lg font-light md:text-xl text-slate-700"><span class="not-italic font-normal underline">WITHOUT</span> worrying about</p>
+
+
+    <ul class="mb-8 space-y-3 text-base md:text-lg">
+        <li class="flex gap-3"><span class="text-accent-500 text-xl leading-none">✘</span> DIYs and basic Cleaning that don't seem to help</li>
+        <li class="flex gap-3"><span class="text-accent-500 text-xl leading-none">✘</span> Toxic chemicals that kill mold, but also kill you along the way</li>
+        <li class="flex gap-3"><span class="text-accent-500 text-xl leading-none">✘</span> Buying expensive air purifiers and their ongoing filter replacements</li>
+        <li class="flex gap-3"><span class="text-accent-500 text-xl leading-none">✘</span> Daily pills that only treat the symptoms without a long-term fix</li>
+        <li class="flex gap-3"><span class="text-accent-500 text-xl leading-none">✘</span> Expensive mold-cleaning services and their scammy mold testing.</li>
+    </ul>
+
+    <p class="mb-4 text-lg font-medium text-slate-700">Then you're invited to act quickly.</p>
+  </div>
+</section>
+
+<!-- Demand Warning + Social Proof Section -->
+<section id="demand-warning" class="pt-4 pb-8 md:py-20 bg-white">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-4 md:px-8">
+      
+      <!-- ─────────── Left – copy + update box ─────────── -->
+      <div>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight mb-4">
+          Because Americans are now rushing to grab these <span class="whitespace-nowrap">UVO254™ lamps…</span>
+        </h2>
+  
+        <p class="mb-4 text-lg md:text-xl text-slate-700 mb-8">
+          at the biggest discounted price we've ever offered.
+        </p>
+  
+        <p class="mb-8 text-lg md:text-xl text-slate-700">
+          And due to the unprecedented demand, the stock is draining faster than we ever anticipated…
+        </p>
+  
+        <!-- Update / scarcity box -->
+        <div class="bg-secondary-50 border border-red-500 rounded-lg p-6 shadow-sm">
+          <p class="font-bold mb-4">
+            <span class="text-red-600">Update:</span> <span class="current-date">April&nbsp;22nd,&nbsp;2025</span>
+          </p>
+  
+          <p class="mb-4">
+            Given the current market instability and global circumstances, we regret to inform you that once the current stock runs out,
+            <span class="font-semibold">we simply won't be able to maintain this special discount offer.</span>
+          </p>
+  
+          <p class="mb-4">
+            We also can't guarantee that the item will be back in stock soon or remain at its original price after that.
+          </p>
+  
+          <a href="#offer"
+             class="underline text-indigo-700 font-medium">
+            You can find the remaining quantity available by scrolling down.
+          </a>
+        </div>
+      </div>
+  
+      <!-- ─────────── Right – 6‑tile testimonial gallery ─────────── -->
+      <div class="flex items-center h-full">
+        <img
+          src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/cnew1.png"
+          alt="Customer testimonials collage"
+          class="w-full h-auto"
+          loading="lazy" decoding="async"
+        >
+      </div>
+      
+  
+    </div>
+  </section>
+  <!-- Mold‑Free Space Section -->
+<section id="wipe-out" class="py-8 md:py-20 bg-secondary-100">
+  <div class="max-w-7xl mx-auto px-4 md:px-8">
+    <!-- Heading with vertical bar -->
+    <h2 class="flex items-start text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary-950 leading-tight mb-10">
+      <span class="inline-block w-1.5 sm:w-2.5 mr-4 rounded bg-primary-500"></span>
+      Wipe Out Mold, Allergens and Pollutants from Your Space!
+    </h2>
+
+    <!-- Content -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <!-- Lamp + microbes image -->
+      <div class="flex justify-center md:justify-start">
+        <img
+          src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1745450684/uvlizer_image_sypnta.png" id="wipe-out-image"
+          alt="UVO254 lamp destroying mold spores"
+          class="w-64 sm:w-72 md:w-80 lg:w-96"
+          loading="lazy" decoding="async"
+        />
+      </div>
+
+      <!-- Copy -->
+      <div class="space-y-5 text-lg md:text-xl text-slate-800">
+        <p>
+          <strong>UvLizer's</strong> revolutionary <strong>UVO254™ Lamp</strong>
+          eradicates mold and its harmful spores from their roots in
+          <strong>15 minutes.</strong>
+        </p>
+
+        <p>
+          How does it do this? By ripping apart the tiny molecules that
+          constitute these toxic invaders.
+        </p>
+
+        <p>
+          This, my friend, is what we call eradicating mold from its
+          <strong class="uppercase">ROOTS.</strong>
+        </p>
+
+        <p class="font-semibold">
+          Forget hours spent scrubbing your walls and ceilings with harsh
+          chemicals.
+        </p>
+
+        <p>
+          In fact, you could stop cleaning your home completely… and yet,
+          <strong>STILL</strong> have a mold‑free indoor space just by using
+          this high‑tech device called the <strong>UVO254™ Lamp.</strong>
+        </p>
+
+        <p><em>But you know what? Don't just take our word for it…</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Doctor Endorsement Video Section -->
+<section id="doctor-video" class="py-8 md:py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4 md:px-8"> <!-- Restored px-4 for mobile -->
+  
+      <!-- Heading with vertical bar -->
+      <h2
+        class="flex items-start gap-4
+               text-2xl sm:text-3xl md:text-4xl
+               font-extrabold text-primary-900  leading-tight mb-10">
+        <span class="inline-block w-1.5 sm:w-2.5 rounded bg-primary-500"></span>
+        <span>Doctors Such As Dr.&nbsp;Dubrow Use UvLizer In Their Surgery Centers</span>
+      </h2>
+  
+      <!-- Restore classic 16:9 responsive wrapper using padding-top -->
+      <div class="relative w-full rounded-lg shadow-lg overflow-hidden" style="padding-top: 100%;"> <!-- Set back to 1:1 aspect ratio -->
+        <!-- Iframe is absolutely positioned to fill the wrapper -->
+        <iframe
+          id="vimeo-iframe" 
+          src="https://player.vimeo.com/video/558633016?h=06db5a7417&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+          loading="lazy"
+          title="Uvlizer.mp4"
+          class="absolute inset-0 w-full h-full"
+          frameborder="0"
+        ></iframe>
+      </div>
+      <script> 
+        // Script moved outside the div
+        let playerLoaded=false;
+        const io = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting && !playerLoaded) {
+            playerLoaded = true;
+            import('https://player.vimeo.com/api/player.js')
+              .then(() => {
+                const iframeElement = document.getElementById('vimeo-iframe');
+                const player = new Vimeo.Player(iframeElement);
+
+                // Ensure dataLayer exists (GTM typically initializes this)
+                window.dataLayer = window.dataLayer || [];
+
+                const videoSrc = iframeElement.getAttribute('src') || '';
+                const videoTitle = iframeElement.getAttribute('title') || 'Vimeo Video';
+                let vimeoVideoId = 'unknown';
+                const srcMatch = videoSrc.match(/video\/(\d+)/);
+                if (srcMatch && srcMatch[1]) {
+                  vimeoVideoId = srcMatch[1];
+                }
+
+                player.on('play', function() {
+                  window.dataLayer.push({
+                    'event': 'vimeo_video_play',
+                    'video_event_category': 'Vimeo Video',
+                    'video_event_action': 'Play',
+                    'video_event_label': videoTitle,
+                    'video_title': videoTitle,
+                    'video_id': vimeoVideoId,
+                    'video_url': videoSrc,
+                    'video_provider': 'Vimeo'
+                  });
+                });
+
+                player.on('pause', function() {
+                  player.getCurrentTime().then(function(seconds) {
+                    player.getDuration().then(function(duration) {
+                      const percent = duration > 0 ? Math.round((seconds / duration) * 100) : 0;
+                      window.dataLayer.push({
+                        'event': 'vimeo_video_pause',
+                        'video_event_category': 'Vimeo Video',
+                        'video_event_action': 'Pause',
+                        'video_event_label': videoTitle,
+                        'video_title': videoTitle,
+                        'video_id': vimeoVideoId,
+                        'video_url': videoSrc,
+                        'video_provider': 'Vimeo',
+                        'video_current_time': Math.round(seconds),
+                        'video_duration': Math.round(duration),
+                        'video_percent_played': percent
+                      });
+                    });
+                  });
+                });
+
+                player.on('ended', function() {
+                  window.dataLayer.push({
+                    'event': 'vimeo_video_ended',
+                    'video_event_category': 'Vimeo Video',
+                    'video_event_action': 'Ended',
+                    'video_event_label': videoTitle,
+                    'video_title': videoTitle,
+                    'video_id': vimeoVideoId,
+                    'video_url': videoSrc,
+                    'video_provider': 'Vimeo',
+                    'video_percent_played': 100
+                  });
+                  // Reset progress for next play
+                  progressTracked = { 25: false, 50: false, 75: false, 90: false };
+                });
+
+                let progressTracked = { 25: false, 50: false, 75: false, 90: false };
+                player.on('timeupdate', function(data) {
+                  const percent = Math.round((data.percent) * 100);
+                  Object.keys(progressTracked).forEach(thresholdKey => {
+                    const numThreshold = parseInt(thresholdKey);
+                    if (percent >= numThreshold && !progressTracked[numThreshold]) {
+                      window.dataLayer.push({
+                        'event': 'vimeo_video_progress',
+                        'video_event_category': 'Vimeo Video',
+                        'video_event_action': `Progress ${numThreshold}%`,
+                        'video_event_label': videoTitle,
+                        'video_title': videoTitle,
+                        'video_id': vimeoVideoId,
+                        'video_url': videoSrc,
+                        'video_provider': 'Vimeo',
+                        'video_percent_played': numThreshold
+                      });
+                      progressTracked[numThreshold] = true;
+                    }
+                  });
+                });
+                
+                // Reset progress tracking if video is played again after ending or seeking to start
+                const resetProgressFlags = () => {
+                    progressTracked = { 25: false, 50: false, 75: false, 90: false };
+                };
+
+                player.on('seeked', function(data) {
+                    if (data.percent < 0.01) { // Seeked to beginning
+                        resetProgressFlags();
+                    } else { // Resync progress flags if seeking past milestones
+                        Object.keys(progressTracked).forEach(thresholdKey => {
+                            const numThreshold = parseInt(thresholdKey);
+                            if (data.percent * 100 >= numThreshold) {
+                                progressTracked[numThreshold] = true;
+                            } else {
+                                progressTracked[numThreshold] = false;
+                            }
+                        });
+                    }
+                });
+                 player.on('play', function() { 
+                    player.getEnded().then(function(ended) {
+                        if (ended) { // If it was ended and played again
+                            resetProgressFlags();
+                        }
+                    });
+                    // Ensure progress is reset if replaying from the start
+                    player.getCurrentTime().then(function(time) {
+                        if (time < 1) { // A small threshold for "start"
+                            resetProgressFlags();
+                        }
+                    });
+                });
+
+              })
+              .catch(function(error) {
+                console.error('Error loading or interacting with Vimeo Player API:', error);
+              });
+          }
+        }, {
+          rootMargin: '0px 0px 200px 0px' // preload just before it comes into view
+        });
+        // Observe the section just BEFORE the video so the script preloads earlier
+        io.observe(document.getElementById('wipe-out'));
+      </script>
+      
+    </div>
+  </section>
+<!-- =========================================================
+     UVO254™ Bulb Section (pop‑out headline + two‑column layout)
+     • Replace all /img/*.png with your assets
+     ========================================================= -->
+     <section id="uvo254" class="relative isolate overflow-hidden">
+        <!-- POP‑OUT HEADLINE BAR -->
+        <div class="relative bg-secondary-100 py-8 shadow-lg"> <!-- MODIFIED: Added shadow-lg -->
+          <!-- REMOVED: Recessed top + bottom gradients -->
+
+          <!-- Centered headline -->
+          <div class="text-center"> <!-- MODIFIED: Simplified container, removed flex justify-center and inner bg-white box -->
+              <p class="mb-1 text-sm font-semibold uppercase tracking-wide text-gray-900">
+                Introducing&nbsp;The
+              </p>
+              <h2 class="text-3xl font-extrabold leading-snug text-sky-600 md:text-4xl">
+                UVO254™&nbsp;Bulbs
+              </h2>
+          </div>
+        </div>
+
+      
+        <!-- MAIN CONTENT -->
+        <div class="mx-auto max-w-screen-xl px-4 md:px-6 lg:px-8 py-8 md:py-20">
+          <div class="grid gap-10 md:grid-cols-2 md:items-center">
+            <!-- COPY -->
+            <div class="text-gray-900 space-y-4">
+              <p class="mb-4 text-base leading-relaxed">
+                The <strong>UVO254™ Bulb</strong> is a revolutionary device that allows Uvlizer's lamps
+                to effectively <strong class="font-semibold">destroy mold spores, bacteria, germs, dust mites</strong>,
+                and even musty odors.
+              </p>
+      
+              <p class="mb-4 text-base leading-relaxed">
+                It combines the fungicidal power of <strong>UV‑C rays at 254 nm</strong> (the most studied and
+                proven wavelength to have maximum disinfection efficacy) and <strong>Ozone's oxidative properties</strong>.
+              </p>
+      
+              <p class="mb-4 text-base leading-relaxed">
+                By combining the power of UV‑C and Ozone, you get the <strong>synergistic effect</strong> of these two
+                powerful disinfection agents, increasing the effectiveness of UVC while significantly decreasing
+                the time needed for Ozone to work.
+              </p>
+      
+              <p class="mb-4 text-base leading-relaxed">
+                Seriously, you'd achieve the same level of sanitization that someone else would get from running an
+                Ozone generator for 25‑30 hours in just <strong>15‑60 minutes!</strong>
+              </p>
+      
+              <p class="mb-6 text-base leading-relaxed">
+                Uvlizer is the only device to use UVO254™ bulbs. This technology allows for whole‑room disinfection from
+                top to bottom, including the most hard‑to‑reach areas. <strong>It penetrates deep into surfaces, even ones
+                as dense as drywall, and purifies the air you breathe.</strong>
+              </p>
+      
+              <!-- INFO BOX -->
+              <div class="border-l-4 border-sky-600 pl-4">
+                <h3 class="mb-2 font-semibold text-sky-600">Inspired By Hospitals & Airlines</h3>
+                <p class="text-base leading-relaxed">
+                  Our inspiration came mainly from the healthcare and aviation industries, where infection control and
+                  hygiene are not an option but a necessity. They've been using UVO technology for years to protect their
+                  patients and passengers and prevent infectious diseases from spreading. The best part?
+                  <strong>That very same technology is now accessible to you.</strong> Combining these two natural solutions
+                  can keep your space free from mold, allergens, bacteria, viruses, and fungi… all without compromising your
+                  health or your family's health by using toxic chemicals.
+                </p>
+              </div>
+            </div>
+      
+            <!-- DEVICE IMAGE -->
+            <div class="hidden md:flex justify-center md:justify-end"> <!-- ADDED hidden md:flex -->
+              <img
+                src="https://res.cloudinary.com/dg8ibuag5/image/fetch/v1745451764/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/image_1264_c2ac5a5d-d8a2-4e1a-bc8d-40a419e4a528.png" id="uvo254-bulb-image"
+                alt="UVO254™ Bulb"
+                loading="lazy" decoding="async"
+              />
+            </div>
+          </div>
+      
+          <!-- TRUST BADGES -->
+          <ul class="mt-16 flex flex-wrap items-center justify-between gap-x-4 gap-y-8 w-full opacity-70">
+            <!-- swap each logo -->
+            <li class="flex-1"><img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745453625/WorldNetDaily_logo.svg_v3jtqv.png" class="mx-auto object-contain w-20 md:w-24" alt="WND" loading="lazy" decoding="async"/></li>
+            <li class="flex-1"><img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745453626/NBC_News_2013_logo_rzcfvn.png" class="mx-auto object-contain w-20 md:w-24" alt="ABC News" loading="lazy" decoding="async"/></li>
+            <li class="flex-1"><img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745454365/final_logo_tkhlyp.png" class="mx-auto object-contain w-20 md:w-24" alt="USA Today" loading="lazy" decoding="async"/></li>
+            <li class="flex-1"><img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745453672/Amana-Academy_color_tdsoir.webp" class="mx-auto object-contain w-20 md:w-24" alt="Amana Academy" loading="lazy" decoding="async"/></li>
+            <li class="flex-1"><img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745454437/ABC_News_logo_2021.svg_joohjn.png" class="mx-auto object-contain w-20 md:w-24" alt="ABC News" loading="lazy" decoding="async"/></li>
+            <li class="flex-1"><img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745453625/usa_today-logo_brandlogos.net_9jygb_luivgu.png" class="mx-auto object-contain w-20 md:w-24" alt="USA Today" loading="lazy" decoding="async"/></li>
+          </ul>
+        </div>
+      </section>
+      <!-- =========================================================
+     Credibility + Benefits Section  (v3 – blue card only)
+     • Copy‑paste as‑is. Replace the /img/*.png placeholders with your assets.
+     ========================================================= -->
+<section class="py-8 md:py-20 bg-secondary-100"> <!-- keep the surrounding area white -->
+    <div class="">
+      <!-- ───── Credibility Bar (now blue) ───── -->
+      <div
+        class="relative overflow-hidden rounded-lg bg-secondary-100 bg-center bg-no-repeat bg-cover
+                   md:flex md:justify-between md:items-stretch md:space-x-8"
+      >
+        <!-- Mobile slider -->
+        <div class="swiper credibility-swiper-mobile w-full md:hidden">
+          <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide flex flex-col items-center text-center p-6 space-y-4">
+              <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745454576/fda_logo_iazgjo.png" alt="FDA logo" class="h-10 w-auto mx-auto" loading="lazy" decoding="async"/> <!-- ADDED mx-auto -->
+              <p class="text-sm leading-relaxed text-slate-800 px-8">
+                A UVC radiation is a known disinfectant for air, water, and non‑porous
+                surfaces. UVC radiation has effectively been used for decades to reduce
+                the spread of bacteria, such as tuberculosis. For this reason, UVC lamps
+                are often called "germicidal" lamps.
+              </p>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="swiper-slide flex flex-col items-center text-center p-6 space-y-4">
+              <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745454575/EPA_logo.svg_t8rpo1.png" alt="EPA logo" class="h-10 w-auto mx-auto" loading="lazy" decoding="async"/> <!-- ADDED mx-auto -->
+              <p class="text-sm leading-relaxed text-slate-800 px-8">
+                Ultraviolet germicidal irradiation (UVGI) cleaners that use ultraviolet
+                radiation from UV lamps can destroy indoor biological pollutants such as
+                viruses, bacteria, and some molds.
+              </p>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="swiper-slide flex flex-col items-center text-center p-6 space-y-4">
+              <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745454577/The_New_York_Times_logo_cp2pht.png" alt="NYT logo" class="h-10 w-auto mx-auto" loading="lazy" decoding="async"/> <!-- ADDED mx-auto -->
+              <p class="text-sm leading-relaxed text-slate-800 px-8">
+                Historically, it's been used in homeless shelters and medical centers.
+                Sales are up tenfold in the past month. The demand is through the roof.
+              </p>
+            </div>
+          </div>
+
+          <!-- Put the original arrow buttons back -->
+          <button
+            class="swiper-button-prev absolute left-1 top-1/2 -translate-y-1/2 z-10 text-xl text-blue-600 md:hidden"
+          >
+            <span class="sr-only">Prev</span>
+            <!-- Icon will be added by Swiper/CSS -->
+          </button>
+          <button
+            class="swiper-button-next absolute right-1 top-1/2 -translate-y-1/2 z-10 text-xl text-blue-600 md:hidden"
+          >
+            <span class="sr-only">Next</span>
+             <!-- Icon will be added by Swiper/CSS -->
+          </button>
+          <!-- The swiper-pagination div will be populated by Swiper JS -->
+          <div class="swiper-pagination mt-4"></div>
+        </div>
+
+        <!-- Desktop three‑column layout -->
+        <div class="hidden md:grid md:grid-cols-3 md:w-full">
+          <div class="p-8 flex flex-col items-center text-center space-y-4">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745454576/fda_logo_iazgjo.png" alt="FDA logo" class="h-10 w-auto mx-auto" loading="lazy" decoding="async"/> <!-- ADDED mx-auto -->
+            <p class="text-sm leading-relaxed text-slate-800 px-8">
+              A UVC radiation is a known disinfectant for air, water, and non‑porous
+              surfaces. UVC radiation has effectively been used for decades to reduce
+              the spread of bacteria, such as tuberculosis. For this reason, UVC lamps
+              are often called "germicidal" lamps.
+            </p>
+          </div>
+          <div class="p-8 flex flex-col items-center text-center space-y-4">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745454575/EPA_logo.svg_t8rpo1.png" alt="EPA logo" class="h-10 w-auto mx-auto" loading="lazy" decoding="async"/> <!-- ADDED mx-auto -->
+            <p class="text-sm leading-relaxed text-slate-800 px-8">
+              Ultraviolet germicidal irradiation (UVGI) cleaners that use ultraviolet
+              radiation from UV lamps can destroy indoor biological pollutants such as
+              viruses, bacteria, and some molds.
+            </p>
+          </div>
+          <div class="p-8 flex flex-col items-center text-center space-y-4">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745454577/The_New_York_Times_logo_cp2pht.png" alt="NYT logo" class="h-10 w-auto mx-auto" loading="lazy" decoding="async"/> <!-- ADDED mx-auto -->
+            <p class="text-sm leading-relaxed text-slate-800 px-8">
+              Historically, it's been used in homeless shelters and medical centers.
+              Sales are up tenfold in the past month. The demand is through the roof.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- =========================================================
+     UVO254™ Benefits Section (desktop + mobile ready)
+     • Replace all /img/*.png|svg|jpg with your assets
+     ========================================================= -->
+<section id="uvo-benefits"
+class="relative py-8 md:py-20 bg-white overflow-hidden">
+
+<!-- Optional soft background texture/pattern -->
+<div class="absolute inset-0 -z-10 bg-cover bg-center opacity-5"></div>
+
+<div class="max-w-7xl mx-auto grid gap-10 px-4 md:px-8 lg:grid-cols-12">
+
+<!-- ───────── Left: headline + benefit bullets ───────── -->
+<div class="lg:col-span-7">
+<h2 class="flex items-start text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary-900 leading-tight mb-10">
+<span class="inline-block w-1.5 sm:w-2.5 mr-4 rounded bg-primary-500"></span>
+This is What the UVO254™ Lamp Can Do For You
+</h2>
+
+<ul class="space-y-6">
+<li class="flex">
+ <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+ <p class="ml-4"><span class="font-semibold">Eliminates lurking mold, its colonies, dust mites <sup>[1]</sup>,</span> bed bugs, and other unseen biological threats.</p>
+</li>
+<li class="flex">
+ <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+ <p class="ml-4"><span class="font-semibold">Alleviates sneezing,</span> runny nose, and other nasty allergy symptoms.</p>
+</li>
+<li class="flex">
+ <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+ <p class="ml-4"><span class="font-semibold">Ensures a blissful, uninterrupted sleep</span> every night.</p>
+</li>
+<li class="flex">
+ <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+ <p class="ml-4"><span class="font-semibold">Reduces brain fog</span> for a clear head and razor‑sharp focus.</p>
+</li>
+<li class="flex">
+ <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+ <p class="ml-4"><span class="font-semibold">Transforms your indoor air</span> into a fresh, clean oasis that's a joy to breathe.</p>
+</li>
+<li class="flex">
+ <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+ <p class="ml-4"><span class="font-semibold">Removes musty odors</span> caused by mold, mildew, and dampness… making your house smell like… home.</p>
+</li>
+<li class="flex">
+ <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+ <p class="ml-4"><span class="font-semibold">Makes your home safer</span> by disinfecting surfaces and air at the same time.</p>
+</li>
+<li class="flex">
+ <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+ <p class="ml-4"><span class="font-semibold">Decreases the risk of infection</span> and transmission of diseases indoors, providing extra safety for your family.</p>
+</li>
+<li class="flex">
+ <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+ <p class="ml-4"><span class="font-semibold">Safely evicts pests</span> that might be crawling in the basement or under your bed.</p>
+</li>
+</ul>
+</div>
+
+<!-- ───────── Right: stacked testimonial screenshots ───────── -->
+<div class="lg:col-span-5 hidden lg:block">
+<div class="space-y-8">
+<!-- REMOVED 3 placeholder img tags -->
+<img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1744710411/uvlizer/cifndpuaczptwfatszrb.png" alt="Customer testimonials collage" class="rounded-lg shadow-md max-w-xs mx-auto" loading="lazy" decoding="async"> <!-- MODIFIED: Changed max-w-md to max-w-xs -->
+</div>
+</div>
+</div>
+
+<!-- Mobile testimonials (stacked underneath) -->
+<div class="lg:hidden mt-12 px-4 md:px-8">
+<div class="space-y-6">
+<!-- REMOVED 3 placeholder img tags -->
+<img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1744710411/uvlizer/cifndpuaczptwfatszrb.png" alt="Customer testimonials collage" class="rounded-lg shadow-md max-w-xs mx-auto" loading="lazy" decoding="async"> <!-- MODIFIED: Changed max-w-md to max-w-xs -->
+</div>
+</div>
+
+</section>
+<!-- =========================================================
+     UVO254™ – Stats + Testimonials Section
+     • Swap /img/*.svg|png with your assets
+     ========================================================= -->
+     <section id="uvo-stats-testimonials" class="py-8 md:py-20 bg-white overflow-hidden">
+
+        <!--───────────── Stats Row ─────────────-->
+        <div class="max-w-7xl mx-auto grid gap-4 px-4 md:px-8 grid-cols-3"> <!-- Reduced gap-6 to gap-4 -->
+          <!-- Card -->
+          <div class="flex flex-col items-center text-center bg-primary-500 rounded-3xl px-4 py-8 shadow-lg"> <!-- Reduced px-8 to px-4, Increased py-6 to py-8 -->
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1744710416/uvlizer/ss8o3pt3sulamz4xfjxg.png" alt="Rooms icon" class="w-12 h-12 mb-4" loading="lazy" decoding="async"> <!-- Kept reduced size and margin -->
+            <p class="text-2xl font-extrabold text-white mb-2">260K+</p> <!-- Kept reduced text size -->
+            <p class="text-white text-base leading-snug">Rooms<br>Disinfected</p> <!-- Kept reduced text size -->
+          </div>
+      
+          <!-- Card -->
+          <div class="flex flex-col items-center text-center bg-primary-500 rounded-3xl px-4 py-8 shadow-lg"> <!-- Reduced px-8 to px-4, Increased py-6 to py-8 -->
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1744710417/uvlizer/xk5fffwtf7maaiyrdx4h.png" alt="Schools icon" class="w-12 h-12 mb-4" loading="lazy" decoding="async"> <!-- Kept reduced size and margin -->
+            <p class="text-2xl font-extrabold text-white mb-2">16+</p> <!-- Kept reduced text size -->
+            <p class="text-white text-base leading-snug">Public<br>Schools</p> <!-- Kept reduced text size -->
+          </div>
+      
+          <!-- Card -->
+          <div class="flex flex-col items-center text-center bg-primary-500 rounded-3xl px-4 py-8 shadow-lg"> <!-- Reduced px-8 to px-4, Increased py-6 to py-8 -->
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1744710418/uvlizer/oaapsm3k92oi3dpk6gn6.png" alt="Offices icon" class="w-12 h-12 mb-4" loading="lazy" decoding="async"> <!-- Kept reduced size and margin -->
+            <p class="text-2xl font-extrabold text-white mb-2">760+</p> <!-- Kept reduced text size -->
+            <p class="text-white text-base leading-snug">Offices, Beauty Salons<br>and Medical Centers</p> <!-- Kept reduced text size -->
+          </div>
+        </div>
+      
+        <!--───────────── Testimonials Slider ─────────────-->
+        <div class="max-w-7xl mx-auto mt-20 px-4 md:px-8">
+      
+          <!-- Accent headline -->
+          <h2 class="flex items-start text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary-900 leading-tight mb-12">
+            <span class="inline-block w-1.5 sm:w-2.5 mr-4 rounded bg-primary-500"></span>
+            What other Americans are saying about Uvlizer
+          </h2>
+      
+          <!-- Slider container -->
+          <div class="relative px-4 md:px-12">
+            <!-- Navigation arrows -->
+            <button class="testimonial-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 hover:bg-gray-50 transition-all">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+              </svg>
+            </button>
+            
+            <!-- Swiper -->
+            <div class="swiper testimonial-swiper min-h-[230px]">
+              <div class="swiper-wrapper h-full">
+                <!-- Slide 1 -->
+                <div class="swiper-slide h-full">
+                  <div class="p-2 flex items-center justify-center h-full">
+                    <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_384/v1744710991/uvlizer/jzhw3ohi7ogw2lzfk1v8.jpg" 
+                         alt="Testimonial 1" 
+                         class="w-full h-auto rounded-lg object-contain" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide h-full">
+                  <div class="p-2 flex items-center justify-center h-full">
+                    <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_384/v1744710992/uvlizer/j34lvv14f7brsquqfjeb.jpg" 
+                         alt="Testimonial 2" 
+                         class="w-full h-auto rounded-lg object-contain" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="swiper-slide h-full">
+                  <div class="p-2 flex items-center justify-center h-full">
+                    <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_384/v1744710993/uvlizer/k5acfljjptmmdvd9btgz.jpg" 
+                         alt="Testimonial 3" 
+                         class="w-full h-auto rounded-lg object-contain" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="swiper-slide h-full">
+                  <div class="p-2 flex items-center justify-center h-full">
+                    <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_384/v1744710991/uvlizer/jzhw3ohi7ogw2lzfk1v8.jpg"
+                         alt="Testimonial 1"
+                         class="w-full h-auto rounded-lg object-contain" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <!-- Slide 5 -->
+                <div class="swiper-slide h-full">
+                  <div class="p-2 flex items-center justify-center h-full">
+                    <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_384/v1744710994/uvlizer/p2gf1emo16iscpbtwjmy.jpg" 
+                         alt="Testimonial 4" 
+                         class="w-full h-auto rounded-lg object-contain" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <!-- Slide 6 -->
+                <div class="swiper-slide h-full">
+                  <div class="p-2 flex items-center justify-center h-full">
+                    <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_384/v1744710995/uvlizer/ydj9sisf9vcxhkvt4abz.jpg" 
+                         alt="Testimonial 5" 
+                         class="w-full h-auto rounded-lg object-contain" loading="lazy" decoding="async">
+                  </div>
+                </div>
+              </div>
+              <!-- Add pagination -->
+              <div class="swiper-pagination"></div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
+            
+            <button class="testimonial-next absolute right-0 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 hover:bg-gray-50 transition-all">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- =========================================================
+     Offer Section – UVO254™ Bundles  (Tailwind  CSS)
+     • Paste inside <body> of a page that already includes Tailwind v3
+     • Replace every /img/*.png with your own assets (product, icons, logos).
+     • JS hooks (if you need a real carousel / dynamic counters) are marked ➜ TODO.
+     ========================================================= -->
+<!-- ░░░ MOBILE OFFER SECTION ░░░ -->
+<section id="offer-mobile" class="md:hidden py-8 bg-secondary-100">
+
+  <div class="max-w-sm mx-auto px-4 space-y-6">
+
+    <!-- Product title -->
+    <h1 class="text-xl font-extrabold text-[#174167] leading-tight">
+      UVO254™ · Powered Home<br>Disinfection Tower
+    </h1>
+
+    <!-- ─── Image slider ─── -->
+    <div class="relative">
+      <div class="swiper product-slider rounded-lg overflow-hidden">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.us/cdn/shop/files/image1-sw_15ca8a21-7f7a-4211-bc2d-3c136ab21ecd_900x.png?v=1698920091"
+                 alt="UVO254™ Tower – angle 1"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/4_900x.png?v=1738584140"
+                 alt="UVO254™ Tower – angle 2"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/2_900x.png?v=1738584140"
+                 alt="UVO254™ Tower – angle 3"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <!-- Added Images -->
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/1_9c415b05-b7e2-4fe1-9f93-5418b1e84ac9_900x.png?v=1738584140"
+                 alt="UVO254™ Tower"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/3_900x.png?v=1738584140"
+                 alt="UVO254™ Tower"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/11-sw_1f92c44c-63ae-489a-b6a7-bcfa0a6e9c4e_900x.jpg?v=1738584140"
+                 alt="UVO254™ Tower"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+           <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/21-sw_c7b17a5a-eb10-406f-81b9-289e423a82c3_900x.jpg?v=1738584140"
+                 alt="UVO254™ Tower"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/18-sw_e1d9537a-df1f-4fac-b880-c1cf63c49cfc_900x.jpg?v=1738584140"
+                 alt="UVO254™ Tower"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/49-sw_4fe41b02-c5f6-4e54-afba-8e863d493242_900x.jpg?v=1738584140"
+                 alt="UVO254™ Tower"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/A002_11032038_S002_jpg-sw_f103aa19-2688-4fd9-aea3-a556b8d5785e_900x.png?v=1738584140"
+                 alt="UVO254™ Tower"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+        </div>
+
+        <!-- arrows -->
+        <button class="product-prev absolute top-1/2 -translate-y-1/2 left-0 ml-1 bg-white/80 backdrop-blur p-1.5 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-700"
+               fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+        <button class="product-next absolute top-1/2 -translate-y-1/2 right-0 mr-1 bg-white/80 backdrop-blur p-1.5 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-700"
+               fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+
+        <!-- dots -->
+        <div class="swiper-pagination !bottom-2"></div>
+      </div>
+    </div>
+
+    <!-- Rating -->
+    <div class="flex items-center gap-1 text-[#174167]">
+      <div class="jdgm-widget jdgm-preview-badge" data-id="8000627572985"></div>
+    </div>
+
+    <!-- Choose bundle -->
+    <p class="text-base font-bold text-[#174167] mt-4"><span class="underline">Choose your bundle</span></p>
+
+    <!-- Discount ribbons -->
+    <div class="flex gap-2">
+      <span class="flex-1 py-1 text-center text-xs font-semibold rounded bg-[#1f7bcc] text-white">20% OFF</span>
+      <span class="flex-1 py-1 text-center text-xs font-semibold rounded bg-[#1f7bcc]/90 text-white">25% OFF</span>
+      <span class="flex-1 py-1 text-center text-xs font-semibold rounded bg-[#1f7bcc]/90 text-white">30% OFF</span>
+    </div>
+
+    <!-- Bundle cards -->
+    <div class="grid grid-cols-3 gap-3">
+      <!-- card 1 (selected) -->
+      <label class="relative flex flex-col items-center rounded-lg border-2 border-slate-200 p-3 cursor-pointer transition-all duration-200 hover:shadow-md peer-checked:border-[#1f7bcc] peer-checked:border-3 peer-checked:shadow-lg peer-checked:bg-blue-50 peer-checked:scale-[1.02]"
+              data-variant-id="gid://shopify/ProductVariant/44103628357881">
+          <input type="radio" name="bundle" class="sr-only peer" checked>
+          <!-- Selected indicator -->
+          <div class="absolute -top-2 -right-2 hidden peer-checked:flex items-center justify-center w-6 h-6 bg-primary-500 text-white rounded-full shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/image1-sw_15ca8a21-7f7a-4211-bc2d-3c136ab21ecd.png?v=1698920091"
+              alt="1 Device"
+              class="h-12 w-auto mb-2" loading="lazy" decoding="async">
+          <p class="text-[13px] font-semibold text-[#174167]">1 Device</p>
+          <p class="line-through text-xs text-gray-500">$99.95</p>
+          <p class="text-sm font-bold text-[#194269]">$79.95</p>
+          <span class="block mt-1 text-xs font-semibold text-primary-600 opacity-0 peer-checked:opacity-100 transition-opacity">Selected</span>
+      </label>
+
+      <!-- card 2 -->
+      <label class="relative flex flex-col items-center rounded-lg border-2 border-slate-200 p-3 cursor-pointer transition-all duration-200 hover:shadow-md peer-checked:border-[#1f7bcc] peer-checked:border-3 peer-checked:shadow-lg peer-checked:bg-blue-50 peer-checked:scale-[1.02]"
+              data-variant-id="gid://shopify/ProductVariant/42904402526457">
+          <input type="radio" name="bundle" class="sr-only peer">
+          <!-- Selected indicator -->
+          <div class="absolute -top-2 -right-2 hidden peer-checked:flex items-center justify-center w-6 h-6 bg-primary-500 text-white rounded-full shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-1.5 py-0.5 bg-yellow-300 text-[9px] font-bold text-[#1f7bcc] uppercase rounded shadow-sm whitespace-nowrap">Most Popular</div>
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/Uv2.png?v=1713433145"
+              alt="2 Devices"
+              class="h-12 w-auto mb-2" loading="lazy" decoding="async">
+          <p class="text-[13px] font-semibold text-[#174167] text-center">2 Devices</p>
+          <p class="line-through text-xs text-gray-500">$199.90</p>
+          <p class="text-sm font-bold text-[#194269]">$139.90</p>
+          <span class="block mt-1 text-xs font-semibold text-primary-600 opacity-0 peer-checked:opacity-100 transition-opacity">Selected</span>
+      </label>
+
+      <!-- card 3 -->
+      <label class="relative flex flex-col items-center rounded-lg border-2 border-slate-200 p-3 cursor-pointer transition-all duration-200 hover:shadow-md peer-checked:border-[#1f7bcc] peer-checked:border-3 peer-checked:shadow-lg peer-checked:bg-blue-50 peer-checked:scale-[1.02]"
+              data-variant-id="gid://shopify/ProductVariant/42910843764985">
+          <input type="radio" name="bundle" class="sr-only peer">
+          <!-- Selected indicator -->
+          <div class="absolute -top-2 -right-2 hidden peer-checked:flex items-center justify-center w-6 h-6 bg-primary-500 text-white rounded-full shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-1.5 py-0.5 bg-yellow-300 text-[9px] font-bold text-[#1f7bcc] uppercase rounded shadow-sm whitespace-nowrap">Best Value</div>
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/Uv3_42e67e76-ec6e-4ffc-948a-83a057e6e214.png?v=1713433195"
+              alt="3 Devices"
+              class="h-12 w-auto mb-2" loading="lazy" decoding="async">
+          <p class="text-[13px] font-semibold text-[#174167] text-center">3 Devices</p>
+          <p class="line-through text-xs text-gray-500">$299.85</p>
+          <p class="text-base font-bold text-[#194269]">$179.90</p>
+          <span class="block mt-1 text-xs font-semibold text-primary-600 opacity-0 peer-checked:opacity-100 transition-opacity">Selected</span>
+      </label>
+    </div>
+
+    <!-- Urgency counters -->
+    <div class="space-y-1 text-sm text-[#174167]">
+      <p class="flex items-center">
+        <svg class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span class="font-semibold">103</span>&nbsp;watching this item.
+      </p>
+      <p class="flex items-center">
+        <svg class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="font-semibold">13</span>&nbsp;have this item in their cart.
+      </p>
+      <p class="flex items-center">
+        <svg class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        <span class="font-semibold">439</span>&nbsp;/ 10,000&nbsp;<strong>Discounted Pieces Left</strong>
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <button class="js-main-cta w-full bg-red-600 hover:bg-red-700 active:scale-95 transition text-white font-bold py-3 rounded shadow mt-4">
+      ADD TO CART
+    </button>
+
+    <!-- Payment badges -->
+    <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/c_crop,w_795,h_140/v1745627530/hd-guaranteed-safe-checkout-payments-badge-icons-701751695132476ji9xeaizsz_1_-_Edited_-_Edited_zfuroh.png" alt="Payment methods" class="w-full mt-6" loading="lazy" decoding="async">
+
+    <!-- Trust badges (flag / shipping / support) -->
+    <div class="flex justify-between gap-3 mt-8">
+      <div class="flex-1 text-center">
+        <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745524809/usa-flag-icon-png-5690923_ircehi.png"
+             alt="Ships from Texas" class="mx-auto h-12 w-auto" loading="lazy" decoding="async">
+        <p class="mt-1 text-[12px] font-bold text-[#174167] leading-tight">
+          Ships from Texas<br>to your doorstep
+        </p>
+      </div>
+
+      <div class="flex-1 text-center">
+        <svg class="mx-auto h-12 w-auto text-[#174167]" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/>
+          <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+        </svg>
+        <p class="mt-1 text-[12px] font-bold text-[#174167] leading-tight">
+          Free<br>Fast Shipping
+        </p>
+      </div>
+
+      <div class="flex-1 text-center">
+        <svg class="mx-auto h-12 w-auto text-[#174167]" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>
+        </svg>
+        <p class="mt-1 text-[12px] font-bold text-[#174167] leading-tight">
+          Top Rated<br>Customer Support
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ░░░ /MOBILE OFFER SECTION ░░░ -->
+
+<!-- ░░░ Desktop OFFER SECTION ░░░ -->
+<section id="offer" class="py-8 md:py-20 bg-secondary-100 w-full hidden md:block">
+  <!-- Outer container -->
+  <div class="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+
+    <!-- ░░ Left column ░░  Product gallery + trust icons -->
+    <div class="space-y-8">
+      <!-- Image slider placeholder -->
+      <div class="relative">
+        <!-- Swiper container -->
+        <div class="swiper product-slider relative">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.us/cdn/shop/files/image1-sw_15ca8a21-7f7a-4211-bc2d-3c136ab21ecd_900x.png?v=1698920091" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/4_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/2_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <!-- Added Images -->
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/1_9c415b05-b7e2-4fe1-9f93-5418b1e84ac9_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/3_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/11-sw_1f92c44c-63ae-489a-b6a7-bcfa0a6e9c4e_900x.jpg?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/21-sw_c7b17a5a-eb10-406f-81b9-289e423a82c3_900x.jpg?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/18-sw_e1d9537a-df1f-4fac-b880-c1cf63c49cfc_900x.jpg?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/49-sw_4fe41b02-c5f6-4e54-afba-8e863d493242_900x.jpg?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/A002_11032038_S002_jpg-sw_f103aa19-2688-4fd9-aea3-a556b8d5785e_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <!-- End Added Images -->
+            </div>
+            <!-- Navigation -->
+            <button class="product-prev absolute top-1/2 -translate-y-1/2 left-0  ml-1 bg-white/80 hover:bg-white backdrop-blur p-2 rounded-full shadow" style="z-index: 1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button class="product-next absolute top-1/2 -translate-y-1/2 right-0 mr-1 bg-white/80 hover:bg-white backdrop-blur p-2 rounded-full shadow" style="z-index: 1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+            <!-- Pagination -->
+          <div class="swiper-pagination mt-4" style="position: relative"></div>
+        </div>
+      </div>
+
+      <!-- Trust badges -->
+      <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-8 w-full">
+        <div class="flex-1">
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745524809/usa-flag-icon-png-5690923_ircehi.png" class="mx-auto object-contain w-20 md:w-24 h-16" alt="US flag" loading="lazy" decoding="async" />
+          <p class="mt-2 text-[13px] font-bold text-[#174167] leading-tight text-center">Ships from California<br>to your doorstep</p>
+        </div>
+        <div class="flex-1">
+          <svg class="mx-auto w-20 md:w-24 h-16 text-[#174167]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 3h15v13H1z" />
+            <path d="M16 8h4l3 3v5h-7V8z" />
+            <circle cx="5.5" cy="18.5" r="2.5" />
+            <circle cx="18.5" cy="18.5" r="2.5" />
+          </svg>
+          <p class="mt-2 text-[13px] font-bold text-[#174167] leading-tight text-center">Free<br>Fast Shipping</p>
+        </div>
+        <div class="flex-1">
+          <!-- Replaced img with headphones SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto w-20 md:w-24 h-16 text-[#174167]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-headphones">
+            <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>
+          </svg>
+          <p class="mt-2 text-[13px] font-bold text-[#174167] leading-tight text-center">Top Rated<br>Customer Support</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ░░ Right column ░░  Offer boxes + CTA -->
+    <div>
+      <!-- Title -->
+      <h1 class="text-3xl md:text-4xl font-extrabold text-[#174167] leading-tight">UVO254™ ‑ Powered Home Disinfection Tower</h1>
+
+      <!-- Rating badge -->
+      <div class="flex items-center gap-2 mt-3">
+        <div class="jdgm-widget jdgm-preview-badge" data-id="8000627572985"></div>
+      </div>
+
+      <!-- Choose bundle label -->
+      <p class="mt-8 mb-2 font-bold text-[#174167]"><span class="underline">Choose your bundle</span></p>
+
+      <!-- Discount tabs -->
+      <div class="grid grid-cols-3 gap-2">
+        <div class="py-1.5 text-center text-xs font-semibold rounded bg-[#1f7bcc] text-white">20% OFF</div>
+        <div class="relative py-1.5 text-center text-xs font-semibold rounded bg-[#1f7bcc]/90 text-white">
+          47% OFF
+        </div>
+        <div class="relative py-1.5 text-center text-xs font-semibold rounded bg-[#1f7bcc]/90 text-white">
+          52% OFF
+        </div>
+      </div>
+
+      <!-- Bundle boxes -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+        <!-- Box 1 -->
+        <label class="relative block rounded-lg border-2 border-slate-200 text-center p-4 cursor-pointer transition-all duration-200 hover:shadow-md peer-checked:border-[#1f7bcc] peer-checked:border-3 peer-checked:shadow-lg peer-checked:bg-blue-50 peer-checked:scale-[1.02]" data-variant-id="gid://shopify/ProductVariant/44103628357881">
+          <input type="radio" name="bundle" class="sr-only peer" checked>
+          <!-- Selected indicator -->
+          <div class="absolute -top-2 -right-2 hidden peer-checked:flex items-center justify-center w-7 h-7 bg-primary-500 text-white rounded-full shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/image1-sw_15ca8a21-7f7a-4211-bc2d-3c136ab21ecd.png?v=1698920091" alt="1 Device" class="h-16 mx-auto mb-3" loading="lazy" decoding="async">
+          <p class="text-sm font-semibold text-[#174167]">1 Device</p>
+          <p class="line-through text-xs text-gray-500">$99.95</p>
+          <p class="text-base font-bold text-[#194269]">$79.95</p>
+          <span class="block mt-2 text-xs font-semibold text-primary-600 opacity-0 peer-checked:opacity-100 transition-opacity">Selected</span>
+        </label>
+
+        <!-- Box 2 -->
+        <label class="relative block rounded-lg border-2 border-slate-200 text-center p-4 cursor-pointer transition-all duration-200 hover:shadow-md peer-checked:border-[#1f7bcc] peer-checked:border-3 peer-checked:shadow-lg peer-checked:bg-blue-50 peer-checked:scale-[1.02]" data-variant-id="gid://shopify/ProductVariant/42904402526457">
+          <input type="radio" name="bundle" class="sr-only peer">
+          <!-- Selected indicator -->
+          <div class="absolute -top-2 -right-2 hidden peer-checked:flex items-center justify-center w-7 h-7 bg-primary-500 text-white rounded-full shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-1.5 py-0.5 bg-yellow-300 text-[9px] font-bold text-[#1f7bcc] uppercase rounded shadow-sm whitespace-nowrap">Most Popular</div>
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/Uv2.png?v=1713433145" alt="2 Devices" class="h-16 mx-auto mb-3" loading="lazy" decoding="async">
+          <p class="text-sm font-semibold text-[#174167]">2 Devices</p>
+          <p class="line-through text-xs text-gray-500">$199.90</p>
+          <p class="text-base font-bold text-[#194269]">$139.90</p>
+          <span class="block mt-2 text-xs font-semibold text-primary-600 opacity-0 peer-checked:opacity-100 transition-opacity">Selected</span>
+        </label>
+
+        <!-- Box 3 -->
+        <label class="relative block rounded-lg border-2 border-slate-200 text-center p-4 cursor-pointer transition-all duration-200 hover:shadow-md peer-checked:border-[#1f7bcc] peer-checked:border-3 peer-checked:shadow-lg peer-checked:bg-blue-50 peer-checked:scale-[1.02]" data-variant-id="gid://shopify/ProductVariant/42910843764985">
+          <input type="radio" name="bundle" class="sr-only peer">
+          <!-- Selected indicator -->
+          <div class="absolute -top-2 -right-2 hidden peer-checked:flex items-center justify-center w-7 h-7 bg-primary-500 text-white rounded-full shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-1.5 py-0.5 bg-yellow-300 text-[9px] font-bold text-[#1f7bcc] uppercase rounded shadow-sm whitespace-nowrap">Best&nbsp;Value</div>
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/Uv3_42e67e76-ec6e-4ffc-948a-83a057e6e214.png?v=1713433195" alt="3 Devices" class="h-16 mx-auto mb-3" loading="lazy" decoding="async">
+          <p class="text-sm font-semibold text-[#174167]">3 Devices</p>
+          <p class="line-through text-xs text-gray-500">$299.85</p>
+          <p class="text-base font-bold text-[#194269]">$179.90</p>
+          <span class="block mt-2 text-xs font-semibold text-primary-600 opacity-0 peer-checked:opacity-100 transition-opacity">Selected</span>
+        </label>
+      </div>
+
+      <!-- Urgency counters -->
+      <div class="space-y-1 mt-6 text-sm text-[#174167]">
+        <p class="flex items-center">
+          <svg class="w-5 h-5 mr-1 text-[#174167]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+          <span class="font-semibold">191</span>&nbsp;watching this item.
+        </p>
+        <p class="flex items-center">
+          <svg class="w-5 h-5 mr-1 text-[#174167]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="font-semibold">71</span>&nbsp;have this item in their cart.
+        </p>
+        <p class="flex items-center">
+          <svg class="w-5 h-5 mr-1 text-[#174167]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+          </svg>
+          <span class="font-semibold">719</span>&nbsp;/ 10,000&nbsp;<strong>Discounted Pieces Left</strong>
+        </p>
+      </div>
+
+      <!-- CTA button -->
+      <button class="js-main-cta mt-6 inline-flex w-full items-center justify-center gap-2 bg-red-600 hover:bg-red-700 active:scale-95 transition text-white font-bold py-3 px-10 rounded shadow">
+        ADD TO CART
+      </button>
+
+      <!-- Payment icons -->
+      <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/c_crop,w_795,h_140/v1745627530/hd-guaranteed-safe-checkout-payments-badge-icons-701751695132476ji9xeaizsz_1_-_Edited_-_Edited_zfuroh.png" alt="Payment methods" class="mt-6 max-w-sm mx-auto" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+<!-- ░░░ /Desktop OFFER SECTION ░░░ -->
+
+<!-- =========================================================
+     90‑Day Money‑Back Guarantee Section  –  Tailwind CSS (v3)
+     • Replace /img/money‑back‑seal.png with your seal asset
+     ========================================================= -->
+     <section id="money-back" class="py-8 md:py-20 lg:py-20 ">
+      <div class="max-w-7xl mx-auto px-4 md:px-8 grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+        
+        <!-- ── Copy column ─────────────────────────────────────── -->
+        <div class="md:col-span-7 lg:col-span-8">
+          <!-- Heading with vertical bar accent -->
+          <div class="relative pl-4">  <!-- Changed pl-6 to pl-4 -->
+            <span class="absolute left-0 top-0 h-full w-1.5 bg-primary-500 rounded"></span>
+    
+            <!-- Force a clean two‑line break with <br> -->
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-primary-900 leading-tight">
+              Try It Before You Decide With Our 90‑Days‑No‑Questions‑Asked <br>
+               Money Back Guarantee
+            </h2>
+          </div>
+    
+          <!-- Body copy -->
+          <p class="mt-6 text-lg leading-relaxed text-slate-700">
+            Place an order, receive it, then try it for a while. Suppose for any given
+            reason you don't like it. Or maybe your spouse doesn't like it. Or you
+            might feel like it's not adding value to your life. Even if you just need
+            your money back because of urgency, reach out to our 24/7 customer support
+            team within 90 days of making your purchase, and we will provide
+            a full refund.
+          </p>
+        </div>
+    
+        <!-- ── Seal column ─────────────────────────────────────── -->
+        <div class="md:col-span-5 lg:col-span-4 flex justify-center md:justify-end">
+          <img
+            src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1745517966/moneybaklogo_-_Edited_optuev.png" id="money-back-seal"
+            alt="90‑Day Money‑Back Guarantee Seal"
+            class="w-40 sm:w-52 lg:w-64" loading="lazy" decoding="async"
+          >
+        </div>
+      </div>
+    </section>
+    <!-- =========================================================
+     Uvlizer Lamp vs. Alternatives – FULL SECTION (Tailwind CSS)
+     • Paste directly into your landing‑page HTML
+     • Swap / customize icons, colors, copy as needed
+     ========================================================= -->
+<section id="comparison" class="py-8 md:py-20 relative w-full">
+  <div class="w-full">
+
+    <!-- Section Heading -->
+    <h2 class="text-center text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary-900 mb-12">
+      Uvlizer Lamp vs. Alternatives
+    </h2>
+
+    <!-- Two‑column layout with sticky left column -->
+    <div class="grid gap-10 md:grid-cols-2">
+
+      <!-- ──────────── Uvlizer column (sticky) ──────────── -->
+      <div class="md:sticky md:top-20 md:self-start px-4 md:px-0 hide-scrollbar">
+        <div class="bg-secondary-100 rounded-lg p-8 md:p-12">
+          <!-- Column heading -->
+          <div class="flex items-center mb-8">
+            <span class="inline-block w-12 h-1.5 bg-primary-500 rounded mr-4"></span>
+            <h3 class="text-xl font-semibold text-primary-900">Uvlizer</h3>
+          </div>
+
+          <ul class="space-y-6">
+            <li class="flex">
+              <!-- ✅ icon -->
+              <svg class="w-6 h-6 flex-shrink-0 mr-4 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 22 6l-1.4-1.4z"/></svg>
+              <span>UVO254™ Hospital‑Grade Technology</span>
+            </li>
+            <li class="flex">
+              <svg class="w-6 h-6 flex-shrink-0 mr-4 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 22 6l-1.4-1.4z"/></svg>
+              <span>Breaks Down Mold Spores &amp; Other Harmful Pollutants</span>
+            </li>
+            <li class="flex">
+              <svg class="w-6 h-6 flex-shrink-0 mr-4 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 22 6l-1.4-1.4z"/></svg>
+              <span>Combines UVGI and Ozone for the Best Results</span>
+            </li>
+            <li class="flex">
+              <svg class="w-6 h-6 flex-shrink-0 mr-4 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 22 6l-1.4-1.4z"/></svg>
+              <span>Disinfects the Air from Mold, Bacteria & Viruses</span>
+            </li>
+            <li class="flex">
+              <svg class="w-6 h-6 flex-shrink-0 mr-4 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 22 6l-1.4-1.4z"/></svg>
+              <span>Penetrates Deep into Porous Surfaces</span>
+            </li>
+            <li class="flex">
+              <svg class="w-6 h-6 flex-shrink-0 mr-4 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 22 6l-1.4-1.4z"/></svg>
+              <span>Designed for People with Mold Sensitivities, Allergies & Respiratory Issues</span>
+            </li>
+            <li class="flex">
+              <svg class="w-6 h-6 flex-shrink-0 mr-4 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 22 6l-1.4-1.4z"/></svg>
+              <span>Gets Rid of Musty Odors</span>
+            </li>
+            <li class="flex">
+              <svg class="w-6 h-6 flex-shrink-0 mr-4 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 22 6l-1.4-1.4z"/></svg>
+              <span>Easy to Use & Doesn't Need Any Upkeep</span>
+            </li>
+            <li class="flex">
+              <svg class="w-6 h-6 flex-shrink-0 mr-4 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 22 6l-1.4-1.4z"/></svg>
+              <span>Eliminates Insects, Dust Mites & Bed Bugs</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ──────────── Alternatives column (scrollable) ──────────── -->
+      <div class="md:max-h-[90vh] md:overflow-y-auto md:pr-6 hide-scrollbar px-4 md:px-0 relative z-10">
+        <!-- Column heading (Sticky within this div) -->
+        <div class="flex items-center bg-white p-8 rounded-lg mb-8">
+          <span class="inline-block w-12 h-1.5 bg-primary-500 rounded mr-4"></span>
+          <h3 class="text-xl font-semibold text-primary-900">Alternatives</h3>
+        </div>
+
+        <!-- Wrapper for scrollable content items with top padding -->
+        <div class="pt-8 pb-8">
+          <!-- ============ DIY Mold Tricks ============ -->
+          <div class="mb-10 p-8 bg-white rounded-lg">
+            <div class="flex items-center font-semibold text-indigo-900 mb-4">
+              <svg class="w-3.5 h-3.5 mr-3 text-indigo-900" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"/></svg>
+              <span>DIY Mold tricks</span>
+            </div>
+            <ul class="space-y-4 pl-7">
+              <li class="flex"><svg class="w-5 h-5 mr-3 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 22 6l-1.4-1.4z"/></svg>Can remove visible mold from surfaces</li>
+              <li class="flex"><span class="text-red-600 text-xl mr-3">❌</span>Doesn't kill the mold spores inside porous materials</li>
+              <li class="flex"><span class="text-red-600 text-xl mr-3">❌</span>Time‑consuming & labor‑intensive</li>
+              <li class="flex"><span class="text-red-600 text-xl mr-3">❌</span>The mold often comes back</li>
+              <li class="flex"><span class="text-red-600 text-xl mr-3">❌</span>Exposure to mold spores during cleaning can harm your health</li>
+            </ul>
+          </div>
+
+          <!-- ============ Air Purifier ============ -->
+          <div class="mb-10 p-8 bg-white rounded-lg">
+            <div class="flex items-center font-semibold text-indigo-900 mb-4">
+              <svg class="w-3.5 h-3.5 mr-3 text-indigo-900" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"/></svg>
+              <span>Air Purifier</span>
+            </div>
+            <ul class="space-y-4 pl-7">
+              <li class="flex"><svg class="w-5 h-5 mr-3 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 22 6l-1.4-1.4z"/></svg>Removes allergens & pollutants from the air (True HEPA)</li>
+              <li class="flex"><svg class="w-5 h-5 mr-3 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 22 6l-1.4-1.4z"/></svg>Some filters disinfect the air</li>
+              <li class="flex"><span class="text-red-600 text-xl mr-3">❌</span>Won't disinfect surfaces or furniture</li>
+              <li class="flex"><span class="text-red-600 text-xl mr-3">❌</span>Doesn't remove persistent bad smells</li>
+              <li class="flex"><span class="text-red-600 text-xl mr-3">❌</span>Effective models cost at least $200</li>
+              <li class="flex"><span class="text-red-600 text-xl mr-3">❌</span>Filter replacements push year‑5 cost toward $1 000</li>
+            </ul>
+          </div>
+
+          <!-- ============ Mold Sprays ============ -->
+          <div class="mb-10 p-8 bg-white rounded-lg">
+            <div class="flex items-center font-semibold text-indigo-900 mb-4">
+              <svg class="w-3.5 h-3.5 mr-3 text-indigo-900" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"/></svg>
+              <span>Mold Sprays</span>
+            </div>
+            <ul class="space-y-4 pl-7">
+              <li class="flex"><svg class="w-5 h-5 mr-3 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 22 6l-1.4-1.4z"/></svg>Disinfect surfaces from bacteria & viruses (not air)</li>
+              <li class="flex"><svg class="w-5 h-5 mr-3 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 22 6l-1.4-1.4z"/></svg>Some sprays remove visible mold when applied directly</li>
+              <li class="flex"><span class="text-red-600 text-xl mr-3">❌</span>Up to $200 per month</li>
+              <li class="flex"><span class="text-red-600 text-xl mr-3">❌</span>Filled with toxic chemicals</li>
+              <li class="flex"><span class="text-red-600 text-xl mr-3">❌</span>Time‑consuming & requires physical labor</li>
+            </ul>
+          </div>
+
+          <!-- ============ Mold Cleaning Services ============ -->
+          <div class="p-8 bg-white rounded-lg">
+            <div class="flex items-center font-semibold text-indigo-900 mb-4">
+              <svg class="w-3.5 h-3.5 mr-3 text-indigo-900" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"/></svg>
+              <span>Mold Cleaning Services</span>
+            </div>
+            <ul class="space-y-4 pl-7">
+              <li class="flex"><span class="text-red-600 text-xl mr-3">❌</span>Difficult to trust others to clean every corner thoroughly</li>
+              <li class="flex"><span class="text-red-600 text-xl mr-3">❌</span>Averages ~ $1 500 per session</li>
+              <li class="flex"><span class="text-red-600 text-xl mr-3">❌</span>Often upsell pricey mold tests</li>
+              <li class="flex"><span class="text-red-600 text-xl mr-3">❌</span>Inconvenient & disruptive to your routine</li>
+            </ul>
+          </div>
+        </div> <!-- End content wrapper -->
+
+      </div><!-- /Alternatives -->
+    </div><!-- /grid -->
+  </div><!-- /container -->
+
+  <style>
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .hide-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+  </style>
+</section>
+<!-- =========================================================
+     Happy Customers Section – single collage image (Tailwind)
+     • Replace /img/happy-customers-collage.jpg with your asset
+     ========================================================= -->
+     <section id="happy-customers" class="py-8 md:py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 md:px-8">
+        <!-- Heading with vertical bar -->
+        <h2 class="flex items-start text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary-900 leading-tight mb-12">
+          <span class="inline-block w-1.5 sm:w-2.5 mr-4 rounded bg-primary-500"></span>
+          Say Hi To Our Happy Customers
+        </h2>
+    
+        <!-- Desktop image (hidden on mobile) -->
+        <div class="hidden md:block">
+          <img
+            src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1744710997/uvlizer/qud6qkco87yohoufcfhr.jpg" id="happy-customers-desktop"
+            alt="Collage of happy customers using the product"
+            class="w-full rounded-md shadow-md" loading="lazy" decoding="async" />
+        </div>
+
+        <!-- Mobile image (hidden on desktop) -->
+        <div class="md:hidden">
+          <img
+            src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1744710999/uvlizer/kkahzqm8nl8q6mannwsi.jpg" id="happy-customers-mobile"
+            alt="Collage of happy customers using the product"
+            class="w-full rounded-md shadow-md" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </section>
+    <!-- =========================================================
+     Features Section – Tailwind CSS  (8 feature cards)
+     • Replace /img/icon-*.svg with your assets
+     ========================================================= -->
+<section id="features" class="py-8 md:py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4 md:px-8">
+    <!-- Section Heading -->
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-primary-900 mb-20">
+      Features Of <span class="whitespace-nowrap">UVO254™ Lamps</span>
+    </h2>
+
+    <!-- Features Grid -->
+    <div class="grid md:grid-cols-2 gap-y-24 md:gap-y-32 md:gap-x-16">
+
+      <!-- Feature 1 -->
+      <div class="flex flex-col items-center text-center max-w-md mx-auto">
+        <div class="w-28 h-28 mb-8 text-primary-700">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize">
+            <path d="M15 3h6v6"/>
+            <path d="M9 21H3v-6"/>
+            <path d="M21 3l-7 7"/>
+            <path d="M3 21l7-7"/>
+          </svg>
+        </div>
+        <h3 class="text-lg sm:text-xl font-semibold mb-4 leading-snug">
+          Suitable For 100-250 Sq Ft
+        </h3>
+        <p class="text-gray-700">
+          The 38W bulb in UVO254™ Bulb can thoroughly disinfect a whole 250 Sq Ft room like a bedroom, living room, or kitchen in 30-60 minutes.
+        </p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="flex flex-col items-center text-center max-w-md mx-auto">
+        <div class="w-28 h-28 mb-8 text-primary-700">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-leaf">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+          </svg>
+        </div>
+        <h3 class="text-lg sm:text-xl font-semibold mb-4 leading-snug">
+          Chemical-Free Disinfection
+        </h3>
+        <p class="text-gray-700">
+          Unlike sprays, and chemical disinfectants, the UVO254™ Lamp is chemical-free. Our bodies are already exposed to tons of toxins. By using Uvlizer's Lamp, you minimize the use of chemical cleaning products and thus, reduce the toxic burden on your body. The UVO254™ Lamp is great for surfaces, the environment, your time, and your wallet.
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="flex flex-col items-center text-center max-w-md mx-auto">
+        <div class="w-28 h-28 mb-8 text-primary-700">
+           <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layers-3">
+            <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/>
+            <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/>
+            <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>
+          </svg>
+        </div>
+        <h3 class="text-lg sm:text-xl font-semibold mb-4 leading-snug">
+          Disinfects The Air And The Surfaces
+        </h3>
+        <p class="text-gray-700">
+          UVO254™ lamps help you disinfect your room from top to bottom and everything in between, including the air. No more chasing dust mites or trying to access hard-to-reach areas. You just turn the Uvlizer on, leave the room, and return to a completely allergen-free, disease-free, and garden-fresh space where you can breathe well and feel safe.
+        </p>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="flex flex-col items-center text-center max-w-md mx-auto">
+        <div class="w-28 h-28 mb-8 text-primary-700">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wind">
+            <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/>
+            <path d="M9.6 4.6A2 2 0 1 1 11 8H2"/>
+            <path d="M12.6 19.4A2 2 0 1 0 14 16H2"/>
+          </svg>
+        </div>
+        <h3 class="text-lg sm:text-xl font-semibold mb-4 leading-snug">
+          Removes Bad Odors From Their Roots
+        </h3>
+        <p class="text-gray-700">
+          Ever walked into a room and felt a freshness you can't quite put into words? That's the UVO254™ Lamp promise. It doesn't cover up foul smells, it knocks them out at their source by breaking down bacteria, cooking oils, toxic air fresheners, stubborn tobacco smoke, and even pet odors.
+        </p>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="flex flex-col items-center text-center max-w-md mx-auto">
+        <div class="w-28 h-28 mb-8 text-primary-700">
+          <!-- Replaced lungs icon with shield-ban -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-ban">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <line x1="5" x2="19" y1="9" y2="15"/>
+          </svg>
+        </div>
+        <h3 class="text-lg sm:text-xl font-semibold mb-4 leading-snug">
+          Alleviates Sneezing, Runny Nose, and Other Allergy Symptoms
+        </h3>
+        <p class="text-gray-700">
+          Imagine your mornings with clear sinuses and zero allergy symptoms Sounds good, right? The UVO254™ Lamps make it a reality. By eliminating the root cause of your allergies and killing all indoor allergens, the air will feel clean and crisp, and you'll experience a feeling of well-being you've never felt before.
+        </p>
+      </div>
+
+      <!-- Feature 6 -->
+      <div class="flex flex-col items-center text-center max-w-md mx-auto">
+        <div class="w-28 h-28 mb-8 text-primary-700">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <h3 class="text-lg sm:text-xl font-semibold mb-4 leading-snug">
+          Enjoy a Safer Home
+        </h3>
+        <p class="text-gray-700">
+          Picture this: curling up on your couch, knowing it's germ-free. Breathing air that's unlikely to ferry the flu or a cold your way. That's the peace of mind UVO254™ Lamp brings.
+        </p>
+      </div>
+
+      <!-- Feature 7 -->
+      <div class="flex flex-col items-center text-center max-w-md mx-auto">
+        <div class="w-28 h-28 mb-8 text-primary-700">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer">
+            <line x1="10" x2="14" y1="2" y2="2"/>
+            <line x1="12" x2="12" y1="14" y2="18"/>
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12a10 10 0 1 0 20 0Z"/>
+            <path d="M12 6v8l4-2"/>
+          </svg>
+        </div>
+        <h3 class="text-lg sm:text-xl font-semibold mb-4 leading-snug">
+          Built-in Safety Feature
+        </h3>
+        <p class="text-gray-700">
+          At Uvlizer, we have your safety at the top of our minds. The UVO254™ Lamp has a safety feature that prevents accidental exposure to UV-C light. The safety timer allows you plenty of time to leave the room. And even if you switched on the Uvlizer by mistake, you won't get exposed to UV-C rays immediately. The internal timer will allow you to set the cleaning cycle depending on your needs. You can even set the timer at night, go to sleep, and wake up to a clean and safer environment.
+        </p>
+      </div>
+
+      <!-- Feature 8 -->
+      <div class="flex flex-col items-center text-center max-w-md mx-auto">
+        <div class="w-28 h-28 mb-8 text-primary-700">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-briefcase">
+            <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            <rect width="20" height="14" x="2" y="6" rx="2"/>
+          </svg>
+        </div>
+        <h3 class="text-lg sm:text-xl font-semibold mb-4 leading-snug">
+          Not Only For Your Home
+        </h3>
+        <p class="text-gray-700">
+          Uvlizer's UVO254™ Lamp is also suitable for disinfecting other places you spend time in. Its compact size and lightweight build not only make it easy to move from room to room, but it can also fit into a medium-sized backpack and allow you to take it with you to the office. Many of our customers use it to fight infections and allergies in their offices, hair salons, spas, dental offices, and waiting rooms…
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ░░░ MOBILE OFFER SECTION ░░░ -->
+<section id="offer-mobile" class="md:hidden py-8 bg-secondary-100">
+
+  <div class="max-w-sm mx-auto px-4 space-y-6">
+
+    <!-- Product title -->
+    <h1 class="text-xl font-extrabold text-[#174167] leading-tight">
+      UVO254™ · Powered Home<br>Disinfection Tower
+    </h1>
+
+    <!-- ─── Image slider ─── -->
+    <div class="relative">
+      <div class="swiper product-slider rounded-lg overflow-hidden">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.us/cdn/shop/files/image1-sw_15ca8a21-7f7a-4211-bc2d-3c136ab21ecd_900x.png?v=1698920091"
+                 alt="UVO254™ Tower – angle 1"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/4_900x.png?v=1738584140"
+                 alt="UVO254™ Tower – angle 2"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/2_900x.png?v=1738584140"
+                 alt="UVO254™ Tower – angle 3"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <!-- Added Images -->
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/1_9c415b05-b7e2-4fe1-9f93-5418b1e84ac9_900x.png?v=1738584140"
+                 alt="UVO254™ Tower"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/3_900x.png?v=1738584140"
+                 alt="UVO254™ Tower"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/11-sw_1f92c44c-63ae-489a-b6a7-bcfa0a6e9c4e_900x.jpg?v=1738584140"
+                 alt="UVO254™ Tower"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+           <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/21-sw_c7b17a5a-eb10-406f-81b9-289e423a82c3_900x.jpg?v=1738584140"
+                 alt="UVO254™ Tower"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/18-sw_e1d9537a-df1f-4fac-b880-c1cf63c49cfc_900x.jpg?v=1738584140"
+                 alt="UVO254™ Tower"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/49-sw_4fe41b02-c5f6-4e54-afba-8e863d493242_900x.jpg?v=1738584140"
+                 alt="UVO254™ Tower"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="swiper-slide">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/A002_11032038_S002_jpg-sw_f103aa19-2688-4fd9-aea3-a556b8d5785e_900x.png?v=1738584140"
+                 alt="UVO254™ Tower"
+                 class="w-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <!-- End Added Images -->
+        </div>
+
+        <!-- arrows -->
+        <button class="product-prev absolute top-1/2 -translate-y-1/2 left-0 ml-1 bg-white/80 backdrop-blur p-1.5 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-700"
+               fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+        <button class="product-next absolute top-1/2 -translate-y-1/2 right-0 mr-1 bg-white/80 backdrop-blur p-1.5 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-700"
+               fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+
+        <!-- dots -->
+        <div class="swiper-pagination !bottom-2"></div>
+      </div>
+    </div>
+
+    <!-- Rating -->
+    <div class="flex items-center gap-1 text-[#174167]">
+      <div class="jdgm-widget jdgm-preview-badge" data-id="8000627572985"></div>
+    </div>
+
+    <!-- Choose bundle -->
+    <p class="text-base font-bold text-[#174167] mt-4"><span class="underline">Choose your bundle</span></p>
+
+    <!-- Discount ribbons -->
+    <div class="flex gap-2">
+      <span class="flex-1 py-1 text-center text-xs font-semibold rounded bg-[#1f7bcc] text-white">20% OFF</span>
+      <span class="flex-1 py-1 text-center text-xs font-semibold rounded bg-[#1f7bcc]/90 text-white">25% OFF</span>
+      <span class="flex-1 py-1 text-center text-xs font-semibold rounded bg-[#1f7bcc]/90 text-white">30% OFF</span>
+    </div>
+
+    <!-- Bundle cards -->
+    <div class="grid grid-cols-3 gap-3">
+      <!-- card 1 (selected) -->
+      <label class="relative flex flex-col items-center rounded-lg border-2 border-slate-200 p-3 cursor-pointer transition-all duration-200 hover:shadow-md peer-checked:border-[#1f7bcc] peer-checked:border-3 peer-checked:shadow-lg peer-checked:bg-blue-50 peer-checked:scale-[1.02]"
+              data-variant-id="gid://shopify/ProductVariant/44103628357881">
+          <input type="radio" name="bundle" class="sr-only peer" checked>
+          <!-- Selected indicator -->
+          <div class="absolute -top-2 -right-2 hidden peer-checked:flex items-center justify-center w-6 h-6 bg-primary-500 text-white rounded-full shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/image1-sw_15ca8a21-7f7a-4211-bc2d-3c136ab21ecd.png?v=1698920091" alt="1 Device" class="h-12 w-auto mb-2" loading="lazy" decoding="async">
+          <p class="text-[13px] font-semibold text-[#174167]">1 Device</p>
+          <p class="line-through text-xs text-gray-500">$99.95</p>
+          <p class="text-sm font-bold text-[#194269]">$79.95</p>
+          <span class="block mt-1 text-xs font-semibold text-primary-600 opacity-0 peer-checked:opacity-100 transition-opacity">Selected</span>
+      </label>
+
+      <!-- card 2 -->
+      <label class="relative flex flex-col items-center rounded-lg border-2 border-slate-200 p-3 cursor-pointer transition-all duration-200 hover:shadow-md peer-checked:border-[#1f7bcc] peer-checked:border-3 peer-checked:shadow-lg peer-checked:bg-blue-50 peer-checked:scale-[1.02]"
+              data-variant-id="gid://shopify/ProductVariant/42904402526457">
+          <input type="radio" name="bundle" class="sr-only peer">
+          <!-- Selected indicator -->
+          <div class="absolute -top-2 -right-2 hidden peer-checked:flex items-center justify-center w-6 h-6 bg-primary-500 text-white rounded-full shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-1.5 py-0.5 bg-yellow-300 text-[9px] font-bold text-[#1f7bcc] uppercase rounded shadow-sm whitespace-nowrap">Most Popular</div>
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/Uv2.png?v=1713433145" alt="2 Devices" class="h-12 w-auto mb-2" loading="lazy" decoding="async">
+          <p class="text-[13px] font-semibold text-[#174167] text-center">2 Devices</p>
+          <p class="line-through text-xs text-gray-500">$199.90</p>
+          <p class="text-sm font-bold text-[#194269]">$139.90</p>
+          <span class="block mt-1 text-xs font-semibold text-primary-600 opacity-0 peer-checked:opacity-100 transition-opacity">Selected</span>
+      </label>
+
+      <!-- card 3 -->
+      <label class="relative flex flex-col items-center rounded-lg border-2 border-slate-200 p-3 cursor-pointer transition-all duration-200 hover:shadow-md peer-checked:border-[#1f7bcc] peer-checked:border-3 peer-checked:shadow-lg peer-checked:bg-blue-50 peer-checked:scale-[1.02]"
+              data-variant-id="gid://shopify/ProductVariant/42910843764985">
+          <input type="radio" name="bundle" class="sr-only peer">
+          <!-- Selected indicator -->
+          <div class="absolute -top-2 -right-2 hidden peer-checked:flex items-center justify-center w-6 h-6 bg-primary-500 text-white rounded-full shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-1.5 py-0.5 bg-yellow-300 text-[9px] font-bold text-[#1f7bcc] uppercase rounded shadow-sm whitespace-nowrap">Best Value</div>
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/Uv3_42e67e76-ec6e-4ffc-948a-83a057e6e214.png?v=1713433195" alt="3 Devices" class="h-12 w-auto mb-2" loading="lazy" decoding="async">
+          <p class="text-[13px] font-semibold text-[#174167] text-center">3 Devices</p>
+          <p class="line-through text-xs text-gray-500">$299.85</p>
+          <p class="text-base font-bold text-[#194269]">$179.90</p>
+          <span class="block mt-1 text-xs font-semibold text-primary-600 opacity-0 peer-checked:opacity-100 transition-opacity">Selected</span>
+      </label>
+    </div>
+
+    <!-- Urgency counters -->
+    <div class="space-y-1 text-sm text-[#174167]">
+      <p class="flex items-center">
+        <svg class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span class="font-semibold">103</span>&nbsp;watching this item.
+      </p>
+      <p class="flex items-center">
+        <svg class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="font-semibold">13</span>&nbsp;have this item in their cart.
+      </p>
+      <p class="flex items-center">
+        <svg class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        <span class="font-semibold">439</span>&nbsp;/ 10,000&nbsp;<strong>Discounted Pieces Left</strong>
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <button class="js-main-cta w-full bg-red-600 hover:bg-red-700 active:scale-95 transition text-white font-bold py-3 rounded shadow mt-4">
+      ADD TO CART
+    </button>
+
+    <!-- Payment badges -->
+    <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/c_crop,w_795,h_140/v1745627530/hd-guaranteed-safe-checkout-payments-badge-icons-701751695132476ji9xeaizsz_1_-_Edited_-_Edited_zfuroh.png" alt="Payment methods" class="w-full mt-6" loading="lazy" decoding="async">
+
+    <!-- Trust badges (flag / shipping / support) -->
+    <div class="flex justify-between gap-3 mt-8">
+      <div class="flex-1 text-center">
+        <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745524809/usa-flag-icon-png-5690923_ircehi.png"
+             alt="Ships from Texas" class="mx-auto h-12 w-auto" loading="lazy" decoding="async">
+        <p class="mt-1 text-[12px] font-bold text-[#174167] leading-tight">
+          Ships from Texas<br>to your doorstep
+        </p>
+      </div>
+
+      <div class="flex-1 text-center">
+        <svg class="mx-auto h-12 w-auto text-[#174167]" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/>
+          <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+        </svg>
+        <p class="mt-1 text-[12px] font-bold text-[#174167] leading-tight">
+          Free<br>Fast Shipping
+        </p>
+      </div>
+
+      <div class="flex-1 text-center">
+        <svg class="mx-auto h-12 w-auto text-[#174167]" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>
+        </svg>
+        <p class="mt-1 text-[12px] font-bold text-[#174167] leading-tight">
+          Top Rated<br>Customer Support
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ░░░ /MOBILE OFFER SECTION ░░░ -->
+
+<!-- ░░░ Desktop OFFER SECTION ░░░ -->
+<section id="offer" class="py-8 md:py-20 bg-secondary-100 w-full hidden md:block">
+  <!-- Outer container -->
+  <div class="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+
+    <!-- ░░ Left column ░░  Product gallery + trust icons -->
+    <div class="space-y-8">
+      <!-- Image slider placeholder -->
+      <div class="relative">
+        <!-- Swiper container -->
+        <div class="swiper product-slider relative">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.us/cdn/shop/files/image1-sw_15ca8a21-7f7a-4211-bc2d-3c136ab21ecd_900x.png?v=1698920091" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/4_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/2_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <!-- Added Images -->
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/1_9c415b05-b7e2-4fe1-9f93-5418b1e84ac9_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/3_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/11-sw_1f92c44c-63ae-489a-b6a7-bcfa0a6e9c4e_900x.jpg?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/21-sw_c7b17a5a-eb10-406f-81b9-289e423a82c3_900x.jpg?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/18-sw_e1d9537a-df1f-4fac-b880-c1cf63c49cfc_900x.jpg?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/49-sw_4fe41b02-c5f6-4e54-afba-8e863d493242_900x.jpg?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto/https://www.uvlizer.us/cdn/shop/files/A002_11032038_S002_jpg-sw_f103aa19-2688-4fd9-aea3-a556b8d5785e_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                </div>
+                <!-- End Added Images -->
+            </div>
+            <!-- Navigation -->
+            <button class="product-prev absolute top-1/2 -translate-y-1/2 left-0  ml-1 bg-white/80 hover:bg-white backdrop-blur p-2 rounded-full shadow" style="z-index: 1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button class="product-next absolute top-1/2 -translate-y-1/2 right-0 mr-1 bg-white/80 hover:bg-white backdrop-blur p-2 rounded-full shadow" style="z-index: 1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+            <!-- Pagination -->
+          <div class="swiper-pagination mt-4" style="position: relative"></div>
+        </div>
+      </div>
+
+      <!-- Trust badges -->
+      <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-8 w-full">
+        <div class="flex-1">
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto,w_auto,dpr_auto/v1745524809/usa-flag-icon-png-5690923_ircehi.png" class="mx-auto object-contain w-20 md:w-24 h-16" alt="US flag" loading="lazy" decoding="async" />
+          <p class="mt-2 text-[13px] font-bold text-[#174167] leading-tight text-center">Ships from California<br>to your doorstep</p>
+        </div>
+        <div class="flex-1">
+          <svg class="mx-auto w-20 md:w-24 h-16 text-[#174167]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 3h15v13H1z" />
+            <path d="M16 8h4l3 3v5h-7V8z" />
+            <circle cx="5.5" cy="18.5" r="2.5" />
+            <circle cx="18.5" cy="18.5" r="2.5" />
+          </svg>
+          <p class="mt-2 text-[13px] font-bold text-[#174167] leading-tight text-center">Free<br>Fast Shipping</p>
+        </div>
+        <div class="flex-1">
+          <!-- Replaced img with headphones SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto w-20 md:w-24 h-16 text-[#174167]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-headphones">
+            <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>
+          </svg>
+          <p class="mt-2 text-[13px] font-bold text-[#174167] leading-tight text-center">Top Rated<br>Customer Support</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ░░ Right column ░░  Offer boxes + CTA -->
+    <div>
+      <!-- Title -->
+      <h1 class="text-3xl md:text-4xl font-extrabold text-[#174167] leading-tight">UVO254™ ‑ Powered Home Disinfection Tower</h1>
+
+      <!-- Rating badge -->
+      <div class="flex items-center gap-2 mt-3">
+        <div class="jdgm-widget jdgm-preview-badge" data-id="8000627572985"></div>
+      </div>
+
+      <!-- Choose bundle label -->
+      <p class="mt-8 mb-2 font-bold text-[#174167]"><span class="underline">Choose your bundle</span></p>
+
+      <!-- Discount tabs -->
+      <div class="grid grid-cols-3 gap-2">
+        <div class="py-1.5 text-center text-xs font-semibold rounded bg-[#1f7bcc] text-white">20% OFF</div>
+        <div class="relative py-1.5 text-center text-xs font-semibold rounded bg-[#1f7bcc]/90 text-white">
+          47% OFF
+        </div>
+        <div class="relative py-1.5 text-center text-xs font-semibold rounded bg-[#1f7bcc]/90 text-white">
+          52% OFF
+        </div>
+      </div>
+
+      <!-- Bundle boxes -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+        <!-- Box 1 -->
+        <label class="relative block rounded-lg border-2 border-slate-200 text-center p-4 cursor-pointer transition-all duration-200 hover:shadow-md peer-checked:border-[#1f7bcc] peer-checked:border-3 peer-checked:shadow-lg peer-checked:bg-blue-50 peer-checked:scale-[1.02]" data-variant-id="gid://shopify/ProductVariant/44103628357881">
+          <input type="radio" name="bundle" class="sr-only peer" checked>
+          <!-- Selected indicator -->
+          <div class="absolute -top-2 -right-2 hidden peer-checked:flex items-center justify-center w-7 h-7 bg-primary-500 text-white rounded-full shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/image1-sw_15ca8a21-7f7a-4211-bc2d-3c136ab21ecd.png?v=1698920091" alt="1 Device" class="h-16 mx-auto mb-3" loading="lazy" decoding="async">
+          <p class="text-sm font-semibold text-[#174167]">1 Device</p>
+          <p class="line-through text-xs text-gray-500">$99.95</p>
+          <p class="text-base font-bold text-[#194269]">$79.95</p>
+          <span class="block mt-2 text-xs font-semibold text-primary-600 opacity-0 peer-checked:opacity-100 transition-opacity">Selected</span>
+        </label>
+
+        <!-- Box 2 -->
+        <label class="relative block rounded-lg border-2 border-slate-200 text-center p-4 cursor-pointer transition-all duration-200 hover:shadow-md peer-checked:border-[#1f7bcc] peer-checked:border-3 peer-checked:shadow-lg peer-checked:bg-blue-50 peer-checked:scale-[1.02]" data-variant-id="gid://shopify/ProductVariant/42904402526457">
+          <input type="radio" name="bundle" class="sr-only peer">
+          <!-- Selected indicator -->
+          <div class="absolute -top-2 -right-2 hidden peer-checked:flex items-center justify-center w-7 h-7 bg-primary-500 text-white rounded-full shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-1.5 py-0.5 bg-yellow-300 text-[9px] font-bold text-[#1f7bcc] uppercase rounded shadow-sm whitespace-nowrap">Most Popular</div>
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/Uv2.png?v=1713433145" alt="2 Devices" class="h-16 mx-auto mb-3" loading="lazy" decoding="async">
+          <p class="text-sm font-semibold text-[#174167]">2 Devices</p>
+          <p class="line-through text-xs text-gray-500">$199.90</p>
+          <p class="text-base font-bold text-[#194269]">$139.90</p>
+          <span class="block mt-2 text-xs font-semibold text-primary-600 opacity-0 peer-checked:opacity-100 transition-opacity">Selected</span>
+        </label>
+
+        <!-- Box 3 -->
+        <label class="relative block rounded-lg border-2 border-slate-200 text-center p-4 cursor-pointer transition-all duration-200 hover:shadow-md peer-checked:border-[#1f7bcc] peer-checked:border-3 peer-checked:shadow-lg peer-checked:bg-blue-50 peer-checked:scale-[1.02]" data-variant-id="gid://shopify/ProductVariant/42910843764985">
+          <input type="radio" name="bundle" class="sr-only peer">
+          <!-- Selected indicator -->
+          <div class="absolute -top-2 -right-2 hidden peer-checked:flex items-center justify-center w-7 h-7 bg-primary-500 text-white rounded-full shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-1.5 py-0.5 bg-yellow-300 text-[9px] font-bold text-[#1f7bcc] uppercase rounded shadow-sm whitespace-nowrap">Best&nbsp;Value</div>
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://cdn.shopify.com/s/files/1/0519/0238/2231/files/Uv3_42e67e76-ec6e-4ffc-948a-83a057e6e214.png?v=1713433195" alt="3 Devices" class="h-16 mx-auto mb-3" loading="lazy" decoding="async">
+          <p class="text-sm font-semibold text-[#174167]">3 Devices</p>
+          <p class="line-through text-xs text-gray-500">$299.85</p>
+          <p class="text-base font-bold text-[#194269]">$179.90</p>
+          <span class="block mt-2 text-xs font-semibold text-primary-600 opacity-0 peer-checked:opacity-100 transition-opacity">Selected</span>
+        </label>
+      </div>
+
+      <!-- Urgency counters -->
+      <div class="space-y-1 mt-6 text-sm text-[#174167]">
+        <p class="flex items-center">
+          <svg class="w-5 h-5 mr-1 text-[#174167]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+          <span class="font-semibold">191</span>&nbsp;watching this item.
+        </p>
+        <p class="flex items-center">
+          <svg class="w-5 h-5 mr-1 text-[#174167]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="font-semibold">71</span>&nbsp;have this item in their cart.
+        </p>
+        <p class="flex items-center">
+          <svg class="w-5 h-5 mr-1 text-[#174167]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+          </svg>
+          <span class="font-semibold">719</span>&nbsp;/ 10,000&nbsp;<strong>Discounted Pieces Left</strong>
+        </p>
+      </div>
+
+      <!-- CTA button -->
+      <button class="js-main-cta mt-6 inline-flex w-full items-center justify-center gap-2 bg-red-600 hover:bg-red-700 active:scale-95 transition text-white font-bold py-3 px-10 rounded shadow">
+        ADD TO CART
+      </button>
+
+      <!-- Payment icons -->
+      <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/c_crop,w_795,h_140/v1745627530/hd-guaranteed-safe-checkout-payments-badge-icons-701751695132476ji9xeaizsz_1_-_Edited_-_Edited_zfuroh.png" alt="Payment methods" class="mt-6 max-w-sm mx-auto" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+<!-- ░░░ /Desktop OFFER SECTION ░░░ -->
+
+<!-- =========================================================
+
+     Last‑Chance / Scarcity Section (Tailwind CSS)
+     • Swap all placeholder images ( /img/*.svg ) with your assets
+     • Link the "REDEEM" button to your checkout / bundles anchor
+     ========================================================= -->
+     <section id="last-chance" class="py-8 md:py-20 bg-white">
+      <div class="max-w-5xl mx-auto px-4 md:px-8">
+        <!-- Heading with vertical bar -->
+        <h2 class="flex items-start text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary-900 leading-tight mb-8">
+          <span class="inline-block w-1.5 sm:w-2.5 mr-4 rounded bg-primary-500"></span>
+          Make Sure To Hurry And Grab Your UVO254™ Lamp Before They Run Out!
+        </h2>
+    
+        <!-- Persuasion copy -->
+        <p class="mb-4 text-base md:text-lg text-slate-700">
+          Whenever we do these promotions, people start buying three, five, or even 10 lamps
+          for their homes and offices. So they fly off our warehouse shelves super quickly.
+        </p>
+        <p class="mb-4 text-base md:text-lg text-slate-700">
+          And <strong>once we're out of stock, we'll have to take this page down and wait for our next shipment.</strong>
+        </p>
+        <p class="mb-4 text-base md:text-lg text-slate-700">
+          Because of what's happening in the world and logistical issues, the next shipment
+          could take months, depending on supply and transportation lines.
+        </p>
+        <p class="mb-4 text-base md:text-lg text-slate-700">
+          So if you're interested in getting a UVO254™ Lamp and finally having a
+          <strong>cleaner space that's free from allergy and disease…</strong>
+        </p>
+        <p class="mb-10 text-base md:text-lg text-slate-700">
+          Go ahead and click the "Buy Now" button at the bottom of this page to secure your device today.
+        </p>
+    
+        <!-- Limited‑time CTA banner -->
+        <div class="rounded-2xl border border-sky-100 bg-secondary-100 px-6 py-8 md:py-10 shadow-sm">
+          <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <!-- Hourglass icon -->
+            <div class="flex justify-center md:justify-start text-primary-700">
+              <!-- Replaced img with Lucide hourglass SVG -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-24 h-24 md:w-28 md:h-28 object-contain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hourglass">
+                <path d="M5 22h14"/>
+                <path d="M5 2h14"/>
+                <path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/>
+                <path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/>
+              </svg>
+            </div>
+    
+            <!-- Offer copy -->
+            <div class="text-center md:text-left">
+              <p class="text-2xl sm:text-3xl font-extrabold text-primary-900 leading-snug">
+                LIMITED TIME SALE
+              </p>
+              <p class="text-xl sm:text-2xl font-extrabold text-rose-600 mt-1">
+                OFFER ENDS SOON
+              </p>
+            </div>
+    
+            <!-- Redeem button -->
+            <a
+              href="#offer"
+              class="inline-flex items-center justify-center px-10 py-4 text-base font-semibold rounded-md bg-primary-500 text-white hover:bg-indigo-950 transition-all">
+              REDEEM
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- =========================================================
+     FAQ / Accordion Section – FULL LIST (Tailwind CSS)
+     • Replaces the previous FAQ markup. Copy–paste as‑is.
+     ========================================================= -->
+<section id="faq" class="py-8 md:py-20 bg-secondary-100">
+  <div class="max-w-5xl mx-auto px-4 md:px-8">
+    <!-- Heading with vertical bar -->
+    <h2 class="flex items-start text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary-900 leading-tight mb-10">
+      <span class="inline-block w-1.5 sm:w-2.5 mr-4 rounded bg-primary-500"></span>
+      Frequently Asked Questions
+    </h2>
+
+    <!-- Accordion -->
+    <div class="space-y-6">
+
+      <!-- 1 -->
+      <details class="group overflow-hidden rounded-xl bg-white shadow-sm">
+        <summary class="flex cursor-pointer items-center justify-between p-6 text-lg md:text-xl font-semibold text-primary-800">
+          <span>Is this a scam? Do you have any evidence it works?</span>
+          <svg class="w-5 h-5 text-indigo-600 transition-transform duration-300 group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6 pt-2 text-slate-700 leading-relaxed space-y-4">
+          <p>
+            UVC disinfection is not a scam. Many scientific studies, including CDC and EPA studies, prove that UVC light kills almost all biological pollutants and germs.
+          </p>
+          <p>
+            For example, a study published in the Asian Pacific Journal of Tropical Biomedicine named "Effect of germicidal UV-C light(254 nm) on eggs and adult of house dust mites, Dermatophagoides pteronyssinus and Dermatophagoides farinae" showed the efficacy of UVC on killing dust mites and their eggs.
+          </p>
+          <p>
+            The EPA also states that "UV lamps may destroy indoor biological pollutants such as viruses, bacteria, and molds."
+          </p>
+          <p>
+            In addition to UVC, countless research suggests that Ozone fumigation applied at appropriate concentrations could effectively control several disturbing organisms like dust mites, bacteria, viruses, pests, etc.
+          </p>
+          <p>
+            UVO254™ lamps combine both UVC and Ozone for maximum effectiveness.
+          </p>
+        </div>
+      </details>
+
+      <!-- 2 -->
+      <details class="group overflow-hidden rounded-xl bg-white shadow-sm">
+        <summary class="flex cursor-pointer items-center justify-between p-6 text-lg md:text-xl font-semibold text-slate-800">
+          <span>Is Uvlizer UVO254™ Lamp Safe?</span>
+          <svg class="w-5 h-5 text-indigo-600 transition-transform duration-300 group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6 pt-2 text-slate-700 leading-relaxed space-y-4">
+          <p>
+            UVO disinfection is perfectly safe if it's used correctly.
+          </p>
+          <p>
+            Because exposure to UVC light can damage your skin or eyes (like exposure to sun rays would do), you need to keep people, pets, and plants out of the room while Uvlizer is working. This is the small price you pay for a 99.99% allergen-free, germ-free, and garden-fresh space.
+          </p>
+          <p>
+            The Uvlizer Home Disinfection device also has two great features to avoid accidental exposure to the UVC light or the Ozone. (1) It has a remote control that can be used from afar, and (2) it has a self-delay timer for up to 30 seconds with beeping sounds allowing one to leave the room before the bulb lights up.
+          </p>
+        </div>
+      </details>
+
+      <!-- 3 -->
+      <details class="group overflow-hidden rounded-xl bg-white shadow-sm">
+        <summary class="flex cursor-pointer items-center justify-between p-6 text-lg md:text-xl font-semibold text-slate-800">
+          <span>How is the UVO254™ Lamp different from traditional UVC lamps or Ozone generators?</span>
+          <svg class="w-5 h-5 text-indigo-600 transition-transform duration-300 group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6 pt-2 text-slate-700 leading-relaxed space-y-4">
+          <p>
+            UVO254™ Lamps combine UV-C and Ozone to allow room-wide air and surface cleaning.
+          </p>
+          <p>
+            Traditional UV-C lamps can be great! It has been proven that they kill 99.9% of biological pollutants. Airlines and hospitals are even using them to ensure the safety of their spaces.
+          </p>
+          <p>
+            But there's a catch...
+          </p>
+          <p>
+            UV-C light is most effective when it lands directly on surfaces. If it's reflected, it quickly loses efficiency. As a result, UV-C lamps alone are ineffective for home use. A better solution is to use UV-C handheld devices to apply direct light to surfaces. But who has time for that? Plus, that doesn't disinfect the air.
+          </p>
+          <p>
+            Ozone can be great on its own for some purposes as well. It reacts with germs, bacteria, viruses, and other organic compounds, giving it disinfectant properties.
+          </p>
+          <p>
+            That's why it's used in hospitals and operating rooms. However, depending on the size of the room, a traditional ozone generator should run for at least 3 to 10 hours. For a whole house, at least 25-30 hours of continuous operation is required to eliminate most pollutants.
+          </p>
+          <p>
+            Additionally, you should avoid staying in the room while the ozone generator is running and find a new place to stay. After that, you need to wait another 4-6 hours for the Ozone to dissipate.
+          </p>
+          <p>
+            So by combining UVC and Ozone, you can get synergistic disinfection and increase the effectiveness of UVC while decreasing the time required for Ozone to work. In 15-60 minutes, you'd get the same level of sanitization as someone running an Ozone generator for 25-30 hours!
+          </p>
+          <p>
+            Using UVO254™ bulbs, Uvlizer's lamp disinfects a room from top to bottom, including hard-to-reach places and even the air.
+          </p>
+        </div>
+      </details>
+
+      <!-- 4 -->
+      <details class="group overflow-hidden rounded-xl bg-white shadow-sm">
+        <summary class="flex cursor-pointer items-center justify-between p-6 text-lg md:text-xl font-semibold text-slate-800">
+          <span>Does it work on mold?</span>
+          <svg class="w-5 h-5 text-indigo-600 transition-transform duration-300 group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6 pt-2 text-slate-700 leading-relaxed">
+          UVC light does work on mold. However, some molds are more difficult to kill and may take longer exposure times or multiple exposures.
+        </div>
+      </details>
+
+      <!-- 5 -->
+      <details class="group overflow-hidden rounded-xl bg-white shadow-sm">
+        <summary class="flex cursor-pointer items-center justify-between p-6 text-lg md:text-xl font-semibold text-slate-800">
+          <span>Does it work on bed bugs? Insects? …</span>
+          <svg class="w-5 h-5 text-indigo-600 transition-transform duration-300 group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6 pt-2 text-slate-700 leading-relaxed space-y-4">
+          <p>
+            Yes, UVO254™ lamps effectively kill bed bugs, pests, and insects.
+          </p>
+          <p>
+            Etymologists (scientists who study insects) and other specialists agree that UVC light can kill insects and pests by mutating their DNA. Also, Ozone in its gaseous form can kill insects and pests primarily by targeting their respiratory system.
+          </p>
+        </div>
+      </details>
+
+      <!-- 6 -->
+      <details class="group overflow-hidden rounded-xl bg-white shadow-sm">
+        <summary class="flex cursor-pointer items-center justify-between p-6 text-lg md:text-xl font-semibold text-slate-800">
+          <span>What happens to allergens and germs after being broken down?</span>
+          <svg class="w-5 h-5 text-indigo-600 transition-transform duration-300 group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6 pt-2 text-slate-700 leading-relaxed">
+          The UVO254™ Lamp breaks down the allergens' DNA completely, making them non-identifiable to the human body and thus ineffective at triggering an allergic reaction.
+        </div>
+      </details>
+
+      <!-- 7 -->
+      <details class="group overflow-hidden rounded-xl bg-white shadow-sm">
+        <summary class="flex cursor-pointer items-center justify-between p-6 text-lg md:text-xl font-semibold text-slate-800">
+          <span>How long does the bulb last? What if I need a new bulb?</span>
+          <svg class="w-5 h-5 text-indigo-600 transition-transform duration-300 group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6 pt-2 text-slate-700 leading-relaxed space-y-4">
+          <p>
+            The lifetime of the UV bulb is very long! It's over 5,000 hours. Think of it this way: if you use it every day, it will take more than 12 years to reach 5,000 hours.
+          </p>
+          <p>
+            If you do need a replacement bulb, don't hesitate to get in touch with us, and we can order one for you.
+          </p>
+        </div>
+      </details>
+
+      <!-- 8 -->
+      <details class="group overflow-hidden rounded-xl bg-white shadow-sm">
+        <summary class="flex cursor-pointer items-center justify-between p-6 text-lg md:text-xl font-semibold text-slate-800">
+          <span>Does the UV light lose potency over time?</span>
+          <svg class="w-5 h-5 text-indigo-600 transition-transform duration-300 group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6 pt-2 text-slate-700 leading-relaxed">
+          The UV output of all light tubes will very slowly decrease over time due to the buildup of residue inside the tube. However, industry experts say that you can operate a light tube continuously for up to a year - or 9,000 hours - before you need to replace it due to diminished UV output. That is well beyond the lifetime of the Uvlizer bulb, which is 5,000 hours, and will provide many years of effective sanitization.
+        </div>
+      </details>
+
+      <!-- 9 -->
+      <details class="group overflow-hidden rounded-xl bg-white shadow-sm">
+        <summary class="flex cursor-pointer items-center justify-between p-6 text-lg md:text-xl font-semibold text-slate-800">
+          <span>Can I use Uvlizer to sterilize my phone or other personal items?</span>
+          <svg class="w-5 h-5 text-indigo-600 transition-transform duration-300 group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6 pt-2 text-slate-700 leading-relaxed">
+          Although it's better to use our UVBox, which is specifically designed for this, you can use Uvlizer by creating a disinfecting room and putting everything you want to disinfect in the room.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+<section id="judge-me" class="py-8">
+  <div class="max-w-6xl mx-auto px-4 md:px-8"> <!-- Added max-width and centering -->
+     <div class="jdgm-widget jdgm-review-widget jdgm-outside-widget" data-id="8000627572985" data-product-title="uvo-powered-home-disinfection-tower-new"></div>
+  </div>
+</section>
+  <!-- =========================== CART DRAWER =========================== -->
+  <!-- Overlay -->
+  <div id="cart-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 hidden transition-opacity"></div>
+
+  <!-- Drawer -->
+  <aside id="cart-drawer" 
+         role="dialog" 
+         aria-modal="true" 
+         aria-labelledby="cart-drawer-title" 
+         class="fixed top-0 right-0 w-full sm:w-[390px] max-w-full h-full bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+
+    <!-- Loading spinner overlay -->
+    <div id="cart-loading-overlay" class="absolute inset-0 bg-white/70 flex items-center justify-center hidden z-50">
+      <svg class="animate-spin h-8 w-8 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>
+    </div>
+
+    <!-- Header -->
+    <div class="flex items-start justify-between p-4 border-b">
+      <div>
+        <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1745600187/icc2_2_vowftt.webp" alt="Cart icon" class="w-10 h-10 mb-1" loading="lazy" decoding="async">
+        <h3 id="cart-drawer-title" class="text-lg font-bold text-slate-800">Items in your cart</h3>
+        <p class="text-xs text-sky-600 font-semibold -mt-0.5">Congrats! <span class="text-slate-700 font-medium">You've earned FREE SHIPPING</span></p>
+      </div>
+      <button id="close-cart-btn" aria-label="Close cart" class="text-slate-400 hover:text-slate-700">
+        <svg data-lucide="x" class="w-6 h-6"></svg>
+      </button>
+    </div>
+
+    <!-- Error banner -->
+    <div id="cart-error" class="hidden opacity-0 transition-opacity px-4 py-3 bg-red-50 border-b border-red-200 text-red-700 text-sm">
+      <div class="flex gap-2 items-start">
+        <svg data-lucide="alert-circle" class="w-5 h-5 mt-0.5"></svg>
+        <span id="cart-error-message"></span>
+      </div>
+    </div>
+
+    <!-- Alia discount section -->
+    <div id="alia-discount-section" class="hidden px-4 py-3 bg-blue-50 border-b border-blue-200 text-blue-700 text-sm">
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="font-semibold" id="alia-reward-text">Discount Applied!</p>
+          <p class="text-xs mt-0.5">Code: <span id="alia-discount-code" class="font-mono font-bold"></span></p>
+        </div>
+        <div>
+          <p class="text-xs text-blue-600">Expires in: <span id="alia-timer" class="font-mono font-bold">30:00</span></p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Alia expired message -->
+    <div id="alia-expired-message" class="hidden px-4 py-3 bg-red-50 border-b border-red-200 text-red-700 text-sm">
+      <p class="font-semibold">Your discount code has expired</p>
+      <p class="text-xs mt-0.5">Please complete another action to earn a new discount.</p>
+    </div>
+
+    <!-- Empty cart message (populated by JS) -->
+    <div id="empty-cart-message" class="hidden text-center text-slate-600 text-sm px-6 py-10"></div>
+
+    <!-- Items container -->
+    <div class="flex-1 overflow-y-auto p-4 space-y-4 cart-items-container"></div>
+
+    <!-- Summary / Checkout -->
+    <div class="border-t p-4 text-sm space-y-3">
+      <div class="flex justify-between"><span>Original total</span><span id="cart-original-total">$0.00</span></div>
+      <div class="flex justify-between text-emerald-600"><span>Total savings</span><span id="total-savings-amount">-$0.00</span></div>
+      <div class="flex justify-between font-bold text-lg"><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>
+      <p id="installment-info" class="text-xs text-slate-500"></p>
+      <!-- 90 Day Guarantee badge -->
+      <div class="flex items-center justify-center space-x-2">
+        <img src="https://cdn.shopify.com/s/files/1/0519/0238/2231/files/icc2_1.png?v=1654773077" alt="90-Day Money-Back Guarantee" class="h-8 w-auto" loading="lazy" decoding="async">
+        <span class="text-xs font-semibold text-slate-800">90 Day Guarantee</span>
+      </div>
+      <button id="checkout-btn" class="w-full bg-red-600 hover:bg-red-700 active:scale-95 transition flex items-center justify-center gap-2 text-white font-semibold py-3 rounded-lg disabled:opacity-50" disabled>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        Proceed to Secure Checkout
+      </button>
+      <button id="continue-shopping-btn" class="hidden w-full text-center text-slate-600 text-sm underline">Continue Shopping</button>
+    </div>
+  </aside>
+
+  <!-- =================== CART ITEM TEMPLATE (hidden) =================== -->
+  <div id="cart-item-template" class="cart-item hidden border rounded-lg p-3 relative" data-line-id="">
+    <div class="flex gap-4">
+      <img data-cart-item-image src="" alt="" class="w-16 h-16 object-contain rounded" loading="lazy" decoding="async">
+      <div class="flex-1">
+        <p data-cart-item-name class="text-sm font-medium text-slate-800"></p>
+        <div class="flex items-center mt-2">
+          <button class="quantity-minus-btn quantity-btn p-1 text-slate-500 hover:text-slate-700" aria-label="Decrease quantity"><svg data-lucide="minus" class="w-4 h-4"></svg></button>
+          <span data-cart-item-quantity class="mx-3 text-sm font-semibold">1</span>
+          <button class="quantity-plus-btn quantity-btn p-1 text-slate-500 hover:text-slate-700" aria-label="Increase quantity"><svg data-lucide="plus" class="w-4 h-4"></svg></button>
+          <button class="remove-item-btn ml-2 text-red-500 hover:text-red-700 text-xs underline" aria-label="Remove item">Remove</button>
+        </div>
+      </div>
+      <div class="text-right">
+        <p data-cart-item-price class="text-sm font-semibold text-slate-800">$0.00</p>
+        <p data-cart-item-original-price class="text-xs line-through text-slate-400 hidden">$0.00</p>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Footer -->
+<footer class="bg-primary-500 text-white pt-8 pb-6">
+  <div class="max-w-6xl mx-auto px-4 md:px-8">
+    <!-- Title section -->
+    <div class="mb-8 max-w-3xl">
+      <p class="text-white mb-6">With the power of UV-C, you can kill dust mites, bacteria, germs and other pathogens you didn't even know were there which reduces allergy symptoms and risks of infections.</p>
+    </div>
+    
+    <!-- Footer columns -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 border-b border-white/20 pb-8">
+      <!-- Company -->
+      <div>
+        <h3 class="font-semibold text-white mb-4">Company</h3>
+        <ul class="space-y-2">
+          <li><a href="https://www.uvlizer.co/pages/about-us-1" target="_blank" class="text-white/80 hover:text-white transition">About Us</a></li>
+          <li><a href="https://uvlizer.co/apps/parcelpanel" target="_blank" class="text-white/80 hover:text-white transition">Track Your Order</a></li>
+          <li><a href="https://uvlizer.gorgias.help/en-US" target="_blank" class="text-white/80 hover:text-white transition">Contact Us</a></li>
+          <li><a href="https://uvlizer.co/apps/collective/retailer-referral" target="_blank" class="text-white/80 hover:text-white transition">Become an Affiliate</a></li>
+        </ul>
+      </div>
+      
+      <!-- Support -->
+      <div>
+        <h3 class="font-semibold text-white mb-4">Support</h3>
+        <ul class="space-y-2">
+          <li><a href="https://uvlizer.gorgias.help/en-US" target="_blank" class="text-white/80 hover:text-white transition">Get Help</a></li>
+        </ul>
+      </div>
+      
+      <!-- Information -->
+      <div>
+        <h3 class="font-semibold text-white mb-4">Information</h3>
+        <ul class="space-y-2">
+          <li><a href="https://www.uvlizer.co/policies/privacy-policy" target="_blank" class="text-white/80 hover:text-white transition">Privacy Policy</a></li>
+          <li><a href="https://www.uvlizer.co/policies/terms-of-sale" target="_blank" class="text-white/80 hover:text-white transition">Terms of Sale, Service and Conditions of Use</a></li>
+          <li><a href="https://www.uvlizer.co/policies/refund-policy" target="_blank" class="text-white/80 hover:text-white transition">Refund & Return Policy</a></li>
+          <li><a href="https://www.uvlizer.co/policies/shipping-policy" target="_blank" class="text-white/80 hover:text-white transition">Shipping Policy</a></li>
+          <li><a href="https://www.uvlizer.co/pages/billing-terms-condition" target="_blank" class="text-white/80 hover:text-white transition">Billing Terms & Condition</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Payment methods -->
+    <div>
+      <p class="text-sm text-white mb-3">Pay Securely with</p>
+      <div class="flex flex-wrap gap-2">
+        <img src="/assets/payment-icons/visa.svg" alt="Visa" class="h-8 w-auto" loading="lazy" decoding="async">
+        <img src="/assets/payment-icons/mastercard.svg" alt="Mastercard" class="h-8 w-auto" loading="lazy" decoding="async">
+        <img src="/assets/payment-icons/amex.svg" alt="American Express" class="h-8 w-auto" loading="lazy" decoding="async">
+        <img src="/assets/payment-icons/paypal.svg" alt="PayPal" class="h-8 w-auto" loading="lazy" decoding="async">
+        <img src="/assets/payment-icons/discover.svg" alt="Discover" class="h-8 w-auto" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+  const menuBtn     = document.getElementById('menuBtn');
+  const mobileNav   = document.getElementById('mobileNav');
+  const backdrop    = document.getElementById('menuBackdrop');
+  const menuClose   = document.getElementById('menuClose');
+
+  function toggleMenu() {
+    mobileNav.classList.toggle('-translate-x-full');
+    backdrop.classList.toggle('hidden');
+  }
+
+  menuBtn.addEventListener('click', toggleMenu);
+  backdrop.addEventListener('click', toggleMenu);
+  menuClose.addEventListener('click', toggleMenu);
+</script>
+
+<!-- Date updater script -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get current date
+    const today = new Date();
+    
+    // Format date like "April 22nd, 2023"
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"];
+    
+    const month = monthNames[today.getMonth()];
+    const day = today.getDate();
+    const year = today.getFullYear();
+    
+    // Add ordinal suffix to day
+    let dayWithSuffix;
+    if (day > 3 && day < 21) dayWithSuffix = day + "th";
+    else if (day % 10 === 1) dayWithSuffix = day + "st";
+    else if (day % 10 === 2) dayWithSuffix = day + "nd";
+    else if (day % 10 === 3) dayWithSuffix = day + "rd";
+    else dayWithSuffix = day + "th";
+    
+    // Format the date
+    const formattedDate = `${month} ${dayWithSuffix}, ${year}`;
+    
+    // Update all elements with current-date class
+    document.querySelectorAll('.current-date').forEach(function(el) {
+      el.textContent = formattedDate;
+    });
+  });
+</script>
+
+<!-- Critical above-the-fold: Cart core & Lucide icons -->
+<script type="module" src="/js/cart-core.js" defer></script>
+<script defer src="/dist/lucide.min.js"></script>
+
+<script type="module">
+  // Dynamic load: cart-drawer, bundle-selection, Swiper & slider after LCP or interaction
+  const loadNonCritical = (() => {
+    let loaded = false;
+    return () => {
+      if (loaded) return;
+      loaded = true;
+      // Cart drawer & bundle-selection (modules)
+      import('/js/cart-drawer.js');
+      import('/js/bundle-selection.js');
+      // Swiper (UMD) then slider (module)
+      const tag = document.createElement('script');
+      tag.src = '/dist/swiper.min.js';
+      tag.async = true;
+      tag.onload = () => import('/js/slider.js');
+      document.body.appendChild(tag);
+    };
+  })();
+
+  if ('PerformanceObserver' in window) {
+    new PerformanceObserver((entries, obs) => {
+      loadNonCritical(); obs.disconnect();
+    }).observe({ type: 'largest-contentful-paint', buffered: true });
+  }
+  ['pointerdown','touchstart','keydown','scroll']
+    .forEach(evt => addEventListener(evt, loadNonCritical, { once:true, passive:true }));
+  addEventListener('load', loadNonCritical, { once:true });
+</script>
+
+<!-- START: Discount Calculation Script -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Modified function to accept a DOM element instead of a selector string
+  function calculateAndUpdateDiscountsForSection(sectionElement) {
+    if (!sectionElement) {
+      console.warn('calculateAndUpdateDiscountsForSection called with null element.');
+      return;
+    }
+    const sectionId = sectionElement.id; // Get ID for logging
+
+    // Selectors are now relative to the provided sectionElement
+    let bundleContainerSelector;
+    let discountContainerSelector;
+
+    if (sectionId === 'offer-mobile') {
+      bundleContainerSelector = '.grid.grid-cols-3.gap-3'; 
+      discountContainerSelector = '.flex.gap-2';
+    } else if (sectionId === 'offer') { 
+      // Using simpler relative selectors, assuming structure within each #offer is consistent
+      bundleContainerSelector = '.grid.grid-cols-1.sm\\:grid-cols-3.gap-4';
+      discountContainerSelector = '.grid.grid-cols-3.gap-2';
+    } else {
+        console.error(`Unknown section ID: ${sectionId}`);
+        return;
+    }
+
+    const bundleContainer = sectionElement.querySelector(bundleContainerSelector);
+    const discountContainer = sectionElement.querySelector(discountContainerSelector);
+
+    if (!bundleContainer || !discountContainer) {
+      console.warn(`Could not find bundle or discount containers within section #${sectionId} using relative selectors: Bundle='${bundleContainerSelector}', Discount='${discountContainerSelector}'`);
+      return;
+    }
+    
+    const bundleCards = Array.from(bundleContainer.querySelectorAll('label[data-variant-id]'));
+    const discountTargets = Array.from(discountContainer.children);
+
+    if (bundleCards.length === 0) {
+        console.warn(`No bundle cards found in #${sectionId} with selector 'label[data-variant-id]' within '${bundleContainerSelector}'`);
+        return;
+    }
+     if (discountTargets.length === 0) {
+        console.warn(`No discount targets found in #${sectionId} as children of '${discountContainerSelector}'`);
+        return;
+    }
+
+    if (bundleCards.length !== discountTargets.length) {
+        console.warn(`Mismatch between number of bundle cards (${bundleCards.length}) and discount targets (${discountTargets.length}) in #${sectionId}`);
+    }
+
+    bundleCards.forEach((card, index) => {
+      if (index >= discountTargets.length) return;
+
+      const comparePriceEl = card.querySelector('p.line-through');
+      const currentPriceEl = card.querySelector('p.font-bold');
+      const discountTargetEl = discountTargets[index];
+
+      if (!comparePriceEl) console.warn(`Compare price element not found for card index ${index} in #${sectionId}`);
+      if (!currentPriceEl) console.warn(`Current price element not found for card index ${index} in #${sectionId}`);
+
+      if (comparePriceEl && currentPriceEl && discountTargetEl) { // Added check for discountTargetEl again
+        const comparePriceText = comparePriceEl.textContent.replace(/[^0-9.]/g, '');
+        const currentPriceText = currentPriceEl.textContent.replace(/[^0-9.]/g, '');
+
+        const comparePrice = parseFloat(comparePriceText);
+        const currentPrice = parseFloat(currentPriceText);
+
+        if (!isNaN(comparePrice) && !isNaN(currentPrice) && comparePrice > 0 && comparePrice > currentPrice) {
+          const discountPercentage = Math.round(((comparePrice - currentPrice) / comparePrice) * 100);
+          discountTargetEl.textContent = `${discountPercentage}% OFF`;
+          discountTargetEl.style.display = '';
+        } else {
+          console.warn(`Could not calculate discount for card index ${index} in #${sectionId}. Prices: Compare=${comparePriceText}, Current=${currentPriceText}`);
+          discountTargetEl.textContent = '';
+          discountTargetEl.style.display = 'none';
+        }
+      }
+    });
+  }
+
+  // Find ALL elements with the specified IDs and run the calculation for each
+  document.querySelectorAll('#offer-mobile, #offer').forEach(section => {
+    calculateAndUpdateDiscountsForSection(section);
+  });
+});
+</script>
+<!-- END: Discount Calculation Script -->
+
+</body>
+</html>

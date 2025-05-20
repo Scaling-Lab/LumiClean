@@ -1,0 +1,1 @@
+// Image lazy loading is now handled natively with <img loading="lazy">. No JS needed. 

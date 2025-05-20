@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Disallow Netlify's internal directories as a precaution
+# Netlify generally handles this, but explicit rules can prevent accidental exposure
+Disallow: /netlify/
+Disallow: /.netlify/
+
+# Add any other paths you wish to disallow below
+# e.g., Disallow: /admin/
+# e.g., Disallow: /private/
+
+# Specify the location of your sitemap (if you have one)
+# Replace the URL below with the actual path to your sitemap
+# Sitemap: https://yourdomain.com/sitemap.xml 
