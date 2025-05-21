@@ -9,7 +9,8 @@
 .guarantee-container-v8 {
   display: flex;
   align-items: center;
-  gap: 151px;
+  justify-content: center;
+  gap: 100px;
   max-width: 1376px;
   margin: 0 auto;
 }

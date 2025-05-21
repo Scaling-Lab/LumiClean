@@ -125,7 +125,7 @@ body {
 /* Media Queries */
 @media (max-width: 991px) {
   .easy-steps-section {
-    padding: 40px 20px;
+    padding: 40px 10px;
   }
 
   .easy-steps-section .container {
