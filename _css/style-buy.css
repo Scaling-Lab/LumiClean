@@ -193,7 +193,7 @@ body {
 }
 
 .remove-item-btn {
-    position: absolute;
+    position: inherit;
     top: 1rem;
     right: 0;
     background: none;

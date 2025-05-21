@@ -741,19 +741,25 @@ function setupEventListeners() {
     document.querySelectorAll('.js-main-cta').forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            // Logic to get selected variant ID - needs careful placement
-            const selectedBundle = document.querySelector('input[name="bundle"]:checked');
-            const selectedVariantId = selectedBundle?.closest('label')?.getAttribute('data-variant-id');
+            // MODIFIED: Get variantId directly from the clicked button
+            const selectedVariantId = button.getAttribute('data-variant-id');
             
             if (!selectedVariantId) {
-                console.error("No variant selected!");
-                showCartError("Please select a bundle option.");
+                console.error("Button clicked does not have a data-variant-id attribute!");
+                showCartError("Could not determine the product to add. Please try again.");
                 return;
             }
 
-            const isProductInCart = cart?.lines?.nodes?.some(line => line.merchandise.id === selectedVariantId);
-            if (isProductInCart) openDrawer();
-            else handleAddItemClick(selectedVariantId);
+            // Check if the product is already in the cart (optional, depends on desired behavior)
+            // const isProductInCart = cart?.lines?.nodes?.some(line => line.merchandise.id === selectedVariantId);
+            // if (isProductInCart) {
+            //    openDrawer(); // Or maybe show a message like "Item already in cart"
+            // } else {
+            //    handleAddItemClick(selectedVariantId);
+            // }
+
+            // Simplified: always attempt to add, let Shopify handle if it's a duplicate or inventory issue
+            handleAddItemClick(selectedVariantId);
         });
     });
 

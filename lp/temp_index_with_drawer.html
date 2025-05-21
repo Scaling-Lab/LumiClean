@@ -1,0 +1,260 @@
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--  <head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--    <title>Lumiclean - Hospital-like Disinfection for Your Home (with New Drawer)</title>-->
+
+
+<!--    &lt;!&ndash; TailwindCSS &ndash;&gt;-->
+<!--    <script src="https://cdn.tailwindcss.com"></script>-->
+<!--    &lt;!&ndash; Local CSS build &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="../dist/styles.css">-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link rel="preconnect" href="https://res.cloudinary.com">-->
+<!--    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">-->
+<!--    &lt;!&ndash; Fallback for browsers that don't support preload or JS disabled &ndash;&gt;-->
+<!--    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"></noscript>-->
+
+
+
+<!--    &lt;!&ndash; Critical CSS - Combined and minified &ndash;&gt;-->
+<!--    <link rel="preload" href="css/critical.min.css" as="style">-->
+<!--    <link rel="stylesheet" href="css/critical.min.css">-->
+<!--    -->
+<!--    &lt;!&ndash; Non-critical CSS with optimized loading &ndash;&gt;-->
+<!--    <link rel="preload" href="css/non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">-->
+<!--    <noscript><link rel="stylesheet" href="css/non-critical.min.css"></noscript>-->
+<!--    -->
+<!--    &lt;!&ndash; Preload critical fonts with display=swap &ndash;&gt;-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">-->
+<!--    -->
+<!--    &lt;!&ndash; Preload critical images with responsive sizes &ndash;&gt;-->
+<!--    <link rel="preload" as="image" href="https://res.cloudinary.com/dg8ibuag5/image/upload/dpr_auto,f_auto,q_auto,w_auto/v1/lumiclean/lumiclean/fb937714554c1fcf983fcb03737c9a0186126b8d?_a=BAMAJaP8A" media="(min-width: 768px)">-->
+<!--    <link rel="preload" as="image" href="https://res.cloudinary.com/dg8ibuag5/image/upload/dpr_auto,f_auto,q_auto,w_auto,c_scale,w_400/v1/lumiclean/lumiclean/fb937714554c1fcf983fcb03737c9a0186126b8d?_a=BAMAJaP8A" media="(max-width: 767px)">-->
+<!--    -->
+<!--    &lt;!&ndash; Add resource hints &ndash;&gt;-->
+<!--    <link rel="dns-prefetch" href="https://res.cloudinary.com">-->
+<!--    <link rel="preconnect" href="https://res.cloudinary.com">-->
+<!--    -->
+<!--    &lt;!&ndash; Preload critical images &ndash;&gt;-->
+<!--    <link rel="preload" as="image" href="https://res.cloudinary.com/dg8ibuag5/image/upload/dpr_auto,f_auto,q_auto,w_auto/v1/lumiclean/lumiclean/fb937714554c1fcf983fcb03737c9a0186126b8d?_a=BAMAJaP8A">-->
+<!--    -->
+<!--    &lt;!&ndash; Fallback for browsers that don't support preload &ndash;&gt;-->
+<!--    <noscript>-->
+<!--      <link rel="stylesheet" href="v3/lumiclean-section.css">-->
+<!--      <link rel="stylesheet" href="v4/styles.css">-->
+<!--      <link rel="stylesheet" href="v5/styles.css">-->
+<!--      <link rel="stylesheet" href="v6/styles.css">-->
+<!--      <link rel="stylesheet" href="v7/styles.css">-->
+<!--      <link rel="stylesheet" href="v8/styles.css">-->
+<!--      <link rel="stylesheet" href="v9/styles.css">-->
+<!--      <link rel="stylesheet" href="v10/styles.css">-->
+<!--      <link rel="stylesheet" href="v11/styles.css">-->
+<!--      <link rel="stylesheet" href="v12/styles.css">-->
+<!--      <link rel="stylesheet" href="footer/styles.css">-->
+<!--    </noscript>-->
+<!--    &lt;!&ndash; Tailwind CSS is assumed to be globally available or linked separately as per user confirmation &ndash;&gt;-->
+<!--    &lt;!&ndash; Link to Swiper CSS if product sliders are used in offer section &ndash;&gt;-->
+<!--    &lt;!&ndash; <link rel="stylesheet" href="../dist/swiper.min.css"/> MOVED TO BE LOADED BY JS IF NEEDED &ndash;&gt;-->
+<!--     <style>html.cart-drawer-open{overflow:hidden}</style>-->
+<!--  </head>-->
+<!--  <body>-->
+<!--   <main>-->
+
+
+<!--&lt;!&ndash; ░░░ Desktop OFFER SECTION (Simplified) ░░░ &ndash;&gt;-->
+<!--<section id="offer" class="py-8 md:py-12 bg-gray-100 w-full">-->
+<!--  <div class="max-w-4xl mx-auto px-4 md:px-8 text-center">-->
+<!--    <p class="mb-8 text-2xl md:text-3xl font-bold text-gray-800">LuminClean:</p>-->
+<!--    <div class="grid md:grid-cols-3 gap-6">-->
+
+<!--      &lt;!&ndash; Option 1 &ndash;&gt;-->
+<!--      <div class="bg-white p-6 rounded-lg shadow-lg text-center">-->
+<!--        <h3 class="text-xl font-semibold text-gray-700 mb-3">1x LuminClean Device</h3>-->
+<!--        <div class="mb-4">-->
+<!--          <span class="text-gray-500 line-through text-xl mr-2" data-product-compare-price-display data-variant-id-scope="gid://shopify/ProductVariant/44103628357881">$99.99</span>-->
+<!--          <span class="text-gray-900 font-bold text-3xl" data-product-price-display data-variant-id-scope="gid://shopify/ProductVariant/44103628357881">$79.95</span>-->
+<!--        </div>-->
+<!--        <button class="js-main-cta w-full bg-red-600 hover:bg-red-700 active:scale-95 transition text-white font-bold py-3 px-6 rounded-lg text-lg" data-variant-id="gid://shopify/ProductVariant/44103628357881">-->
+<!--          Add to Cart-->
+<!--        </button>-->
+<!--      </div>-->
+
+<!--      &lt;!&ndash; Option 2 &ndash;&gt;-->
+<!--      <div class="bg-white p-6 rounded-lg shadow-lg text-center">-->
+<!--        <h3 class="text-xl font-semibold text-gray-700 mb-3">2x LuminClean Devices</h3>-->
+<!--        <div class="mb-4">-->
+<!--          <span class="text-gray-500 line-through text-xl mr-2" data-product-compare-price-display data-variant-id-scope="gid://shopify/ProductVariant/42904402526457">$199.98</span>-->
+<!--          <span class="text-gray-900 font-bold text-3xl" data-product-price-display data-variant-id-scope="gid://shopify/ProductVariant/42904402526457">$139.90</span>-->
+<!--        </div>-->
+<!--        <button class="js-main-cta w-full bg-red-600 hover:bg-red-700 active:scale-95 transition text-white font-bold py-3 px-6 rounded-lg text-lg" data-variant-id="gid://shopify/ProductVariant/42904402526457">-->
+<!--          Add to Cart-->
+<!--        </button>-->
+<!--      </div>-->
+
+<!--      &lt;!&ndash; Option 3 &ndash;&gt;-->
+<!--      <div class="bg-white p-6 rounded-lg shadow-lg text-center">-->
+<!--        <h3 class="text-xl font-semibold text-gray-700 mb-3">3x LuminClean Devices</h3>-->
+<!--        <div class="mb-4">-->
+<!--          <span class="text-gray-500 line-through text-xl mr-2" data-product-compare-price-display data-variant-id-scope="gid://shopify/ProductVariant/42910843764985">$299.97</span>-->
+<!--          <span class="text-gray-900 font-bold text-3xl" data-product-price-display data-variant-id-scope="gid://shopify/ProductVariant/42910843764985">$194.70</span>-->
+<!--        </div>-->
+<!--        <button class="js-main-cta w-full bg-red-600 hover:bg-red-700 active:scale-95 transition text-white font-bold py-3 px-6 rounded-lg text-lg" data-variant-id="gid://shopify/ProductVariant/42910843764985">-->
+<!--          Add to Cart-->
+<!--        </button>-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+<!--&lt;!&ndash; ░░░ /Desktop OFFER SECTION ░░░ &ndash;&gt;-->
+
+<!--</main>-->
+
+<!--&lt;!&ndash; START NEW CART DRAWER HTML (Copied from lp-google/index.html) &ndash;&gt;-->
+<!--<div id="cart-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 hidden transition-opacity"></div>-->
+<!--<aside id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" class="fixed top-0 right-0 w-full sm:w-[390px] max-w-full h-full bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">-->
+<!--  <div id="cart-loading-overlay" class="absolute inset-0 bg-white/70 flex items-center justify-center hidden z-50">-->
+<!--    <svg class="animate-spin h-8 w-8 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V4a4 4 0 00-4 4H4z"></path></svg>-->
+<!--  </div>-->
+<!--  <div class="flex items-start justify-between p-4 border-b">-->
+<!--    <div>-->
+<!--      <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1745600187/icc2_2_vowftt.webp" alt="Cart icon" class="w-10 h-10 mb-1" loading="lazy" decoding="async">-->
+<!--      <h3 id="cart-drawer-title" class="text-lg font-bold text-slate-800">Items in your cart</h3>-->
+<!--      <p class="text-xs text-sky-600 font-semibold -mt-0.5">Congrats! <span class="text-slate-700 font-medium">You've earned FREE SHIPPING</span></p>-->
+<!--    </div>-->
+<!--    <button id="close-cart-btn" aria-label="Close cart" class="text-slate-400 hover:text-slate-700">-->
+<!--      <svg data-lucide="x" class="w-6 h-6"></svg>-->
+<!--    </button>-->
+<!--  </div>-->
+<!--  <div id="cart-error" class="hidden opacity-0 transition-opacity px-4 py-3 bg-red-50 border-b border-red-200 text-red-700 text-sm">-->
+<!--    <div class="flex gap-2 items-start">-->
+<!--      <svg data-lucide="alert-circle" class="w-5 h-5 mt-0.5"></svg>-->
+<!--      <span id="cart-error-message"></span>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div id="empty-cart-message" class="hidden text-center text-slate-600 text-sm px-6 py-10">Your cart is empty.</div>-->
+<!--  <div class="flex-1 overflow-y-auto p-4 space-y-4 cart-items-container">-->
+<!--  </div>-->
+<!--  <div class="border-t p-4 text-sm space-y-3">-->
+<!--    <div class="flex justify-between"><span>Original total</span><span id="cart-original-total">$0.00</span></div>-->
+<!--    <div class="flex justify-between text-emerald-600"><span>Total savings</span><span id="total-savings-amount">-$0.00</span></div>-->
+<!--    <div class="flex justify-between font-bold text-lg"><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>-->
+<!--    <p id="installment-info" class="text-xs text-slate-500"></p>-->
+<!--    <div class="flex items-center justify-center space-x-2">-->
+<!--      <img src="https://cdn.shopify.com/s/files/1/0519/0238/2231/files/icc2_1.png?v=1654773077" alt="90-Day Money-Back Guarantee" class="h-8 w-auto" loading="lazy" decoding="async">-->
+<!--      <span class="text-xs font-semibold text-slate-800">90 Day Guarantee</span>-->
+<!--    </div>-->
+<!--    <button id="checkout-btn" class="w-full bg-red-600 hover:bg-red-700 active:scale-95 transition flex items-center justify-center gap-2 text-white font-semibold py-3 rounded-lg disabled:opacity-50" disabled>-->
+<!--      <svg data-lucide="shield-check" class="w-5 h-5"></svg>-->
+<!--      Proceed to Secure Checkout-->
+<!--    </button>-->
+<!--    <button id="continue-shopping-btn" class="hidden w-full text-center text-slate-600 text-sm underline">Continue Shopping</button>-->
+<!--  </div>-->
+<!--</aside>-->
+<!--<div id="cart-item-template" class="cart-item hidden border rounded-lg p-3 relative" data-line-id="">-->
+<!--  <div class="flex gap-4">-->
+<!--    <img data-cart-item-image src="" alt="" class="w-16 h-16 object-contain rounded" loading="lazy" decoding="async">-->
+<!--    <div class="flex-1">-->
+<!--      <p data-cart-item-name class="text-sm font-medium text-slate-800"></p>-->
+<!--      <div class="flex items-center mt-2">-->
+<!--        <button class="quantity-minus-btn quantity-btn p-1 text-slate-500 hover:text-slate-700" aria-label="Decrease quantity"><svg data-lucide="minus" class="w-4 h-4"></svg></button>-->
+<!--        <span data-cart-item-quantity class="mx-3 text-sm font-semibold">1</span>-->
+<!--        <button class="quantity-plus-btn quantity-btn p-1 text-slate-500 hover:text-slate-700" aria-label="Increase quantity"><svg data-lucide="plus" class="w-4 h-4"></svg></button>-->
+<!--        <button class="remove-item-btn ml-2 text-red-500 hover:text-red-700 text-xs underline" aria-label="Remove item">Remove</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="text-right">-->
+<!--      <p data-cart-item-price class="text-sm font-semibold text-slate-800">$0.00</p>-->
+<!--      <p data-cart-item-original-price class="text-xs line-through text-slate-400 hidden">$0.00</p>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--&lt;!&ndash; END NEW CART DRAWER HTML &ndash;&gt;-->
+
+<!--&lt;!&ndash; Scripts &ndash;&gt;-->
+<!--&lt;!&ndash; Existing scripts from lp/index.html for accordion etc. &ndash;&gt;-->
+<!--<script src="js/accordion.js" defer></script>-->
+
+<!--&lt;!&ndash; REMOVED/COMMENTED OUT old cart scripts from lp/index.html:-->
+<!--<script src="/_js/api.js" defer></script>-->
+<!--<script src="/_js/cart.js" defer></script>-->
+<!--&ndash;&gt;-->
+
+<!--&lt;!&ndash; START NEW SCRIPTS (Cart, Slider, Icons - Copied from lp-google) &ndash;&gt;-->
+<!--&lt;!&ndash; Ensure these files exist at these paths in your 'lp' project directory &ndash;&gt;-->
+<!--<script>-->
+<!--  // Date Updater Script (Copied from lp-google)-->
+<!--  // Ensure elements with class '.current-date' exist if this script is to be used.-->
+<!--  // document.addEventListener('DOMContentLoaded', function() {-->
+<!--  //   const today = new Date();-->
+<!--  //   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];-->
+<!--  //   const month = monthNames[today.getMonth()];-->
+<!--  //   const day = today.getDate();-->
+<!--  //   const year = today.getFullYear();-->
+<!--  //   let dayWithSuffix;-->
+<!--  //   if (day > 3 && day < 21) dayWithSuffix = day + "th";-->
+<!--  //   else if (day % 10 === 1) dayWithSuffix = day + "st";-->
+<!--  //   else if (day % 10 === 2) dayWithSuffix = day + "nd";-->
+<!--  //   else if (day % 10 === 3) dayWithSuffix = day + "rd";-->
+<!--  //   else dayWithSuffix = day + "th";-->
+<!--  //   const formattedDate = `${month} ${dayWithSuffix}, ${year}`;-->
+<!--  //   document.querySelectorAll('.current-date').forEach(function(el) {-->
+<!--  //     el.textContent = formattedDate;-->
+<!--  //   });-->
+<!--  // });-->
+<!--</script>-->
+
+<!--<script type="module" src="../js/cart-core.js"></script>-->
+<!--&lt;!&ndash;<script src="../dist/lucide.min.js"></script> &ndash;&gt;-->
+
+<!--<script type="module">-->
+<!--  const loadNonCritical = (() => {-->
+<!--    let loaded = false;-->
+<!--    return () => {-->
+<!--      if (loaded) return;-->
+<!--      loaded = true;-->
+<!--      -->
+<!--      // Cart drawer - this should handle .js-main-cta clicks, -->
+<!--      // fetch dynamic prices/discounts from Shopify, and update UI-->
+<!--      import('../js/cart-drawer.js'); -->
+<!--      // NOTE: bundle-selection.js is intentionally NOT imported here-->
+<!--      -->
+<!--      // Initialize Lucide icons if not done automatically-->
+<!--      // if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {-->
+<!--      //   // Check if the global lucide object or lucide.icons contains the icon definitions-->
+<!--      //   if (lucide.icons && Object.keys(lucide.icons).length > 0) {-->
+<!--      //     lucide.createIcons({ icons: lucide.icons });-->
+<!--      //   } else if (window.icons && Object.keys(window.icons).length > 0) { // Fallback for some build configurations-->
+<!--      //     lucide.createIcons({ icons: window.icons });-->
+<!--      //   } else {-->
+<!--      //     // If no icons are found, try calling without arguments,-->
+<!--      //     // as some Lucide builds might auto-initialize or register icons globally.-->
+<!--      //     try {-->
+<!--      //       lucide.createIcons();-->
+<!--      //       console.warn('Lucide createIcons() called without explicit icons object. Relies on global registration.');-->
+<!--      //     } catch (e) {-->
+<!--      //       console.error('Lucide icons object not found and createIcons() failed. Please ensure icons are correctly bundled and passed.', e);-->
+<!--      //     }-->
+<!--      //   }-->
+<!--      // }-->
+<!--    };-->
+<!--  })();-->
+
+<!--  if ('PerformanceObserver' in window) {-->
+<!--    new PerformanceObserver((entries, obs) => {-->
+<!--      loadNonCritical(); obs.disconnect();-->
+<!--    }).observe({ type: 'largest-contentful-paint', buffered: true });-->
+<!--  }-->
+<!--  ['pointerdown','touchstart','keydown','scroll']-->
+<!--    .forEach(evt => window.addEventListener(evt, loadNonCritical, { once:true, passive:true }));-->
+<!--  window.addEventListener('load', loadNonCritical, { once:true });-->
+<!--</script>-->
+<!--&lt;!&ndash; END NEW SCRIPTS &ndash;&gt;-->
+
+<!--</body>-->
+<!--</html>-->

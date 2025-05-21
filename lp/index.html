@@ -17,7 +17,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    
+<!--    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">-->
+
     <!-- Preload critical images with responsive sizes -->
     <link rel="preload" as="image" href="https://res.cloudinary.com/dg8ibuag5/image/upload/dpr_auto,f_auto,q_auto,w_auto/v1/lumiclean/lumiclean/fb937714554c1fcf983fcb03737c9a0186126b8d?_a=BAMAJaP8A" media="(min-width: 768px)">
     <link rel="preload" as="image" href="https://res.cloudinary.com/dg8ibuag5/image/upload/dpr_auto,f_auto,q_auto,w_auto,c_scale,w_400/v1/lumiclean/lumiclean/fb937714554c1fcf983fcb03737c9a0186126b8d?_a=BAMAJaP8A" media="(max-width: 767px)">
@@ -43,6 +44,12 @@
       <link rel="stylesheet" href="v12/styles.css">
       <link rel="stylesheet" href="footer/styles.css">
     </noscript>
+
+    <!-- TailwindCSS  - to do // -->
+    <script rel="preload" src="https://cdn.tailwindcss.com"></script>
+    <!-- Local CSS build -->
+    <link rel="stylesheet" href="../dist/styles.css">
+
   </head>
   <body>
    <main>
@@ -901,11 +908,9 @@
                  <span class="original-price">$99.99</span>
                  <span class="sale-price">$79.95</span>
                </div>
-               <!--          <button class="add-to-cart-btn">Add to cart</button>-->
-               <button id="add-to-cart-uvo254" class="add-to-cart-btn" data-variant="UVO254">
+               <button class="js-main-cta add-to-cart-btn" data-variant-id="gid://shopify/ProductVariant/44103628357881">
                  Add to Cart
                </button>
-               <!--                  <div id='product-component-1743514509506'></div>-->
                <div class="shipping-info">
                  <div>
                    <div>
@@ -962,11 +967,9 @@
                  <span class="original-price">$199.98</span>
                  <span class="sale-price">$139.90</span>
                </div>
-               <!--          <button class="add-to-cart-btn">Add to cart</button>-->
-               <button id="add-to-cart-uvo108" class="add-to-cart-btn" data-variant="UVO108">
+               <button class="js-main-cta add-to-cart-btn" data-variant-id="gid://shopify/ProductVariant/42904402526457">
                  Add to Cart
                </button>
-               <!--                  <div id='product-component-1743511404924'></div>-->
                <div class="shipping-info">
                  <div>
                    <div>
@@ -1023,11 +1026,9 @@
                  <span class="original-price">$299.97</span>
                  <span class="sale-price">$194.70</span>
                </div>
-               <!--          <button class="add-to-cart-btn">Add to cart</button>-->
-               <button id="add-to-cart-uvo72" class="add-to-cart-btn" data-variant="UVO72">
+               <button class="js-main-cta add-to-cart-btn" data-variant-id="gid://shopify/ProductVariant/42910843764985">
                  Add to Cart
                </button>
-               <!--                  <div id='product-component-1743516118498'></div>-->
                <div class="shipping-info">
                  <div>
                    <div>
@@ -1910,122 +1911,117 @@
        </div>
      </footer>
 
-     <!-- Cart Drawer Section -->
-      <div class="cart-drawer-section">
-        <!-- Open Cart Trigger Button -->
-        <button id="open-cart-trigger">
-          <span></span>
-          <span id="cart-item-count" class="hidden">0</span>
-        </button>
-
-        <!-- Cart Drawer -->
-        <div id="cart-drawer" class="cart-drawer">
-          <div class="cart-header">
-            <h2>Your Cart</h2>
-            <button id="close-cart-btn" class="close-cart-btn">&times;</button>
-          </div>
-
-          <div class="cart-items-container">
-            <!-- Cart Item Template -->
-            <div id="cart-item-template" class="cart-item hidden">
-              <img data-cart-item-image class="cart-item-image" src="" alt="">
-              <div class="cart-item-details">
-                <div data-cart-item-name class="cart-item-title"></div>
-                <div class="cart-item-price">
-                  <span data-cart-item-price></span>
-                  <span data-cart-item-original-price></span>
-                </div>
-                <div class="cart-item-quantity">
-                  <button class="quantity-btn quantity-minus-btn" aria-label="Decrease quantity">−</button>
-                  <span data-cart-item-quantity class="quantity-display">1</span>
-                  <button class="quantity-btn quantity-plus-btn" aria-label="Increase quantity">+</button>
-                </div>
-              </div>
-              <button class="remove-item-btn" aria-label="Remove item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-            </div>
-
-            <!-- Empty Cart Message -->
-            <div id="empty-cart-message" class="empty-cart-message">
-              Your cart is empty
-            </div>
-          </div>
-
-          <!-- Cart Summary -->
-          <div class="cart-summary">
-            <div class="price-row original-price">
-              <span>Original Price:</span>
-              <span id="cart-original-total"></span>
-            </div>
-            <div class="price-row discount">
-              <span>Initial Discount:</span>
-              <span id="initial-discount-amount"></span>
-            </div>
-            <div class="price-row total-savings">
-              <span>Total Savings:</span>
-              <span id="total-savings-amount"></span>
-            </div>
-            <div class="price-row final-price">
-              <span>Final Price:</span>
-              <span id="cart-subtotal"></span>
-            </div>
-
-            <!--            <div id='installment-info' class='text-sm text-gray-600 mb-4'></div>-->
-
-            <div class="free-shipping-banner">
-              <span>🚚</span>
-              Free Shipping Included
-            </div>
-
-            <div class="checkout-features">
-              <div class="feature">
-                <span>🔒</span>
-                Secure Checkout
-              </div>
-              <div class="feature">
-                <span>✓</span>
-                60-Day Guarantee
-              </div>
-            </div>
-
-
-            <button id="checkout-btn" class="checkout-btn">Proceed to Checkout</button>
-            <div class="taxes-notice">Taxes calculated at checkout.</div>
-          </div>
-
-          <!-- Loading Overlay -->
-          <div id="cart-loading-overlay" class="cart-loading-overlay hidden">
-            <div class="loading-spinner"></div>
-          </div>
-
-          <!-- Error Message -->
-          <div id="cart-error" class="cart-error hidden">
-            <span id="cart-error-message"></span>
-          </div>
-
-          <!-- Discount Section -->
-          <div id="discount-section" class="discount-section hidden">
-            <div id="reward-text"></div>
-            <div>Code: <span id="discount-code"></span></div>
-            <div>Expires in: <span id="timer" class="timer"></span></div>
-          </div>
-          <div id="expired-message" class="expired-message hidden">
-            Your discount code has expired
-          </div>
-        </div>
-
-        <!-- Cart Overlay -->
-        <div id="cart-overlay" class="cart-overlay"></div>
-      </div>
+     <!-- START NEW CART DRAWER HTML -->
+     <div id="cart-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 hidden transition-opacity"></div>
+     <aside id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" class="fixed top-0 right-0 w-full sm:w-[390px] max-w-full h-full bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+       <div id="cart-loading-overlay" class="absolute inset-0 bg-white/70 flex items-center justify-center hidden z-50">
+         <svg class="animate-spin h-8 w-8 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V4a4 4 0 00-4 4H4z"></path></svg>
+       </div>
+       <div class="flex items-start justify-between p-4 border-b">
+         <div>
+           <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1745600187/icc2_2_vowftt.webp" alt="Cart icon" class="w-10 h-10 mb-1" loading="lazy" decoding="async">
+           <h3 id="cart-drawer-title" class="text-lg font-bold text-slate-800">Items in your cart</h3>
+           <p class="text-xs text-sky-600 font-semibold -mt-0.5">Congrats! <span class="text-slate-700 font-medium">You've earned FREE SHIPPING</span></p>
+         </div>
+         <button id="close-cart-btn" aria-label="Close cart" class="text-slate-400 hover:text-slate-700">
+           <svg data-lucide="x" class="w-6 h-6"></svg>
+         </button>
+       </div>
+       <div id="cart-error" class="hidden opacity-0 transition-opacity px-4 py-3 bg-red-50 border-b border-red-200 text-red-700 text-sm">
+         <div class="flex gap-2 items-start">
+           <svg data-lucide="alert-circle" class="w-5 h-5 mt-0.5"></svg>
+           <span id="cart-error-message"></span>
+         </div>
+       </div>
+       <div id="empty-cart-message" class="hidden text-center text-slate-600 text-sm px-6 py-10">Your cart is empty.</div>
+       <div class="flex-1 overflow-y-auto p-4 space-y-4 cart-items-container">
+       </div>
+       <div class="border-t p-4 text-sm space-y-3">
+         <div class="flex justify-between"><span>Original total</span><span id="cart-original-total">$0.00</span></div>
+         <div class="flex justify-between text-emerald-600"><span>Total savings</span><span id="total-savings-amount">-$0.00</span></div>
+         <div class="flex justify-between font-bold text-lg"><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>
+         <p id="installment-info" class="text-xs text-slate-500"></p>
+         <div class="flex items-center justify-center space-x-2">
+           <img src="https://cdn.shopify.com/s/files/1/0519/0238/2231/files/icc2_1.png?v=1654773077" alt="90-Day Money-Back Guarantee" class="h-8 w-auto" loading="lazy" decoding="async">
+           <span class="text-xs font-semibold text-slate-800">90 Day Guarantee</span>
+         </div>
+         <button id="checkout-btn" class="w-full bg-red-600 hover:bg-red-700 active:scale-95 transition flex items-center justify-center gap-2 text-white font-semibold py-3 rounded-lg disabled:opacity-50" disabled>
+           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+           Proceed to Secure Checkout
+         </button>
+         <button id="continue-shopping-btn" class="hidden w-full text-center text-slate-600 text-sm underline">Continue Shopping</button>
+       </div>
+     </aside>
+     <div id="cart-item-template" class="cart-item hidden border rounded-lg p-3 relative" data-line-id="">
+       <div class="flex gap-4">
+         <img data-cart-item-image src="" alt="" class="w-16 h-16 object-contain rounded" loading="lazy" decoding="async">
+         <div class="flex-1">
+           <p data-cart-item-name class="text-sm font-medium text-slate-800"></p>
+           <div class="flex items-center mt-2">
+             <button class="quantity-minus-btn quantity-btn p-1 text-slate-500 hover:text-slate-700" aria-label="Decrease quantity"><svg data-lucide="minus" class="w-4 h-4"></svg></button>
+             <span data-cart-item-quantity class="mx-3 text-sm font-semibold">1</span>
+             <button class="quantity-plus-btn quantity-btn p-1 text-slate-500 hover:text-slate-700" aria-label="Increase quantity"><svg data-lucide="plus" class="w-4 h-4"></svg></button>
+             <button class="remove-item-btn ml-2 text-red-500 hover:text-red-700 text-xs underline" aria-label="Remove item">Remove</button>
+           </div>
+         </div>
+         <div class="text-right">
+           <p data-cart-item-price class="text-sm font-semibold text-slate-800">$0.00</p>
+           <p data-cart-item-original-price class="text-xs line-through text-slate-400 hidden">$0.00</p>
+         </div>
+       </div>
+     </div>
+     <!-- END NEW CART DRAWER HTML -->
    </main>
 
    <!-- Scripts -->
-   <script src="/_js/api.js" defer></script>
-   <script src="/_js/cart.js" defer></script>
+   <script type="module" src="../js/cart-core.js"></script>
+
+   <script type="module">
+     const loadNonCritical = (() => {
+       let loaded = false;
+       return () => {
+         if (loaded) return;
+         loaded = true;
+
+         // Cart drawer - this should handle .js-main-cta clicks,
+         // fetch dynamic prices/discounts from Shopify, and update UI
+         import('../js/cart-drawer.js');
+         // NOTE: bundle-selection.js is intentionally NOT imported here
+
+         // Initialize Lucide icons if not done automatically
+         if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+           // Check if the global lucide object or lucide.icons contains the icon definitions
+           if (lucide.icons && Object.keys(lucide.icons).length > 0) {
+             lucide.createIcons({ icons: lucide.icons });
+           } else if (window.icons && Object.keys(window.icons).length > 0) { // Fallback for some build configurations
+             lucide.createIcons({ icons: window.icons });
+           } else {
+             // If no icons are found, try calling without arguments,
+             // as some Lucide builds might auto-initialize or register icons globally.
+             try {
+               lucide.createIcons();
+               console.warn('Lucide createIcons() called without explicit icons object. Relies on global registration.');
+             } catch (e) {
+               console.error('Lucide icons object not found and createIcons() failed. Please ensure icons are correctly bundled and passed.', e);
+             }
+           }
+         }
+       };
+     })();
+
+     if ('PerformanceObserver' in window) {
+       new PerformanceObserver((entries, obs) => {
+         loadNonCritical(); obs.disconnect();
+       }).observe({ type: 'largest-contentful-paint', buffered: true });
+     }
+     ['pointerdown','touchstart','keydown','scroll']
+             .forEach(evt => window.addEventListener(evt, loadNonCritical, { once:true, passive:true }));
+     window.addEventListener('load', loadNonCritical, { once:true });
+   </script>
+
+   <script src="../dist/lucide.min.js" defer></script>
    <script src="js/accordion.js" defer></script>
+   <!-- END NEW SCRIPTS -->
 
   </body>
 </html>
