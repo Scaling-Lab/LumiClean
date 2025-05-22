@@ -154,7 +154,8 @@
   aspect-ratio: 0.75;
   object-fit: contain;
   object-position: center;
-  width: 590px;
+  /*width: 590px;*/
+  width: 698px;
   align-self: stretch;
   min-width: 240px;
   margin: auto 0;
