@@ -22,7 +22,7 @@ body {
 /* Lumiclean section styles */
 .lumiclean-section-v4 {
   display: flex;
-  padding: 78px 260px;
+  padding: 78px 0;
   align-items: center;
   gap: 125px;
   background: linear-gradient(180deg, #0072bd 0%, #3496d6 100%);

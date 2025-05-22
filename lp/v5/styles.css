@@ -27,7 +27,7 @@ body {
 
 @media (max-width: 640px) {
   .testimonials-wrapper {
-    padding: 24px;
+    padding: 24px 14px;
   }
 }
 

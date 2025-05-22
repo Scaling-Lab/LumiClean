@@ -18,13 +18,13 @@ body {
   width: 100%;
   min-height: 100vh;
   background-color: #1890d5;
-  padding: 100px 300px;
+  padding: 100px 0;
 }
 
 /* Responsive adjustments */
 @media (max-width: 991px) {
   .faq-container {
-    padding: 60px 100px;
+    padding: 60px 0;
   }
 }
 

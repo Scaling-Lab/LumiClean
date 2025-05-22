@@ -17,7 +17,7 @@ body {
 /* Hero Section */
 .hero-section {
   display: flex;
-  padding: 100px 0;
+  padding: 60px 0;
   justify-content: center;
   align-items: center;
   gap: 50px;
@@ -138,7 +138,7 @@ body {
 
 .feature-card {
   display: flex;
-  width: 200px;
+  width: 180px;
   height: 130px;
   padding: 16px 20px;
   flex-direction: column;
@@ -165,7 +165,7 @@ body {
 .feature-content {
   display: flex;
   text-align: center;
-  width: 160px;
+  /*width: 160px;*/
   flex-direction: column;
   align-items: center;
   gap: 10px;
@@ -188,7 +188,7 @@ body {
 /* CTA Section */
 .cta-container {
   display: flex;
-  width: 643px;
+  width: 543px;
   flex-direction: column;
   align-items: center;
   gap: 12px;

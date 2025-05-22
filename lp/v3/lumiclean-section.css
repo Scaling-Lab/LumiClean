@@ -1,7 +1,7 @@
 .lumiclean-section-v3 {
   background-color: rgba(245, 251, 254, 1);
   display: flex;
-  padding: 0 255px;
+  /*padding: 0 255px;*/
   align-items: center;
   justify-content: center;
   font-family:
@@ -12,14 +12,14 @@
           sans-serif;
 }
 
-.content-container-v3 {
-  display: flex;
-  gap: 100px;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-}
+/*.content-container-v3 {*/
+/*  display: flex;*/
+/*  gap: 100px;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  flex-wrap: wrap;*/
+/*  width: 100%;*/
+/*}*/
 
 .info-column-v3 {
   display: flex;

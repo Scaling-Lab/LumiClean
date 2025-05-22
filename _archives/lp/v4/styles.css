@@ -33,6 +33,7 @@ body {
   justify-content: center;
   align-items: center;
   flex: 1;
+  min-width: 230px;
 }
 
 .product-image-v4 {
