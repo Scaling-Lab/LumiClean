@@ -4,9 +4,9 @@ import { handleCors } from "./utils/cors.ts";
 export default async (request: Request, context: any) => {
   // Define allowed origins with expanded list
   const allowedOrigins = [
-    "https://*.uvlizer.co",
+    "https://*.trylumiclean.com",
     "https://*.uvlizer.us",
-    "https://uvlizer.co",
+    "https://trylumiclean.com",
     "https://uvlizer.us",
     "http://localhost:3000",
     "https://*.netlify.app"

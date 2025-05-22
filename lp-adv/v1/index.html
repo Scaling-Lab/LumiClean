@@ -22,109 +22,109 @@
 
   <!-- User ID Script (MUST RUN BEFORE ELEVAR SNIPPET) -->
   <script>
-    // (function(){
-    //   // Helper to read cookies
-    //   function readCookie(name) {
-    //     const m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
-    //     return m ? decodeURIComponent(m[1]) : null;
-    //   }
-    //
-    //   const newStorageKey = 'uvl_userId';
-    //   const oldStorageKey = 'userId';
-    //   const cookieName = 'uvl_userId'; // Only check for the new cookie name
-    //
-    //   let vid = null;
-    //   let idSource = ''; // Track where the ID came from
-    //
-    //   // 1) New localStorage CHECK
-    //   vid = localStorage.getItem(newStorageKey);
-    //   if (vid) idSource = 'localStorage_new';
-    //
-    //   // 2) Old localStorage CHECK (fallback)
-    //   if (!vid) {
-    //     vid = localStorage.getItem(oldStorageKey);
-    //     if (vid) idSource = 'localStorage_old';
-    //   }
-    //
-    //   // 3) Cookie CHECK (only new name)
-    //   if (!vid) {
-    //       vid = readCookie(cookieName);
-    //       if (vid) idSource = 'cookie_new';
-    //   }
-    //
-    //   // 4) GENERATE NEW ID
-    //   if (!vid) {
-    //     vid = crypto.randomUUID();
-    //     idSource = 'generated_client';
-    //     console.log('Generated new user ID:', vid);
-    //     sessionStorage.setItem('visitorSynced', 'false'); // Mark for server sync
-    //   } else {
-    //     // If ID was loaded, assume it might need syncing if not generated
-    //     if (sessionStorage.getItem('visitorSynced') !== 'true') {
-    //        sessionStorage.setItem('visitorSynced', 'false');
-    //     }
-    //   }
-    //
-    //   // Sync to *new* localStorage key if needed (or if found via old key)
-    //   if (localStorage.getItem(newStorageKey) !== vid) {
-    //     localStorage.setItem(newStorageKey, vid);
-    //     // Clean up old key if we found the ID there
-    //     if (idSource === 'localStorage_old') {
-    //         localStorage.removeItem(oldStorageKey);
-    //     }
-    //   }
-    //
-    //   // Expose globally (use new name)
-    //   window.uvl_userId = vid;
-    //
-    //   // Define ElevarUserIdFn *synchronously*
-    //   window.ElevarUserIdFn = function() {
-    //     return vid;
-    //   };
-    //
-    //   // Initialize ElevarDataLayer *only if it doesn't exist*
-    //   window.ElevarDataLayer = window.ElevarDataLayer || [];
-    //
-    //   // Server sync logic remains, triggered on load
-    //   window.addEventListener('load', function() {
-    //     if (sessionStorage.getItem('visitorSynced') === 'false') {
-    //       const endpoint = '/api/create-user-id';
-    //       const data = JSON.stringify({ uvl_userId: vid });
-    //
-    //       if (navigator.sendBeacon) {
-    //         const blob = new Blob([data], { type: 'application/json' });
-    //         navigator.sendBeacon(endpoint, blob);
-    //       } else {
-    //         fetch(endpoint, {
-    //           method: 'POST',
-    //           headers: { 'Content-Type': 'application/json' },
-    //           body: data,
-    //           keepalive: true,
-    //           credentials: 'include'
-    //         }).catch(e => console.warn('Failed to sync visitor ID:', e));
-    //       }
-    //       sessionStorage.setItem('visitorSynced', 'true');
-    //     }
-    //   });
-    // })();
+    (function(){
+      // Helper to read cookies
+      function readCookie(name) {
+        const m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return m ? decodeURIComponent(m[1]) : null;
+      }
+
+      const newStorageKey = 'lumi_userId';
+      const oldStorageKey = 'userId';
+      const cookieName = 'lumi_userId'; // Only check for the new cookie name
+
+      let vid = null;
+      let idSource = ''; // Track where the ID came from
+
+      // 1) New localStorage CHECK
+      vid = localStorage.getItem(newStorageKey);
+      if (vid) idSource = 'localStorage_new';
+
+      // 2) Old localStorage CHECK (fallback)
+      if (!vid) {
+        vid = localStorage.getItem(oldStorageKey);
+        if (vid) idSource = 'localStorage_old';
+      }
+
+      // 3) Cookie CHECK (only new name)
+      if (!vid) {
+          vid = readCookie(cookieName);
+          if (vid) idSource = 'cookie_new';
+      }
+
+      // 4) GENERATE NEW ID
+      if (!vid) {
+        vid = crypto.randomUUID();
+        idSource = 'generated_client';
+        console.log('Generated new user ID:', vid);
+        sessionStorage.setItem('visitorSynced', 'false'); // Mark for server sync
+      } else {
+        // If ID was loaded, assume it might need syncing if not generated
+        if (sessionStorage.getItem('visitorSynced') !== 'true') {
+           sessionStorage.setItem('visitorSynced', 'false');
+        }
+      }
+
+      // Sync to *new* localStorage key if needed (or if found via old key)
+      if (localStorage.getItem(newStorageKey) !== vid) {
+        localStorage.setItem(newStorageKey, vid);
+        // Clean up old key if we found the ID there
+        if (idSource === 'localStorage_old') {
+            localStorage.removeItem(oldStorageKey);
+        }
+      }
+
+      // Expose globally (use new name)
+      window.lumi_userId = vid;
+
+      // Define ElevarUserIdFn *synchronously*
+      window.ElevarUserIdFn = function() {
+        return vid;
+      };
+
+      // Initialize ElevarDataLayer *only if it doesn't exist*
+      window.ElevarDataLayer = window.ElevarDataLayer || [];
+
+      // Server sync logic remains, triggered on load
+      window.addEventListener('load', function() {
+        if (sessionStorage.getItem('visitorSynced') === 'false') {
+          const endpoint = '/api/create-user-id';
+          const data = JSON.stringify({ lumi_userId: vid });
+
+          if (navigator.sendBeacon) {
+            const blob = new Blob([data], { type: 'application/json' });
+            navigator.sendBeacon(endpoint, blob);
+          } else {
+            fetch(endpoint, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: data,
+              keepalive: true,
+              credentials: 'include'
+            }).catch(e => console.warn('Failed to sync visitor ID:', e));
+          }
+          sessionStorage.setItem('visitorSynced', 'true');
+        }
+      });
+    })();
   </script>
 
   <!-- Elevar Analytics Integration -->
   <script type="module">
-      // try {
-      // const settings  = { proxyPath: "/elevar" };
-      // const config = (await import("/elevar/static/configs/f4d4c41a0ed093339678a8934fc524d8e026ba61/config.js")).default;
-      // const scriptUrl = settings.proxyPath
-      //     ? settings.proxyPath + config.script_src_custom_pages_proxied
-      //     : config.script_src_custom_pages;
-      //
-      // if (scriptUrl) {
-      //     const { handler } = await import(scriptUrl);
-      //     await handler(config, settings);
-      // }
-      // } catch (e) {
-      // console.error(e);
-      // }
+      try {
+        const settings  = { proxyPath: "/elevar" };
+        const config = (await import("/elevar/static/configs/edf986f96bbf02ccad1be72e30b63c345f230010/config.js")).default;
+        const scriptUrl = settings.proxyPath
+            ? settings.proxyPath + config.script_src_custom_pages_proxied
+            : config.script_src_custom_pages;
+
+        if (scriptUrl) {
+            const { handler } = await import(scriptUrl);
+            await handler(config, settings);
+        }
+      } catch (e) {
+        console.error(e);
+      }
   </script>
 
   <style>html.cart-drawer-open{overflow:hidden}</style>
@@ -139,50 +139,41 @@
     // var head = document.head;
     // var script = document.createElement('script');
     // script.type = 'text/javascript';
-    // script.src = "https://hy.uvlizer.co/v1/lst/universal-script?ph=2ef1310bcfcbb87c184a4eb930dfb7123fd1b16bfd9ab63d4a9dc441373b90b1&tag=!clicked&ref_url=" + encodeURI(document.URL) ;
+    // script.src = "https://hy.trylumiclean.com/v1/lst/universal-script?ph=2ef1310bcfcbb87c184a4eb930dfb7123fd1b16bfd9ab63d4a9dc441373b90b1&tag=!clicked&ref_url=" + encodeURI(document.URL) ;
     // head.appendChild(script);
     </script>
     <script>
-//       // Get the current hostname
-// const hostname = window.location.hostname;
-//
-// // Set default cookie domain
-// let cookieDomain = '.uvlizer.co';
-//
-// // Check if hostname contains .us
-// if (hostname.includes('.us')) {
-//   cookieDomain = '.uvlizer.us';
-// }
-// // Check if hostname contains .co
-// else if (hostname.includes('.co')) {
-//   cookieDomain = '.uvlizer.co';
-// }
+// Get the current hostname
+const hostname = window.location.hostname;
+
+// Set default cookie domain
+let cookieDomain = '.trylumiclean.com';
 
 // Set the cookie domain
     </script>
 <!--      <script type="text/javascript" async src="https://cdn.mida.so/js/optimize.js?key=rZJ9PXwqRayOKRzKyMOgVW"></script>-->
 
   <!-- Google Tag Manager -->
-<!--  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':-->
-<!--    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],-->
-<!--    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=-->
-<!--    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);-->
-<!--    })(window,document,'script','dataLayer','GTM-KVTMT9D');</script>-->
-<!--    &lt;!&ndash; End Google Tag Manager &ndash;&gt;-->
-<!--    &lt;!&ndash; Preload the heavy cart drawer module &ndash;&gt;-->
-<!--    <link rel="modulepreload" href="/js/cart-drawer.js">-->
-<!--    &lt;!&ndash; Mida A/B Testing Script &ndash;&gt;-->
-<!--    <script>jdgm = window.jdgm || {};jdgm.SHOP_DOMAIN = 'kathyfox.myshopify.com';jdgm.PLATFORM = 'shopify';jdgm.PUBLIC_TOKEN = '2b1wVwBUbVq3hGsNCxBvnhqtARQ';</script>-->
-<!--    <script>-->
-<!--      requestIdleCallback(()=> {-->
-<!--        const s=document.createElement('script');-->
-<!--        s.setAttribute('data-cfasync', 'false'); // Correctly set the attribute-->
-<!--        s.type='text/javascript';-->
-<!--        s.src='https://cdnwidget.judge.me/widget_preloader.js';-->
-<!--        s.async=true; -->
-<!--        document.body.appendChild(s);-->
-<!--      });-->
-<!--    </script>-->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WDGC2FSW');</script>
+  <!-- End Google Tag Manager -->
+  <!-- Preload the heavy cart drawer module -->
+  <link rel="modulepreload" href="/js/cart-drawer.js">
+  <!-- Mida A/B Testing Script -->
+  <script>jdgm = window.jdgm || {};jdgm.SHOP_DOMAIN = 'kathyfox.myshopify.com';jdgm.PLATFORM = 'shopify';jdgm.PUBLIC_TOKEN = '';</script>
+  <script>
+    requestIdleCallback(()=> {
+      const s=document.createElement('script');
+      s.setAttribute('data-cfasync', 'false'); // Correctly set the attribute
+      s.type='text/javascript';
+      s.src='https://cdnwidget.judge.me/widget_preloader.js';
+      s.async=true; 
+      document.body.appendChild(s);
+    });
+  </script>
 
 <!--  <link rel="apple-touch-icon" sizes="180x180" href="/assets/fav_256x256_34fa8253-33e8-4209-a0b1-08f6576dcd89_180x180_crop_center.webp">-->
 <!--  <link rel="icon" type="image/png" sizes="32x32" href="/assets/fav_256x256_34fa8253-33e8-4209-a0b1-08f6576dcd89_32x32_crop_center.webp">-->
@@ -190,8 +181,8 @@
 </head>
 <body class="bg-gray-50 text-gray-900 leading-relaxed">
   <!-- Google Tag Manager (noscript) -->
-<!--  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVTMT9D"-->
-<!--  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>-->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDGC2FSW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
   <!-- Smart Floating Sticky CTA (No Image) -->

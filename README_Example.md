@@ -57,10 +57,10 @@ To add a new landing page (e.g., for a new campaign):
         *   Meta tags (viewport, charset, title).
         *   Favicon links.
         *   Font loading (e.g., Google Fonts `Inter`).
-        *   **User ID Script:** The inline script that defines `window.uvl_userId` and `window.ElevarUserIdFn`. **Crucially, this MUST come *before* the Elevar script.**
+        *   **User ID Script:** The inline script that defines `window.lumi_userId` and `window.ElevarUserIdFn`. **Crucially, this MUST come *before* the Elevar script.**
         *   **Elevar Analytics:** The script loaded via module import (`/elevar/...`).
         *   **Google Tag Manager (GTM):** The standard GTM snippet (`GTM-KVTMT9D`).
-        *   **Other Trackers:** Include snippets for Mida (`cdn.mida.so`), Hyros (`hy.uvlizer.co`), etc., as seen in `index.html`.
+        *   **Other Trackers:** Include snippets for Mida (`cdn.mida.so`), Hyros (`hy.trylumiclean.com`), etc., as seen in `index.html`.
         *   **Judge.me:** The setup script defining `jdgm` and the lazy-loaded widget script using `requestIdleCallback`.
         *   **Preloads:** Include relevant `<link rel="modulepreload">` or `<link rel="preload">` tags for important assets (like `cart-drawer.js`).
 5.  **JavaScript Loading:**

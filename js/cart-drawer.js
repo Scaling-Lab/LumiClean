@@ -696,8 +696,8 @@ function setupEventListeners() {
                     const currentHostname = window.location.hostname;
 
                     // Determine the target Shopify domain based on the current frontend domain
-                    if (currentHostname.endsWith('.uvlizer.co')) {
-                        checkoutUrlObject.hostname = 'uvlizer.co'; // Or checkout.uvlizer.co if applicable
+                    if (currentHostname.endsWith('.trylumiclean.com')) {
+                        checkoutUrlObject.hostname = 'trylumiclean.com'; // Or checkout.trylumiclean.com if applicable
                     } else if (currentHostname.endsWith('.uvlizer.us')) {
                         checkoutUrlObject.hostname = 'uvlizer.us'; // Or checkout.uvlizer.us if applicable
                     }

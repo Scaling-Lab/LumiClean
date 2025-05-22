@@ -4,9 +4,9 @@ import { handleCors } from "./utils/cors.ts";
 export default async (request: Request, context: any) => {
   // Define allowed origins - adjust if needed, e.g., specific subdomains + root
   const allowedOrigins = [  
-    "https://*.uvlizer.co",
+    "https://*.trylumiclean.com",
     "https://*.uvlizer.us",
-    "https://uvlizer.co",
+    "https://trylumiclean.com",
     "https://uvlizer.us",
     "http://localhost:8888",     // local Netlify dev
     "https://*.netlify.app"      // Netlify preview domains
@@ -31,8 +31,8 @@ export default async (request: Request, context: any) => {
       const requestData = await request.json().catch(() => ({}));
       
       // First try to use the visitorId from the client bootstrap (update key)
-      if (requestData.uvl_userId) {
-        userId = requestData.uvl_userId;
+      if (requestData.lumi_userId) {
+        userId = requestData.lumi_userId;
         idSource = 'client_bootstrap';
       } else if (requestData.visitorId) {
         // Support old key temporarily? Or remove? Let's remove for now.
@@ -45,7 +45,7 @@ export default async (request: Request, context: any) => {
       }
     }
   } catch (e) {
-    console.warn('Could not parse request body for uvl_userId', e);
+    console.warn('Could not parse request body for lumi_userId', e);
   }
 
   // If no valid ID from client, generate a new one
@@ -59,9 +59,9 @@ export default async (request: Request, context: any) => {
   let domain;
   try {
     const url = new URL(request.url);
-    if (url.hostname.includes('uvlizer.co')) {
+    if (url.hostname.includes('trylumiclean.com')) {
       // Production domain - set to root domain for subdomain sharing
-      domain = '.uvlizer.co';
+      domain = '.trylumiclean.com';
     } else if (url.hostname.includes('uvlizer.us')) {
       // Production domain - set to root domain for subdomain sharing
       domain = '.uvlizer.us';
@@ -74,14 +74,14 @@ export default async (request: Request, context: any) => {
     }
   } catch (e) {
     // Fallback to default domain
-    domain = '.uvlizer.co';
+    domain = '.trylumiclean.com';
   }
 
   // Define cookie attributes
   const oneYearInSeconds = 365 * 24 * 60 * 60;
   const twoYearsInSeconds = 2 * oneYearInSeconds;
   const cookieAttributes = [
-    `uvl_userId=${userId}`,
+    `lumi_userId=${userId}`,
     `Domain=${domain}`, // Dynamic domain
     `Path=/`,
     `Max-Age=${twoYearsInSeconds}`,
@@ -94,7 +94,7 @@ export default async (request: Request, context: any) => {
   return new Response(
     JSON.stringify({
       success: true,
-      uvl_userId: userId,
+      lumi_userId: userId,
       isNewUser: idSource === 'uuid_generated_server', // Only truly new if we generated it
       idSource,
       domain  // Include domain in response for debugging

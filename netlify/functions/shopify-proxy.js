@@ -3,9 +3,9 @@ const { createStorefrontApiClient } = require('@shopify/storefront-api-client');
 
 // Define allowed origins (replace with your actual frontend domain(s))
 const allowedOrigins = [
-    'https://*.uvlizer.co', 
+    'https://*.trylumiclean.com', 
     'https://*.uvlizer.us', 
-    'https://staging.offers.uvlizer.co', // Example: Your staging domain
+    'https://staging.offers.trylumiclean.com', // Example: Your staging domain
     // Add 'http://localhost:xxxx' for local development if needed
     'http://localhost:8888', // Example: Netlify Dev default port
     'http://localhost:3000', // Vite/React/Vue default dev server

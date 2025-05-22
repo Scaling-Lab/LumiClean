@@ -31,9 +31,9 @@
         return m ? decodeURIComponent(m[1]) : null;
       }
       
-      const newStorageKey = 'uvl_userId'; 
+      const newStorageKey = 'lumi_userId'; 
       const oldStorageKey = 'userId';
-      const cookieName = 'uvl_userId'; // Only check for the new cookie name
+      const cookieName = 'lumi_userId'; // Only check for the new cookie name
       
       let vid = null;
       let idSource = ''; // Track where the ID came from
@@ -77,7 +77,7 @@
       }
       
       // Expose globally (use new name)
-      window.uvl_userId = vid;
+      window.lumi_userId = vid;
       
       // Define ElevarUserIdFn *synchronously*
       window.ElevarUserIdFn = function() { 
@@ -91,7 +91,7 @@
       window.addEventListener('load', function() {
         if (sessionStorage.getItem('visitorSynced') === 'false') {
           const endpoint = '/api/create-user-id';
-          const data = JSON.stringify({ uvl_userId: vid });
+          const data = JSON.stringify({ lumi_userId: vid });
           
           if (navigator.sendBeacon) {
             const blob = new Blob([data], { type: 'application/json' });
@@ -187,7 +187,7 @@
     var head = document.head;
     var script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = "https://hy.uvlizer.co/v1/lst/universal-script?ph=2ef1310bcfcbb87c184a4eb930dfb7123fd1b16bfd9ab63d4a9dc441373b90b1&tag=!clicked&ref_url=" + encodeURI(document.URL) ;
+    script.src = "https://hy.trylumiclean.com/v1/lst/universal-script?ph=2ef1310bcfcbb87c184a4eb930dfb7123fd1b16bfd9ab63d4a9dc441373b90b1&tag=!clicked&ref_url=" + encodeURI(document.URL) ;
     head.appendChild(script);
     </script>
     <script>
@@ -195,7 +195,7 @@
 const hostname = window.location.hostname;
 
 // Set default cookie domain
-let cookieDomain = '.uvlizer.co';
+let cookieDomain = '.trylumiclean.com';
 
 // Check if hostname contains .us
 if (hostname.includes('.us')) {
@@ -203,7 +203,7 @@ if (hostname.includes('.us')) {
 }
 // Check if hostname contains .co
 else if (hostname.includes('.co')) {
-  cookieDomain = '.uvlizer.co';
+  cookieDomain = '.trylumiclean.com';
 }
 
 // Set the cookie domain
@@ -1001,12 +1001,12 @@ This is What the UVO254™ Lamp Can Do For You
                  class="w-full object-cover" loading="lazy" decoding="async">
           </div>
           <div class="swiper-slide">
-            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/4_900x.png?v=1738584140"
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.trylumiclean.com/cdn/shop/files/4_900x.png?v=1738584140"
                  alt="UVO254™ Tower – angle 2"
                  class="w-full object-cover" loading="lazy" decoding="async">
           </div>
           <div class="swiper-slide">
-            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/2_900x.png?v=1738584140"
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.trylumiclean.com/cdn/shop/files/2_900x.png?v=1738584140"
                  alt="UVO254™ Tower – angle 3"
                  class="w-full object-cover" loading="lazy" decoding="async">
           </div>
@@ -1216,11 +1216,11 @@ This is What the UVO254™ Lamp Can Do For You
                 </div>
                 <!-- Slide 2 -->
                 <div class="swiper-slide">
-                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/4_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.trylumiclean.com/cdn/shop/files/4_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
                 </div>
                 <!-- Slide 3 -->
                 <div class="swiper-slide">
-                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/2_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.trylumiclean.com/cdn/shop/files/2_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
                 </div>
                 <!-- Added Images -->
                 <div class="swiper-slide">
@@ -1793,12 +1793,12 @@ This is What the UVO254™ Lamp Can Do For You
                  class="w-full object-cover" loading="lazy" decoding="async">
           </div>
           <div class="swiper-slide">
-            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/4_900x.png?v=1738584140"
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.trylumiclean.com/cdn/shop/files/4_900x.png?v=1738584140"
                  alt="UVO254™ Tower – angle 2"
                  class="w-full object-cover" loading="lazy" decoding="async">
           </div>
           <div class="swiper-slide">
-            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/2_900x.png?v=1738584140"
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.trylumiclean.com/cdn/shop/files/2_900x.png?v=1738584140"
                  alt="UVO254™ Tower – angle 3"
                  class="w-full object-cover" loading="lazy" decoding="async">
           </div>
@@ -2003,11 +2003,11 @@ This is What the UVO254™ Lamp Can Do For You
                 </div>
                 <!-- Slide 2 -->
                 <div class="swiper-slide">
-                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/4_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.trylumiclean.com/cdn/shop/files/4_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
                 </div>
                 <!-- Slide 3 -->
                 <div class="swiper-slide">
-                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.uvlizer.co/cdn/shop/files/2_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
+                  <img src="https://res.cloudinary.com/dg8ibuag5/image/fetch/f_auto,q_auto,w_auto,dpr_auto/https://www.trylumiclean.com/cdn/shop/files/2_900x.png?v=1738584140" alt="UVO254™ Tower" class="w-full max-h-[500px] rounded-lg shadow-lg" loading="lazy" decoding="async">
                 </div>
                 <!-- Added Images -->
                 <div class="swiper-slide">
@@ -2563,10 +2563,10 @@ This is What the UVO254™ Lamp Can Do For You
       <div>
         <h3 class="font-semibold text-white mb-4">Company</h3>
         <ul class="space-y-2">
-          <li><a href="https://www.uvlizer.co/pages/about-us-1" target="_blank" class="text-white/80 hover:text-white transition">About Us</a></li>
-          <li><a href="https://uvlizer.co/apps/parcelpanel" target="_blank" class="text-white/80 hover:text-white transition">Track Your Order</a></li>
+          <li><a href="https://www.trylumiclean.com/pages/about-us-1" target="_blank" class="text-white/80 hover:text-white transition">About Us</a></li>
+          <li><a href="https://trylumiclean.com/apps/parcelpanel" target="_blank" class="text-white/80 hover:text-white transition">Track Your Order</a></li>
           <li><a href="https://uvlizer.gorgias.help/en-US" target="_blank" class="text-white/80 hover:text-white transition">Contact Us</a></li>
-          <li><a href="https://uvlizer.co/apps/collective/retailer-referral" target="_blank" class="text-white/80 hover:text-white transition">Become an Affiliate</a></li>
+          <li><a href="https://trylumiclean.com/apps/collective/retailer-referral" target="_blank" class="text-white/80 hover:text-white transition">Become an Affiliate</a></li>
         </ul>
       </div>
       
@@ -2582,11 +2582,11 @@ This is What the UVO254™ Lamp Can Do For You
       <div>
         <h3 class="font-semibold text-white mb-4">Information</h3>
         <ul class="space-y-2">
-          <li><a href="https://www.uvlizer.co/policies/privacy-policy" target="_blank" class="text-white/80 hover:text-white transition">Privacy Policy</a></li>
-          <li><a href="https://www.uvlizer.co/policies/terms-of-sale" target="_blank" class="text-white/80 hover:text-white transition">Terms of Sale, Service and Conditions of Use</a></li>
-          <li><a href="https://www.uvlizer.co/policies/refund-policy" target="_blank" class="text-white/80 hover:text-white transition">Refund & Return Policy</a></li>
-          <li><a href="https://www.uvlizer.co/policies/shipping-policy" target="_blank" class="text-white/80 hover:text-white transition">Shipping Policy</a></li>
-          <li><a href="https://www.uvlizer.co/pages/billing-terms-condition" target="_blank" class="text-white/80 hover:text-white transition">Billing Terms & Condition</a></li>
+          <li><a href="https://www.trylumiclean.com/policies/privacy-policy" target="_blank" class="text-white/80 hover:text-white transition">Privacy Policy</a></li>
+          <li><a href="https://www.trylumiclean.com/policies/terms-of-sale" target="_blank" class="text-white/80 hover:text-white transition">Terms of Sale, Service and Conditions of Use</a></li>
+          <li><a href="https://www.trylumiclean.com/policies/refund-policy" target="_blank" class="text-white/80 hover:text-white transition">Refund & Return Policy</a></li>
+          <li><a href="https://www.trylumiclean.com/policies/shipping-policy" target="_blank" class="text-white/80 hover:text-white transition">Shipping Policy</a></li>
+          <li><a href="https://www.trylumiclean.com/pages/billing-terms-condition" target="_blank" class="text-white/80 hover:text-white transition">Billing Terms & Condition</a></li>
         </ul>
       </div>
     </div>
