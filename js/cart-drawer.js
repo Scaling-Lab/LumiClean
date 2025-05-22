@@ -43,7 +43,7 @@ let isLoading = false; // Manage loading state locally for drawer actions
 let previousActiveElement = null; // For focus trapping
 
 // --- Local Storage Keys (Needed for Alia UI) ---
-const UVLIZER_PREFIX = 'uvlizer_';
+const UVLIZER_PREFIX = 'lumiclean_';
 const ALIA_CODE_STORAGE_KEY = `${UVLIZER_PREFIX}alia_discount_code`;
 const ALIA_TEXT_STORAGE_KEY = `${UVLIZER_PREFIX}alia_reward_text`;
 const ALIA_EXPIRY_STORAGE_KEY = `${UVLIZER_PREFIX}alia_expiry_timestamp`;
@@ -117,7 +117,7 @@ function createElevarProductObj(item, includeQuantity = true) {
     const product = {
       id: item.merchandise?.product?.handle || "",
       name: item.merchandise?.product?.title || "",
-      brand: "Uvlizer",
+      brand: "Lumiclean",
       category: "Home & Garden",
       variant: item.merchandise?.title || "",
       price: (priceInCents / 100).toFixed(2),
@@ -162,7 +162,7 @@ function createElevarImpressionObj(item, index) {
     return {
       id: item.merchandise?.product?.handle || "",
       name: item.merchandise?.product?.title || "",
-      brand: "Uvlizer",
+      brand: "Lumiclean",
       category: "Home & Garden",
       variant: item.merchandise?.title || "",
       price: (priceInCents / 100).toFixed(2),
@@ -613,7 +613,7 @@ async function handleAddItemClick(variantId) {
                         ImageURL: merch.image?.url,
                         ProductURL: window.location.origin + merch.product.url, // Use ProductURL and product's relative URL
                         ProductCategories: merch.product.collections?.nodes?.map(c => c.title) || [], // Use ProductCategories, get from collections if possible
-                        Brand: 'UvLizer', // Keep Brand if useful
+                        Brand: 'Lumiclean', // Keep Brand if useful
                         VariantName: merch.title // Keep VariantName if useful
                     };
                 });
@@ -698,8 +698,7 @@ function setupEventListeners() {
                     // Determine the target Shopify domain based on the current frontend domain
                     if (currentHostname.endsWith('.trylumiclean.com')) {
                         checkoutUrlObject.hostname = 'trylumiclean.com'; // Or checkout.trylumiclean.com if applicable
-                    } else if (currentHostname.endsWith('.uvlizer.us')) {
-                        checkoutUrlObject.hostname = 'uvlizer.us'; // Or checkout.uvlizer.us if applicable
+                    
                     }
                     // else: Keep the original hostname from Shopify (handles localhost, staging, etc.)
 
