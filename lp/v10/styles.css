@@ -14,7 +14,7 @@ body {
 .easy-steps-section {
   background-color: #ffffff;
   display: flex;
-  padding: 60px 222px;
+  padding: 60px 10px;
   flex-direction: column;
   align-items: stretch;
   justify-content: center;

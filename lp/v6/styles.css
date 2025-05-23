@@ -88,14 +88,15 @@ body {
   min-height: 96px;
   flex-grow: 1;
   flex-shrink: 1;
-  width: 363px;
+  /*width: 363px;*/
+  width: min-content;
 }
 
 .feature-content-v6 {
   display: flex;
   width: 100%;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   justify-content: start;
 }
 
