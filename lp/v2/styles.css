@@ -29,7 +29,12 @@ body {
 /* Image Styles */
 .info-image {
   margin: 0;
-  max-width: 50%;
+}
+
+@media (min-width: 991px) {
+  .info-image {
+    max-width: 50%;
+  }
 }
 
 .main-image {
@@ -48,7 +53,12 @@ body {
   align-items: center;
   gap: 15px;
   flex-shrink: 1;
-  max-width: 47%;
+}
+
+@media (min-width: 991px) {
+  .info-content {
+    max-width: 47%;
+  }
 }
 
 .info-heading {
