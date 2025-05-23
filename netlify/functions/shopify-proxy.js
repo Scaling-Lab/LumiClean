@@ -38,8 +38,13 @@ exports.handler = async function(event, context) {
                  return origin && origin.startsWith(base);
              }
         }
-        // Default to exact match for non-wildcard origins
-        return origin === allowed;
+// Default to exact match for non-wildcard origins
+//         return origin === allowed;
+
+        // Make the comparison case-insensitive and ignore potential default ports
+        const normalizedOrigin = origin ? origin.toLowerCase().replace(/:443$/, '').replace(/:80$/, '') : null;
+        const normalizedAllowed = allowed.toLowerCase().replace(/:443$/, '').replace(/:80$/, '');
+        return normalizedOrigin === normalizedAllowed;
     });
 
     // Default headers for CORS
