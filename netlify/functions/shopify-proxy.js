@@ -10,7 +10,7 @@ const allowedOrigins = [
     'http://localhost:8888', // Example: Netlify Dev default port
     'http://localhost:3000', // Vite/React/Vue default dev server
     'http://127.0.0.1:3000', 
-    'https://uvlizer.netlify.app'
+    'https://lumiclean.netlify.app'
 ];
 
 exports.handler = async function(event, context) {
