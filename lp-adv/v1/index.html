@@ -147,9 +147,15 @@
 const hostname = window.location.hostname;
 
 // Set default cookie domain
-let cookieDomain = '.trylumiclean.com';
+let cookieDomain = '.trylumiclean.com'; // Default to new domain
 
-// Set the cookie domain
+// Set the cookie domain based on the current hostname
+if (hostname.endsWith('.trylumiclean.com')) {
+    cookieDomain = '.trylumiclean.com';
+} else if (hostname === 'localhost' || hostname.includes('.netlify.app')) {
+    // For localhost or Netlify previews, don't set a specific domain (browser default behavior)
+    cookieDomain = '';
+}
     </script>
 <!--      <script type="text/javascript" async src="https://cdn.mida.so/js/optimize.js?key=rZJ9PXwqRayOKRzKyMOgVW"></script>-->
 
@@ -630,4 +636,4 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
 
 </body>
-</html> 
+</html>

@@ -1,21 +1,195 @@
-<!DOCTYPE html>
+<!--
+  LumiClean Landing Page NEW ADVERTORIAL (v2) – Tailwind CSS (rev 2)
+  -------------------------------------------------
+-->
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LumiClean Landing Page</title>
+  <title>LumiClean Landing Page NEW ADVERTORIAL</title>
 
-  <!-- TailwindCSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Local CSS build -->
+  <link rel="stylesheet" href="/dist/styles.css">
 
-  <!-- Smooth scrolling for anchor links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://res.cloudinary.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <!-- Fallback for browsers that don't support preload or JS disabled -->
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"></noscript>
+
+
+  <!-- User ID Script (MUST RUN BEFORE ELEVAR SNIPPET) -->
+  <script>
+    (function(){
+      // Helper to read cookies
+      function readCookie(name) {
+        const m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return m ? decodeURIComponent(m[1]) : null;
+      }
+
+      const newStorageKey = 'lumi_userId';
+      const oldStorageKey = 'userId';
+      const cookieName = 'lumi_userId'; // Only check for the new cookie name
+
+      let vid = null;
+      let idSource = ''; // Track where the ID came from
+
+      // 1) New localStorage CHECK
+      vid = localStorage.getItem(newStorageKey);
+      if (vid) idSource = 'localStorage_new';
+
+      // 2) Old localStorage CHECK (fallback)
+      if (!vid) {
+        vid = localStorage.getItem(oldStorageKey);
+        if (vid) idSource = 'localStorage_old';
+      }
+
+      // 3) Cookie CHECK (only new name)
+      if (!vid) {
+          vid = readCookie(cookieName);
+          if (vid) idSource = 'cookie_new';
+      }
+
+      // 4) GENERATE NEW ID
+      if (!vid) {
+        vid = crypto.randomUUID();
+        idSource = 'generated_client';
+        console.log('Generated new user ID:', vid);
+        sessionStorage.setItem('visitorSynced', 'false'); // Mark for server sync
+      } else {
+        // If ID was loaded, assume it might need syncing if not generated
+        if (sessionStorage.getItem('visitorSynced') !== 'true') {
+           sessionStorage.setItem('visitorSynced', 'false');
+        }
+      }
+
+      // Sync to *new* localStorage key if needed (or if found via old key)
+      if (localStorage.getItem(newStorageKey) !== vid) {
+        localStorage.setItem(newStorageKey, vid);
+        // Clean up old key if we found the ID there
+        if (idSource === 'localStorage_old') {
+            localStorage.removeItem(oldStorageKey);
+        }
+      }
+
+      // Expose globally (use new name)
+      window.lumi_userId = vid;
+
+      // Define ElevarUserIdFn *synchronously*
+      window.ElevarUserIdFn = function() {
+        return vid;
+      };
+
+      // Initialize ElevarDataLayer *only if it doesn't exist*
+      window.ElevarDataLayer = window.ElevarDataLayer || [];
+
+      // Server sync logic remains, triggered on load
+      window.addEventListener('load', function() {
+        if (sessionStorage.getItem('visitorSynced') === 'false') {
+          const endpoint = '/api/create-user-id';
+          const data = JSON.stringify({ lumi_userId: vid });
+
+          if (navigator.sendBeacon) {
+            const blob = new Blob([data], { type: 'application/json' });
+            navigator.sendBeacon(endpoint, blob);
+          } else {
+            fetch(endpoint, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: data,
+              keepalive: true,
+              credentials: 'include'
+            }).catch(e => console.warn('Failed to sync visitor ID:', e));
+          }
+          sessionStorage.setItem('visitorSynced', 'true');
+        }
+      });
+    })();
+  </script>
+
+  <!-- Elevar Analytics Integration -->
+  <script type="module">
+      try {
+        const settings  = { proxyPath: "/elevar" };
+        const config = (await import("/elevar/static/configs/edf986f96bbf02ccad1be72e30b63c345f230010/config.js")).default;
+        const scriptUrl = settings.proxyPath
+            ? settings.proxyPath + config.script_src_custom_pages_proxied
+            : config.script_src_custom_pages;
+
+        if (scriptUrl) {
+            const { handler } = await import(scriptUrl);
+            await handler(config, settings);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+  </script>
+
+  <style>html.cart-drawer-open{overflow:hidden}</style>
   <style>
-    html { scroll-behavior: smooth }
-    .no-scrollbar::-webkit-scrollbar { display: none }
-    .no-scrollbar { scrollbar-width: none }
+    /* Add smooth scrolling for intra-page links */
+    html {
+      scroll-behavior: smooth;
+    }
   </style>
+
+  <script>
+    // var head = document.head;
+    // var script = document.createElement('script');
+    // script.type = 'text/javascript';
+    // script.src = "https://hy.trylumiclean.com/v1/lst/universal-script?ph=2ef1310bcfcbb87c184a4eb930dfb7123fd1b16bfd9ab63d4a9dc441373b90b1&tag=!clicked&ref_url=" + encodeURI(document.URL) ;
+    // head.appendChild(script);
+    </script>
+    <script>
+// Get the current hostname
+const hostname = window.location.hostname;
+
+// Set default cookie domain
+let cookieDomain = '.trylumiclean.com'; // Default to new domain
+
+// Set the cookie domain based on the current hostname
+if (hostname.endsWith('.trylumiclean.com')) {
+    cookieDomain = '.trylumiclean.com';
+} else if (hostname === 'localhost' || hostname.includes('.netlify.app')) {
+    // For localhost or Netlify previews, don't set a specific domain (browser default behavior)
+    cookieDomain = ''; 
+}
+    </script>
+<!--      <script type="text/javascript" async src="https://cdn.mida.so/js/optimize.js?key=rZJ9PXwqRayOKRzKyMOgVW"></script>-->
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WDGC2FSW');</script>
+  <!-- End Google Tag Manager -->
+  <!-- Preload the heavy cart drawer module -->
+  <link rel="modulepreload" href="/js/cart-drawer.js">
+  <!-- Mida A/B Testing Script -->
+  <script>jdgm = window.jdgm || {};jdgm.SHOP_DOMAIN = 'kathyfox.myshopify.com';jdgm.PLATFORM = 'shopify';jdgm.PUBLIC_TOKEN = '';</script>
+  <script>
+    requestIdleCallback(()=> {
+      const s=document.createElement('script');
+      s.setAttribute('data-cfasync', 'false'); // Correctly set the attribute
+      s.type='text/javascript';
+      s.src='https://cdnwidget.judge.me/widget_preloader.js';
+      s.async=true; 
+      document.body.appendChild(s);
+    });
+  </script>
+
+<!--  <link rel="apple-touch-icon" sizes="180x180" href="/assets/fav_256x256_34fa8253-33e8-4209-a0b1-08f6576dcd89_180x180_crop_center.webp">-->
+<!--  <link rel="icon" type="image/png" sizes="32x32" href="/assets/fav_256x256_34fa8253-33e8-4209-a0b1-08f6576dcd89_32x32_crop_center.webp">-->
+<!--  <link rel="icon" type="image/png" sizes="16x16" href="/assets/fav_256x256_34fa8253-33e8-4209-a0b1-08f6576dcd89_16x16_crop_center.webp">-->
 </head>
 <body class="bg-gray-50 text-gray-900 leading-relaxed">
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDGC2FSW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- Smart Floating Sticky CTA (No Image) -->
   <a href="#how-get" 
@@ -26,7 +200,7 @@
   </a>
 
   <!-- Main centered container start -->
-  <div class="w-full max-w-6xl mx-auto">
+  <div class="w-full max-w-6xl mx-auto px-4">
     
     <!-- Top Bar -->
     <div class="bg-gray-100 text-xs py-2 flex items-center gap-2 pl-4">
@@ -42,7 +216,7 @@
     </div>
 
     <!-- Logo -->
-    <header class="py-6 pl-4">
+    <header class="py-4 pl-4 bg-white shadow-sm">
       <div class="w-40">
         <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071040/LumiClean%20ADvertorial/fzxb2anofyzymtv7ivil.png"
              alt="LumiClean Logo"
@@ -51,7 +225,7 @@
     </header>
 
     <!-- ================= NEW RIDGE-STYLE HERO SECTION ================= -->
-    <section class="py-10">
+    <section class="py-6 bg-white shadow-sm">
       <div class="px-4">
         <h1 class="text-4xl md:text-4xl font-bold text-center mb-6 leading-tight text-gray-800">
           5 Shocking Reasons Why Americans Are Throwing Out Their Cleaning Supplies For This Revolutionary Device
@@ -74,7 +248,7 @@
     </section>
 
     <!-- ================= REASON 1 SECTION (Mobile: H->I->T; Desktop: I|T) ================= -->
-    <section class="py-20">
+    <section class="py-10 bg-white shadow-sm">
       <div class="px-4">
         <div class="md:flex md:gap-10 items-start"> <!-- Desktop two-column layout -->
 
@@ -113,7 +287,7 @@
     </section>
 
     <!-- ================= REASON 2 SECTION (New Simpler Structure) ================= -->
-    <section class="py-15">
+    <section class="py-10 bg-white shadow-sm">
       <div class="px-4">
         <div class="md:flex md:gap-10 items-start"> <!-- Desktop two-column layout -->
 
@@ -169,7 +343,7 @@
     </section>
 
     <!-- ================= REASON 3 SECTION (New Simpler Structure) ================= -->
-    <section class="py-10">
+    <section class="py-10 bg-white shadow-sm">
       <div class="px-4">
         <div class="md:flex md:gap-10 items-start"> <!-- Desktop two-column layout -->
 
@@ -206,7 +380,7 @@
     </section>
 
     <!-- ================= REASON 4 SECTION (New Simpler Structure) ================= -->
-    <section class="py-10">
+    <section class="py-10 bg-white shadow-sm">
       <div class="px-4">
         <div class="md:flex md:gap-10 items-start"> <!-- Desktop two-column layout -->
 
@@ -281,7 +455,7 @@
     </section>
 
     <!-- ================= IMPORTANT UPDATE SECTION ================= -->
-    <section class="py-10">
+    <section class="py-10 bg-white shadow-sm">
       <div class="px-4">
         <div class="bg-sky-100 border border-sky-300 text-sky-800 p-6 md:p-8 rounded-lg shadow-md">
           <p class="font-bold text-lg mb-3">[IMPORTANT UPDATE: May 26, 2025]</p>
@@ -296,7 +470,7 @@
     </section>
 
     <!-- ================= REASON 5 SECTION (New Simpler Structure) ================= -->
-    <section class="py-10">
+    <section class="py-10 bg-white shadow-sm">
       <div class="px-4">
         <div class="md:flex md:gap-10 items-start"> <!-- Desktop two-column layout -->
 
@@ -331,7 +505,7 @@
     </section>
 
     <!-- ================= BEST BANG FOR BUCK SECTION ================= -->
-    <section class="py-12 bg-indigo-50"> <!-- Light lavender/blue background for whole section -->
+    <section id="how-get" class="py-10 px-4 bg-indigo-50 shadow-sm">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-800">The Best Bang For Your Buck, Period!</h2>
         <div class="text-gray-700 space-y-3 mb-10 text-lg md:text-base">
@@ -351,7 +525,7 @@
             <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071040/LumiClean%20ADvertorial/fzxb2anofyzymtv7ivil.png" alt="LumiClean Logo" class="h-10 w-auto mx-auto mb-3">
             <h3 class="text-2xl md:text-3xl font-bold text-gray-800">LumiClean <br class="sm:hidden">Home Disinfection Tower</h3>
             <p class="text-gray-600">Breathe Easier, Live Cleaner!</p>
-            <a href="#" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl py-4 px-6 rounded-md shadow-lg transition transform hover:scale-105">
+            <a href="../../lp/" id="final-static-cta" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl py-4 px-6 rounded-md shadow-lg transition transform hover:scale-105">
               GET 35% OFF
             </a>
             <div class="text-sm">
@@ -365,42 +539,55 @@
 
         <!-- Right Column: Product Image -->
         <div class="md:w-2/5 lg:w-1/2 flex items-center justify-center">
-          <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto/v1/lumiclean/lumiclean/86c9dbab764100c0ae5c55422a35c0c59d7bd50e" alt="Three LumiClean Units" class="max-w-sm md:max-w-full h-auto rounded-lg">
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto/v1/lumiclean/lumiclean/86c9dbab764100c0ae5c55422a35c0c59d7bd50e" alt="Three LumiClean Units" class="max-w-sm md:max-w-full h-auto rounded-lg px-3">
         </div>
       </div>
     </section>
 
+  </div> <!-- Moved this closing div before the footer -->
+
     <!-- ================= FOOTER/DISCLOSURE SECTION ================= -->
-    <footer class="py-12 text-xs text-gray-500 bg-white shadow-sm mt-1"> <!-- Added mt-1 for slight separation if needed -->
-      <div class="max-w-3xl mx-auto space-y-6">
-        <div class="flex justify-center items-center space-x-4 sm:space-x-6 mb-6">
-          <a href="#" class="hover:underline">Privacy Policy / CCPA</a>
-          <span class="text-gray-300">|</span>
-          <a href="#" class="hover:underline">Refunds</a>
-          <span class="text-gray-300">|</span>
-          <a href="#" class="hover:underline">Terms & Conditions</a>
+  <!-- Footer Section -->
+  <footer class="bg-black text-white py-8 mt-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <!-- Copyright and Links -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+        <div class="text-sm text-gray-400">
+          © 2025 All Rights Reserved
         </div>
-
-        <p class="font-semibold uppercase text-gray-700 text-center">
-          THIS IS AN ADVERTORIAL AND NOT AN ACTUAL NEWS ARTICLE, BLOG, OR CONSUMER PROTECTION UPDATE.
-        </p>
-
-        <div class="space-y-3">
-          <p><strong class="font-semibold text-gray-600">MARKETING DISCLOSURE:</strong> This website is owned and operated by LumiClean. The advertorial contains fictitious product reviews that reflect a composite of Clarifion customer's experiences using the product.</p>
-          <p><strong class="font-semibold text-gray-600">AFFILIATE DISCLOSURE:</strong> This advertorial contains affiliate links within the content and display ads. The owner of this site receives a commission if you make a purchase after clicking on the affiliate links.</p>
+        <div class="flex flex-wrap justify-center gap-4 text-sm">
+          <a href="https://trylumiclean.com/policies/terms-of-service" class="text-gray-300 hover:text-white transition">Terms of Service</a>
+          <a href="https://trylumiclean.com/policies/shipping-policy" class="text-gray-300 hover:text-white transition">Shipping Policy</a>
+          <a href="https://trylumiclean.com/policies/refund-policy" class="text-gray-300 hover:text-white transition">Refund & Return Policy</a>
+          <a href="https://trylumiclean.com/policies/privacy-policy" class="text-gray-300 hover:text-white transition">Privacy Policy</a>
+          <a href="https://trylumiclean.com/policies/contact-information" class="text-gray-300 hover:text-white transition">Contact Us</a>
         </div>
       </div>
-    </footer>
 
-  </div> <!-- Closes w-full max-w-6xl mx-auto -->
+      <!-- Disclaimers -->
+      <div class="border-t border-gray-400 pt-6">
+        <div class="space-y-4 text-xs text-gray-400">
+          <p class="text-center md:text-left">
+            THIS IS AN ADVERTORIAL AND NOT AN ACTUAL NEWS ARTICLE, BLOG, OR CONSUMER PROTECTION UPDATE FOR LUMICLEAN.
+          </p>
+          <p class="text-center md:text-left">
+            MARKETING DISCLOSURE: This website is owned and operated by LumiClean. The advertorial contains fictitious product reviews that reflect a composite of LumiClean customer's experiences using the product.
+          </p>
+          <p class="text-center md:text-left">
+            AFFILIATE DISCLOSURE: This advertorial contains affiliate links within the content and display ads. The owner of this site receives a commission if you make a purchase after clicking on the affiliate links.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const floatingCta = document.getElementById('smart-floating-cta');
-      const finalStaticCta = document.getElementById('final-static-cta'); // This ID won't be found now
+      const finalStaticCta = document.getElementById('final-static-cta');
       
-      if (!floatingCta) { // Removed check for finalStaticCta
-        console.warn('Floating CTA not found. Hiding logic will not run.');
+      if (!floatingCta || !finalStaticCta) {
+        console.warn('Floating CTA or Final Static CTA not found. Hiding logic will not run.');
         return;
       }
   
@@ -420,19 +607,26 @@
       function handleScroll() {
         const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
         const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Point where the final static CTA starts
+        const finalCtaTop = finalStaticCta.offsetTop;
+        
+        // Point where the bottom of the viewport is
+        const viewportBottom = scrollPosition + windowHeight;
   
-        // Hide when near the bottom of this shorter page section or after some scroll
-        const thresholdFromBottom = 200; // Pixels from bottom of document to hide CTA
-        const showAfterScroll = 150; // Pixels scrolled down to show CTA
-
-        if (scrollPosition > showAfterScroll) {
-          if ((scrollPosition + windowHeight) < (documentHeight - thresholdFromBottom)) {
+        // Threshold: How far above the final static CTA should the floating one disappear?
+        // This might need adjustment. e.g., height of floating CTA + some buffer.
+        const hideThreshold = 100; // pixels. Adjust this value.
+  
+        // Show after scrolling down a bit (e.g., 300px)
+        if (scrollPosition > 300) {
+          if (viewportBottom < (finalCtaTop - hideThreshold)) {
             showFloatingCta();
           } else {
             hideFloatingCta();
           }
         } else {
+          // Hide if near the top of the page
           hideFloatingCta();
         }
       }
