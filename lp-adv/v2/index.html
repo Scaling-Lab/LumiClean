@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LumiClean Landing Page</title>
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Smooth scrolling for anchor links -->
+  <style>
+    html { scroll-behavior: smooth }
+    .no-scrollbar::-webkit-scrollbar { display: none }
+    .no-scrollbar { scrollbar-width: none }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 leading-relaxed">
+
+  <!-- Smart Floating Sticky CTA (No Image) -->
+  <a href="#how-get" 
+     id="smart-floating-cta" 
+     class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 flex items-center bg-blue-600 text-white font-semibold px-6 py-4 rounded-full shadow-lg hover:bg-blue-700 transition opacity-0 invisible pointer-events-none" 
+     style="transition: opacity 0.3s ease, visibility 0.3s ease;"> 
+    <span>Check Availability &raquo;</span>
+  </a>
+
+  <!-- Main centered container start -->
+  <div class="w-full max-w-6xl mx-auto">
+    
+    <!-- Top Bar -->
+    <div class="bg-gray-100 text-xs py-2 flex items-center gap-2 pl-4">
+      <div class="h-4 w-6 border border-gray-300 flex items-center justify-center rounded-sm overflow-hidden">
+        <!-- Simple US Flag Placeholder SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" class="w-full h-full">
+          <rect width="1200" height="630" fill="#fff"/>
+          <path fill="#b22234" d="M0 0h1200v54H0zm0 108h1200v54H0zm0 108h1200v54H0zm0 108h1200v54H0zm0 108h1200v54H0z"/>
+          <path fill="#3c3b6e" d="M0 0h456.4v378H0z"/>
+        </svg>
+      </div>
+      <span class="tracking-wide uppercase">Advertorial</span>
+    </div>
+
+    <!-- Logo -->
+    <header class="py-6 pl-4">
+      <div class="w-40">
+        <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071040/LumiClean%20ADvertorial/fzxb2anofyzymtv7ivil.png"
+             alt="LumiClean Logo"
+             class="h-12 w-auto object-contain" />
+      </div>
+    </header>
+
+    <!-- ================= NEW RIDGE-STYLE HERO SECTION ================= -->
+    <section class="py-10">
+      <div class="px-4">
+        <h1 class="text-4xl md:text-4xl font-bold text-center mb-6 leading-tight text-gray-800">
+          5 Shocking Reasons Why Americans Are Throwing Out Their Cleaning Supplies For This Revolutionary Device
+        </h1>
+        <div class="max-w-2xl mx-auto text-center text-base leading-relaxed text-gray-700 space-y-2">
+          <p>
+            Are you tired of the endless cycle of cleaning, only to feel that nagging doubt: did I really get everything? That moment when you see dust floating in the sunlight... even though you JUST finished cleaning?
+          </p>
+          <p>
+            For those of us who understand that true cleanliness is more than just surface level, the fight against invisible germs can feel… never-ending. In fact, scientists recently discovered that the average "clean" home still harbors over 500 million hidden threats - multiplying in places no spray can reach.
+          </p>
+          <p>
+            But what if there was a way to finally win the war on germs, to achieve a level of clean you can truly feel confident in? The same technology hospitals trust when lives depend on true sterilization?
+          </p>
+          <p>
+            Meet LumiClean, the revolutionary home sanitization device designed for those who demand more than just ordinary cleaning. For someone like me who refused to settle for "surface clean," LumiClean isn't just another gadget – it's the peace of mind I've been searching for.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= REASON 1 SECTION (Mobile: H->I->T; Desktop: I|T) ================= -->
+    <section class="py-20">
+      <div class="px-4">
+        <div class="md:flex md:gap-10 items-start"> <!-- Desktop two-column layout -->
+
+          <!-- DESKTOP IMAGE COLUMN (Left) -->
+          <div class="hidden md:block md:w-1/2 md:order-1">
+            <div class="aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
+              <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto/v1/lumiclean/q769ynnvpgmk1vnqpfwe" 
+                   alt="LumiClean effectively cleaning a room" 
+                   class="w-full h-full object-cover">
+            </div>
+          </div>
+
+          <!-- TEXT COLUMN (Desktop Right / Mobile Full Width) -->
+          <div class="md:w-1/2 md:order-2 flex flex-col">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+              1 LumiClean's Advanced UVO3 System Reaches Places No Spray, Wipe, or Scrubbing Ever Could
+            </h3>
+
+            <!-- MOBILE-ONLY IMAGE -->
+            <div class="block md:hidden aspect-[4/3] rounded-lg overflow-hidden shadow-lg mb-6">
+              <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto/v1/lumiclean/q769ynnvpgmk1vnqpfwe" 
+                   alt="LumiClean effectively cleaning a room" 
+                   class="w-full h-full object-cover">
+            </div>
+
+            <div class="text-base leading-relaxed text-gray-700 space-y-4">
+                <p>Let's face it: wipes and sprays—even those loaded with the strongest, most toxic chemicals—only clean what you can physically touch, that means you're missing up to 87% of the dangerous pathogens lurking in your home.</p>
+                <p>Think about it: while you sleep tonight, millions of microscopic threats are multiplying in your mattress (right where your children rest their faces). They're burrowing deep into your carpets. And they're floating through the air your family breathes—completely immune to traditional cleaning methods.</p>
+                <p>That's why over 40,000 American families have switched to LumiClean.</p>
+                <p>Their  breakthrough system combines hospital-grade UVC light (the exact 253.7nm wavelength used in operating rooms) with  controlled ozone emission. to flood your entire space with sanitizing power. It penetrates deep into fabrics, eliminates 99.97% of harmful pathogens, and even destroys stubborn moldy smells at their source. All without exposing your family to harsh chemicals or toxic residues.</p>
+                <p class="italic">"The UVC technology in LumiClean showed superior pathogen elimination compared to traditional chemical cleaning in our independent laboratory tests" - Dr. James Chen, Environmental Microbiology Expert</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= REASON 2 SECTION (New Simpler Structure) ================= -->
+    <section class="py-15">
+      <div class="px-4">
+        <div class="md:flex md:gap-10 items-start"> <!-- Desktop two-column layout -->
+
+          <!-- DESKTOP IMAGE COLUMN (Left) -->
+          <div class="hidden md:block md:w-1/2 md:order-1">
+            <div class="aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
+              <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto/v1/lumiclean/alwr0qjaqkaqvry4zu3b" alt="Woman relaxing while LumiClean works" class="w-full h-full object-cover">
+            </div>
+          </div>
+
+          <!-- TEXT COLUMN (Desktop Right / Mobile Full Width) -->
+          <div class="md:w-1/2 md:order-2 flex flex-col">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+               2. Stop Hours Of Scrubbing And Reclaim Your Time With Hands-Free Sanitization
+            </h3>
+
+            <!-- MOBILE-ONLY IMAGE -->
+            <div class="block md:hidden aspect-[4/3] rounded-lg overflow-hidden shadow-lg mb-6">
+              <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto/v1/lumiclean/alwr0qjaqkaqvry4zu3b" alt="Woman relaxing while LumiClean works" class="w-full h-full object-cover">
+            </div>
+            
+            <div class="text-base leading-relaxed text-gray-700 space-y-4">
+              <p>Remember the last time your child asked "Mommy, can you play with me?" and you had to say "Sorry honey, I need to clean"?</p>
+              <p>That guilty knot in your stomach... it never really goes away, does it?</p>
+              <p>According to child psychologists, these missed moments add up. The average mom now spends more time cleaning (438 hours yearly) than making memories with their children (372 hours). That's over a month of precious family time... lost to endless scrubbing and sanitizing.</p>
+              <p>Of course, maintaining a clean home will always be important - that's what makes you a great parent. LumiClean isn't about stopping your regular cleaning routine. It's about giving you the choice to clean smarter, not harder.</p>
+              <p>Think of it as your silent cleaning partner. While you handle the basic tidying that keeps your home looking beautiful, LumiClean works invisibly in the background to handle the deep sanitization that traditional cleaning can't reach. It's like having a hospital-grade cleaning crew working 24/7, enhancing everything you already do.</p>
+              <p>Using the same UV technology trusted by NASA (where manual cleaning isn't even possible), it transforms your entire cleaning routine with just one button. While you're reading bedtime stories, hosting family game nights, or simply being present with your loved ones, LumiClean:</p>
+              <ul class="list-none space-y-2 my-4">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 flex-shrink-0 mr-2 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  <span class="font-bold text-black">Silently sanitizes your entire space</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 flex-shrink-0 mr-2 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  <span class="font-bold text-black">Eliminates 99.97% of germs (verified by independent labs)</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 flex-shrink-0 mr-2 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  <span class="font-bold text-black">Reaches places no spray or wipe ever could</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 flex-shrink-0 mr-2 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                  <span class="font-bold text-black">Works completely automatically</span>
+                </li>
+              </ul>
+              <p>Imagine saying "yes" when your kids ask to play. Having spontaneous movie nights without worrying about cleaning first. Actually being there for those precious moments instead of constantly cleaning.</p>
+              <p>That's the real magic of LumiClean. It doesn't just give you a cleaner home - it gives you back the irreplaceable moments that traditional cleaning steals away.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= REASON 3 SECTION (New Simpler Structure) ================= -->
+    <section class="py-10">
+      <div class="px-4">
+        <div class="md:flex md:gap-10 items-start"> <!-- Desktop two-column layout -->
+
+          <!-- DESKTOP IMAGE COLUMN (Left) -->
+          <div class="hidden md:block md:w-1/2 md:order-1">
+            <div class="aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
+              <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto/v1/lumiclean/hazzo8i1az81crcpamoa" alt="Hospital-grade UVO sterilization technology" class="w-full h-full object-cover">
+            </div>
+          </div>
+
+          <!-- TEXT COLUMN (Desktop Right / Mobile Full Width) -->
+          <div class="md:w-1/2 md:order-2 flex flex-col">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+              3. What Hospitals Trust, Now In Your Home: Experience True Sterilization
+            </h3>
+
+            <!-- MOBILE-ONLY IMAGE -->
+            <div class="block md:hidden aspect-[4/3] rounded-lg overflow-hidden shadow-lg mb-6">
+              <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto/v1/lumiclean/hazzo8i1az81crcpamoa" alt="Hospital-grade UVO sterilization technology" class="w-full h-full object-cover">
+            </div>
+            
+            <div class="text-base leading-relaxed text-gray-700 space-y-4">
+              <p>What if you could make your home as sterile as a hospital operating room? Not just surface clean... but genuinely, scientifically sanitized?</p>
+              <p>For decades, this level of cleanliness was impossible for regular homes. The most powerful sanitization technology - trusted by hospitals where lives depend on absolute sterility - was simply too complex and expensive for home use.</p>
+              <p>We're talking about UVO3 technology - the gold standard that hospitals, NASA, and commercial airlines rely on. In these environments, where a single germ could have catastrophic consequences, traditional cleaning methods aren't even considered. They demand something far more powerful.</p>
+              <p>That's exactly why LumiClean has become such a game-changer.</p>
+              <p>By adapting professional-grade UVO3 technology for home use, they've brought hospital-grade sanitization into everyday homes. The same advanced system that protects surgical patients and astronauts can now protect your family.</p>
+              <p>The technology is so effective that a single cycle achieves the same level of sanitization as an operating room deep clean. And while traditional cleaning methods might miss hidden germs, LumiClean's UVO3 technology reaches everywhere light can touch - eliminating threats at their source.</p>
+              <p>No wonder medical professionals are calling it one of the most significant advances in home sanitization this decade.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= REASON 4 SECTION (New Simpler Structure) ================= -->
+    <section class="py-10">
+      <div class="px-4">
+        <div class="md:flex md:gap-10 items-start"> <!-- Desktop two-column layout -->
+
+          <!-- DESKTOP IMAGE COLUMN (Left) -->
+          <div class="hidden md:block md:w-1/2 md:order-1">
+            <div class="aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
+              <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto/v1/lumiclean/hp8puyalcw6xak6dxunn" alt="LumiClean user photos collage" class="w-full h-full object-cover">
+            </div>
+          </div>
+
+          <!-- TEXT COLUMN (Desktop Right / Mobile Full Width) -->
+          <div class="md:w-1/2 md:order-2 flex flex-col">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+              4. Thousands of Raving Fans
+            </h3>
+
+            <!-- MOBILE-ONLY IMAGE -->
+            <div class="block md:hidden aspect-[4/3] rounded-lg overflow-hidden shadow-lg mb-6">
+              <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto/v1/lumiclean/hp8puyalcw6xak6dxunn" alt="LumiClean user photos collage" class="w-full h-full object-cover">
+            </div>
+
+            <div class="text-base leading-relaxed text-gray-700 space-y-4">
+              <p>When LumiClean first appeared on Facebook, something unexpected happened. Instead of the usual "clean with me" videos showing hours of exhausting scrubbing, people started sharing something revolutionary: their homes being sanitized while they relaxed.</p>
+              <p>With a push the button you can  turn all of your towers on, leave the disinfected rooms then come back to a fresh smelling space.</p>
+              <p>Here's what real LumiClean users are saying:</p>
+
+              <!-- Review 1 -->
+              <div class="bg-gray-50 p-4 rounded-lg shadow mb-4">
+                <div class="flex items-center mb-2">
+                  <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                </div>
+                <p class="italic text-gray-800">"As a pediatric nurse, I'm extremely picky about sanitization. LumiClean is the only device I trust in my kids' rooms. The UV-detection feature actually SHOWS you it's working."</p>
+                <p class="text-sm text-gray-600 mt-2 font-semibold">- Maria S., Verified Buyer</p>
+              </div>
+
+              <!-- Review 2 -->
+              <div class="bg-gray-50 p-4 rounded-lg shadow mb-4">
+                <div class="flex items-center mb-2">
+                  <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                </div>
+                <p class="italic text-gray-800">"My son has allergies. Since using LumiClean, his symptoms have dramatically improved. Our doctor was so impressed, he ordered one for his own home."</p>
+                <p class="text-sm text-gray-600 mt-2 font-semibold">- David K., Verified Buyer</p>
+              </div>
+
+              <!-- Review 3 -->
+              <div class="bg-gray-50 p-4 rounded-lg shadow mb-4">
+                <div class="flex items-center mb-2">
+                  <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                </div>
+                <p class="italic text-gray-800">"After seeing the before/after tests, I bought one for my elderly mother. Now I don't worry about her exposure to harsh chemicals, and her home stays sanitized automatically."</p>
+                <p class="text-sm text-gray-600 mt-2 font-semibold">- Jennifer R., Verified Buyer</p>
+              </div>
+
+              <p>But there's the challenge...</p>
+              <p>Due to the specialized nature of medical-grade UVO3 technology, LumiClean's production capacity is strictly limited. And Most families are ordering 3, 6 or even 10 units for different rooms, and the current inventory is depleting faster than anticipated.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= IMPORTANT UPDATE SECTION ================= -->
+    <section class="py-10">
+      <div class="px-4">
+        <div class="bg-sky-100 border border-sky-300 text-sky-800 p-6 md:p-8 rounded-lg shadow-md">
+          <p class="font-bold text-lg mb-3">[IMPORTANT UPDATE: May 26, 2025]</p>
+          <p class="mb-3">
+            Given ongoing supply chain challenges and unprecedented demand, LumiClean has announced they cannot guarantee stock availability beyond current inventory levels. Once these units sell out, production delays could extend several months due to the specialized components required.
+          </p>
+          <p>
+            The company has already sold out three times this year, with each restock selling out within 72 hours. For those interested in transforming their home with hospital-grade sanitization, securing a unit from the current inventory is crucial.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= REASON 5 SECTION (New Simpler Structure) ================= -->
+    <section class="py-10">
+      <div class="px-4">
+        <div class="md:flex md:gap-10 items-start"> <!-- Desktop two-column layout -->
+
+          <!-- DESKTOP IMAGE COLUMN (Left) -->
+          <div class="hidden md:block md:w-1/2 md:order-1">
+            <div class="aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
+              <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto/v1/lumiclean/w7vepd3bjph41vraeupk" alt="LumiClean Money Back Guarantee and Product Boxes" class="w-full h-full object-cover">
+            </div>
+          </div>
+
+          <!-- TEXT COLUMN (Desktop Right / Mobile Full Width) -->
+          <div class="md:w-1/2 md:order-2 flex flex-col">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+              5. Scared to Try Something New?
+            </h3>
+            
+            <!-- MOBILE-ONLY IMAGE -->
+            <div class="block md:hidden aspect-[4/3] rounded-lg overflow-hidden shadow-lg mb-6">
+              <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto/v1/lumiclean/w7vepd3bjph41vraeupk" alt="LumiClean Money Back Guarantee and Product Boxes" class="w-full h-full object-cover">
+            </div>
+
+            <div class="text-base leading-relaxed text-gray-700 space-y-4">
+              <p>If you're a cleanliness devotee then you will be absolutely hooked on <strong class="font-semibold text-black">LumiClean.</strong></p>
+              <p>We are so confident that you will not only love it, but that you will tell all of your friends and family about it too.</p>
+              <p>With that said, we offer <strong class="font-semibold text-black">60 days</strong> to try it <strong class="font-semibold text-black">completely risk-free.</strong> with our <strong class="font-semibold text-black">100% Money-Back Guarantee.</strong></p>
+              <p>So, if you don't notice any difference, you can simply send it back for a <strong class="font-semibold text-black">full refund—no questions asked.</strong></p>
+              <p>We have to warn you though...<br />Once you try <strong class="font-semibold text-black">LumiClean</strong> you will absolutely come back for more!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BEST BANG FOR BUCK SECTION ================= -->
+    <section class="py-12 bg-indigo-50"> <!-- Light lavender/blue background for whole section -->
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-800">The Best Bang For Your Buck, Period!</h2>
+        <div class="text-gray-700 space-y-3 mb-10 text-lg md:text-base">
+          <p>
+            LumiClean UVC towers comes in <strong class="font-semibold text-black">under $200 per unit</strong> (keep in mind one unit <strong class="font-semibold text-black">sanitizes 250 sq ft of space</strong>). That means each truly sanitized room costs you pennies per use! <strong class="font-semibold text-black">Say goodbye to expensive cleaning services and mountains of disposable cleaning supplies</strong> because with sanitization this powerful and pricing this good, you will never go back to old ways of cleaning again. Since you're reading this today we can help you save even more with <strong class="font-semibold text-black">discount code "CLEAN15"</strong> when you click on over now. If that's not enough, we have also discounted each bundle for a limited time only.
+          </p>
+          <p class="font-bold text-gray-800">
+            Bonus Tip: <span class="font-semibold text-black">there is free shipping</span> on the 2+ unit option!
+          </p>
+        </div>
+      </div>
+      <!-- Offer Box and Image Container -->
+      <div class="max-w-3xl mx-auto md:flex md:gap-8 items-center">
+        <!-- Left Column: Offer Box -->
+        <div class="md:w-3/5 lg:w-1/2 mb-8 md:mb-0">
+          <div class="bg-white border-2 border-blue-600 rounded-lg p-6 md:p-8 shadow-xl text-center space-y-5">
+            <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/v1747071040/LumiClean%20ADvertorial/fzxb2anofyzymtv7ivil.png" alt="LumiClean Logo" class="h-10 w-auto mx-auto mb-3">
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-800">LumiClean <br class="sm:hidden">Home Disinfection Tower</h3>
+            <p class="text-gray-600">Breathe Easier, Live Cleaner!</p>
+            <a href="#" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl py-4 px-6 rounded-md shadow-lg transition transform hover:scale-105">
+              GET 35% OFF
+            </a>
+            <div class="text-sm">
+              <span class="text-red-600 font-semibold">Sell-out Risk: High</span>
+              <span class="text-gray-400 mx-2">|</span>
+              <span class="font-semibold text-black">FREE shipping</span>
+            </div>
+            <p class="text-xs text-gray-500">Try it today with a 90-Day Money Back Guarantee!</p>
+          </div>
+        </div>
+
+        <!-- Right Column: Product Image -->
+        <div class="md:w-2/5 lg:w-1/2 flex items-center justify-center">
+          <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto/v1/lumiclean/lumiclean/86c9dbab764100c0ae5c55422a35c0c59d7bd50e" alt="Three LumiClean Units" class="max-w-sm md:max-w-full h-auto rounded-lg">
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER/DISCLOSURE SECTION ================= -->
+    <footer class="py-12 text-xs text-gray-500 bg-white shadow-sm mt-1"> <!-- Added mt-1 for slight separation if needed -->
+      <div class="max-w-3xl mx-auto space-y-6">
+        <div class="flex justify-center items-center space-x-4 sm:space-x-6 mb-6">
+          <a href="#" class="hover:underline">Privacy Policy / CCPA</a>
+          <span class="text-gray-300">|</span>
+          <a href="#" class="hover:underline">Refunds</a>
+          <span class="text-gray-300">|</span>
+          <a href="#" class="hover:underline">Terms & Conditions</a>
+        </div>
+
+        <p class="font-semibold uppercase text-gray-700 text-center">
+          THIS IS AN ADVERTORIAL AND NOT AN ACTUAL NEWS ARTICLE, BLOG, OR CONSUMER PROTECTION UPDATE.
+        </p>
+
+        <div class="space-y-3">
+          <p><strong class="font-semibold text-gray-600">MARKETING DISCLOSURE:</strong> This website is owned and operated by LumiClean. The advertorial contains fictitious product reviews that reflect a composite of Clarifion customer's experiences using the product.</p>
+          <p><strong class="font-semibold text-gray-600">AFFILIATE DISCLOSURE:</strong> This advertorial contains affiliate links within the content and display ads. The owner of this site receives a commission if you make a purchase after clicking on the affiliate links.</p>
+        </div>
+      </div>
+    </footer>
+
+  </div> <!-- Closes w-full max-w-6xl mx-auto -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const floatingCta = document.getElementById('smart-floating-cta');
+      const finalStaticCta = document.getElementById('final-static-cta'); // This ID won't be found now
+      
+      if (!floatingCta) { // Removed check for finalStaticCta
+        console.warn('Floating CTA not found. Hiding logic will not run.');
+        return;
+      }
+  
+      // Function to show the floating CTA
+      function showFloatingCta() {
+        floatingCta.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+        floatingCta.classList.add('opacity-100', 'visible');
+      }
+  
+      // Function to hide the floating CTA
+      function hideFloatingCta() {
+        floatingCta.classList.remove('opacity-100', 'visible');
+        floatingCta.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+      }
+  
+      // Determine when to show/hide based on scroll
+      function handleScroll() {
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+  
+        // Hide when near the bottom of this shorter page section or after some scroll
+        const thresholdFromBottom = 200; // Pixels from bottom of document to hide CTA
+        const showAfterScroll = 150; // Pixels scrolled down to show CTA
+
+        if (scrollPosition > showAfterScroll) {
+          if ((scrollPosition + windowHeight) < (documentHeight - thresholdFromBottom)) {
+            showFloatingCta();
+          } else {
+            hideFloatingCta();
+          }
+        } else {
+          hideFloatingCta();
+        }
+      }
+  
+      window.addEventListener('scroll', handleScroll);
+      handleScroll(); // Initial check
+    });
+  </script>
+
+</body>
+</html>
