@@ -200,7 +200,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </a>
 
   <!-- Main centered container start -->
-  <div class="w-full max-w-6xl mx-auto px-4">
+  <div class="w-full  mx-auto px-4 max-w-[1420px]">
     
     <!-- Top Bar -->
     <div class="bg-gray-100 text-xs py-2 flex items-center gap-2 pl-4">
@@ -230,7 +230,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h1 class="text-4xl md:text-4xl font-bold text-center mb-6 leading-tight text-gray-800">
           5 Shocking Reasons Why Americans Are Throwing Out Their Cleaning Supplies For This Revolutionary Device
         </h1>
-        <div class="max-w-2xl mx-auto text-center text-base leading-relaxed text-gray-700 space-y-2">
+        <div class="max-w-1.5xl mx-auto text-center text-base leading-relaxed text-gray-700 space-y-2">
           <p>
             Are you tired of the endless cycle of cleaning, only to feel that nagging doubt: did I really get everything? That moment when you see dust floating in the sunlight... even though you JUST finished cleaning?
           </p>
@@ -384,10 +384,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="px-4">
         <div class="md:flex md:gap-10 items-start"> <!-- Desktop two-column layout -->
 
-          <!-- DESKTOP IMAGE COLUMN (Left) -->
+          <!-- DESKTOP IMAGE COLUMN (Left) & IMPORTANT UPDATE FOR DESKTOP -->
           <div class="hidden md:block md:w-1/2 md:order-1">
             <div class="aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
               <img src="https://res.cloudinary.com/dg8ibuag5/image/upload/f_auto,q_auto/v1/lumiclean/hp8puyalcw6xak6dxunn" alt="LumiClean user photos collage" class="w-full h-full object-cover">
+            </div>
+            <!-- IMPORTANT UPDATE Block for Desktop -->
+            <div class="bg-sky-100 border border-sky-300 text-sky-800 p-6 md:p-8 rounded-lg shadow-md mt-6">
+              <p class="font-bold text-lg mb-3">[IMPORTANT UPDATE: <span class="dynamic-date">May 26, 2025</span>]</p>
+              <p class="mb-3">
+                Given ongoing supply chain challenges and unprecedented demand, LumiClean has announced they cannot guarantee stock availability beyond current inventory levels. Once these units sell out, production delays could extend several months due to the specialized components required.
+              </p>
+              <p>
+                The company has already sold out three times this year, with each restock selling out within 72 hours. For those interested in transforming their home with hospital-grade sanitization, securing a unit from the current inventory is crucial.
+              </p>
             </div>
           </div>
 
@@ -454,11 +464,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <!-- ================= IMPORTANT UPDATE SECTION ================= -->
-    <section class="py-10 bg-white shadow-sm">
+    <!-- ================= IMPORTANT UPDATE SECTION (Mobile Only) ================= -->
+    <section class="py-10 bg-white shadow-sm md:hidden">
       <div class="px-4">
         <div class="bg-sky-100 border border-sky-300 text-sky-800 p-6 md:p-8 rounded-lg shadow-md">
-          <p class="font-bold text-lg mb-3">[IMPORTANT UPDATE: May 26, 2025]</p>
+          <p class="font-bold text-md mb-3">[IMPORTANT UPDATE: <span class="dynamic-date">May 26, 2025</span>]</p>
           <p class="mb-3">
             Given ongoing supply chain challenges and unprecedented demand, LumiClean has announced they cannot guarantee stock availability beyond current inventory levels. Once these units sell out, production delays could extend several months due to the specialized components required.
           </p>
@@ -583,6 +593,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Dynamic date update
+      const dateElements = document.querySelectorAll('.dynamic-date');
+      if (dateElements.length > 0) {
+        const today = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = today.toLocaleDateString('en-US', options); // e.g., May 28, 2024
+        dateElements.forEach(el => {
+          el.textContent = formattedDate;
+        });
+      }
+
+      // Existing floating CTA logic
       const floatingCta = document.getElementById('smart-floating-cta');
       const finalStaticCta = document.getElementById('final-static-cta');
       
