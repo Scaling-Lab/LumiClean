@@ -4,8 +4,8 @@ exports.handler = async function(event, context) {
   // Simple test endpoint to verify the Shopify client is working
   
   // Retrieve secure environment variables
-  const storefrontAccessToken = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
-  const storeDomain = process.env.SHOPIFY_STORE_DOMAIN;
+  const storefrontAccessToken = process.env.LUMI_SHOPIFY_STOREFRONT_ACCESS_TOKEN;
+  const storeDomain = process.env.LUMI_SHOPIFY_STORE_DOMAIN;
 
   if (!storefrontAccessToken || !storeDomain) {
     return {

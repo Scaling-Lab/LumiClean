@@ -44,8 +44,8 @@
 [build.environment]
   NODE_VERSION = "18"
   # Set environment variables for build
-  SHOPIFY_STORE_DOMAIN = "fsnmhb-6m.myshopify.com"
-  SHOPIFY_STOREFRONT_ACCESS_TOKEN = "2d427cb0ba115c24e67f78c34172b402"
+  LUMI_SHOPIFY_STORE_DOMAIN = "fsnmhb-6m.myshopify.com"
+  LUMI_SHOPIFY_STOREFRONT_ACCESS_TOKEN = "2d427cb0ba115c24e67f78c34172b402"
   # Storefront API token is set in Netlify UI as a secret
 
 # Map edge functions to paths
