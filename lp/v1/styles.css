@@ -185,6 +185,12 @@ body {
   letter-spacing: 0.18px;
 }
 
+@media (min-width: 992px) {
+  .feature-text {
+    font-size: 15px;
+  }
+}
+
 /* CTA Section */
 .cta-container {
   display: flex;
