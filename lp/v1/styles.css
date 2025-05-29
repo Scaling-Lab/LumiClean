@@ -272,3 +272,20 @@ body {
   max-width: 100%;
   height: auto;
 }
+
+/*Swiper*/
+.slider-section {
+  background: #f5fbfe;
+}
+
+/* Credibility Swiper Logos */
+.credibility-logos-swiper .swiper-pagination-bullet {
+  background-color: #cee9ff;
+  opacity: 0.5;
+  width: 10px;
+  height: 10px;
+}
+.credibility-logos-swiper .swiper-pagination-bullet-active {
+  background-color: #95b6cb;
+  opacity: 1;
+}
