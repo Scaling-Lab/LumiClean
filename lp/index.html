@@ -185,7 +185,8 @@ let cookieDomain = '.trylumiclean.com';
 <!-- Preload the heavy cart drawer module -->
 <link rel="modulepreload" href="/js/cart-drawer.js">
 <!-- Mida A/B Testing Script -->
-<script>jdgm = window.jdgm || {};jdgm.SHOP_DOMAIN = 'kathyfox.myshopify.com';jdgm.PLATFORM = 'shopify';jdgm.PUBLIC_TOKEN = '';</script>
+<!-- Needs token ************ from Shopify App & access for HTML - trylumiclean.myshopify.com -  TO-DO -->
+<script>jdgm = window.jdgm || {};jdgm.SHOP_DOMAIN = 'fsnmhb-6m.myshopify.com';jdgm.PLATFORM = 'shopify';jdgm.PUBLIC_TOKEN = '';</script>
 <script>
   requestIdleCallback(()=> {
     const s=document.createElement('script');
@@ -1868,7 +1869,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
        </div>
      </div>
 
-      <!-- Footer Section -->
+     <!-- Judge Me Reviews Widget from Shopify  -->
+     <section id="judge-me" class="py-8">
+       <div class="max-w-6xl mx-auto px-4 md:px-8"> <!-- Added max-width and centering -->
+         <div class="jdgm-widget jdgm-review-widget jdgm-outside-widget" data-id="9187934601433" data-product-title="LumiClean Tower"></div>
+       </div>
+     </section>
+
+     <!-- Footer Section -->
      <footer class="footer py-16 px-4 sm:px-6 lg:px-8">
        <div class="footer-container container mx-auto px-4 sm:px-6 lg:px-8">
          <div class="footer-columns">
