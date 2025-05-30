@@ -166,19 +166,19 @@ body {
 .customer-name {
   font-family: Poppins;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 .customer-role {
   font-family: Poppins;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .verified-badge {
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 6px 12px;
+  padding: 5px;
   border-radius: 50px;
   border-width: 1px;
   border-color: #00a67e;
@@ -194,6 +194,5 @@ body {
 .verified-text {
   color: #00a67e;
   font-family: Poppins;
-  font-size: 14px;
-  letter-spacing: 0.72px;
+  font-size: 12px;
 }
