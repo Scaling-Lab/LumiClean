@@ -131,7 +131,7 @@
               body: data,
               keepalive: true,
               credentials: 'include'
-            }).catch(e => console.warn('Failed to sync visitor ID:', e));
+            }).catch(e => {});
           }
           sessionStorage.setItem('visitorSynced', 'true');
         }
@@ -2169,7 +2169,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      <!-- END NEW CART DRAWER HTML -->
    </main>
 
-   <!-- Scripts -->
+   <!-- Scripts Critical-->
    <script type="module" src="../js/cart-core.js"></script>
 
    <script type="module">
@@ -2178,102 +2178,79 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
        return () => {
          if (loaded) return;
          loaded = true;
+      
+         // Cart drawer
+         import('../js/cart-drawer.js')
+           .catch(e => console.error('Error loading cart-drawer.js:', e));
 
-         // Cart drawer - this should handle .js-main-cta clicks,
-         // fetch dynamic prices/discounts from Shopify, and update UI
-         import('../js/cart-drawer.js');
-         // NOTE: bundle-selection.js is intentionally NOT imported here
+         // Mobile Menu
+         import('../js/mobile-menu.js')
+           .catch(e => console.error('Error loading mobile-menu.js:', e));
 
-         // Initialize Lucide icons if not done automatically
-         if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
-           // Check if the global lucide object or lucide.icons contains the icon definitions
-           if (lucide.icons && Object.keys(lucide.icons).length > 0) {
-             lucide.createIcons({ icons: lucide.icons });
-           } else if (window.icons && Object.keys(window.icons).length > 0) { // Fallback for some build configurations
-             lucide.createIcons({ icons: window.icons });
+         // Swiper and Slider
+         const swiperCss = document.createElement('link');
+         swiperCss.rel = 'stylesheet';
+         swiperCss.href = 'https://unpkg.com/swiper/swiper-bundle.min.css';
+         swiperCss.onerror = () => console.error('Error loading Swiper CSS');
+         document.head.appendChild(swiperCss);
+
+         const swiperScript = document.createElement('script');
+         swiperScript.src = 'https://unpkg.com/swiper/swiper-bundle.min.js';
+         swiperScript.async = true;
+         swiperScript.onload = () => {
+           if (typeof Swiper !== 'undefined') {
+             requestAnimationFrame(() => {
+               import('../js/slider.js')
+                 .catch(e => console.error('Error importing slider.js:', e));
+             });
            } else {
-             // If no icons are found, try calling without arguments,
-             // as some Lucide builds might auto-initialize or register icons globally.
-             try {
-               lucide.createIcons();
-               console.warn('Lucide createIcons() called without explicit icons object. Relies on global registration.');
-             } catch (e) {
-               console.error('Lucide icons object not found and createIcons() failed. Please ensure icons are correctly bundled and passed.', e);
-             }
+             console.error('Swiper object NOT found after loading Swiper JS from CDN.');
            }
-         }
+         };
+         swiperScript.onerror = () => console.error('Error loading Swiper JS from CDN.');
+         document.body.appendChild(swiperScript);
+
+         // Accordion
+         import('../js/accordion.js')
+           .then(() => {
+           })
+           .catch(e => console.error('Error importing accordion.js:', e));
+
+        // Lucide Icons
+        const lucideScriptTag = document.createElement('script');
+         lucideScriptTag.src = '../dist/lucide.min.js';
+         lucideScriptTag.async = true;
+         lucideScriptTag.onload = () => {
+           if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+            if (lucide.icons && Object.keys(lucide.icons).length > 0) {
+               try {
+                 lucide.createIcons({ icons: lucide.icons });
+               } catch (e) {
+                 console.error('Error during lucide.createIcons({ icons: lucide.icons }) call:', e);
+               }
+             } else {
+               console.error('Lucide icons data (lucide.icons) not found or empty. Cannot initialize icons. Please ensure lucide.min.js provides this object.');
+             }
+           } else {
+             console.error('Lucide library (lucide object or createIcons function) not found after script load.');
+           }
+         };
+         lucideScriptTag.onerror = () => console.error('Error loading Lucide JS.');
+         document.body.appendChild(lucideScriptTag);
        };
      })();
 
      if ('PerformanceObserver' in window) {
        new PerformanceObserver((entries, obs) => {
-         loadNonCritical(); obs.disconnect();
+         loadNonCritical();
+         obs.disconnect();
        }).observe({ type: 'largest-contentful-paint', buffered: true });
      }
-     ['pointerdown','touchstart','keydown','scroll']
-             .forEach(evt => window.addEventListener(evt, loadNonCritical, { once:true, passive:true }));
-     window.addEventListener('load', loadNonCritical, { once:true });
+     ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach(evt =>
+       window.addEventListener(evt, loadNonCritical, { once: true, passive: true })
+     );
+     window.addEventListener('load', loadNonCritical, { once: true });
    </script>
-
-   <script src="../dist/lucide.min.js" defer></script>
-   <script src="js/accordion.js" defer></script>
-   <script defer>
-    // Script to handle mobile menu link clicks:
-    // 1. Close the mobile menu.
-    // 2. Smoothly scroll to the target section if the link is an anchor.
-    document.addEventListener('DOMContentLoaded', () => {
-        const mobileMenuCheckbox = document.querySelector('#menuToggle input[type="checkbox"]');
-        const mobileNavLinks = document.querySelectorAll('#menu .nav-link-mobile');
-
-        // Check if essential elements are found
-        if (!mobileMenuCheckbox) {
-            console.warn('Mobile menu toggle checkbox not found. Mobile menu click functionality might not work.');
-            return;
-        }
-        if (mobileNavLinks.length === 0) {
-            console.warn('No mobile navigation links found. Mobile menu click functionality might not work.');
-            return;
-        }
-
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                const href = this.getAttribute('href');
-
-                // Always close the menu by unchecking the checkbox
-                mobileMenuCheckbox.checked = false;
-
-                // Check if the href is a valid anchor to an element on the page
-                if (href && href.startsWith('#') && href.length > 1) {
-                    const targetId = href.substring(1); // Remove '#'
-                    const targetElement = document.getElementById(targetId);
-
-                    if (targetElement) {
-                        event.preventDefault(); // Prevent default anchor behavior (jumping)
-                        
-                        // Perform smooth scroll to the target element
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                    // If targetElement is not found, the link might be like href="#nonexistent".
-                    // The menu is closed, and default browser behavior (usually nothing) will apply.
-                }
-                // For links like href="#" or external links:
-                // The menu is closed.
-                // Default browser behavior will apply (e.g., scroll to top for href="#", or navigate for external links).
-                // event.preventDefault() is not called in these cases, allowing default action.
-            });
-        });
-    });
-   </script>
-   <!-- END NEW SCRIPTS -->
-
-     <!-- Swiper CSS -->
-     <link preload rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-
-     <!-- Swiper JS -->
-     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-     <script defer src="../js/slider.js"></script>
+   
   </body>
 </html>
