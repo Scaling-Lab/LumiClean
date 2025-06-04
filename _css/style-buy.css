@@ -369,6 +369,15 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+    /* Mobile styles for cart trigger */
+    @media (max-width: 786px) {
+        #open-cart-trigger {
+            position: relative !important;
+            top: 0 !important;
+            right: -10px !important;
+        }
+    }
+
     @media (min-width: 1440px) {
         #open-cart-trigger {
             right: 10%;
