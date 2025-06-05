@@ -4,7 +4,6 @@ const { createStorefrontApiClient } = require('@shopify/storefront-api-client');
 // Define allowed origins (replace with your actual frontend domain(s))
 const allowedOrigins = [
     'https://*.trylumiclean.com', 
-    'https://*.uvlizer.us', 
     'https://staging.offers.trylumiclean.com', // Example: Your staging domain
     // Add 'http://localhost:xxxx' for local development if needed
     'http://localhost:8888', // Example: Netlify Dev default port

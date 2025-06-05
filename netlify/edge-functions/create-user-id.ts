@@ -5,9 +5,7 @@ export default async (request: Request, context: any) => {
   // Define allowed origins - adjust if needed, e.g., specific subdomains + root
   const allowedOrigins = [  
     "https://*.trylumiclean.com",
-    "https://*.uvlizer.us",
     "https://trylumiclean.com",
-    "https://uvlizer.us",
     "http://localhost:8888",     // local Netlify dev
     "https://*.netlify.app"      // Netlify preview domains
   ];
@@ -62,9 +60,9 @@ export default async (request: Request, context: any) => {
     if (url.hostname.includes('trylumiclean.com')) {
       // Production domain - set to root domain for subdomain sharing
       domain = '.trylumiclean.com';
-    } else if (url.hostname.includes('uvlizer.us')) {
+    } else if (url.hostname.includes('trylumiclean.com')) {
       // Production domain - set to root domain for subdomain sharing
-      domain = '.uvlizer.us';
+      domain = '.trylumiclean.com';
     } else if (url.hostname.includes('netlify.app')) {
       // Netlify preview domain - set to specific preview domain
       domain = url.hostname;

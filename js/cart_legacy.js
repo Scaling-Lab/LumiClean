@@ -64,7 +64,7 @@ import {
     }
 
     // --- Local Storage Keys (Namespaced) ---
-    const UVLIZER_PREFIX = 'uvlizer_';
+    const UVLIZER_PREFIX = 'trylumiclean_';
     const CART_ID_STORAGE_KEY = `${UVLIZER_PREFIX}cart_id`;
     const ALIA_CODE_STORAGE_KEY = `${UVLIZER_PREFIX}alia_discount_code`;
     const ALIA_TEXT_STORAGE_KEY = `${UVLIZER_PREFIX}alia_reward_text`;
@@ -300,7 +300,7 @@ async function callShopifyAPI(query, variables = {}) {
       const product = {
         id: item.merchandise?.product?.handle || "",
         name: item.merchandise?.product?.title || "",
-        brand: "Uvlizer",
+        brand: "TryLumiClean",
         category: "Home & Garden",
         variant: item.merchandise?.title || "", // User changed this
         price: (priceInCents / 100).toFixed(2), // Final division
@@ -361,7 +361,7 @@ async function callShopifyAPI(query, variables = {}) {
       return {
         id: item.merchandise?.product?.handle || "",
         name: item.merchandise?.product?.title || "",
-        brand: "Uvlizer",
+        brand: "TryLumiClean",
         category: "Home & Garden",
         variant: item.merchandise?.title || "",
         price: (priceInCents / 100).toFixed(2),
@@ -459,7 +459,7 @@ async function callShopifyAPI(query, variables = {}) {
       const product = {
           id: "uvo-powered-home-disinfection-tower-new", // Product Handle
           name: "UVO254™ -  Powered Home Disinfection Tower", // Product Name
-          brand: "Uvlizer",
+          brand: "TryLumiClean",
           category: "Home & Garden",
           variant: "Default Title", // Assuming base product view, align with 1x variant
           price: currentPrice, // Dynamically read from page
@@ -1349,7 +1349,7 @@ async function callShopifyAPI(query, variables = {}) {
                              ImageURL: merch.image?.url,
                              URL: window.location.origin + window.location.pathname, // Product URL (use current page URL as placeholder)
                              Categories: [], // Add categories if available
-                             Brand: 'UvLizer', // Brand name
+                             Brand: 'TryLumiClean', // Brand name
                              VariantName: merch.title // Variant Title
                          };
                      });
@@ -1938,7 +1938,7 @@ async function callShopifyAPI(query, variables = {}) {
                         imageElement.src = productData.image.url;
                         
                         // Use API alt text if available, otherwise fallback to product title
-                        imageElement.alt = productData.image.altText || productData.product?.title || 'Uvlizer Bundle Option';
+                        imageElement.alt = productData.image.altText || productData.product?.title || 'TryLumiClean Bundle Option';
                     }
                 }
             } catch (error) {

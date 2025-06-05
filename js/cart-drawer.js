@@ -43,7 +43,7 @@ let isLoading = false; // Manage loading state locally for drawer actions
 let previousActiveElement = null; // For focus trapping
 
 // --- Local Storage Keys (Needed for Alia UI) ---
-const UVLIZER_PREFIX = 'lumiclean_';
+const UVLIZER_PREFIX = 'trylumiclean_';
 const ALIA_CODE_STORAGE_KEY = `${UVLIZER_PREFIX}alia_discount_code`;
 const ALIA_TEXT_STORAGE_KEY = `${UVLIZER_PREFIX}alia_reward_text`;
 const ALIA_EXPIRY_STORAGE_KEY = `${UVLIZER_PREFIX}alia_expiry_timestamp`;

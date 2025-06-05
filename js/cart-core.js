@@ -13,7 +13,7 @@ let isLoading = false; // Simple loading state flag
 let elevarCartInitialized = false; // Flag to track if core initialized Elevar
 
 // --- Local Storage Keys (Namespaced) ---
-const UVLIZER_PREFIX = 'uvlizer_';
+const UVLIZER_PREFIX = 'trylumiclean_';
 const CART_ID_STORAGE_KEY = `${UVLIZER_PREFIX}cart_id`;
 // Keep Alia keys only if timer logic stays in core (it shouldn't)
 // const ALIA_CODE_STORAGE_KEY = `${UVLIZER_PREFIX}alia_discount_code`;
@@ -147,7 +147,7 @@ function createElevarProductObjCore(item) {
     return {
         id: item.merchandise?.product?.handle || "", // Product Handle
         name: item.merchandise?.product?.title || "",
-        brand: "Uvlizer", // Hardcoded brand
+        brand: "TryLumiClean", // Hardcoded brand
         category: "Home & Garden", // Hardcoded category
         variant: item.merchandise?.title || "", // Variant Title
         price: (priceInCents / 100).toFixed(2),
@@ -165,7 +165,7 @@ function createElevarViewItemObj() {
     return {
         id: "uvo-powered-home-disinfection-tower-new",
         name: "UVO254™ -  Powered Home Disinfection Tower",
-        brand: "Uvlizer",
+        brand: "TryLumiClean",
         category: "Home & Garden",
         variant: "Default Title",
         price: "79.95", // Use default or fetch if critical
@@ -356,7 +356,7 @@ async function updateBundlePrices() {
                     const originalSrc = imageElement.src;
                     imageElement.onerror = () => { imageElement.src = originalSrc; }; // Restore on error
                     imageElement.src = productData.image.url;
-                    imageElement.alt = productData.image.altText || productData.product?.title || 'Uvlizer Bundle Option';
+                    imageElement.alt = productData.image.altText || productData.product?.title || 'TryLumiClean Bundle Option';
                 }
             }
         } catch (error) {
