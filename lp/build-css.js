@@ -8,7 +8,7 @@ const criticalFiles = [
     'header/styles.css',
     'v1/styles.css',
     'v2/styles.css',
-    '../_css/style-buy.css'
+    '../css/style-buy.css'
 ];
 
 const nonCriticalFiles = [
