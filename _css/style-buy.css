@@ -1,9 +1,7 @@
 
     /* Reset and Base Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    border-color: #e5e7eb;
 }
 
 body {
@@ -122,11 +120,11 @@ body {
 }
 
 .cart-item {
-    display: flex;
-    gap: 1rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid #e5e7eb;
-    position: relative;
+    /*display: flex;*/
+    /*gap: 1rem;*/
+    /*padding: 1rem 0;*/
+    /*border: 1px solid #e5e7eb;*/
+    /*position: relative;*/
 }
 
 .cart-item-image {
@@ -198,7 +196,7 @@ body {
     right: 0;
     background: none;
     border: none;
-    color: #999;
+    /*color: #999;*/
     cursor: pointer;
     padding: 0.5rem;
 }

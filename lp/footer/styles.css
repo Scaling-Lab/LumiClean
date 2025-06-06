@@ -8,7 +8,7 @@
   align-items: center;
   width: 100%;
   background-color: #1c1c1c;
-  padding: 64px 329px;
+  /*padding: 64px 329px;*/
 }
 
 @media (max-width: 991px) {
