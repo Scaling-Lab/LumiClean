@@ -12,7 +12,7 @@ const criticalFiles = [
 ];
 
 const nonCriticalFiles = [
-    'v3/lumiclean-section.css',
+    'v3/styles.css',
     'v4/styles.css',
     'v5/styles.css',
     'v6/styles.css',
