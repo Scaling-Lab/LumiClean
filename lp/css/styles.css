@@ -62,12 +62,6 @@
   margin-right: 15px;
 }
 
-/*@media (min-width: 768px) {*/
-/*  #menuToggle {*/
-/*    display: none;*/
-/*  }*/
-/*}*/
-
 #menuToggle input {
   display: block;
   width: 40px;
@@ -160,11 +154,6 @@
 
 html {
   scroll-behavior: smooth;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-  line-height: 1.6;
 }
 
 /* Hero Section */
@@ -406,18 +395,6 @@ body {
   align-items: center;
   gap: 8px;
 }
-.guarantee-icon {
-  width: 24px;
-  height: 24px;
-}
-
-.guarantee-text {
-  color: #222627;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0.72px;
-}
 
 /* Product Image */
 .product-image {
@@ -447,14 +424,6 @@ body {
 --- V2. PATHOGENS INFO
 ---
 */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
-
-body {
-  font-family: Poppins, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
 /* Pathogens Info Container */
 .pathogens-info-container {
   display: flex;
@@ -646,15 +615,6 @@ body {
           sans-serif;
 }
 
-/*.content-container-v3 {*/
-/*  display: flex;*/
-/*  gap: 100px;*/
-/*  align-items: center;*/
-/*  justify-content: center;*/
-/*  flex-wrap: wrap;*/
-/*  width: 100%;*/
-/*}*/
-
 .info-column-v3 {
   display: flex;
   min-width: 240px;
@@ -835,13 +795,6 @@ body {
 --- V4. BENEFITS
 ---
 */
-/* Import Poppins font */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
-
-body {
-  font-family: "Poppins", sans-serif;
-  line-height: 1.5;
-}
 
 .container-v4 {
   width: 100%;
@@ -947,9 +900,6 @@ body {
 --- V5. TESTIMONIALS
 ---
 */
-body {
-  font-family: "Poppins", sans-serif;
-}
 
 /* Testimonials wrapper */
 .testimonials-wrapper {
@@ -1144,14 +1094,6 @@ body {
 --- V6. SUPERIOR SECTION
 ---
 */
-body {
-  font-family:
-    "Poppins",
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
-}
 
 /* Superior Section Styles */
 .superior-section-v6 {
@@ -1384,10 +1326,6 @@ body {
 .shopify-buy-frame--product {
   margin: 0 auto;
   min-width: 100%;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
 }
 
 /* Product Offer Section */
@@ -1798,15 +1736,6 @@ body {
 --- V9. FEATURES
 ---
 */
-body {
-  font-family:
-    Poppins,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
-  line-height: 1.5;
-}
 
 /* Features Section */
 .features-section-v9 {
@@ -1834,14 +1763,6 @@ body {
     line-height: 34px !important;
   }
 }
-
-/*.features-container-v9 {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  gap: 40px 150px;*/
-/*  justify-content: center;*/
-/*  flex-wrap: wrap;*/
-/*}*/
 
 @media (max-width: 991px) {
   .features-container-v9 {
@@ -2247,9 +2168,6 @@ body {
 --- V11. PROMOTION
 ---
 */
-body {
-  font-family: "Poppins", sans-serif;
-}
 
 /* Promotion Container */
 .promotion-container {
@@ -2519,10 +2437,6 @@ body {
 --- V12. FAQ
 ---
 */
-body {
-  font-family: "Poppins", sans-serif;
-  background-color: #f5f5f5;
-}
 
 /* FAQ Container */
 .faq-container {
@@ -2713,8 +2627,6 @@ body {
 --- FOOTER
 ---
 */
-/* Import Poppins font */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 /* Footer styles */
 .footer {
@@ -2836,8 +2748,7 @@ body {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    line-height: 1.5;
+  background-color: #f5f5f5;
 }
 
 /* Utility Classes */
