@@ -549,7 +549,7 @@ html {
   }
 
   .main-image {
-    width: 100%;
+    width: 698px;
     height: auto;
   }
 
@@ -1297,11 +1297,12 @@ html {
   }
 
   .superior-section-v6 > .section-container-v6 > picture:first-of-type img {
-    width: 600px;
+    width: auto;
     height: 600px;
     max-width: none;
     margin: 0;
     object-fit: contain;
+    padding:20px 0;
   }
 
   /* Reset styles for other images in the section */
@@ -1446,7 +1447,7 @@ html {
 
 @media (max-width: 991px) {
   .product-card {
-    width: 45%;
+    width: 100%;
   }
 }
 
@@ -1482,7 +1483,7 @@ html {
 .card-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   padding: 20px;
   width: 100%;
@@ -1590,6 +1591,7 @@ html {
 .shipping-info {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 7px 12px;
   background-color: #fcf9cd;
@@ -2101,7 +2103,7 @@ html {
 }
 
 .easy-steps-section .description-text {
-  width: 401px;
+  width: fit-content;
   margin: 0;
   font-size: 18px;
 }
@@ -2198,7 +2200,7 @@ html {
   align-items: center;
   gap: 48px;
   /*width: 100%;*/
-  /*max-width: 1120px;*/
+  max-width: 1120px;
 }
 
 /* Promotion Header */
@@ -2640,8 +2642,8 @@ html {
 
 @media (max-width: 991px) {
   .footer {
-    padding-left: 64px;
-    padding-right: 64px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
