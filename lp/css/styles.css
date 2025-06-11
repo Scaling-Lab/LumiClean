@@ -2311,14 +2311,12 @@ html {
 @media (max-width: 991px) {
   .clock-icon {
     width: 80px;
-    height: 80px;
   }
 }
 
 @media (max-width: 640px) {
   .clock-icon {
     width: 60px;
-    height: 60px;
   }
 }
 
