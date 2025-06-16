@@ -3,85 +3,152 @@ const path = require('path');
 const CleanCSS = require('clean-css');
 const chokidar = require('chokidar');
 
-// Define critical and non-critical CSS files
-const criticalFiles = [
-    'header/styles.css',
-    'v1/styles.css',
-    'v2/styles.css',
-    '../_css/style-buy.css'
+// --- CONFIGURATION ---
+const inputFilePath = path.join(__dirname, 'css', 'styles.css');
+const outputDir = path.join(__dirname, 'css');
+const criticalOutputFile = path.join(outputDir, 'critical.min.css');
+const nonCriticalOutputFile = path.join(outputDir, 'non-critical.min.css');
+
+// Section markers that identify CRITICAL CSS
+const criticalMarkers = [
+    'HEADER',
+    'V1. HERO',
+    'V2. PATHOGENS'
 ];
 
-const nonCriticalFiles = [
-    'v3/lumiclean-section.css',
-    'v4/styles.css',
-    'v5/styles.css',
-    'v6/styles.css',
-    'v7/styles.css',
-    'v8/styles.css',
-    'v9/styles.css',
-    'v10/styles.css',
-    'v11/styles.css',
-    'v12/styles.css',
-    'footer/styles.css'
-];
+// --- FUNCTIONS ---
 
-// Create _css directory if it doesn't exist
-if (!fs.existsSync('css')) {
-    fs.mkdirSync('css');
-}
-
-// Function to read and combine CSS files
-function combineCSS(files) {
-    return files.map(file => {
-        try {
-            return fs.readFileSync(file, 'utf8');
-        } catch (err) {
-            console.error(`Error reading ${file}:`, err);
-            return '';
-        }
-    }).join('\n');
-}
-
-// Minify CSS
+/**
+ * Minifies CSS content.
+ * @param {string} css - The CSS content to minify.
+ * @returns {string} - The minified CSS.
+ */
 const minifyCSS = (css) => {
     const minifier = new CleanCSS({
-        level: 2,
+        level: {
+            1: {
+                specialComments: 0 // Remove all comments
+            },
+            2: {
+                all: true // Enable all structural optimizations
+            }
+        },
         sourceMap: false
     });
-    return minifier.minify(css).styles;
+    const output = minifier.minify(css);
+    if (output.errors && output.errors.length > 0) {
+        console.error('Minification errors:', output.errors);
+    }
+    if (output.warnings && output.warnings.length > 0) {
+        console.warn('Minification warnings:', output.warnings);
+    }
+    return output.styles;
 };
 
-function buildAll() {
-    // Process critical CSS
-    const criticalCSS = combineCSS(criticalFiles);
-    fs.writeFileSync('css/critical.min.css', minifyCSS(criticalCSS));
+/**
+ * Splits the main CSS file into critical and non-critical parts based on markers.
+ * @param {string} content - The full CSS content from styles.css.
+ * @returns {{criticalCSS: string, nonCriticalCSS: string}}
+ */
+function splitCss(content) {
+    const sections = content.split(/\/\*\s*---\s*---\s*([\w.\s]+)\s*---\s*\*\//);
+    let criticalCSS = '';
+    let nonCriticalCSS = '';
 
-    // Process non-critical CSS
-    const nonCriticalCSS = combineCSS(nonCriticalFiles);
-    fs.writeFileSync('css/non-critical.min.css', minifyCSS(nonCriticalCSS));
+    // The first part of the split is anything before the first marker. Assume it's base/header styles.
+    // Let's treat it as critical by default.
+    if (sections.length > 0) {
+        criticalCSS += sections[0];
+    }
+    
+    for (let i = 1; i < sections.length; i += 2) {
+        const marker = sections[i].trim().toUpperCase();
+        const cssBlock = sections[i + 1] || '';
 
-    console.log('CSS files have been combined and minified successfully!');
+        // Check if any of the critical markers are present in the section marker
+        const isCritical = criticalMarkers.some(critMarker => marker.includes(critMarker));
+
+        if (isCritical) {
+            criticalCSS += cssBlock;
+        } else {
+            nonCriticalCSS += cssBlock;
+        }
+    }
+    
+    return { criticalCSS, nonCriticalCSS };
 }
 
-// Check for --watch argument
-if (process.argv.includes('--watch')) {
-    // Watch all CSS files in both arrays
-    const filesToWatch = [...criticalFiles, ...nonCriticalFiles];
-    const watcher = chokidar.watch(filesToWatch, { ignoreInitial: true });
-    console.log('Watching CSS files for changes...');
-    buildAll();
-    watcher.on('change', (filePath) => {
-        console.log(`File changed: ${filePath}`);
-        buildAll();
+
+/**
+ * The main build process.
+ */
+function build() {
+    console.log('Starting CSS build...');
+    try {
+        if (!fs.existsSync(inputFilePath)) {
+            console.error(`Input file not found: ${inputFilePath}`);
+            return;
+        }
+        
+        const singleFileContent = fs.readFileSync(inputFilePath, 'utf8');
+
+        const { criticalCSS, nonCriticalCSS } = splitCss(singleFileContent);
+
+        if (!criticalCSS && !nonCriticalCSS) {
+            console.warn('Both critical and non-critical CSS are empty. Check your markers.');
+            return;
+        }
+
+        // Minify and write critical CSS
+        if (criticalCSS) {
+            const minifiedCritical = minifyCSS(criticalCSS);
+            fs.writeFileSync(criticalOutputFile, minifiedCritical);
+            console.log(`✅ Critical CSS built successfully: ${criticalOutputFile}`);
+        } else {
+            console.warn('No critical CSS was found.');
+            // Create empty file if it doesn't exist
+            fs.writeFileSync(criticalOutputFile, '');
+        }
+
+        // Minify and write non-critical CSS
+        if (nonCriticalCSS) {
+            const minifiedNonCritical = minifyCSS(nonCriticalCSS);
+            fs.writeFileSync(nonCriticalOutputFile, minifiedNonCritical);
+            console.log(`✅ Non-critical CSS built successfully: ${nonCriticalOutputFile}`);
+        } else {
+            console.warn('No non-critical CSS was found.');
+             // Create empty file if it doesn't exist
+            fs.writeFileSync(nonCriticalOutputFile, '');
+        }
+
+        console.log('CSS build finished.');
+
+    } catch (err) {
+        console.error('An error occurred during the build process:', err);
+    }
+}
+
+// --- EXECUTION ---
+
+// Check for --watch flag
+const watchMode = process.argv.includes('--watch');
+
+// Run the build once immediately
+build();
+
+if (watchMode) {
+    console.log(`\n👀 Watching for changes in ${inputFilePath}...`);
+    const watcher = chokidar.watch(inputFilePath, {
+        persistent: true,
+        ignoreInitial: true
     });
-    watcher.on('add', (filePath) => {
-        console.log(`File added: ${filePath}`);
-        buildAll();
+
+    watcher.on('change', (path) => {
+        console.log(`\nFile changed: ${path}`);
+        build();
     });
-    watcher.on('unlink', (filePath) => {
-        console.log(`File removed: ${filePath}`);
-        buildAll();
+
+    watcher.on('error', (error) => {
+        console.error(`Watcher error: ${error}`);
     });
-} else {
-    buildAll();
 }
