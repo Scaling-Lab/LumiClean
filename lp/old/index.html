@@ -6,12 +6,12 @@
     <title>Lumiclean - Hospital-like Disinfection for Your Home</title>
     
     <!-- Critical CSS - Combined and minified -->
-    <link rel="preload" href="css/critical.min.css" as="style">
-    <link rel="stylesheet" href="css/critical.min.css">
+    <link rel="preload" href="../css/critical.min.css" as="style">
+    <link rel="stylesheet" href="../css/critical.min.css">
     
     <!-- Non-critical CSS with optimized loading -->
-    <link rel="preload" href="css/non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="css/non-critical.min.css"></noscript>
+    <link rel="preload" href="../css/non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../css/non-critical.min.css"></noscript>
     
     <!-- Preload critical fonts with display=swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,11 +28,11 @@
 
     <!-- Fallback for browsers that don't support preload or JS -->
     <noscript>
-      <link rel="stylesheet" href="css/styles.css">
+      <link rel="stylesheet" href="../css/styles.css">
     </noscript>
 
     <!-- Local TailwindCSS build -->
-    <link rel="stylesheet" href="../dist/styles.css">
+    <link rel="stylesheet" href="../../dist/styles.css">
 
      <!-- User ID Script (MUST RUN BEFORE ELEVAR SNIPPET) -->
   <script>
@@ -167,7 +167,7 @@ let cookieDomain = '.trylumiclean.com';
   })(window,document,'script','dataLayer','GTM-W7WN9279');</script>
 <!-- End Google Tag Manager -->
 <!-- Preload the heavy cart drawer module -->
-<link rel="modulepreload" href="/js/cart-drawer.js">
+<link rel="modulepreload" href="/cart-drawer.js">
 <!-- Mida A/B Testing Script -->
 <!-- Judge.me Reviews widget -->
 <script>jdgm = window.jdgm || {};jdgm.SHOP_DOMAIN = 'fsnmhb-6m.myshopify.com';jdgm.PLATFORM = 'shopify';jdgm.PUBLIC_TOKEN = 'XpLmHP5ja6cX5nfimZcC5yQZUcc';</script>
@@ -2187,7 +2187,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    </main>
 
    <!-- Scripts Critical-->
-   <script type="module" src="../js/cart-core.js"></script>
+   <script type="module" src="../../js/cart-core.js"></script>
 
    <script type="module">
      const loadNonCritical = (() => {
@@ -2197,11 +2197,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
          loaded = true;
       
          // Cart drawer
-         import('../js/cart-drawer.js')
+         import('../../js/cart-drawer.js')
            .catch(e => console.error('Error loading cart-drawer.js:', e));
 
          // Mobile Menu
-         import('../js/mobile-menu.js')
+         import('../../js/mobile-menu.js')
            .catch(e => console.error('Error loading mobile-menu.js:', e));
 
          // Swiper and Slider
@@ -2217,7 +2217,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
          swiperScript.onload = () => {
            if (typeof Swiper !== 'undefined') {
              requestAnimationFrame(() => {
-               import('../js/slider.js')
+               import('../../js/slider.js')
                  .catch(e => console.error('Error importing slider.js:', e));
              });
            } else {
@@ -2228,7 +2228,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
          document.body.appendChild(swiperScript);
 
          // Accordion
-         import('../js/accordion.js')
+         import('../../js/accordion.js')
            .then(() => {
            })
            .catch(e => console.error('Error importing accordion.js:', e));
