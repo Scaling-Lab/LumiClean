@@ -428,13 +428,12 @@ html {
 .pathogens-info-container {
   display: flex;
   width: 100%;
-  /*min-height: 100vh;*/
   background-color: #f5fbfe;
-  /*padding: 0 300px;*/
   justify-content: center;
   align-items: center;
-  gap: 100px;
+  gap: 60px;
   font-family: Poppins, sans-serif;
+  padding: 60px 20px;
 }
 
 /* Image Styles */
@@ -444,16 +443,20 @@ html {
 
 @media (min-width: 991px) {
   .info-image {
-    max-width: 50%;
+    max-width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
 .main-image {
-  /*min-width: 575px;*/
-  /*height: 950px;*/
+  width: 100%;
+  max-width: 480px;
+  height: 320px;
   flex-shrink: 0;
   object-fit: cover;
-  /*max-height: 780px;*/
+  border-radius: 12px;
 }
 
 /* Content Styles */
@@ -468,7 +471,7 @@ html {
 
 @media (min-width: 991px) {
   .info-content {
-    max-width: 47%;
+    max-width: 50%;
   }
 }
 
