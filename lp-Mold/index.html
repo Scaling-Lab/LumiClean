@@ -567,7 +567,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      <section class="lumiclean-section-v3">
        <div class="container flex-wrap mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center gap-8 md:justify-center">
          <div class="info-column-v3">
-           <div class="intro-badge-v3">
+           <div class="intro-badge-v3 mt-12 mb-8">
              <picture>
                <source media="(max-width: 768px)" srcset="images/06b05b7985ecef2a4af823880d15210a514fb97b_gt95vn_e0ecd553.png">
                <img
@@ -583,6 +583,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             Hospital-like Disinfection is Finally Available For
 Your Home
            </h2>
+           
+           <!-- Mobile image - shows right after headline on mobile only -->
+           <picture class="mobile-section-image block md:hidden mb-6 mt-6">
+             <img src="images/441e7f5c96d8b2a5b681976f09c24b46e1bb7c37_ac796fae.jpg" alt="Lumiclean device" loading="lazy" style="width: 100%; height: auto; border-radius: 12px;"/>
+           </picture>
+           
            <p class="description-text-v3">
            LumiClean's revolutionary UVO3™ Lamp <strong>eradicates mold and its harmful spores from their roots in 15 minutes</strong>.
             <br /><br />
@@ -657,8 +663,8 @@ Your Home
              </div>
            </div>
          </div>
-         <picture class="info-image">
-           <source media="(max-width: 768px)" srcset="images/441e7f5c96d8b2a5b681976f09c24b46e1bb7c37_ac796fae.jpg">
+         <!-- Desktop image - shows on desktop only -->
+         <picture class="desktop-section-image info-image">
            <img
                    src="images/441e7f5c96d8b2a5b681976f09c24b46e1bb7c37_885cb998.jpg"
                    alt="Lumiclean device"
@@ -668,10 +674,17 @@ Your Home
            />
          </picture>
          <style>
+           .desktop-section-image {
+             display: none;
+           }
+           @media (min-width: 769px) {
+             .desktop-section-image {
+               display: block !important;
+             }
+           }
            @media (max-width: 768px) {
-             .info-image img {
-               height: auto !important;
-               object-fit: initial !important;
+             .mobile-section-image {
+               display: block !important;
              }
            }
          </style>
@@ -762,71 +775,256 @@ Your Home
 </section>
 
       <!-- Lumiclean V4 Section -->
-      <section id="uvo-benefits"
-      class="relative py-8 md:py-20 bg-white overflow-hidden">
-      
-      <!-- Optional soft background texture/pattern -->
-      <div class="absolute inset-0 -z-10 bg-cover bg-center opacity-5"></div>
-      
-      <div class="max-w-7xl mx-auto grid gap-10 px-4 md:px-8 lg:grid-cols-12">
-      
-      <!-- ───────── Left: headline + benefit bullets ───────── -->
-      <div class="lg:col-span-7">
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight mb-4" style="color: #1773b0;">
-          <span class="inline-block w-1.5 sm:w-2.5 mr-4 rounded bg-primary-500"></span>
-        This is What the UVO3™ Lamp Can Do For You
-        </h2>
-      
-      <ul class="space-y-6">
-      <li class="flex">
-       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
-       <p class="ml-4"><span class="font-semibold">Eliminates lurking mold, its colonies, dust mites <sup>[1]</sup>,</span> bed bugs, and other unseen biological threats.</p>
-      </li>
-      <li class="flex">
-       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
-       <p class="ml-4"><span class="font-semibold">Alleviates sneezing,</span> runny nose, and other nasty allergy symptoms.</p>
-      </li>
-      <li class="flex">
-       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
-       <p class="ml-4"><span class="font-semibold">Ensures a blissful, uninterrupted sleep</span> every night.</p>
-      </li>
-      <li class="flex">
-       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
-       <p class="ml-4"><span class="font-semibold">Reduces brain fog</span> for a clear head and razor‑sharp focus.</p>
-      </li>
-      <li class="flex">
-       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
-       <p class="ml-4"><span class="font-semibold">Transforms your indoor air</span> into a fresh, clean oasis that's a joy to breathe.</p>
-      </li>
-      <li class="flex">
-       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
-       <p class="ml-4"><span class="font-semibold">Removes musty odors</span> caused by mold, mildew, and dampness… making your house smell like… home.</p>
-      </li>
-      <li class="flex">
-       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
-       <p class="ml-4"><span class="font-semibold">Makes your home safer</span> by disinfecting surfaces and air at the same time.</p>
-      </li>
-      <li class="flex">
-       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
-       <p class="ml-4"><span class="font-semibold">Decreases the risk of infection</span> and transmission of flu indoors, providing extra safety for your family.</p>
-      </li>
-      <li class="flex">
-       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
-       <p class="ml-4"><span class="font-semibold">Safely evicts pests</span> that might be crawling in the basement or under your bed.</p>
-      </li>
-      </ul>
-      </div>
-      
-      <!-- ───────── Right: stacked testimonial screenshots ───────── -->
-      <div class="lg:col-span-5">
-        <div class="space-y-8">
-          <img src="images/cifndpuaczptwfatszrb.png" alt="Customer testimonials collage" class="rounded-lg shadow-md w-full max-w-md lg:max-w-md mx-auto" loading="lazy" decoding="async" style="height: auto;">
+      <section class="lumiclean-section-v4" id="benefits">
+        <div class="container flex-wrap mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center gap-8 md:justify-center">
+          <!-- Desktop image - shows on left side for desktop -->
+          <div class="product-image-container-v4 hidden md:block">
+            <picture>
+              <img
+                      src="images/cifndpuaczptwfatszrb.png"
+                      alt="Lumiclean Disinfection Tower"
+                      class="product-image-v4"
+                      loading="lazy"
+              />
+            </picture>
+          </div>
+          <div class="benefits-container-v4">
+            <h2 class="section-title-v4">
+              This is What Lumiclean Disinfection Towers Can Do For You
+            </h2>
+            
+            <div class="benefit-item-v4">
+              <div class="check-icon-wrapper-v4">
+                <svg
+                        width="28"
+                        height="28"
+                        viewBox="0 0 28 28"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="check-icon-v4"
+                >
+                  <path
+                          d="M14.0007 2.3335C7.55728 2.3335 2.33398 7.55679 2.33398 14.0002C2.33398 20.4435 7.55728 25.6668 14.0007 25.6668C20.444 25.6668 25.6673 20.4435 25.6673 14.0002C25.6673 7.55679 20.444 2.3335 14.0007 2.3335Z"
+                          fill="white"
+                  ></path>
+                  <path
+                          d="M12.3516 19.8337L7 12.3085H8.92325L12.091 14.7709C13.5854 12.3906 16.9337 9.50397 19.5405 8.16699H21C17.6273 10.6733 14.2069 15.7195 12.3516 19.8337Z"
+                          fill="#288ED0"
+                  ></path>
+                </svg>
+              </div>
+              <p class="benefit-text-v4">
+                Eliminates lurking mold, its colonies, dust mites [1], bed bugs, and other unseen biological threats.
+              </p>
+            </div>
+            <div class="benefit-item-v4">
+              <div class="check-icon-wrapper-v4">
+                <svg
+                        width="28"
+                        height="28"
+                        viewBox="0 0 28 28"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="check-icon-v4"
+                >
+                  <path
+                          d="M14.0007 2.3335C7.55728 2.3335 2.33398 7.55679 2.33398 14.0002C2.33398 20.4435 7.55728 25.6668 14.0007 25.6668C20.444 25.6668 25.6673 20.4435 25.6673 14.0002C25.6673 7.55679 20.444 2.3335 14.0007 2.3335Z"
+                          fill="white"
+                  ></path>
+                  <path
+                          d="M12.3516 19.8337L7 12.3085H8.92325L12.091 14.7709C13.5854 12.3906 16.9337 9.50397 19.5405 8.16699H21C17.6273 10.6733 14.2069 15.7195 12.3516 19.8337Z"
+                          fill="#288ED0"
+                  ></path>
+                </svg>
+              </div>
+              <p class="benefit-text-v4">
+                Alleviates sneezing, runny nose, and other nasty allergy symptoms.
+              </p>
+            </div>
+            <div class="benefit-item-v4">
+              <div class="check-icon-wrapper-v4">
+                <svg
+                        width="28"
+                        height="28"
+                        viewBox="0 0 28 28"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="check-icon-v4"
+                >
+                  <path
+                          d="M14.0007 2.3335C7.55728 2.3335 2.33398 7.55679 2.33398 14.0002C2.33398 20.4435 7.55728 25.6668 14.0007 25.6668C20.444 25.6668 25.6673 20.4435 25.6673 14.0002C25.6673 7.55679 20.444 2.3335 14.0007 2.3335Z"
+                          fill="white"
+                  ></path>
+                  <path
+                          d="M12.3516 19.8337L7 12.3085H8.92325L12.091 14.7709C13.5854 12.3906 16.9337 9.50397 19.5405 8.16699H21C17.6273 10.6733 14.2069 15.7195 12.3516 19.8337Z"
+                          fill="#288ED0"
+                  ></path>
+                </svg>
+              </div>
+              <p class="benefit-text-v4">
+                Ensures a blissful, uninterrupted sleep every night.
+              </p>
+            </div>
+            <div class="benefit-item-v4">
+              <div class="check-icon-wrapper-v4">
+                <svg
+                        width="28"
+                        height="28"
+                        viewBox="0 0 28 28"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="check-icon-v4"
+                >
+                  <path
+                          d="M14.0007 2.3335C7.55728 2.3335 2.33398 7.55679 2.33398 14.0002C2.33398 20.4435 7.55728 25.6668 14.0007 25.6668C20.444 25.6668 25.6673 20.4435 25.6673 14.0002C25.6673 7.55679 20.444 2.3335 14.0007 2.3335Z"
+                          fill="white"
+                  ></path>
+                  <path
+                          d="M12.3516 19.8337L7 12.3085H8.92325L12.091 14.7709C13.5854 12.3906 16.9337 9.50397 19.5405 8.16699H21C17.6273 10.6733 14.2069 15.7195 12.3516 19.8337Z"
+                          fill="#288ED0"
+                  ></path>
+                </svg>
+              </div>
+              <p class="benefit-text-v4">
+                Reduces brain fog for a clear head and razor‑sharp focus.
+              </p>
+            </div>
+            <div class="benefit-item-v4">
+              <div class="check-icon-wrapper-v4">
+                <svg
+                        width="28"
+                        height="28"
+                        viewBox="0 0 28 28"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="check-icon-v4"
+                >
+                  <path
+                          d="M14.0007 2.3335C7.55728 2.3335 2.33398 7.55679 2.33398 14.0002C2.33398 20.4435 7.55728 25.6668 14.0007 25.6668C20.444 25.6668 25.6673 20.4435 25.6673 14.0002C25.6673 7.55679 20.444 2.3335 14.0007 2.3335Z"
+                          fill="white"
+                  ></path>
+                  <path
+                          d="M12.3516 19.8337L7 12.3085H8.92325L12.091 14.7709C13.5854 12.3906 16.9337 9.50397 19.5405 8.16699H21C17.6273 10.6733 14.2069 15.7195 12.3516 19.8337Z"
+                          fill="#288ED0"
+                  ></path>
+                </svg>
+              </div>
+              <p class="benefit-text-v4">
+                Transforms your indoor air into a fresh, clean oasis that's a joy to breathe.
+              </p>
+            </div>
+            <div class="benefit-item-v4">
+              <div class="check-icon-wrapper-v4">
+                <svg
+                        width="28"
+                        height="28"
+                        viewBox="0 0 28 28"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="check-icon-v4"
+                >
+                  <path
+                          d="M14.0007 2.3335C7.55728 2.3335 2.33398 7.55679 2.33398 14.0002C2.33398 20.4435 7.55728 25.6668 14.0007 25.6668C20.444 25.6668 25.6673 20.4435 25.6673 14.0002C25.6673 7.55679 20.444 2.3335 14.0007 2.3335Z"
+                          fill="white"
+                  ></path>
+                  <path
+                          d="M12.3516 19.8337L7 12.3085H8.92325L12.091 14.7709C13.5854 12.3906 16.9337 9.50397 19.5405 8.16699H21C17.6273 10.6733 14.2069 15.7195 12.3516 19.8337Z"
+                          fill="#288ED0"
+                  ></path>
+                </svg>
+              </div>
+              <p class="benefit-text-v4">
+                Removes musty odors caused by mold, mildew, and dampness… making your house smell like… home.
+              </p>
+            </div>
+            <div class="benefit-item-v4">
+              <div class="check-icon-wrapper-v4">
+                <svg
+                        width="28"
+                        height="28"
+                        viewBox="0 0 28 28"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="check-icon-v4"
+                >
+                  <path
+                          d="M14.0007 2.3335C7.55728 2.3335 2.33398 7.55679 2.33398 14.0002C2.33398 20.4435 7.55728 25.6668 14.0007 25.6668C20.444 25.6668 25.6673 20.4435 25.6673 14.0002C25.6673 7.55679 20.444 2.3335 14.0007 2.3335Z"
+                          fill="white"
+                  ></path>
+                  <path
+                          d="M12.3516 19.8337L7 12.3085H8.92325L12.091 14.7709C13.5854 12.3906 16.9337 9.50397 19.5405 8.16699H21C17.6273 10.6733 14.2069 15.7195 12.3516 19.8337Z"
+                          fill="#288ED0"
+                  ></path>
+                </svg>
+              </div>
+              <p class="benefit-text-v4">
+                Makes your home safer by disinfecting surfaces and air at the same time.
+              </p>
+            </div>
+            <div class="benefit-item-v4">
+              <div class="check-icon-wrapper-v4">
+                <svg
+                        width="28"
+                        height="28"
+                        viewBox="0 0 28 28"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="check-icon-v4"
+                >
+                  <path
+                          d="M14.0007 2.3335C7.55728 2.3335 2.33398 7.55679 2.33398 14.0002C2.33398 20.4435 7.55728 25.6668 14.0007 25.6668C20.444 25.6668 25.6673 20.4435 25.6673 14.0002C25.6673 7.55679 20.444 2.3335 14.0007 2.3335Z"
+                          fill="white"
+                  ></path>
+                  <path
+                          d="M12.3516 19.8337L7 12.3085H8.92325L12.091 14.7709C13.5854 12.3906 16.9337 9.50397 19.5405 8.16699H21C17.6273 10.6733 14.2069 15.7195 12.3516 19.8337Z"
+                          fill="#288ED0"
+                  ></path>
+                </svg>
+              </div>
+              <p class="benefit-text-v4">
+                Decreases the risk of infection and transmission of flu indoors, providing extra safety for your family.
+              </p>
+            </div>
+            <div class="benefit-item-v4">
+              <div class="check-icon-wrapper-v4">
+                <svg
+                        width="28"
+                        height="28"
+                        viewBox="0 0 28 28"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="check-icon-v4"
+                >
+                  <path
+                          d="M14.0007 2.3335C7.55728 2.3335 2.33398 7.55679 2.33398 14.0002C2.33398 20.4435 7.55728 25.6668 14.0007 25.6668C20.444 25.6668 25.6673 20.4435 25.6673 14.0002C25.6673 7.55679 20.444 2.3335 14.0007 2.3335Z"
+                          fill="white"
+                  ></path>
+                  <path
+                          d="M12.3516 19.8337L7 12.3085H8.92325L12.091 14.7709C13.5854 12.3906 16.9337 9.50397 19.5405 8.16699H21C17.6273 10.6733 14.2069 15.7195 12.3516 19.8337Z"
+                          fill="#288ED0"
+                  ></path>
+                </svg>
+              </div>
+              <p class="benefit-text-v4">
+                Safely evicts pests that might be crawling in the basement or under your bed.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Mobile image - shows after benefits on mobile only -->
+          <div class="product-image-container-v4 block md:hidden mt-8">
+            <picture>
+              <img
+                      src="images/cifndpuaczptwfatszrb.png"
+                      alt="Lumiclean Disinfection Tower"
+                      class="product-image-v4"
+                      loading="lazy"
+                      style="width: 100%; height: auto; max-width: 500px; margin: 0 auto; display: block;"
+              />
+            </picture>
+          </div>
         </div>
-      </div>
-      </div>
-      
       </section>
-
       <!-- Testimonials Section v5 -->
      <section class="testimonials-wrapper">
        <div class="testimonials-container container mx-auto px-4 sm:px-6 lg:px-8">
