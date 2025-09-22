@@ -30,8 +30,7 @@
     <!-- Local TailwindCSS build -->
     <link rel="stylesheet" href="../dist/styles.css">
 
-  <!-- FIRST PART of tracking scripts -->
-  <!-- User ID Script (MUST RUN BEFORE ELEVAR SNIPPET) -->
+     <!-- User ID Script (MUST RUN BEFORE ELEVAR SNIPPET) -->
   <script>
     (function(){
       // Helper to read cookies
@@ -137,15 +136,7 @@
         console.error(e);
       }
   </script>
-  <!-- FINISH FIRST PART of tracking scripts -->
 
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
-
-  <!-- SECOND PART of tracking scripts -->
 <script>
   // var head = document.head;
   // var script = document.createElement('script');
@@ -162,8 +153,7 @@ let cookieDomain = '.trylumiclean.com';
 
 // Set the cookie domain
   </script>
-    <!-- Mida A/B Testing Script (//COMMENTED at the Start) -->
-    <!--      <script type="text/javascript" async src="https://cdn.mida.so/js/optimize.js?key=rZJ9PXwqRayOKRzKyMOgVW"></script>-->
+<!--      <script type="text/javascript" async src="https://cdn.mida.so/js/optimize.js?key=rZJ9PXwqRayOKRzKyMOgVW"></script>-->
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -174,9 +164,8 @@ let cookieDomain = '.trylumiclean.com';
 <!-- End Google Tag Manager -->
 <!-- Preload the heavy cart drawer module -->
 <link rel="modulepreload" href="/js/cart-drawer.js">
-<!-- FINISH SECOND PART of tracking scripts -->
-
-<!-- JUDGE.ME Script (For LP but NOT for ADV) -->
+<!-- Mida A/B Testing Script -->
+<!-- Judge.me Reviews widget -->
 <script>jdgm = window.jdgm || {};jdgm.SHOP_DOMAIN = 'fsnmhb-6m.myshopify.com';jdgm.PLATFORM = 'shopify';jdgm.PUBLIC_TOKEN = 'XpLmHP5ja6cX5nfimZcC5yQZUcc';</script>
 <script>
   requestIdleCallback(()=> {
@@ -188,7 +177,6 @@ let cookieDomain = '.trylumiclean.com';
     document.body.appendChild(s);
   });
 </script>
-    <!-- FINISH SECOND PART of tracking scripts -->
 
   </head>
   <body>
@@ -309,7 +297,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
              <div class="review-text">20,000+ Home Disinfected!</div>
            </div>
            <h1 class="hero-title">
-             Breakthrough Technology Eradicates Toxic Mold, Dust Mites and Allergens At Their DNA level
+             Breakthrough Technology Eradicates Toxic Mold, Dust Mites and Allergens At The DNA level
 
            </h1>
            <p class="hero-subtitle">
@@ -421,8 +409,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
     <!-- ─────────── Left – copy + update box ─────────── -->
     <div>
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight mb-4">
-        This Could Be Your Last Chance to Own <span class="whitespace-nowrap">UVO3™ Technology</span>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight mb-4" style="color: #1773b0;">
+        This Could Be Your Last Chance to Own <span class="whitespace-nowrap">Lumiclean's UVO3™ towers</span>
       </h2>
 
       <p class="mb-4 text-lg md:text-xl text-slate-700 mb-8">
@@ -467,6 +455,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
 
   </div>
+</section>
 </section>
 
      <!-- Slider Section -->
@@ -525,22 +514,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Pathogens Info Section v2 -->
       <section class="pathogens-info-container" id="pathogens-section">
         <div class="container flex-wrap mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center gap-8 md:justify-center">
-          <picture class="info-image">
-            <source media="(max-width: 768px)" srcset="images/LumiClean_Mold.png">
+          <!-- Desktop image - shows first on desktop -->
+          <picture class="desktop-image info-image">
             <img src="images/MOLD Gif.gif" alt="Cleaning visualization" class="main-image" loading="lazy" style="width: 100%; max-width: 900px; height: 900px; object-fit: cover; border-radius: 12px;"/>
           </picture>
+          <style>
+            .desktop-image {
+              display: none;
+            }
+            @media (min-width: 768px) {
+              .desktop-image {
+                display: block !important;
+              }
+              .mobile-image {
+                display: none !important;
+              }
+            }
+          </style>
           <article class="info-content">
             <h2 class="info-heading">Did You Know that 70% of American Homes Harbor HIDDEN Mold Colonies...
             </h2>
+            <!-- Mobile image - shows after headline on mobile only -->
+            <picture class="mobile-image info-image mb-6">
+              <img src="images/MOLD Gif.gif" alt="Cleaning visualization" class="main-image" loading="lazy" style="width: 100%; height: auto; border-radius: 12px;"/>
+            </picture>
             <p class="info-text">
-              You spend hours scrubbing visible mold with bleach and vinegar... Triple-checking every bathroom corner... Following every 'expert' mold removal guide on the internet? Yet that musty smell persists: 'Did I miss something? Is my family REALLY safe from toxic exposure?'
-              <br><br><strong>The truth is,</strong> your instincts are right. Surface cleaning methods are leaving your family exposed to invisible mold threats that multiply by the hour. I mean think about it... Bleach and scrubbing only sanitize what you can see. But what about...
+              You spend hours scrubbing visible mold with bleach and vinegar... Triple-checking every bathroom corner... Following every 'expert' mold removal guide on the internet? Yet that <strong>musty smell persists</strong>: 'Did I miss something? Is my family <strong>REALLY safe from toxic exposure</strong>?'
+              <br><br><strong>The truth is,</strong> your instincts are right. Surface cleaning methods are leaving your family exposed to <strong>invisible mold threats</strong> that multiply by the hour. I mean think about it... Bleach and scrubbing only sanitize <strong>what you can see</strong>. But what about...
             </p>
             <ul class="pathogens-list" style="list-style-type: disc; margin-left: 20px; margin-bottom: 1rem; margin-top: 0.5rem;">
-              <li>The toxic mold spores floating invisibly through your home's air</li>
-              <li>The hidden colonies growing deep inside your drywall and insulation</li>
-              <li>The microscopic spores embedding in your furniture and carpets</li>
-              <li>The stubborn mold roots burrowing into porous surfaces bleach can't reach</li>
+              <li>The <strong>toxic mold spores</strong> floating invisibly through your home's air</li>
+              <li>The <strong>hidden colonies</strong> growing deep inside your drywall and insulation</li>
+              <li>The <strong>microscopic spores</strong> embedding in your furniture and carpets</li>
+              <li>The <strong>stubborn mold roots</strong> burrowing into porous surfaces bleach can't reach</li>
             </ul>
             <p class="info-text">
               Your cleaning routine isn't just falling short – it's giving you a false sense of security while leaving your family exposed to mold toxins you can't see with the naked eye.
@@ -574,32 +580,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
              <span class="intro-text-v3">Introducing lumiclean</span>
            </div>
            <h2 class="main-heading-v3">
-            Wipe Out Mold, Allergens and Pollutants from Your Space!
+            Hospital-like Disinfection is Finally Available For
+Your Home
            </h2>
            <p class="description-text-v3">
-           LumiClean's revolutionary UVO3™ Lamp eradicates mold and its harmful spores from their roots in 15 minutes.
+           LumiClean's revolutionary UVO3™ Lamp <strong>eradicates mold and its harmful spores from their roots in 15 minutes</strong>.
             <br /><br />
-           How does it do this? By ripping apart the tiny molecules that constitute these toxic invaders using the fungicidal power of UV-C rays at 254 nm (the most studied and proven wavelength to have maximum disinfection efficacy) and Ozone's oxidative properties.
+           How does it do this? By <strong>ripping apart the tiny molecules</strong> that constitute these toxic invaders using the <strong>fungicidal power of UV-C rays at 254 nm</strong> (the most studied and proven wavelength to have maximum disinfection efficacy) and <strong>Ozone's oxidative properties</strong>.
             <br /><br />
-           This, my friend, is what we call eradicating mold from its ROOTS.
+           This, my friend, is what we call <strong>eradicating mold from its ROOTS</strong>.
             <br /><br />
-           By combining the power of UV-C and Ozone, you get the synergistic effect of these two powerful disinfection agents, increasing the effectiveness while significantly decreasing the time needed for Ozone to work.
+           By combining the power of UV-C and Ozone, you get the <strong>synergistic effect</strong> of these two powerful disinfection agents, <strong>increasing the effectiveness while significantly decreasing the time needed</strong> for Ozone to work.
             <br /><br />
-           Seriously, you'd achieve the same level of sanitization that someone else would get from running an Ozone generator for 25-30 hours in just 15-60 minutes!
+           Seriously, you'd achieve the same level of sanitization that someone else would get from running an Ozone generator for <strong>25-30 hours in just 15-60 minutes!</strong>
             <br /><br />
-           Forget hours spent scrubbing your walls and ceilings with harsh chemicals. In fact, you could stop cleaning your home completely... and yet, STILL have a mold-free indoor space just by using this high-tech device.
+           <strong>Forget hours spent scrubbing</strong> your walls and ceilings with harsh chemicals. In fact, you could <strong>stop cleaning your home completely</strong>... and yet, <strong>STILL have a mold-free indoor space</strong> just by using this high-tech device.
             <br /><br />
-           LumiClean is the only device to use UVO3™ bulbs. This technology allows for whole-room disinfection from top to bottom, including the most hard-to-reach areas. It penetrates deep into surfaces, even ones as dense as drywall, and purifies the air you breathe.
-            <br /><br />
-           <strong>Inspired By Hospitals & Airlines</strong>
-            <br /><br />
-           Our inspiration came mainly from the healthcare and aviation industries, where infection control and hygiene are not an option but a necessity. They've been using UVO technology for years to protect their patients and passengers and prevent infectious diseases from spreading.
-            <br /><br />
-           The best part? That very same technology is now accessible to you. Combining these two natural solutions can keep your space free from mold, allergens, bacteria, viruses, and fungi... all without compromising your health or your family's health by using toxic chemicals.
+           LumiClean is the only device to use <strong>UVO3™ bulbs</strong>. This technology allows for <strong>whole-room disinfection from top to bottom</strong>, including the most hard-to-reach areas. It <strong>penetrates deep into surfaces, even ones as dense as drywall</strong>, and purifies the air you breathe.
             <br /><br />
            But you know what? Don't just take our word for it...
            </p>
-           <div class="features-grid-v3">
+           <div class="features-grid-v3" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
+           <style>
+             @media (max-width: 768px) {
+               .features-grid-v3 {
+                 grid-template-columns: repeat(2, 1fr) !important;
+               }
+             }
+           </style>
             <!-- Feature 1 -->
              <div class="feature-item-v3">
                <div class="feature-icon-container-v3">
@@ -659,135 +667,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   style="width: 100%; max-width: 900px; height: 900px; object-fit: cover; border-radius: 12px;"
            />
          </picture>
+         <style>
+           @media (max-width: 768px) {
+             .info-image img {
+               height: auto !important;
+               object-fit: initial !important;
+             }
+           }
+         </style>
        </div>
      </section>
-
-      <!-- Lumiclean V4 Section -->
-     <section class="lumiclean-section-v4" id="benefits">
-       <div class="container flex-wrap mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center gap-8 md:justify-center">
-         <div class="product-image-container-v4">
-           <picture>
-             <source media="(max-width: 768px)" srcset="images/9dea1e428e85a76edf3d6afba396af4cbb2df14a_3731ec6f.png">
-             <img
-                     src="images/9dea1e428e85a76edf3d6afba396af4cbb2df14a_3731ec6f.png"
-                     alt="Lumiclean Disinfection Tower"
-                     class="product-image-v4"
-                     loading="lazy"
-             />
-           </picture>
-         </div>
-         <div class="benefits-container-v4">
-           <h2 class="section-title-v4">
-            This is What LumiClean Towers Can Do For You
-           </h2>
-           <div class="benefit-item-v4">
-             <div class="check-icon-wrapper-v4">
-               <svg
-                       width="28"
-                       height="28"
-                       viewBox="0 0 28 28"
-                       fill="none"
-                       xmlns="http://www.w3.org/2000/svg"
-                       class="check-icon-v4"
-               >
-                 <path
-                         d="M14.0007 2.3335C7.55728 2.3335 2.33398 7.55679 2.33398 14.0002C2.33398 20.4435 7.55728 25.6668 14.0007 25.6668C20.444 25.6668 25.6673 20.4435 25.6673 14.0002C25.6673 7.55679 20.444 2.3335 14.0007 2.3335Z"
-                         fill="white"
-                 ></path>
-                 <path
-                         d="M12.3516 19.8337L7 12.3085H8.92325L12.091 14.7709C13.5854 12.3906 16.9337 9.50397 19.5405 8.16699H21C17.6273 10.6733 14.2069 15.7195 12.3516 19.8337Z"
-                         fill="#288ED0"
-                 ></path>
-               </svg>
-             </div>
-             <p class="benefit-text-v4">
-              Finally eliminate 99.9% of hidden mold colonies, toxic spores, and allergens that multiply in your walls while you sleep. No more scrubbing with bleach every week or hiring expensive mold services - just push a button and eradicate mold from its roots in 15 minutes while you relax in another room.
-             </p>
-           </div>
-           <div class="benefit-item-v4">
-             <div class="check-icon-wrapper-v4">
-               <svg
-                       width="28"
-                       height="28"
-                       viewBox="0 0 28 28"
-                       fill="none"
-                       xmlns="http://www.w3.org/2000/svg"
-                       class="check-icon-v4"
-               >
-                 <path
-                         d="M14.0007 2.3335C7.55728 2.3335 2.33398 7.55679 2.33398 14.0002C2.33398 20.4435 7.55728 25.6668 14.0007 25.6668C20.444 25.6668 25.6673 20.4435 25.6673 14.0002C25.6673 7.55679 20.444 2.3335 14.0007 2.3335Z"
-                         fill="white"
-                 ></path>
-                 <path
-                         d="M12.3516 19.8337L7 12.3085H8.92325L12.091 14.7709C13.5854 12.3906 16.9337 9.50397 19.5405 8.16699H21C17.6273 10.6733 14.2069 15.7195 12.3516 19.8337Z"
-                         fill="#288ED0"
-                 ></path>
-               </svg>
-             </div>
-             <p class="benefit-text-v4">
-              
-              Breathe easy for years to come as LumiClean's UVO3™ technology purifies your air, destroying floating mold spores and allergens that most purifiers miss – the culprits behind headaches, brain fog, and sleepless nights.
-             </p>
-           </div>
-           <div class="benefit-item-v4">
-             <div class="check-icon-wrapper-v4">
-               <svg
-                       width="28"
-                       height="28"
-                       viewBox="0 0 28 28"
-                       fill="none"
-                       xmlns="http://www.w3.org/2000/svg"
-                       class="check-icon-v4"
-               >
-                 <path
-                         d="M14.0007 2.3335C7.55728 2.3335 2.33398 7.55679 2.33398 14.0002C2.33398 20.4435 7.55728 25.6668 14.0007 25.6668C20.444 25.6668 25.6673 20.4435 25.6673 14.0002C25.6673 7.55679 20.444 2.3335 14.0007 2.3335Z"
-                         fill="white"
-                 ></path>
-                 <path
-                         d="M12.3516 19.8337L7 12.3085H8.92325L12.091 14.7709C13.5854 12.3906 16.9337 9.50397 19.5405 8.16699H21C17.6273 10.6733 14.2069 15.7195 12.3516 19.8337Z"
-                         fill="#288ED0"
-                 ></path>
-               </svg>
-             </div>
-             <p class="benefit-text-v4">
-              Neutralize musty odors caused by mold, mildew, and dampness at their DNA source instead of masking them with toxic air fresheners – so you can stop worrying about that embarrassing musty smell when guests visit.
-             </p>
-           </div>
-           <div class="benefit-item-v4">
-             <div class="check-icon-wrapper-v4">
-               <svg
-                       width="28"
-                       height="28"
-                       viewBox="0 0 28 28"
-                       fill="none"
-                       xmlns="http://www.w3.org/2000/svg"
-                       class="check-icon-v4"
-               >
-                 <path
-                         d="M14.0007 2.3335C7.55728 2.3335 2.33398 7.55679 2.33398 14.0002C2.33398 20.4435 7.55728 25.6668 14.0007 25.6668C20.444 25.6668 25.6673 20.4435 25.6673 14.0002C25.6673 7.55679 20.444 2.3335 14.0007 2.3335Z"
-                         fill="white"
-                 ></path>
-                 <path
-                         d="M12.3516 19.8337L7 12.3085H8.92325L12.091 14.7709C13.5854 12.3906 16.9337 9.50397 19.5405 8.16699H21C17.6273 10.6733 14.2069 15.7195 12.3516 19.8337Z"
-                         fill="#288ED0"
-                 ></path>
-               </svg>
-             </div>
-             <p class="benefit-text-v4">
-              Ensure 6 to 8 hours of uninterrupted sleep using the same technology trusted by doctors in operating rooms. Start enjoying an allergen-free space where your family can breathe safely while LumiClean destroys hidden threats you can't even see.
-             </p>
-           </div>
-         </div>
-       </div>
-     </section>
- <!--───────────── Testimonials Slider ─────────────-->
- <div class="max-w-7xl mx-auto mt-20 px-4 md:px-8">
+     <!--───────────── Testimonials Slider ─────────────-->
+<section class="bg-white py-20">
+<div class="max-w-7xl mx-auto px-4 md:px-8">
       
   <!-- Accent headline -->
-  <h2 class="flex items-start text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary-900 leading-tight mb-12">
-    <span class="inline-block w-1.5 sm:w-2.5 mr-4 rounded bg-primary-500"></span>
-    What other Americans are saying about LumiClean
-  </h2>
+  
 
   <!-- Slider container -->
   <div class="relative px-4 md:px-12">
@@ -865,6 +760,73 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 </section>
+
+      <!-- Lumiclean V4 Section -->
+      <section id="uvo-benefits"
+      class="relative py-8 md:py-20 bg-white overflow-hidden">
+      
+      <!-- Optional soft background texture/pattern -->
+      <div class="absolute inset-0 -z-10 bg-cover bg-center opacity-5"></div>
+      
+      <div class="max-w-7xl mx-auto grid gap-10 px-4 md:px-8 lg:grid-cols-12">
+      
+      <!-- ───────── Left: headline + benefit bullets ───────── -->
+      <div class="lg:col-span-7">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight mb-4" style="color: #1773b0;">
+          <span class="inline-block w-1.5 sm:w-2.5 mr-4 rounded bg-primary-500"></span>
+        This is What the UVO3™ Lamp Can Do For You
+        </h2>
+      
+      <ul class="space-y-6">
+      <li class="flex">
+       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+       <p class="ml-4"><span class="font-semibold">Eliminates lurking mold, its colonies, dust mites <sup>[1]</sup>,</span> bed bugs, and other unseen biological threats.</p>
+      </li>
+      <li class="flex">
+       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+       <p class="ml-4"><span class="font-semibold">Alleviates sneezing,</span> runny nose, and other nasty allergy symptoms.</p>
+      </li>
+      <li class="flex">
+       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+       <p class="ml-4"><span class="font-semibold">Ensures a blissful, uninterrupted sleep</span> every night.</p>
+      </li>
+      <li class="flex">
+       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+       <p class="ml-4"><span class="font-semibold">Reduces brain fog</span> for a clear head and razor‑sharp focus.</p>
+      </li>
+      <li class="flex">
+       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+       <p class="ml-4"><span class="font-semibold">Transforms your indoor air</span> into a fresh, clean oasis that's a joy to breathe.</p>
+      </li>
+      <li class="flex">
+       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+       <p class="ml-4"><span class="font-semibold">Removes musty odors</span> caused by mold, mildew, and dampness… making your house smell like… home.</p>
+      </li>
+      <li class="flex">
+       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+       <p class="ml-4"><span class="font-semibold">Makes your home safer</span> by disinfecting surfaces and air at the same time.</p>
+      </li>
+      <li class="flex">
+       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+       <p class="ml-4"><span class="font-semibold">Decreases the risk of infection</span> and transmission of flu indoors, providing extra safety for your family.</p>
+      </li>
+      <li class="flex">
+       <!-- <img src="/img/checkmark.svg" alt="" class="w-6 h-6 mt-1 flex-shrink-0"> --> ✅
+       <p class="ml-4"><span class="font-semibold">Safely evicts pests</span> that might be crawling in the basement or under your bed.</p>
+      </li>
+      </ul>
+      </div>
+      
+      <!-- ───────── Right: stacked testimonial screenshots ───────── -->
+      <div class="lg:col-span-5">
+        <div class="space-y-8">
+          <img src="images/cifndpuaczptwfatszrb.png" alt="Customer testimonials collage" class="rounded-lg shadow-md w-full max-w-md lg:max-w-md mx-auto" loading="lazy" decoding="async" style="height: auto;">
+        </div>
+      </div>
+      </div>
+      
+      </section>
+
       <!-- Testimonials Section v5 -->
      <section class="testimonials-wrapper">
        <div class="testimonials-container container mx-auto px-4 sm:px-6 lg:px-8">
