@@ -30,7 +30,8 @@
     <!-- Local TailwindCSS build -->
     <link rel="stylesheet" href="../dist/styles.css">
 
-     <!-- User ID Script (MUST RUN BEFORE ELEVAR SNIPPET) -->
+  <!-- FIRST PART of tracking scripts -->
+  <!-- User ID Script (MUST RUN BEFORE ELEVAR SNIPPET) -->
   <script>
     (function(){
       // Helper to read cookies
@@ -136,7 +137,15 @@
         console.error(e);
       }
   </script>
+  <!-- FINISH FIRST PART of tracking scripts -->
 
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+
+  <!-- SECOND PART of tracking scripts -->
 <script>
   // var head = document.head;
   // var script = document.createElement('script');
@@ -153,7 +162,8 @@ let cookieDomain = '.trylumiclean.com';
 
 // Set the cookie domain
   </script>
-<!--      <script type="text/javascript" async src="https://cdn.mida.so/js/optimize.js?key=rZJ9PXwqRayOKRzKyMOgVW"></script>-->
+    <!-- Mida A/B Testing Script (//COMMENTED at the Start) -->
+    <!--      <script type="text/javascript" async src="https://cdn.mida.so/js/optimize.js?key=rZJ9PXwqRayOKRzKyMOgVW"></script>-->
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -164,8 +174,9 @@ let cookieDomain = '.trylumiclean.com';
 <!-- End Google Tag Manager -->
 <!-- Preload the heavy cart drawer module -->
 <link rel="modulepreload" href="/js/cart-drawer.js">
-<!-- Mida A/B Testing Script -->
-<!-- Judge.me Reviews widget -->
+<!-- FINISH SECOND PART of tracking scripts -->
+
+<!-- JUDGE.ME Script (For LP but NOT for ADV) -->
 <script>jdgm = window.jdgm || {};jdgm.SHOP_DOMAIN = 'fsnmhb-6m.myshopify.com';jdgm.PLATFORM = 'shopify';jdgm.PUBLIC_TOKEN = 'XpLmHP5ja6cX5nfimZcC5yQZUcc';</script>
 <script>
   requestIdleCallback(()=> {
@@ -177,6 +188,7 @@ let cookieDomain = '.trylumiclean.com';
     document.body.appendChild(s);
   });
 </script>
+    <!-- FINISH SECOND PART of tracking scripts -->
 
   </head>
   <body>

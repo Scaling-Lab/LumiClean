@@ -19,9 +19,9 @@
         return m ? decodeURIComponent(m[1]) : null;
       }
 
-      const newStorageKey = 'uvl_userId';
+      const newStorageKey = 'lumi_userId';
       const oldStorageKey = 'userId';
-      const cookieName = 'uvl_userId'; // Only check for the new cookie name
+      const cookieName = 'lumi_userId'; // Only check for the new cookie name
 
       let vid = null;
       let idSource = ''; // Track where the ID came from
@@ -65,7 +65,7 @@
       }
 
       // Expose globally (use new name)
-      window.uvl_userId = vid;
+      window.lumi_userId = vid;
 
       // Define ElevarUserIdFn *synchronously*
       window.ElevarUserIdFn = function() {
@@ -79,7 +79,7 @@
       window.addEventListener('load', function() {
         if (sessionStorage.getItem('visitorSynced') === 'false') {
           const endpoint = '/api/create-user-id';
-          const data = JSON.stringify({ uvl_userId: vid });
+          const data = JSON.stringify({ lumi_userId: vid });
 
           if (navigator.sendBeacon) {
             const blob = new Blob([data], { type: 'application/json' });
@@ -91,7 +91,7 @@
               body: data,
               keepalive: true,
               credentials: 'include'
-            }).catch(e => console.warn('Failed to sync visitor ID:', e));
+            }).catch(e => {});
           }
           sessionStorage.setItem('visitorSynced', 'true');
         }
@@ -102,18 +102,18 @@
   <!-- Elevar Analytics Integration -->
   <script type="module">
       try {
-      const settings  = { proxyPath: "/elevar" };
-      const config = (await import("/elevar/static/configs/f4d4c41a0ed093339678a8934fc524d8e026ba61/config.js")).default;
-      const scriptUrl = settings.proxyPath
-          ? settings.proxyPath + config.script_src_custom_pages_proxied
-          : config.script_src_custom_pages;
+        const settings  = { proxyPath: "/elevar" };
+        const config = (await import("/elevar/static/configs/edf986f96bbf02ccad1be72e30b63c345f230010/config.js")).default;
+        const scriptUrl = settings.proxyPath
+            ? settings.proxyPath + config.script_src_custom_pages_proxied
+            : config.script_src_custom_pages;
 
-      if (scriptUrl) {
-          const { handler } = await import(scriptUrl);
-          await handler(config, settings);
-      }
+        if (scriptUrl) {
+            const { handler } = await import(scriptUrl);
+            await handler(config, settings);
+        }
       } catch (e) {
-      console.error(e);
+        console.error(e);
       }
   </script>
   <!-- FINISH FIRST PART of tracking scripts -->
@@ -145,44 +145,35 @@
   </style>
 
   <!-- SECOND PART of tracking scripts -->
+<script>
+  // var head = document.head;
+  // var script = document.createElement('script');
+  // script.type = 'text/javascript';
+  // script.src = "https://hy.trylumiclean.com/v1/lst/universal-script?ph=2ef1310bcfcbb87c184a4eb930dfb7123fd1b16bfd9ab63d4a9dc441373b90b1&tag=!clicked&ref_url=" + encodeURI(document.URL) ;
+  // head.appendChild(script);
+  </script>
   <script>
-    var head = document.head;
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = "https://hy.uvlizer.co/v1/lst/universal-script?ph=2ef1310bcfcbb87c184a4eb930dfb7123fd1b16bfd9ab63d4a9dc441373b90b1&tag=!clicked&ref_url=" + encodeURI(document.URL) ;
-    head.appendChild(script);
-    </script>
-    <script>
-      // Get the current hostname
+// Get the current hostname
 const hostname = window.location.hostname;
 
 // Set default cookie domain
-let cookieDomain = '.uvlizer.co';
-
-// Check if hostname contains .us
-if (hostname.includes('.us')) {
-  cookieDomain = '.uvlizer.us';
-}
-// Check if hostname contains .co
-else if (hostname.includes('.co')) {
-  cookieDomain = '.uvlizer.co';
-}
+let cookieDomain = '.trylumiclean.com';
 
 // Set the cookie domain
-    </script>
+  </script>
     <!-- Mida A/B Testing Script (//COMMENTED at the Start) -->
-<!--    <script type="text/javascript" async src="https://cdn.mida.so/js/optimize.js?key=rZJ9PXwqRayOKRzKyMOgVW"></script>-->
+    <!--      <script type="text/javascript" async src="https://cdn.mida.so/js/optimize.js?key=rZJ9PXwqRayOKRzKyMOgVW"></script>-->
 
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KVTMT9D');</script>
-    <!-- End Google Tag Manager -->
-    <!-- Preload the heavy cart drawer module -->
-    <link rel="modulepreload" href="/js/cart-drawer.js">
-    <!-- FINISH SECOND PART of tracking scripts -->
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-W7WN9279');</script>
+<!-- End Google Tag Manager -->
+<!-- Preload the heavy cart drawer module -->
+<link rel="modulepreload" href="/js/cart-drawer.js">
+<!-- FINISH SECOND PART of tracking scripts -->
 
 </head>
 <body class="bg-gray-50 font-sans leading-relaxed">
